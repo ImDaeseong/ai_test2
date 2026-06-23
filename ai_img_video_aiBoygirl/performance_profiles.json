@@ -1,0 +1,246 @@
+{
+  "_doc": {
+    "purpose": "영상 모션 프롬프트(09)에 주입되는 퍼포먼스 연출 방향 프로필. 장르·BPM 기반으로 자동 선택된다.",
+    "how_it_works": "select_performance_profile이 song의 genre/mood/emotion/stage_energy 텍스트와 BPM 범위를 기반으로 가장 적합한 프로필을 선택한다.",
+    "fields": {
+      "keywords": "장르/무드 텍스트 매칭용 키워드 목록",
+      "bpm_ranges": "BPM 범위 보너스 — slow(<90)/medium(90-119)/fast(120-149)/very_fast(150+)",
+      "name_ko": "한국어 프로필 이름",
+      "stage_layout": "무대 공간 배치 설명",
+      "lighting": "조명 모션 묘사 (랜덤 선택)",
+      "camera": "카메라 무브먼트 묘사 (랜덤 선택)",
+      "performance": "퍼포머 동작 묘사 (랜덤 선택)",
+      "audience": "분위기/대기 묘사 — 영상 모션 atmosphere 컷에 사용 (랜덤 선택)",
+      "transitions": "CapCut 편집 전환 제안 (랜덤 선택)",
+      "wardrobe": "의상 조명 처리 힌트"
+    }
+  },
+  "default_profile": "standard",
+  "safety_rule": "Preserve the uploaded source image identity. Do not redesign band members, stage, or world. No text, logos, or UI overlays.",
+  "profiles": {
+    "standard": {
+      "name_ko": "록/메탈 하이에너지",
+      "keywords": ["rock", "metal", "punk", "aggressive", "intense", "heavy", "hard", "power", "hyper-pop", "hyperpop"],
+      "bpm_ranges": ["fast", "very_fast"],
+      "stage_layout": "vocalist center front, guitarist stage left, bassist stage right, drummer elevated rear",
+      "lighting": [
+        "high-contrast strobe flashes, sharp neon magenta backlight pulsing with the beat",
+        "intense hard front lighting with rapid flash patterns cutting through deep shadow",
+        "sweeping stage spotlights with hard edge lighting and rapid neon pulse effects"
+      ],
+      "camera": [
+        "fast aggressive low-angle push-in with quick panning between band members",
+        "rapid intercutting between close-ups and dynamic wide shots on the downbeat",
+        "shaking handheld camera with fast rhythm-locked movement"
+      ],
+      "performance": [
+        "high-energy full-body movement, intense expressions, forward lean on the peak notes",
+        "powerful stage presence with aggressive gestures and strong rhythmic body movement",
+        "dynamic movement across the stage with explosive chorus holds"
+      ],
+      "audience": [
+        "atmospheric haze exploding outward on each downbeat, sparks and particles bursting through the smoke",
+        "stage smoke surging on chorus hits, hard backlights cutting through the dark atmospheric haze",
+        "intense fog pulsing hard with the beat, glowing embers and sparks drifting through the air"
+      ],
+      "transitions": [
+        "hard smash cut on the beat drop",
+        "flash cut to full stage wide on the chorus peak",
+        "snap cut from close-up to full band wide on the downbeat"
+      ],
+      "wardrobe": "full dark costume detail in hard high-contrast lighting, decorative metal straps and rounded studs catching the flash"
+    },
+    "soft": {
+      "name_ko": "감성/발라드/인디",
+      "keywords": ["ballad", "emotional", "indie", "folk", "soft", "sad", "heartbreak", "nostalgic", "intimate", "quiet", "subway", "acoustic"],
+      "bpm_ranges": ["slow", "medium"],
+      "stage_layout": "vocalist close to center, intimate spacing, subdued wide presence",
+      "lighting": [
+        "soft moonlight wash with gentle warm fill, intimate single spotlight on the vocalist",
+        "dim atmospheric lighting with a single warm source, edges fading into haze",
+        "gentle neon magenta glow, soft diffused haze, no harsh fills"
+      ],
+      "camera": [
+        "slow handheld push-in toward the vocalist, intimate close-up framing",
+        "gentle floating camera drift around the vocalist with soft focus foreground",
+        "restrained slow pull with foggy foreground elements and soft bokeh"
+      ],
+      "performance": [
+        "restrained emotional expression with subtle hand gestures near the chest, head slightly bowed",
+        "quiet intensity with minimal movement and maximum emotional depth in the face",
+        "intimate stage presence with slow deliberate movement, eyes cast down or toward the moon"
+      ],
+      "audience": [
+        "soft fog drifting slowly across the foreground, moonlight fading gently through the haze",
+        "gentle atmospheric haze with slow particle drift, warm neon light catching the slow-moving smoke",
+        "quiet atmospheric silhouette with slow fog rolling under warm moonlight"
+      ],
+      "transitions": [
+        "slow cross-dissolve between sections",
+        "gentle fade to wide atmospheric moon shot",
+        "slow camera pull-back to reveal the full moon above the stage"
+      ],
+      "wardrobe": "costume detail softly visible in intimate moonlight, subtle texture in warm gentle lighting"
+    },
+    "groove": {
+      "name_ko": "그루브/댄스/R&B",
+      "keywords": ["groove", "dance", "r&b", "soul", "funk", "afrobeats", "neo-soul", "smooth", "dance-pop", "house", "tropical"],
+      "bpm_ranges": ["medium", "fast"],
+      "stage_layout": "vocalist center with natural dynamic spacing, groove-synced band arrangement",
+      "lighting": [
+        "warm rhythmic light pulses matching the groove, golden haze with neon accent pops",
+        "smooth panning warm fill lights with subtle beat-synced neon accents",
+        "fluid warm color wash pulsing gently with the bass and snare"
+      ],
+      "camera": [
+        "smooth fluid tracking shot following the rhythm with groove-matched sway",
+        "gentle handheld movement in sync with the beat, flowing between performers",
+        "dynamic swaying camera drift with warm beat-locked movement"
+      ],
+      "performance": [
+        "fluid body movement with the groove, natural hip sway and shoulder movement",
+        "infectious rhythm visible in every gesture, smooth warm confident energy",
+        "relaxed groove-driven stage presence with natural rhythmic body movement"
+      ],
+      "audience": [
+        "atmospheric particles drifting with the groove, warm haze pulsing gently with the bass",
+        "smooth fog rolling across the stage floor in rhythm, golden light catching the slow-moving smoke",
+        "gentle atmospheric haze swaying softly with the groove energy, warm particles floating"
+      ],
+      "transitions": [
+        "smooth cross-dissolve on the groove feel",
+        "rhythmic cut on the snare hit",
+        "fluid camera sweep between sections on the offbeat"
+      ],
+      "wardrobe": "layered costume detail visible under warm groove lighting, fabric texture catching the warm fill"
+    },
+    "retro": {
+      "name_ko": "레트로/신스팝",
+      "keywords": ["retro", "synth-pop", "new wave", "80s", "synthwave", "synth pop", "pop"],
+      "bpm_ranges": ["medium", "fast"],
+      "stage_layout": "theatrical symmetrical arrangement, vocalist slightly elevated, dramatic stage geometry",
+      "lighting": [
+        "cyan-magenta neon contrast with dramatic theatrical overhead wash and slow sweep effects",
+        "80s-style hard side rim neon fills with theatrical spotlight movement",
+        "retro grid lighting with dramatic long shadows and slow neon color transitions"
+      ],
+      "camera": [
+        "slow dramatic 80s-style crane movement with theatrical wide framing",
+        "steady theatrical push-in with deliberate retro staging and slow zoom",
+        "wide theatrical framing with slow arc movement around the performer"
+      ],
+      "performance": [
+        "theatrical retro stage presence with stylized deliberate gestures and held poses",
+        "dramatic 80s performance energy with exaggerated confident expressions",
+        "cinematic retro performer style with slow deliberate movement and dramatic holds"
+      ],
+      "audience": [
+        "retro atmospheric neon grid haze with slow-drifting cyan-magenta particles",
+        "dramatic atmospheric fog catching the retro stage lighting in cyan-magenta color wash",
+        "theatrical retro concert atmosphere with slow-moving colored haze and neon glow"
+      ],
+      "transitions": [
+        "dramatic 80s-style slow dissolve with theatrical hold",
+        "slow pull-back reveal on the chorus peak with retro theatrical timing",
+        "deliberate slow cut with a held pose moment before the transition"
+      ],
+      "wardrobe": "full costume detail in high-contrast retro neon lighting, cyan-magenta rim catching the studs and straps"
+    },
+    "hiphop": {
+      "name_ko": "힙합/팝랩",
+      "keywords": ["hip-hop", "hiphop", "rap", "trap", "boom bap", "pop-rap", "hip hop"],
+      "bpm_ranges": ["medium", "fast"],
+      "stage_layout": "vocalist front and center with wide open stage space, minimal blocking around the performer",
+      "lighting": [
+        "hard backlight silhouetting the performer, beat-synced strobe cuts through the smoke",
+        "low stage haze with hard rim lighting and cipher-style spotlight on the center",
+        "gritty high-contrast street-level hard light with dramatic beat-locked shadow cast"
+      ],
+      "camera": [
+        "power-stance low-angle push toward the performer on the lyric hit, beat-locked cuts",
+        "gritty close handheld tracking the performer with hard cuts on the rhyme",
+        "hard cut close-up on the lyric peak, wide pull-back on the hook break"
+      ],
+      "performance": [
+        "raw cipher delivery with forward lean and pointed gestures on the hard bars",
+        "hard rhythmic movement with hands matching the beat, confident flow stance",
+        "power stance delivery with body language driving each lyric, forward lean on emphasis"
+      ],
+      "audience": [
+        "atmospheric stage haze catching the hard backlight, slow particle movement in the low fog",
+        "low-level fog rolling across the stage floor with hard light cutting through the smoke",
+        "beat-synced atmospheric smoke pulse in the foreground, gritty haze catching the backlight"
+      ],
+      "transitions": [
+        "hard smash cut on the beat",
+        "strobe flash between verse and hook",
+        "snap cut to the hook drop with a quick fade in the smoke"
+      ],
+      "wardrobe": "high-contrast hard lighting on costume detail, strong shadow definition and crisp edge lighting"
+    },
+    "jazz": {
+      "name_ko": "재즈/스윙/보사노바",
+      "keywords": ["jazz", "swing", "bossa nova", "smooth jazz", "bebop", "cool jazz"],
+      "bpm_ranges": ["slow", "medium"],
+      "stage_layout": "relaxed natural placement, intimate club-like spacing, no strict formation",
+      "lighting": [
+        "warm amber jazz club lighting with soft directional fills and gentle neon accent",
+        "intimate single-source warm light with soft shadow falls and club atmosphere",
+        "moody warm low-key lighting with subtle magenta accent and gentle diffusion"
+      ],
+      "camera": [
+        "smooth slow pan across the band in a natural jazz documentary style",
+        "gentle circular drift around the performers with soft handheld movement",
+        "relaxed slow push-in toward the soloist with warm focus"
+      ],
+      "performance": [
+        "relaxed natural groove with subtle head nods and light finger technique",
+        "effortless swinging body movement, slight shoulder sway, natural improvisation energy",
+        "cool confident stage presence with minimal movement and maximum musical expression"
+      ],
+      "audience": [
+        "gentle warm haze drifting slowly across the foreground, soft particles floating in amber light",
+        "quiet atmospheric fog with warm club lighting catching the slow-moving smoke",
+        "soft atmospheric haze barely moving, warm neon light filtering through the gentle smoke"
+      ],
+      "transitions": [
+        "smooth jazz-paced cross-dissolve between sections",
+        "relaxed slow push dissolve with a warm color hold",
+        "gentle fade through the atmospheric haze to the next section"
+      ],
+      "wardrobe": "costume details visible in warm intimate lighting, soft shadow definition in amber fill"
+    },
+    "ambient": {
+      "name_ko": "앰비언트/사이키델릭/Lo-Fi",
+      "keywords": ["ambient", "lo-fi", "lofi", "psychedelic", "dreamy", "chill", "ethereal", "atmospheric", "meditative"],
+      "bpm_ranges": ["slow", "medium"],
+      "stage_layout": "diffuse non-strict placement, band silhouettes dissolving into the atmospheric environment",
+      "lighting": [
+        "minimal atmospheric color wash with imperceptibly slow gradient shifts, no harsh sources",
+        "dreamlike soft fill with slow bloom light and floating particle glow in the haze",
+        "ethereal diffuse lighting with very slow color wash and ambient neon haze"
+      ],
+      "camera": [
+        "extremely slow imperceptible drift, almost a static hold with barely visible movement",
+        "slow floating camera with long takes and minimal directional movement",
+        "breathing camera with gentle barely-there movement, very long duration holds"
+      ],
+      "performance": [
+        "meditative stillness as performance, minimal movement, band absorbed into the atmosphere",
+        "slow deliberate gestures dissolving into the environment, stillness between notes",
+        "near-motionless stage presence with occasional slow deliberate movement"
+      ],
+      "audience": [
+        "very slow dreamlike fog drift across the foreground, moon glow fading imperceptibly slowly",
+        "still atmospheric particles floating in slow motion, ethereal foreground haze barely moving",
+        "slow-motion smoke cloud dissolving across the frame, dreamlike atmospheric density"
+      ],
+      "transitions": [
+        "extremely slow cross-dissolve lasting several seconds",
+        "very long hold with barely visible atmospheric movement before the transition",
+        "gradual atmospheric fade through the haze with almost no perceivable cut"
+      ],
+      "wardrobe": "costume absorbed softly into the diffuse light, edge definition dissolving into the haze"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "song_slug": "0ee6e29b",
+  "visual_identity": "telephone-signal-pop within dreamy atmospheric anime with luminous space palette",
+  "genre_profile": "telephone-signal-pop",
+  "song_motif": "a forced smile reflected as a split ambient expression",
+  "color_palette": {
+    "base": "deep indigo and midnight space backgrounds",
+    "main_color": "electric blue",
+    "shadow_color": "dark sapphire and deep indigo shadow",
+    "secondary_light": "subtle soft rose shimmer secondary glow",
+    "highlight": "cool pearl and icy white highlights",
+    "rule": "limited-color anime palette: electric blue dominant, dark shadows, near-black backgrounds, subtle soft rose shimmer secondary glow, cool pearl and icy white highlights"
+  },
+  "base_palette": "deep indigo and midnight space backgrounds",
+  "accent_color": "electric blue",
+  "secondary_accent_color": "soft rose shimmer",
+  "highlight_color": "cool pearl",
+  "environment_family": "quiet rural or liminal atmosphere",
+  "core_locations": [
+    "quiet observatory-like room with rotating optical elements",
+    "modular light chamber with movable translucent planes",
+    "open black-box performance space defined by projected grids",
+    "analog control room with patch cables, meters, and geometric shadows",
+    "kinetic installation corridor responding to footsteps",
+    "minimal concert stage with ajaeng shimmer trails and pulse lights",
+    "empty phone booth glowing under soft rain haze",
+    "open night bridge with waveform reflections on wet pavement",
+    "quiet rooftop with warm signal lines crossing the night sky",
+    "street corner below old telephone wires and soft amber light"
+  ],
+  "recurring_symbols": [
+    "a forced smile reflected as a split ambient expression",
+    "silhouette",
+    "wind",
+    "distant city lights",
+    "song-specific setting",
+    "signature prop",
+    "expressive lighting",
+    "thin ajaeng-string bracelet shimmering on chorus pulses"
+  ],
+  "lighting_language": "measured electric blue pulses with subtle secondary light response, line-click light flickers, soft waveform trails, amber-blue night haze, light defines depth, rhythm, and interface state rather than decorating the scene, dark sapphire and deep indigo shadow, cool pearl and icy white highlights",
+  "transition_language": "smooth rhythmic match cuts and gentle push transitions through a forced smile reflected as a split ambient expression, soft rose shimmer reflections, distant signal bloom, delicate string resonance, quiet hopeful motion, long continuous build interrupted by one deliberate structural cut",
+  "instrument_hint": "",
+  "negative_style_rules": [],
+  "genre_reference": {
+    "id": "electronic_synth",
+    "design_basis": "Time-based abstraction, light as a structural element, systems, interfaces, repetition, variation, and human-machine tension.",
+    "narrative_direction": "introduce a simple visual rule, vary it, break it, then resolve it in a transformed system",
+    "character_direction": "clean modular silhouette with one tactile imperfection or analog detail",
+    "camera_language": [
+      "precise symmetrical frame that slowly reveals one controlled deviation",
+      "measured orbit around layered translucent structures",
+      "macro interface detail expanding into architectural scale",
+      "locked geometric frame with motion occurring inside the composition"
+    ],
+    "motion_language": [
+      "loops evolve through phase shifts, parameter changes, and spatial layering",
+      "light, particles, panels, and reflections respond to musical structure",
+      "human motion remains simple so system behavior stays legible"
+    ],
+    "avoid": [
+      "generic neon city",
+      "random hologram clutter",
+      "unstructured glitch",
+      "default cyberpunk costume"
+    ],
+    "safety": "Use broad genre grammar only; do not imitate a recognizable artist, character, costume, prop, logo, video, or stage."
+  }
+}

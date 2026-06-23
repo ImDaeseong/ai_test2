@@ -1,0 +1,102 @@
+{
+  "_comment": "yt-dlp 검색으로 자동 발굴된 AI 음악 채널 목록 (2026-06-19 기준)",
+  "channels": [
+    {
+      "name": "Suno Music (Official)",
+      "handle": "@suno",
+      "url": "https://www.youtube.com/@suno/videos",
+      "tags": ["suno", "official", "ai-generated"],
+      "note": "Suno 공식 채널"
+    },
+    {
+      "name": "Studio Publivox",
+      "handle": "@studiopublivox",
+      "url": "https://www.youtube.com/@studiopublivox/videos",
+      "tags": ["suno", "ai-music", "viral"],
+      "note": "총 1,382만 조회 — AI 음악 바이럴 전문"
+    },
+    {
+      "name": "Ai-Fi Covers",
+      "handle": "@aificovers",
+      "url": "https://www.youtube.com/@aificovers/videos",
+      "tags": ["ai-cover", "ai-generated", "suno"],
+      "note": "총 929만 조회 — AI 커버 전문"
+    },
+    {
+      "name": "ELEVENZ",
+      "handle": "@elevenzTV",
+      "url": "https://www.youtube.com/@elevenzTV/videos",
+      "tags": ["ai-music", "suno", "variety"],
+      "note": "총 417만 조회 — 다양한 장르 AI 음악"
+    },
+    {
+      "name": "Ethernatunes",
+      "handle": "@Ethernatunes",
+      "url": "https://www.youtube.com/@Ethernatunes/videos",
+      "tags": ["ai-music", "ambient", "lofi"],
+      "note": "총 317만 조회 — 앰비언트·로파이 AI 음악"
+    },
+    {
+      "name": "Serene Video AI",
+      "handle": "@SereneVideoAI",
+      "url": "https://www.youtube.com/@SereneVideoAI/videos",
+      "tags": ["ai-music", "relaxing", "ambient"],
+      "note": "총 235만 조회 — 릴렉싱 AI 음악 영상"
+    },
+    {
+      "name": "AI Automation Labs",
+      "handle": "@AIAutomationLabs",
+      "url": "https://www.youtube.com/@AIAutomationLabs/videos",
+      "tags": ["ai-music", "tutorial", "suno"],
+      "note": "총 196만 조회 — Suno 튜토리얼·AI 음악 제작 방법"
+    },
+    {
+      "name": "LLLLITL",
+      "handle": "@LLLLITL",
+      "url": "https://www.youtube.com/@LLLLITL/videos",
+      "tags": ["ai-music", "ai-generated"],
+      "note": "총 126만 조회"
+    },
+    {
+      "name": "BodoBeats AI",
+      "handle": "@BodoBeatsMusic",
+      "url": "https://www.youtube.com/@BodoBeatsMusic/videos",
+      "tags": ["ai-beats", "ai-music", "suno"],
+      "note": "총 123만 조회 — AI 비트 전문"
+    },
+    {
+      "name": "AI Music (Neural)",
+      "handle": "@AI_NeuralMusic",
+      "url": "https://www.youtube.com/@AI_NeuralMusic/videos",
+      "tags": ["ai-music", "neural", "lofi"],
+      "note": "AI 음악 전문 채널"
+    },
+    {
+      "name": "Dan Dingle",
+      "handle": "@dandingles",
+      "url": "https://www.youtube.com/@dandingles/videos",
+      "tags": ["suno", "review", "ai-music"],
+      "note": "총 778만 조회 — Suno 리뷰·반응 영상 (제목·포맷 참조용)"
+    },
+    {
+      "name": "AI Controversy",
+      "handle": "@aicontroversy",
+      "url": "https://www.youtube.com/@aicontroversy/videos",
+      "tags": ["ai-music", "news", "suno", "udio"],
+      "note": "AI 음악 트렌드·논쟁 다루는 채널 (업계 동향 파악용)"
+    }
+  ],
+  "search_queries": [
+    "ytsearch50:AI music suno 2026",
+    "ytsearch50:AI generated music udio 2026",
+    "ytsearch50:AI music lofi chill",
+    "ytsearch50:suno ai song viral",
+    "ytsearch50:AI cover kpop",
+    "ytsearch50:AI music channel suno lofi",
+    "ytsearch50:AI generated song official"
+  ],
+  "ai_filter_keywords": [
+    "suno", "udio", "ai", "artificial", "neural", "generated", "synth"
+  ],
+  "_filter_comment": "채널명(단어 단위)에 위 키워드 포함 시 AI 음악 채널로 인정. channels 배열의 등록 채널은 무조건 통과."
+}

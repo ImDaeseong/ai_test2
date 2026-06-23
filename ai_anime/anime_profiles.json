@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "safety_rule": "Use broad genre grammar only. Never imitate a recognizable artist, face, copyrighted character, costume, prop, logo, video, or stage.",
+  "profiles": {
+    "telephone-signal-pop": {
+      "genre_family": "electronic_synth",
+      "style_keywords": "3D chibi toy robot figure, soft pastel neon toy rendering, dreamy signal-pop atmosphere, collectible toy aesthetic",
+      "genre_world": "telephone-signal-pop within dreamy atmospheric anime with luminous space palette",
+      "scene_sections": ["Intro", "Verse 1", "Pre-Chorus", "Chorus 1", "Post-Chorus", "Verse 2", "Pre-Chorus 2", "Chorus 2", "Bridge", "Outro"],
+      "section_intensities": ["low", "medium", "medium", "high", "medium", "medium", "medium-high", "high", "medium-high", "falling"],
+      "environments": [
+        "quiet observatory-like room with rotating optical elements",
+        "modular light chamber with movable translucent planes",
+        "open black-box performance space defined by projected grids",
+        "analog control room with patch cables, meters, and geometric shadows",
+        "kinetic installation corridor responding to footsteps",
+        "minimal concert stage with shimmer trails and pulse lights",
+        "empty phone booth glowing under soft rain haze",
+        "open night bridge with waveform reflections on wet pavement",
+        "quiet rooftop with warm signal lines crossing the night sky",
+        "street corner below old telephone wires and soft amber light"
+      ],
+      "camera_shots": [
+        "slow lateral reveal from the recurring motif into the protagonist silhouette",
+        "medium-wide push through layered light with the motif leading",
+        "three-quarter shot with the motif in the foreground and soft depth layers",
+        "medium-wide frame balancing the subject, motif, and environment",
+        "forward tracking shot with widening background parallax and brighter rim light",
+        "medium shot with lyric-specific hand action and soft parallax background",
+        "medium-wide frame balancing the subject, motif, and environment",
+        "quiet side-profile frame shaped by the section emotion",
+        "medium-wide push through layered light with the motif leading",
+        "wide resolving frame with the subject becoming small inside the final environment"
+      ],
+      "motion_language": [
+        "loops evolve through phase shifts, parameter changes, and spatial layering",
+        "light, particles, panels, and reflections respond to musical structure",
+        "human motion remains simple so system behavior stays legible"
+      ],
+      "transition_language": "smooth rhythmic match cuts and gentle push transitions, soft reflections, distant signal bloom, delicate string resonance, quiet hopeful motion",
+      "narrative_direction": "introduce a simple visual rule, vary it, break it, then resolve it in a transformed system",
+      "character_direction": "clean modular silhouette with one tactile imperfection or analog detail",
+      "avoid": ["generic neon city", "random hologram clutter", "unstructured glitch", "default cyberpunk costume"]
+    },
+    "electronic_synth_default": {
+      "genre_family": "electronic_synth",
+      "style_keywords": "3D chibi toy robot figure, neon-lit club toy rendering, cool dark electronic atmosphere, collectible toy aesthetic",
+      "genre_world": "electronic synth pop within dreamy atmospheric anime cinematic world",
+      "scene_sections": ["Intro", "Verse 1", "Pre-Chorus", "Chorus 1", "Post-Chorus", "Verse 2", "Pre-Chorus 2", "Chorus 2", "Bridge", "Outro"],
+      "section_intensities": ["low", "medium", "medium", "high", "medium", "medium", "medium-high", "high", "medium-high", "falling"],
+      "environments": [
+        "modular light chamber with movable translucent planes",
+        "analog control room with patch cables and geometric shadows",
+        "open black-box performance space with projected grids",
+        "kinetic installation corridor responding to footsteps",
+        "precise symmetrical white room with one glowing panel",
+        "quiet observatory deck with rotating optical elements",
+        "underground data center with translucent server banks and soft blue glow",
+        "rooftop transmission array under an overcast night sky",
+        "empty concert hall where only the signal lights are on",
+        "open minimalist stage dissolving into ambient darkness"
+      ],
+      "camera_shots": [
+        "precise symmetrical frame that slowly reveals one controlled deviation",
+        "measured orbit around layered translucent structures",
+        "macro interface detail expanding into architectural scale",
+        "locked geometric frame with motion occurring inside the composition",
+        "forward tracking through glowing signal corridors",
+        "medium shot capturing performer and ambient system response",
+        "slow tilt from floor geometry up through performer to ceiling grid",
+        "wide frame with the performer as one element in a larger system",
+        "close detail on hands interacting with light or interface surface",
+        "final wide dissolve frame with performer fading into ambient glow"
+      ],
+      "motion_language": [
+        "loops evolve through phase shifts, parameter changes, and spatial layering",
+        "light, particles, panels, and reflections respond to musical structure",
+        "human motion remains simple so system behavior stays legible"
+      ],
+      "transition_language": "phase-aligned match cuts and signal-like wipes, long continuous build interrupted by one deliberate structural cut",
+      "narrative_direction": "introduce a simple visual rule, vary it, break it, then resolve it in a transformed system",
+      "character_direction": "clean modular silhouette with one tactile imperfection or analog detail",
+      "avoid": ["generic neon city", "random hologram clutter", "unstructured glitch", "default cyberpunk costume"]
+    },
+    "rock": {
+      "genre_family": "rock",
+      "style_keywords": "3D chibi toy robot figure, dramatic stage spotlight toy rendering, high-contrast bold shadows, collectible toy aesthetic",
+      "genre_world": "rock anime noir within high-contrast cinematic concert world",
+      "scene_sections": ["Intro", "Verse 1", "Pre-Chorus", "Chorus 1", "Post-Chorus", "Verse 2", "Pre-Chorus 2", "Chorus 2", "Bridge", "Outro"],
+      "section_intensities": ["low", "medium", "medium-high", "high", "medium", "medium", "medium-high", "high", "medium-high", "falling"],
+      "environments": [
+        "working rehearsal room with visible cables, cases, and practical lamps",
+        "backstage loading corridor opening toward stage light",
+        "compact club stage with layered amplifiers and low ceiling truss",
+        "empty arena floor seen from the edge of the stage",
+        "industrial sound-check space with movable risers",
+        "rooftop practice space with city skyline behind",
+        "cramped greenroom with setlists taped to the mirror",
+        "outdoor festival stage at dusk with dramatic stage lighting and rising haze",
+        "recording studio live room with acoustic panels and warm lamp glow",
+        "empty stage at dawn with house lights up and rigging overhead"
+      ],
+      "camera_shots": [
+        "low lateral tracking close to instruments with foreground hardware crossing frame",
+        "shoulder-height handheld composition with controlled off-axis urgency",
+        "wide stage geography followed by a fast push toward the lead action",
+        "rear-stage angle looking through performers toward open audience space",
+        "close-up on instrument with performer expression visible in background",
+        "medium shot capturing posture and motion under hard side key light",
+        "low angle push-in catching the transition from restraint to release",
+        "overhead crane showing stage formation geometry",
+        "handheld follow behind the performer between setups",
+        "wide final frame with performer small inside the quiet empty stage"
+      ],
+      "motion_language": [
+        "body weight, fabric, cables, and instrument straps react to strong beats",
+        "short physical camera surges settle into readable held frames",
+        "ensemble movement converges on chorus accents without chaotic shaking"
+      ],
+      "transition_language": "hard cuts on drum or guitar accents followed by longer reaction shots, brief blackout at section boundaries",
+      "narrative_direction": "build from rehearsal-like restraint into a full-stage release",
+      "character_direction": "functional performance clothing with a strong readable silhouette and one song-specific detail",
+      "avoid": ["generic empty live-house exterior", "constant red-black palette", "unmotivated flames", "random crowd surfing"]
+    },
+    "acoustic_ballad": {
+      "genre_family": "acoustic_ballad",
+      "style_keywords": "3D chibi toy robot figure, warm cozy candlelit toy rendering, soft rounded toy sculpt, collectible toy aesthetic",
+      "genre_world": "intimate acoustic anime within folk memory and natural light cinematic world",
+      "scene_sections": ["Intro", "Verse 1", "Pre-Chorus", "Chorus 1", "Post-Chorus", "Verse 2", "Pre-Chorus 2", "Chorus 2", "Bridge", "Outro"],
+      "section_intensities": ["low", "low-medium", "medium", "medium-high", "medium", "medium", "medium", "medium-high", "medium-high", "falling"],
+      "environments": [
+        "small kitchen before sunrise with one chair pulled away from the table",
+        "quiet practice room with acoustic panels and an open instrument case",
+        "rural bus shelter beside a long road and changing weather",
+        "attic room with stored objects and soft window dust",
+        "modest community hall after everyone has left",
+        "open back porch at dusk with garden sounds and long shadows",
+        "riverside path at golden hour with wind in the grass",
+        "train window passing autumn fields",
+        "small living room with low lamp light and a worn armchair",
+        "hilltop clearing under an overcast sky dissolving into slow sunlight"
+      ],
+      "camera_shots": [
+        "patient eye-level medium frame with meaningful empty space",
+        "close observation of hands, worn surfaces, and small object changes",
+        "slow doorway or window reveal that preserves natural spatial depth",
+        "long-lens landscape frame with restrained subject movement",
+        "over-shoulder frame toward the environment with subject gesture leading",
+        "medium shot with horizon line or window light dividing the frame",
+        "low angle looking up from instrument level toward the face",
+        "wide establishing shot with performer as small figure in the landscape",
+        "close-up of hands or tactile surface responding to phrase rhythm",
+        "slow tilt rising away from the performer into open sky"
+      ],
+      "motion_language": [
+        "small breath, hand, curtain, steam, dust, and weather motion carry the rhythm",
+        "camera movement follows phrase length rather than every beat",
+        "emotional change appears through posture and distance before facial emphasis"
+      ],
+      "transition_language": "soft match dissolves through shape, gesture, or changing daylight, hold after lyric ends before next location",
+      "narrative_direction": "move from a private everyday ritual toward a modest emotional opening",
+      "character_direction": "lived-in layered clothing with tactile fabric and quiet asymmetry",
+      "avoid": ["default empty park bench", "generic rain-on-window montage", "oversized concert stage", "constant glowing particles"]
+    },
+    "hip_hop_trap": {
+      "genre_family": "hip_hop_trap",
+      "style_keywords": "3D chibi toy robot figure, bold urban street toy rendering, graphic flat-tone shadow blocking, collectible toy aesthetic",
+      "genre_world": "rhythmic trap-pop anime within self-authored street and community cinematic world",
+      "scene_sections": ["Intro", "Verse 1", "Hook", "Verse 2", "Hook 2", "Bridge", "Verse 3", "Hook 3", "Outro Break", "Outro"],
+      "section_intensities": ["low", "medium", "high", "medium", "high", "medium", "medium-high", "high", "medium", "falling"],
+      "environments": [
+        "community recreation room rearranged for a dance circle",
+        "record shop listening corner with layered sleeves and speaker stacks",
+        "rooftop practice area marked by painted floor geometry",
+        "daylight neighborhood court with graphic shadows",
+        "compact DJ booth facing an open multipurpose floor",
+        "outdoor basketball court at golden hour with long fence shadows",
+        "stairwell with strong angular daylight from above",
+        "underground parking lot with graphic pillar shadows and neon tubes",
+        "public park gazebo used as improvised performance space",
+        "corner laundromat with tile reflections and warm overhead fluorescence"
+      ],
+      "camera_shots": [
+        "grounded wide lens keeping body movement and neighborhood geometry readable",
+        "lateral tracking synchronized to footwork and hand rhythm",
+        "circular composition around a dance or performance exchange",
+        "graphic top-down insert followed by eye-level return",
+        "low front-on frame tracking with the performer's confident approach",
+        "close-up on footwear and shadow patterns",
+        "over-shoulder looking toward the listening audience or crew",
+        "handheld push-in locked on expression at lyric peak",
+        "wide static frame with performer motion filling the foreground",
+        "slow pull-back revealing the full social space"
+      ],
+      "motion_language": [
+        "footwork, shoulders, hands, fabric, and crowd response articulate the beat",
+        "camera accents follow bars and phrase changes instead of continuous shaking",
+        "foreground people and objects create layered rhythmic wipes"
+      ],
+      "transition_language": "cut on lyrical cadence with occasional held reaction frames, brief speed change reserved for a clear musical switch",
+      "narrative_direction": "frame the lead as an author of the space rather than a passive figure",
+      "character_direction": "self-authored street styling with distinct layering, footwear silhouette, and personal accessories",
+      "avoid": ["generic wet alley", "crime imagery", "anonymous hooded silhouette", "constant glitch overlays"]
+    },
+    "idol_pop": {
+      "genre_family": "idol_pop",
+      "style_keywords": "3D chibi toy robot figure, bright stage pop toy rendering, vivid pastel clean lighting, collectible toy aesthetic",
+      "genre_world": "bright idol anime pop within cinematic choreography and fashion-led cinematic world",
+      "scene_sections": ["Intro", "Verse 1", "Pre-Chorus", "Chorus 1", "Post-Chorus", "Verse 2", "Pre-Chorus 2", "Chorus 2", "Bridge", "Outro"],
+      "section_intensities": ["low", "medium", "medium-high", "high", "medium", "medium", "medium-high", "high", "medium-high", "medium"],
+      "environments": [
+        "transformable studio set with moving walls and visible depth changes",
+        "bright architectural courtyard designed for group formations",
+        "color-blocked transit concourse with strong vanishing lines",
+        "sunlit rehearsal loft that transforms for the chorus",
+        "graphic rooftop pavilion with layered platforms",
+        "pastel photo studio with bold geometry and pop-art set pieces",
+        "indoor arena with tiered lighting rigs and clean floor design",
+        "outdoor rooftop garden at midday with soft wind and floral geometry",
+        "wide corridor with matching movement and graphic tile pattern",
+        "minimalist white stage with floor reflecting colored formation lights"
+      ],
+      "camera_shots": [
+        "centered formation wide shot transitioning into a clean lead close-up",
+        "crane or lift revealing choreography geometry without losing faces",
+        "smooth lateral travel through changing set layers",
+        "precise push-in timed to the hook gesture",
+        "tracking shot following the lead as the set transforms behind them",
+        "low angle wide capturing the full formation with sky or ceiling above",
+        "close-up on expression and gesture timed to lyric emphasis",
+        "dynamic diagonal tracking aligned to the choreography diagonal",
+        "overhead drone showing the formation geometry from above",
+        "final wide resolving frame with full ensemble in balanced formation"
+      ],
+      "motion_language": [
+        "choreography shapes lines, diagonals, circles, and level changes",
+        "camera and performers exchange emphasis rather than moving at maximum intensity together",
+        "hair, fabric, props, and set pieces reinforce one readable hook"
+      ],
+      "transition_language": "match cut on a signature gesture between contrasting sets, set transformation reserved for chorus lift",
+      "narrative_direction": "build each section around a clear visual hook that develops with the song",
+      "character_direction": "fashion silhouette is coordinated but each lead retains one distinct shape or accessory",
+      "avoid": ["generic idol stage", "uniform face design", "constant beauty close-ups", "logo-like symbols"]
+    },
+    "jazz_soul": {
+      "genre_family": "jazz_soul",
+      "style_keywords": "3D chibi toy robot figure, warm vintage amber toy rendering, intimate jazz bar atmosphere, collectible toy aesthetic",
+      "genre_world": "late-night jazz soul anime within intimate ensemble and layered practical light cinematic world",
+      "scene_sections": ["Intro", "Verse 1", "Pre-Chorus", "Chorus 1", "Post-Chorus", "Verse 2", "Pre-Chorus 2", "Chorus 2", "Bridge", "Outro"],
+      "section_intensities": ["low", "medium", "medium", "medium-high", "medium", "medium", "medium", "medium-high", "high", "falling"],
+      "environments": [
+        "small listening room with tables arranged around an intimate performance area",
+        "daytime rehearsal studio with sheet stands and worn wooden floor",
+        "community theater side stage with layered curtains and practical lamps",
+        "recording room separated by glass but visually connected",
+        "after-hours restaurant room rearranged for a live set",
+        "corner performance space in a neighborhood cultural center",
+        "low-ceiling jazz bar with warm lamp clusters and brick walls",
+        "open courtyard at dusk with string lights and standing audience",
+        "rooftop performance space with city ambient glow behind",
+        "empty listening room after the performance ends, instrument cases open"
+      ],
+      "camera_shots": [
+        "medium two-shot preserving eye line and musical exchange",
+        "close detail on breath, fingers, keys, strings, or microphone distance",
+        "slow pan across ensemble reactions before returning to the lead",
+        "layered frame through stands, curtains, or instrument silhouettes",
+        "over-shoulder from behind a listening musician toward the performer",
+        "medium shot capturing performer and the room depth behind",
+        "close-up on hands and instrument with expression visible",
+        "slow push-in through the performance space toward the emotional peak",
+        "wide frame showing the full ensemble relationship on stage",
+        "patient final frame letting the last note fade in ambient room light"
+      ],
+      "motion_language": [
+        "camera movement follows phrasing, call-and-response, and held notes",
+        "small performer reactions and ensemble timing carry emotional change",
+        "room atmosphere moves gently while hands and faces remain precise"
+      ],
+      "transition_language": "cut from lead phrase to listening reaction then return on response, dissolve or pan motivated by a sustained note",
+      "narrative_direction": "treat musical exchange as conversation between faces, hands, breath, and room",
+      "character_direction": "expressive but grounded clothing with material detail readable under practical light",
+      "avoid": ["generic smoky club", "permanent fedora imagery", "empty luxury lounge", "random vintage filters"]
+    }
+  }
+}

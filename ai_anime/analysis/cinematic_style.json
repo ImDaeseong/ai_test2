@@ -1,0 +1,27 @@
+{
+  "style_name": "telephone-signal-pop within dreamy atmospheric anime with luminous space palette",
+  "genre_profile": "telephone-signal-pop",
+  "song_motif": "a forced smile reflected as a split ambient expression",
+  "color_rules": {
+    "base": "deep indigo and midnight space backgrounds",
+    "main_color": "electric blue",
+    "shadow_color": "dark sapphire and deep indigo shadow",
+    "secondary_light": "subtle soft rose shimmer secondary glow",
+    "highlight": "cool pearl and icy white highlights",
+    "rule": "limited-color anime palette: electric blue dominant, dark shadows, near-black backgrounds, subtle soft rose shimmer secondary glow, cool pearl and icy white highlights"
+  },
+  "camera_language": [
+    "slow lateral reveal from the recurring motif into the protagonist silhouette; genre framing: macro interface detail expanding into architectural scale",
+    "medium-wide push through layered light with the motif leading; genre framing: locked geometric frame with motion occurring inside the composition",
+    "three-quarter shot with the motif in the foreground and soft depth layers; genre framing: locked geometric frame with motion occurring inside the composition",
+    "medium-wide frame balancing the subject, motif, and environment; genre framing: precise symmetrical frame that slowly reveals one controlled deviation",
+    "forward tracking shot with widening background parallax and brighter rim light; genre framing: macro interface detail expanding into architectural scale",
+    "medium shot with lyric-specific hand action and soft parallax background; genre framing: precise symmetrical frame that slowly reveals one controlled deviation",
+    "medium-wide frame balancing the subject, motif, and environment; genre framing: locked geometric frame with motion occurring inside the composition",
+    "quiet side-profile frame shaped by the section emotion; genre framing: precise symmetrical frame that slowly reveals one controlled deviation",
+    "medium-wide push through layered light with the motif leading; genre framing: measured orbit around layered translucent structures",
+    "wide resolving frame with the subject becoming small inside the final environment; genre framing: locked geometric frame with motion occurring inside the composition"
+  ],
+  "transition_language": "smooth rhythmic match cuts and gentle push transitions through a forced smile reflected as a split ambient expression, soft rose shimmer reflections, distant signal bloom, delicate string resonance, quiet hopeful motion, long continuous build interrupted by one deliberate structural cut",
+  "negative_style_rules": []
+}

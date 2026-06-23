@@ -1,0 +1,171 @@
+{
+  "primary_emotion": "cinematic",
+  "secondary_emotions": [
+    "audio-informed"
+  ],
+  "emotional_progression": [
+    {
+      "section": "Intro",
+      "intensity": "low",
+      "emotion": "cinematic",
+      "visual_symbols": [
+        "silhouette",
+        "wind",
+        "distant city lights"
+      ],
+      "lighting": "dark cinematic lighting with deep shadows, neon glow, and silver rim highlights",
+      "environment": "atmospheric city space",
+      "camera_emotion": "film-like composition with slow push-in"
+    },
+    {
+      "section": "Chorus",
+      "intensity": "medium-high",
+      "emotion": "cinematic",
+      "visual_symbols": [
+        "silhouette",
+        "wind",
+        "distant city lights"
+      ],
+      "lighting": "dark cinematic lighting with deep shadows, neon glow, and silver rim highlights",
+      "environment": "atmospheric city space",
+      "camera_emotion": "film-like composition with slow push-in"
+    },
+    {
+      "section": "Verse",
+      "intensity": "medium",
+      "emotion": "cinematic",
+      "visual_symbols": [
+        "silhouette",
+        "wind",
+        "distant city lights"
+      ],
+      "lighting": "dark cinematic lighting with deep shadows, neon glow, and silver rim highlights",
+      "environment": "atmospheric city space",
+      "camera_emotion": "film-like composition with slow push-in"
+    },
+    {
+      "section": "Pre-Chorus",
+      "intensity": "medium",
+      "emotion": "cinematic",
+      "visual_symbols": [
+        "silhouette",
+        "wind",
+        "distant city lights"
+      ],
+      "lighting": "dark cinematic lighting with deep shadows, neon glow, and silver rim highlights",
+      "environment": "atmospheric city space",
+      "camera_emotion": "film-like composition with slow push-in"
+    },
+    {
+      "section": "Chorus",
+      "intensity": "medium-high",
+      "emotion": "cinematic",
+      "visual_symbols": [
+        "silhouette",
+        "wind",
+        "distant city lights"
+      ],
+      "lighting": "dark cinematic lighting with deep shadows, neon glow, and silver rim highlights",
+      "environment": "atmospheric city space",
+      "camera_emotion": "film-like composition with slow push-in"
+    },
+    {
+      "section": "Post-Chorus",
+      "intensity": "medium",
+      "emotion": "cinematic",
+      "visual_symbols": [
+        "silhouette",
+        "wind",
+        "distant city lights"
+      ],
+      "lighting": "dark cinematic lighting with deep shadows, neon glow, and silver rim highlights",
+      "environment": "atmospheric city space",
+      "camera_emotion": "film-like composition with slow push-in"
+    },
+    {
+      "section": "Verse",
+      "intensity": "medium",
+      "emotion": "cinematic",
+      "visual_symbols": [
+        "silhouette",
+        "wind",
+        "distant city lights"
+      ],
+      "lighting": "dark cinematic lighting with deep shadows, neon glow, and silver rim highlights",
+      "environment": "atmospheric city space",
+      "camera_emotion": "film-like composition with slow push-in"
+    },
+    {
+      "section": "Pre-Chorus",
+      "intensity": "medium",
+      "emotion": "cinematic",
+      "visual_symbols": [
+        "silhouette",
+        "wind",
+        "distant city lights"
+      ],
+      "lighting": "dark cinematic lighting with deep shadows, neon glow, and silver rim highlights",
+      "environment": "atmospheric city space",
+      "camera_emotion": "film-like composition with slow push-in"
+    },
+    {
+      "section": "Chorus",
+      "intensity": "medium-high",
+      "emotion": "cinematic",
+      "visual_symbols": [
+        "silhouette",
+        "wind",
+        "distant city lights"
+      ],
+      "lighting": "dark cinematic lighting with deep shadows, neon glow, and silver rim highlights",
+      "environment": "atmospheric city space",
+      "camera_emotion": "film-like composition with slow push-in"
+    },
+    {
+      "section": "Outro",
+      "intensity": "falling",
+      "emotion": "hope",
+      "visual_symbols": [
+        "sunrise edge",
+        "opening sky",
+        "upward drifting signature prop"
+      ],
+      "lighting": "faint silver-white haze at the horizon, whisper of cyber pink glow, barely-visible icy cyan",
+      "environment": "rooftop at dawn",
+      "camera_emotion": "upward angle, slow crane rise"
+    }
+  ],
+  "visual_symbolism": [
+    "silhouette",
+    "wind",
+    "distant city lights"
+  ],
+  "emotional_climax": {
+    "section": "Chorus",
+    "intensity": "medium-high",
+    "emotion": "cinematic",
+    "visual_symbols": [
+      "silhouette",
+      "wind",
+      "distant city lights"
+    ],
+    "lighting": "dark cinematic lighting with deep shadows, neon glow, and silver rim highlights",
+    "environment": "atmospheric city space",
+    "camera_emotion": "film-like composition with slow push-in"
+  },
+  "seasonal_atmosphere": "season-neutral cinematic night",
+  "urban_rural_mood": "quiet rural or liminal atmosphere",
+  "cinematic_pacing": "medium cinematic pacing informed by the audio reference",
+  "tension_curve": [
+    "low",
+    "medium-high",
+    "medium",
+    "medium",
+    "medium-high",
+    "medium",
+    "medium",
+    "medium",
+    "medium-high",
+    "falling"
+  ]
+}

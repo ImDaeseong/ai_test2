@@ -1,0 +1,1375 @@
+{
+  "_comment": "장르 프로필 설정 파일. 새 장르 추가 시 코드 수정 없이 이 파일만 편집하세요. softening_type: soft/groove/retro/hiphop/null — null이면 록 기본 에너지를 그대로 유지합니다.",
+  "profiles": [
+    {
+      "name": "subway",
+      "softening_type": "soft",
+      "keywords": [
+        "subway",
+        "환승",
+        "열차",
+        "역",
+        "전광판"
+      ],
+      "stage_energy": "restrained emotional indie live performance, warm synth-driven chorus lift",
+      "lighting_style": "soft neon magenta moonlight, deep blue subway platform glow, warm synth haze, train-door reflection flickers",
+      "camera_style": "slow cinematic push-in, reflective close-up, gentle handheld movement, train-window reflection shots",
+      "special_effects": "drifting smoke, subtle glowing particles, subway chime light pulses, train window reflections, distant rail motion blur",
+      "roles": {
+        "vocal": "performing with cool restrained screen-face display, signal-beat rhythm",
+        "vocal_action": "compact arm gesture synced to the station-pulse beat, distant gaze out toward the crowd",
+        "guitar": "delivering restrained groove movement matching the subway rhythm",
+        "bass": "maintaining steady rhythm-locked stance with low-energy forward lean",
+        "drum": "keeping steady upright pose with subtle head nod on the beat",
+        "crowd": "with surrounding neon transit glow and signal-line light reflections",
+        "stage": "on a neon-lit transit stage, restrained emotional concert, full band wide shot",
+        "outfit": "dark neon-trimmed jacket with LED goggle visor accessory",
+        "prop": "miniature DJ controller or neon-lit headphones",
+        "color": "neon cyan and electric purple",
+        "reference_image": "electronic.png",
+        "outfit_girl": "pink ribbon bow on purple helmet, dark jacket with neon purple and pink trim, neon purple mini skirt with sparkle accents"
+      }
+    },
+    {
+      "name": "hyper-pop",
+      "softening_type": null,
+      "keywords": [
+        "hyper-pop",
+        "hyperpop",
+        "hyper pop"
+      ],
+      "stage_energy": "high-energy hyperpop performance, tight punchy dynamics, sharp rhythmic intensity, explosive chorus impact",
+      "lighting_style": "sharp staccato strobe flashes, clean white LED lights, high-contrast neon, vacuum-dry stage glow",
+      "camera_style": "fast staccato cuts, tight close-ups, sharp rhythm-locked edits, punchy chorus wide shot",
+      "special_effects": "sharp LED strobe bursts, clean vacuum particles, tight staccato light pulses, instant-cut spark flashes",
+      "roles": {
+        "vocal": "performing with rapid punchy screen-face animation, high-staccato energy",
+        "vocal_action": "sharp forward-pointing gesture on the beat drop, head snapping on each accent",
+        "guitar": "delivering sharp staccato energy with quick arm movements",
+        "bass": "maintaining explosive short-burst pose with immediate impact stance",
+        "drum": "delivering tight punchy rhythm with sharp physical accents",
+        "crowd": "with rapid staccato neon light pulses and sharp electronic particle bursts",
+        "stage": "on a high-energy hyper-pop stage under sharp neon strobe lights, full band wide shot",
+        "outfit": "dark jacket with sharp neon edge trim and electronic badge patch",
+        "prop": "neon-lit headphones slung over the shoulder",
+        "color": "electric pink and neon cyan",
+        "reference_image": "electronic.png",
+        "outfit_girl": "pink ribbon bow on purple helmet, dark jacket with neon pink edge trim, neon mini skirt with electronic badge patch"
+      }
+    },
+    {
+      "name": "dance-pop",
+      "softening_type": "groove",
+      "keywords": [
+        "dance pop",
+        "future house",
+        "dance-pop",
+        "future-house",
+        "bubblegum pop",
+        "tiktok"
+      ],
+      "stage_energy": "bittersweet dance pop performance, groovy club-driven energy, emotional chorus lift, crowd-pulling dynamics",
+      "lighting_style": "warm bittersweet club lighting, soft magenta pluck strobes, hazy dance floor glow, crowd phone light shimmer",
+      "camera_style": "smooth groovy push-in, wide crowd club shots, rhythm-matched close-ups, bittersweet chorus lift camera",
+      "special_effects": "warm club haze, soft magenta pluck light pulses, bittersweet sparks, crowd glow shimmer, liquid synth light waves",
+      "roles": {
+        "vocal": "performing with bright upbeat screen-face rhythm display, club-groove energy",
+        "vocal_action": "smooth hips-sway groove gesture toward the floor, forward body-pulse on the drop",
+        "guitar": "delivering groovy punchy pluck movements with rhythm-locked energy",
+        "bass": "maintaining smooth rolling groove stance with fluid body movement",
+        "drum": "keeping crisp club-floor rhythm with smooth steady nod",
+        "crowd": "with warm bittersweet club lighting and soft magenta dance-floor haze",
+        "stage": "on a bittersweet dance-pop stage under club lights, full band wide shot",
+        "outfit": "coordinated idol stage suit with metallic trim and bold accessories",
+        "prop": "glowing light stick or holographic idol card held raised",
+        "color": "vivid mint and electric pink",
+        "reference_image": "idol_boy.png",
+        "outfit_girl": "lavender purple idol dress with layered ruffled skirt, pink bow on helmet, sparkle trim and star accessories"
+      }
+    },
+    {
+      "name": "rock",
+      "softening_type": null,
+      "keywords": [
+        "metal",
+        "rock",
+        "punk",
+        "high-energy"
+      ],
+      "stage_energy": "high-energy live performance, sharp guitar drive, powerful chorus impact",
+      "lighting_style": "hard neon magenta backlight, sharp white strobes, deep black shadows, explosive stage flashes",
+      "camera_style": "dynamic low-angle shots, fast push-ins, energetic crowd cuts, powerful stage pans",
+      "special_effects": "volumetric smoke, sparks, sharp lasers, fast particles, stage flash bursts",
+      "roles": {
+        "vocal": "performing with high-energy screen-face display, fierce rock intensity",
+        "vocal_action": "forward power stance with guitar prop angled up, head nodding on the downbeat",
+        "guitar": "delivering sharp distorted riff energy with full-body rock stance",
+        "bass": "maintaining heavy low-stance groove with driving forward lean",
+        "drum": "delivering powerful impact beats with wide planted pose",
+        "crowd": "with dramatic concert strobes, deep shadow contrast, and stage spark bursts",
+        "stage": "on a high-energy rock concert stage under hard neon backlight, full band wide shot",
+        "outfit": "dark leather jacket with star patches and studs, instrument strap detail",
+        "prop": "tiny electric guitar held in performance stance",
+        "color": "hot pink and electric teal",
+        "reference_image": "rock.png",
+        "outfit_girl": "pink plaid check skirt with star accessories, white and pink stage top, pink ribbon on pink helmet"
+      }
+    },
+    {
+      "name": "jazz",
+      "softening_type": "soft",
+      "keywords": [
+        "jazz ballad",
+        "bossa nova",
+        "swing",
+        "bebop",
+        "smooth jazz"
+      ],
+      "stage_energy": "intimate jazz club performance, warm swing feel, restrained brush groove",
+      "lighting_style": "warm amber club spotlight, soft shadow play, intimate jazz club glow",
+      "camera_style": "slow push-in, close-up on hands and instrument, intimate club framing, gentle tracking",
+      "special_effects": "soft smoke curl, amber glow particles, warm grain texture, gentle spotlight haze",
+      "roles": {
+        "vocal": "performing with warm relaxed screen-face display, jazz-phrasing sway",
+        "vocal_action": "gentle weight-shift side-lean with saxophone raised softly, warm eyes downward",
+        "guitar": "delivering warm chord-voicing gesture with restrained expressive energy",
+        "bass": "maintaining steady walking-groove posture with gentle melodic lean",
+        "drum": "keeping restrained brush-feel rhythm with featherlight head tilt",
+        "crowd": "with warm amber club lamplight, soft bar atmosphere, and gentle note trails",
+        "stage": "on an intimate late-night jazz club stage under warm spotlight, full band wide shot",
+        "outfit": "warm vintage patterned coat with textured collar, fedora hat on helmet",
+        "prop": "miniature saxophone resting casually at side",
+        "color": "warm amber gold",
+        "reference_image": "jazz.png",
+        "outfit_girl": "dusty mauve vintage layered dress with ruffled details and pearl necklace, pink ribbon bow on helmet"
+      }
+    },
+    {
+      "name": "ballad",
+      "softening_type": "soft",
+      "keywords": [
+        "ballad",
+        "acoustic guitar",
+        "acoustic pop",
+        "soft pop",
+        "neo-classical",
+        "grand piano"
+      ],
+      "stage_energy": "minimal emotional live performance, intimate vocal focus, gentle chorus rise",
+      "lighting_style": "soft neon magenta moonlight, warm spotlight, gentle haze, minimal blue shadows",
+      "camera_style": "slow close-ups, steady emotional push-in, minimal wide shots, soft focus",
+      "special_effects": "soft ambient light particles, warm fog, gentle spotlight glow, minimal stage effects",
+      "roles": {
+        "vocal": "performing softly with emotive screen-face display, intimate candlelight mood",
+        "vocal_action": "hand pressed gently near chest-area, slight forward bow between phrases",
+        "guitar": "delivering minimal warm chord gesture with gentle restrained energy",
+        "bass": "maintaining sparse low-note stance with quiet emotional presence",
+        "drum": "keeping minimal brushed-percussion pose with soft quiet rhythm",
+        "crowd": "with soft phone-light warmth, quiet seated audience glow, and candlelight haze",
+        "stage": "on an intimate emotional ballad stage under soft warm spotlight, full band wide shot",
+        "outfit": "cream knit sweater vest over soft pastel shirt, gentle scarf wrap",
+        "prop": "small glowing candle held gently",
+        "color": "warm rose cream",
+        "reference_image": "ballad.png",
+        "outfit_girl": "soft pink knit sweater with ribbon bow on helmet, cozy pastel scarf wrap"
+      }
+    },
+    {
+      "name": "pop-rap",
+      "softening_type": "soft",
+      "keywords": [
+        "pop rap",
+        "radio-friendly",
+        "smooth bass groove",
+        "힘들",
+        "웃어 본다",
+        "웃는다",
+        "괜찮은 척",
+        "버텨",
+        "무너져"
+      ],
+      "stage_energy": "medium-soft emotional pop rap performance, steady groove, catchy chorus lift",
+      "lighting_style": "warm magenta stage lighting, soft spotlight pulse, gentle city-night glow, crowd phone light shimmer",
+      "camera_style": "smooth handheld push-in, intimate close-up, gentle groove-matched side shots, chorus crowd cutaways",
+      "special_effects": "volumetric smoke, subtle particles, soft neon bloom, song-matched light pulses",
+      "roles": {
+        "vocal": "performing with smooth pop rap screen-face display, medium groove energy",
+        "vocal_action": "forward pointed-index-finger gesture on the bar, gentle head bob on the hook",
+        "guitar": "delivering muted warm pluck gesture with medium groove energy",
+        "bass": "maintaining smooth emotional bass-groove stance with quiet forward lean",
+        "drum": "keeping soft pop-rap beat with restrained snap-accent head nod",
+        "crowd": "with warm phone-light city glow, gentle sway, and magenta stage shimmer",
+        "stage": "on a soft neon stage, warm emotional pop-rap concert, full band wide shot",
+        "outfit": "oversized dark jacket with logo graphic, gold chain accessory",
+        "prop": "wireless mic held with casual smile-confidence",
+        "color": "neon pink and gold chain accent",
+        "reference_image": "hiphop.png",
+        "outfit_girl": "hot pink oversized jacket with AI GIRL logo graphic, crown badge on pink helmet, pink streetwear"
+      }
+    },
+    {
+      "name": "r&b",
+      "softening_type": "soft",
+      "keywords": [
+        "r&b",
+        "heartbeat groove",
+        "emotional mid-tempo",
+        "warm clean vocal"
+      ],
+      "stage_energy": "intimate youth R&B live performance, warm groove, heartbeat-driven chorus lift",
+      "lighting_style": "warm magenta city glow, soft rooftop neon backlight, gentle heartbeat light pulse, intimate night warmth",
+      "camera_style": "intimate close-up push-in, heartbeat-timed cuts, warm handheld movement, soft-focus confession shots",
+      "special_effects": "soft heartbeat light pulses, warm city haze, gentle glowing particles, slow magenta bloom",
+      "roles": {
+        "vocal": "performing with shy nervous screen-face display, heartbeat-groove energy",
+        "vocal_action": "hand held near chest-area trembling lightly, downward glance between phrases",
+        "guitar": "delivering warm R&B pluck gesture with gentle heartbeat rhythm",
+        "bass": "maintaining smooth heartbeat-driven stance with warm urban lean",
+        "drum": "keeping soft heartbeat-textured rhythm with quiet snap pose",
+        "crowd": "with warm city lights, rooftop glow, and gentle heartbeat light pulses",
+        "stage": "on a warm intimate R&B stage under city neon glow, full band wide shot",
+        "outfit": "oversized dark jacket with logo graphic, gold chain accessory",
+        "prop": "wireless mic held with heartbeat-groove confidence",
+        "color": "neon pink and gold chain accent",
+        "reference_image": "r&b.png",
+        "outfit_girl": "hot pink oversized jacket with heartbeat detail, crown badge on pink helmet, pink streetwear styling"
+      }
+    },
+    {
+      "name": "soul-pop",
+      "softening_type": null,
+      "keywords": [
+        "soul-pop",
+        "soul pop",
+        "dark soul",
+        "cinematic soul"
+      ],
+      "stage_energy": "powerful cinematic soul-pop live performance, rich emotional build, explosive chorus lift, choir-driven energy",
+      "lighting_style": "deep magenta moon spotlight, rich warm analog backlight, dramatic shadow contrast, cinematic soul stage glow",
+      "camera_style": "dramatic slow push-in, deep low-angle close-up, cinematic wide-to-close transitions, emotional chorus crane shot",
+      "special_effects": "volumetric stage smoke, deep analog warmth haze, rich magenta spotlights, choir-driven light swells, emotional spark bursts",
+      "roles": {
+        "vocal": "performing with raw powerful screen-face display, cinematic soul energy",
+        "vocal_action": "hand raised high reaching upward on peak beats, head tilted back in release",
+        "guitar": "delivering emotional guitar-swell gesture with cinematic soul depth",
+        "bass": "maintaining powerful stomp stance with deep emotional drive",
+        "drum": "delivering powerful stomp-rhythm beat with cinematic impact pose",
+        "crowd": "with raised hands, deep sway, and rich warm analog soul light",
+        "stage": "on a powerful cinematic soul-pop stage under deep spotlight, full band wide shot",
+        "outfit": "dark jacket with gold-accent trim and bold stage accessory",
+        "prop": "wireless mic raised high with powerful gesture",
+        "color": "deep gold and neon magenta",
+        "reference_image": "soul-pop.png",
+        "outfit_girl": "hot pink jacket with bold stage accessory, crown badge on pink helmet, confident street-soul styling"
+      }
+    },
+    {
+      "name": "lo-fi",
+      "softening_type": "soft",
+      "keywords": [
+        "lo-fi hip hop",
+        "lofi hip hop",
+        "lo fi hip hop",
+        "lo-fi indie",
+        "lo-fi",
+        "cassette hiss",
+        "cozy study",
+        "cassette wobble"
+      ],
+      "stage_energy": "intimate lo-fi bedroom session, soft groove, cassette warmth, unhurried emotional flow",
+      "lighting_style": "warm lamp glow, soft orange desk light, late-night cozy window light, gentle cassette warmth",
+      "camera_style": "static close-up, slow gentle drift, intimate bedroom framing, soft unfocused background",
+      "special_effects": "cassette grain texture, soft vignette, warm haze, subtle lo-fi glow particles",
+      "roles": {
+        "vocal": "performing with soft half-whispered screen-face display, cozy lo-fi warmth",
+        "vocal_action": "hand resting lightly on nearby surface, eyes half-closed in cassette warmth",
+        "guitar": "delivering mellow chord-loop gesture with relaxed unhurried energy",
+        "bass": "maintaining understated relaxed groove stance with casual warmth",
+        "drum": "keeping soft brushed lo-fi beat with laid-back pocket pose",
+        "crowd": "with warm cassette-grain texture, cozy lamp glow, and soft ambient haze",
+        "stage": "on an intimate late-night lo-fi stage under warm lamp light, full band wide shot",
+        "outfit": "cream knit sweater vest over soft shirt, scarf wrap, cozy layered styling",
+        "prop": "folded handwritten sheet music held gently",
+        "color": "warm rose cream",
+        "reference_image": "ballad.png",
+        "outfit_girl": "soft pink knit sweater with ribbon bow on helmet, cozy pastel scarf wrap"
+      }
+    },
+    {
+      "name": "neo-soul",
+      "softening_type": "soft",
+      "keywords": [
+        "neo-soul",
+        "neo soul",
+        "neosoul"
+      ],
+      "stage_energy": "warm organic neo-soul live performance, groove-driven soulful delivery, heartfelt chorus build",
+      "lighting_style": "warm amber soul stage glow, organic moody spotlight, vintage soul warmth, soft golden backlight",
+      "camera_style": "intimate close-up push-in, groove-matched cuts, warm soul performance framing, gentle handheld sway",
+      "special_effects": "warm analog soul haze, vintage spotlight shimmer, soft golden particles, gentle organic bloom",
+      "roles": {
+        "vocal": "performing with warm neo-soul screen-face display, soulful groove energy",
+        "vocal_action": "hand rising slowly on the melodic run, eyes closed in soulful expression",
+        "guitar": "delivering warm funky chord-voicing gesture with organic neo-soul energy",
+        "bass": "maintaining melodic groove-driven stance with organic warm lean",
+        "drum": "keeping organic tight-pocket groove pose with light ghost-note nod",
+        "crowd": "with warm soulful energy, closed-eyes sway, and golden vintage soul light",
+        "stage": "on a warm organic neo-soul concert stage under amber spotlight, full band wide shot",
+        "outfit": "warm vintage patterned coat with textured collar, fedora hat on helmet",
+        "prop": "miniature saxophone or vintage instrument held warmly",
+        "color": "warm amber gold",
+        "reference_image": "jazz.png",
+        "outfit_girl": "dusty mauve vintage layered dress with ruffled details, pink ribbon bow on helmet"
+      }
+    },
+    {
+      "name": "psychedelic",
+      "softening_type": "soft",
+      "keywords": [
+        "psychedelic",
+        "surreal visuals",
+        "surreal"
+      ],
+      "stage_energy": "dreamlike psychedelic live performance, slow-motion surreal energy, warm dissolving chorus lift",
+      "lighting_style": "warm psychedelic colour bloom, surreal light trails, dissolving neon wash, soft chromatic haze",
+      "camera_style": "slow fisheye drift, dreamlike push-in, liquid slow-zoom, surreal handheld float",
+      "special_effects": "colour distortion bloom, slow light trail dissolves, warm surreal glow particles, liquid lens flare",
+      "roles": {
+        "vocal": "performing with dreamy floating screen-face display, surreal soft energy",
+        "vocal_action": "hand drifting slowly upward in dreamlike gesture, eyes half-closed in surreal warmth",
+        "guitar": "delivering warm reverb-drenched chord-swell gesture with dreamlike energy",
+        "bass": "maintaining slow melodic drone stance with dreamy floating lean",
+        "drum": "keeping slow brushed atmospheric percussion with dreamlike cymbal pose",
+        "crowd": "with colour-distortion bloom, surreal light trails, and liquid lens atmosphere",
+        "stage": "on a warm dreamlike stage under surreal colour light, full band wide shot",
+        "outfit": "pastel space suit with signal patches, soft scarf accent, heart badge",
+        "prop": "signal cable bracelet or softly glowing neon orb",
+        "color": "soft pink and neon violet",
+        "reference_image": "psychedelic.png",
+        "outfit_girl": "soft pink and rose pastel space suit with heart badge, pink bow on helmet, star accessory detail"
+      }
+    },
+    {
+      "name": "folk",
+      "softening_type": "soft",
+      "keywords": [
+        "folk",
+        "neo-folk",
+        "singer-songwriter",
+        "folk pop",
+        "indie folk",
+        "folktronica"
+      ],
+      "stage_energy": "intimate acoustic folk performance, warm earthy storytelling, gentle emotional resonance",
+      "lighting_style": "warm natural wood spotlight, soft amber candlelight glow, intimate folk stage warmth, gentle dusk haze",
+      "camera_style": "static intimate close-up, slow gentle push-in, soft acoustic framing, warm shallow depth of field",
+      "special_effects": "soft warm grain texture, gentle amber haze, acoustic natural warmth, quiet dust mote shimmer",
+      "roles": {
+        "vocal": "performing with intimate folk screen-face display, warm storytelling energy",
+        "vocal_action": "hand resting gently nearby, soft reflective gaze in storytelling pose",
+        "guitar": "delivering fingerstyle acoustic gesture with warm open-chord energy",
+        "bass": "maintaining warm understated acoustic-bass stance with folk groove lean",
+        "drum": "keeping gentle folk-percussion brush with light hand-drum pose",
+        "crowd": "with quiet intimate attention, gentle nods, and warm natural wood light",
+        "stage": "on an intimate acoustic folk stage under warm amber candlelight, full band wide shot",
+        "outfit": "cream knit sweater vest with gentle scarf, cozy layered toy styling",
+        "prop": "small glowing candle or folded handwritten sheet music",
+        "color": "warm rose cream",
+        "reference_image": "ballad.png",
+        "outfit_girl": "soft pink knit sweater with ribbon bow on helmet, cozy pastel pink scarf"
+      }
+    },
+    {
+      "name": "dreampop",
+      "softening_type": "soft",
+      "keywords": [
+        "dream pop",
+        "dreampop",
+        "shoegaze pop",
+        "shoegazing",
+        "shoegaze"
+      ],
+      "stage_energy": "hazy ethereal dream-pop live performance, reverb-soaked floating energy, gentle chorus bloom",
+      "lighting_style": "soft pastel chromatic haze, dreamy reverb-light bloom, gentle colour-wash diffusion, floating neon mist",
+      "camera_style": "slow dreamlike push-in, soft rack focus drift, ethereal handheld float, hazy wide pastel stage shot",
+      "special_effects": "reverb chromatic bloom, soft pastel particle drift, dreamlike lens flare glow, gentle floating haze",
+      "roles": {
+        "vocal": "performing with dreamy soft screen-face display, reverb-washed floating energy",
+        "vocal_action": "arm drifting slowly outward with dreamy release gesture, gaze softly unfocused forward",
+        "guitar": "delivering reverb-drenched wash-chord gesture with hazy dreamy energy",
+        "bass": "maintaining slow floating drone stance with dreamy reverb lean",
+        "drum": "keeping soft brushed atmospheric percussion with dreamy cymbal wash pose",
+        "crowd": "with soft chromatic bloom, dreamy reverb haze, and floating pastel particle drift",
+        "stage": "on a hazy dreamy stage under soft chromatic bloom light, full band wide shot",
+        "outfit": "sheer pastel layered coat with soft glowing trim and dreamy badge detail",
+        "prop": "softly glowing pastel orb held gently at side",
+        "color": "soft lavender and dreamy peach",
+        "reference_image": "dreampop.png",
+        "outfit_girl": "sheer pastel pink layered dress with dreamy glowing trim, pink ribbon on helmet, soft star badge"
+      }
+    },
+    {
+      "name": "melodic_rap",
+      "softening_type": "soft",
+      "keywords": [
+        "melodic rap",
+        "late-night melodic rap",
+        "emotional korean singing rap",
+        "gayageum texture",
+        "surf ambience",
+        "analog cassette",
+        "warm analog cassette",
+        "ambient indie",
+        "late-night rap"
+      ],
+      "stage_energy": "medium-soft emotional melodic rap performance, steady warm groove, catchy chorus lift",
+      "lighting_style": "warm amber and soft pink stage lighting, cassette warmth glow, gentle city-night shimmer, crowd phone light haze",
+      "camera_style": "smooth handheld push-in, intimate close-up, gentle groove-matched side shots, warm chorus crowd cutaways",
+      "special_effects": "volumetric smoke, subtle particles, soft neon bloom, song-matched warm light pulses",
+      "roles": {
+        "vocal": "performing with soft emotional screen-face display, intimate warm groove energy",
+        "vocal_action": "soft hand raised near chest-level between phrases, head tilting gently with the melody",
+        "guitar": "delivering warm analog acoustic pluck with gentle surf-cadence rhythm",
+        "bass": "maintaining smooth emotional bass-groove stance with quiet forward lean",
+        "drum": "keeping soft melodic-rap beat with restrained snap-accent head nod",
+        "crowd": "with warm city-night cassette glow, gentle phone-light shimmer, and soft neon haze",
+        "stage": "on a soft analog neon stage, warm late-night melodic rap concert, full band wide shot",
+        "outfit": "vintage denim jacket with cassette patch and lofi waves graphic, light gold chain",
+        "prop": "wireless mic held with casual smile-confidence",
+        "color": "warm peach, mint teal, and soft pink accent",
+        "reference_image": "melodic_rap.png",
+        "outfit_girl": "pink denim jacket with lofi waves graphic, pink ribbon bow on helmet, warm pastel pink streetwear"
+      }
+    },
+    {
+      "name": "indie",
+      "softening_type": "soft",
+      "keywords": [
+        "indie",
+        "bedroom pop",
+        "dreamy",
+        "dream",
+        "몽환",
+        "alternative pop",
+        "alternative"
+      ],
+      "stage_energy": "restrained emotional indie live performance, warm synth-driven chorus lift",
+      "lighting_style": "soft neon magenta city glow, warm indie stage light, gentle haze, dreamy ambient backlight",
+      "camera_style": "slow cinematic push-in, reflective close-up, gentle handheld movement, soft focus performance shots",
+      "special_effects": "soft fog, glowing particles, dreamy light trails, slow bloom effects",
+      "roles": {
+        "vocal": "performing with soft intimate indie screen-face display, warm restrained energy",
+        "vocal_action": "hand resting lightly at side, eyes closed in intimate soft delivery pose",
+        "guitar": "delivering gentle arpeggio gesture with warm clean indie energy",
+        "bass": "maintaining soft melodic indie-groove stance with dreamy ambient lean",
+        "drum": "keeping minimal restrained percussion pose with brushed textured nod",
+        "crowd": "with soft indie-stage light sway, dreamy ambient trails, and warm bloom",
+        "stage": "on a warm intimate indie stage under soft neon city light, full band wide shot",
+        "outfit": "cream knit sweater vest over soft pastel shirt, gentle scarf wrap",
+        "prop": "small glowing candle held gently",
+        "color": "warm rose cream",
+        "reference_image": "ballad.png",
+        "outfit_girl": "soft pink knit sweater with ribbon bow on helmet, cozy pastel pink scarf"
+      }
+    },
+    {
+      "name": "afrobeats",
+      "softening_type": "groove",
+      "keywords": [
+        "afrobeats",
+        "afro pop",
+        "afrobeat"
+      ],
+      "stage_energy": "infectious afrobeats live performance, polyrhythmic groove energy, joyful chorus lift",
+      "lighting_style": "warm golden-orange stage glow, vibrant tropical neon accents, pulsing rhythm-locked light rings",
+      "camera_style": "fluid wide crowd shots, rhythm-locked close-ups, vibrant stage pans, groove-matched cuts",
+      "special_effects": "warm tropical haze, golden light particles, rhythm-pulse neon rings, joyful spark bursts",
+      "roles": {
+        "vocal": "performing with infectious groove screen-face display, joyful afrobeats energy",
+        "vocal_action": "hand swaying with groove rhythm, body gently rocking side to side",
+        "guitar": "delivering polyrhythmic muted-pattern gesture with groove-locked precision",
+        "bass": "maintaining deep melodic 808-groove stance with forward afrobeats drive",
+        "drum": "keeping polyrhythmic syncopated pose with afrobeats shaker nod",
+        "crowd": "with infectious tropical warmth, fluid crowd movement, and golden pulsing light rings",
+        "stage": "on an infectious afrobeats concert stage under warm golden tropical light, full band wide shot",
+        "outfit": "oversized dark jacket with vibrant pattern graphic, gold chain accessory",
+        "prop": "wireless mic swaying with groove rhythm",
+        "color": "warm gold and vibrant orange",
+        "reference_image": "hiphop.png",
+        "outfit_girl": "vibrant hot pink jacket with pattern graphic and gold accent, crown badge on pink helmet"
+      }
+    },
+    {
+      "name": "synth-pop",
+      "softening_type": "retro",
+      "keywords": [
+        "synth-pop",
+        "synthpop",
+        "new wave",
+        "retro synth",
+        "80s retro",
+        "retro electronics",
+        "1980s synth"
+      ],
+      "stage_energy": "dramatic 80s synth-pop live performance, retro analog warmth, sweeping chorus lift",
+      "lighting_style": "magenta and cyan neon grid glow, 80s analog stage warmth, dramatic scan-line strobes, retro grid horizon backlight",
+      "camera_style": "slow dramatic push-in, retro styled wide shots, 80s music video inspired cuts, sweeping crane chorus lift",
+      "special_effects": "analog synth haze, neon grid light trails, 80s scan-line strobes, retro spark bursts, cyan-magenta laser sweeps",
+      "roles": {
+        "vocal": "performing with dramatic 80s screen-face display, theatrical synth-pop emotion",
+        "vocal_action": "hand raised in theatrical sweeping gesture, dramatic sideways glance on the chorus",
+        "guitar": "delivering shimmering retro synth-guitar gesture with 80s analog warmth",
+        "bass": "maintaining pulsing synth-bass stance with 80s retro energy lean",
+        "drum": "keeping gated-reverb sharp 80s-snare impact pose with crisp hi-hat nod",
+        "crowd": "with 80s neon grid light trails, retro scan-line strobes, and cyan-magenta laser sweeps",
+        "stage": "on a dramatic 80s retro synth-pop stage under neon grid light, full band wide shot",
+        "outfit": "dark jacket with neon edge lighting, LED goggle visor accessory",
+        "prop": "neon-lit headphones or miniature DJ controller",
+        "color": "neon cyan and electric purple",
+        "reference_image": "electronic.png",
+        "outfit_girl": "pink ribbon bow on purple helmet, dark jacket with neon purple edge lighting, neon purple mini skirt with retro sparkle"
+      }
+    },
+    {
+      "name": "house",
+      "softening_type": "groove",
+      "keywords": [
+        "tropical house",
+        "acid house",
+        "big beat",
+        "groovy house",
+        "nu-disco",
+        "disco-pop",
+        "disco pop",
+        "funky disco"
+      ],
+      "stage_energy": "energetic club house performance, pulsing groove energy, euphoric chorus lift",
+      "lighting_style": "club laser grid lighting, warm disco ball reflections, pulsing strobe rhythm, neon club atmosphere",
+      "camera_style": "sweeping crane shots, wide club floor shots, rhythm-locked close-ups, euphoric wide stage pans",
+      "special_effects": "club fog machine haze, disco ball light scatter, laser grid sweeps, rhythm-pulse light explosions",
+      "roles": {
+        "vocal": "performing with euphoric club screen-face display, rhythm-locked groove energy",
+        "vocal_action": "hand reaching toward the dance floor, body pulsing softly with the beat",
+        "guitar": "delivering funky muted groove-gesture with club-rhythm precision",
+        "bass": "maintaining deep rolling club-bass stance with euphoric dance-floor drive",
+        "drum": "keeping tight four-on-the-floor pose with crisp high-hat nod",
+        "crowd": "with club fog machine haze, disco-ball light scatter, and laser grid pulse",
+        "stage": "on an energetic club house stage under laser-grid club light, full band wide shot",
+        "outfit": "dark jacket with neon edge lighting, LED goggle visor accessory",
+        "prop": "miniature DJ controller held with club-floor energy",
+        "color": "neon cyan and electric purple",
+        "reference_image": "house.png",
+        "outfit_girl": "pink ribbon bow on purple helmet, dark jacket with neon purple lighting, neon mini skirt with club-floor sparkle"
+      }
+    },
+    {
+      "name": "hip-hop",
+      "softening_type": "hiphop",
+      "keywords": [
+        "boom bap",
+        "hip-hop",
+        "hip hop",
+        "trap",
+        "melodic trap",
+        "industrial trap"
+      ],
+      "stage_energy": "heavy hip-hop live performance, hard-hitting beat energy, explosive verse impact",
+      "lighting_style": "hard urban spotlight, dark blue-grey stage shadows, sharp white flash accents, streetwise neon glow",
+      "camera_style": "low-angle power shots, fast verse-matched cuts, tight close-ups, wide stage reveal",
+      "special_effects": "volumetric smoke columns, sharp strobe accents, deep bass sub-woofer visual pulses, urban concrete dust",
+      "roles": {
+        "vocal": "performing with hard-hitting screen-face display, sharp hip-hop flow energy",
+        "vocal_action": "forward rhythmic pointing gesture toward the crowd, index finger on the bars",
+        "guitar": "delivering gritty urban sample-gesture with lo-fi chord-stab energy",
+        "bass": "maintaining heavy 808 sub-punch stance with dark hip-hop groove lean",
+        "drum": "keeping hard boom-bap kick-snare pose with punishing trap hi-hat nod",
+        "crowd": "with hard urban spotlight, deep bass visual pulses, and hip-hop smoke columns",
+        "stage": "on a dark urban street stage, hard-hitting hip-hop concert, full band wide shot",
+        "outfit": "oversized dark jacket with logo graphic, gold chain accessory, streetwear toy styling",
+        "prop": "wireless mic held with casual street confidence",
+        "color": "neon pink and gold chain accent",
+        "reference_image": "hiphop.png",
+        "outfit_girl": "hot pink oversized jacket with AI GIRL logo, crown badge on pink helmet, pink streetwear and pink sneakers"
+      }
+    },
+    {
+      "name": "telephone-signal-pop",
+      "softening_type": "soft",
+      "keywords": [
+        "signal pop",
+        "korean signal pop",
+        "telephone pulse rhythm",
+        "telephone connection tone",
+        "ajaeng lead",
+        "ajaeng motif"
+      ],
+      "stage_energy": "minimal warm telephone-signal-pop live performance, spacious pulse rhythm, uplifting emotional chorus lift",
+      "lighting_style": "warm telephone-line amber glow, soft magenta moonlight, spacious blue haze, subtle pulse lights",
+      "camera_style": "slow intimate push-in, gentle pulse-timed close-ups, spacious wide shots, calm chorus lift camera movement",
+      "special_effects": "soft signal pulse particles, warm line-click light flickers, drifting haze, subtle ajaeng shimmer trails",
+      "roles": {
+        "vocal": "performing with warm telephone-signal screen-face display, spacious pulse energy",
+        "vocal_action": "hand slowly lifting near the ear like following a distant signal, opening toward the crowd on the hook",
+        "guitar": "delivering minimal warm pluck gesture around the telephone pulse rhythm",
+        "bass": "maintaining soft spacious sub-pulse stance with ajaeng-led melody lean",
+        "drum": "keeping minimal pulse-click percussion pose with restrained rhythm nod",
+        "crowd": "with warm signal-pulse particles, line-click light flickers, and drifting haze",
+        "stage": "on a spacious Korean telephone-signal-pop stage with ajaeng texture under amber pulse light, full band wide shot",
+        "outfit": "pastel space suit with wifi-signal patches, soft scarf accent, heart badge and antenna",
+        "prop": "retro telephone handset glowing softly",
+        "color": "soft pink and neon violet",
+        "reference_image": "telephone.png",
+        "outfit_girl": "soft pink and rose pastel space suit with heart badge and signal patches, pink bow on helmet"
+      }
+    },
+    {
+      "name": "ambient",
+      "softening_type": "soft",
+      "keywords": [
+        "ambient"
+      ],
+      "stage_energy": "minimal atmospheric live performance, floating emotional texture, gentle slow-building glow",
+      "lighting_style": "soft diffused atmospheric light, gentle gradient wash, minimal warm haze, quiet ambient bloom",
+      "camera_style": "static wide shots, slow imperceptible drift, atmospheric long-lens framing, soft depth blur",
+      "special_effects": "soft ethereal particles, atmospheric haze, gentle light diffusion, quiet bloom shimmer",
+      "roles": {
+        "vocal": "performing with hushed ethereal screen-face display, floating minimal presence",
+        "vocal_action": "hand resting softly at side, eyes half-closed in atmospheric calm",
+        "guitar": "delivering soft atmospheric fingerpick gesture with long reverb float",
+        "bass": "maintaining minimal ambient drone stance with slow gentle drift",
+        "drum": "keeping soft brushed atmospheric percussion with gentle cymbal wash pose",
+        "crowd": "with soft ethereal particles, atmospheric haze, and quiet ambient bloom light",
+        "stage": "on a minimal floating ambient stage under soft diffused atmospheric light, full band wide shot",
+        "outfit": "plain pastel space suit with soft cream tones and simple antenna",
+        "prop": "softly glowing light orb held gently",
+        "color": "soft pastel and warm cream",
+        "reference_image": "base.png",
+        "outfit_girl": "soft pink and peach pastel space suit with pink ribbon bow on helmet, gentle minimal styling"
+      }
+    },
+    {
+      "name": "blues",
+      "softening_type": null,
+      "keywords": [
+        "blues",
+        "delta blues",
+        "chicago blues",
+        "electric blues",
+        "12-bar blues"
+      ],
+      "stage_energy": "raw earthy blues live performance, emotional guitar cry, slow-burn verse build, powerful chorus release",
+      "lighting_style": "dim warm amber bar spotlight, smoky indigo stage shadows, deep moody backlight, raw blues stage glow",
+      "camera_style": "intimate close-up on guitar hands, slow dramatic push-in, raw stage framing, emotional close-ups",
+      "special_effects": "smoky bar haze, warm amber dust particles, raw guitar vibrato light trails, slow moody stage fog",
+      "roles": {
+        "vocal": "performing with raw emotional screen-face display, deep blues intensity",
+        "vocal_action": "hand pressed near chest-area with raw emotional release, slight forward slouch on the verse",
+        "guitar": "delivering slow crying blues-bend gesture with deep emotional sway",
+        "bass": "maintaining walking blues-groove stance with low earthy forward lean",
+        "drum": "keeping steady shuffle-beat pose with dusty brushwork nod",
+        "crowd": "with dim bar amber light, smoky haze, and slow head-nod blues atmosphere",
+        "stage": "on a raw emotional blues stage under dim amber bar spotlight, full band wide shot",
+        "outfit": "dark worn denim jacket with blues patch badges, worn-leather trim detail",
+        "prop": "tiny electric guitar held in expressive blues stance",
+        "color": "deep indigo and warm amber",
+        "reference_image": "blues.png",
+        "outfit_girl": "dark denim jacket with star patches, blue bandana on pink helmet, worn blues-style trim"
+      }
+    },
+    {
+      "name": "cinematic",
+      "softening_type": "soft",
+      "keywords": [
+        "cinematic pop",
+        "orchestral pop",
+        "epic pop",
+        "film score pop",
+        "cinematic indie",
+        "epic cinematic",
+        "trailer pop"
+      ],
+      "stage_energy": "epic cinematic live performance, sweeping orchestral build, dramatic emotional climax, grand chorus lift",
+      "lighting_style": "dramatic cinematic spotlight sweep, deep contrast shadow glow, epic warm backlight explosion, cinematic haze",
+      "camera_style": "slow epic crane push-in, dramatic wide cinematic stage reveal, close-up emotional moment cuts, sweeping chorus pan",
+      "special_effects": "volumetric cinematic fog, sweeping light beam arcs, dramatic spark trails, epic light crescendo flash",
+      "roles": {
+        "vocal": "performing with epic cinematic screen-face display, dramatic emotional peak energy",
+        "vocal_action": "arm extended outward with cinematic release gesture, head rising on the chorus peak",
+        "guitar": "delivering sweeping cinematic chord-swell gesture with grand orchestral energy",
+        "bass": "maintaining powerful cinematic low-end stance with dramatic deep drive",
+        "drum": "delivering dramatic cinematic impact beat with grand wide pose",
+        "crowd": "with cinematic haze, sweeping light beams, and dramatic spark trail atmosphere",
+        "stage": "on an epic cinematic stage under dramatic spotlight and sweeping light beams, full band wide shot",
+        "outfit": "dark long coat with metallic cinematic trim and glowing badge detail",
+        "prop": "wireless mic held with cinematic dramatic presence",
+        "color": "deep gold and dark cinematic silver",
+        "reference_image": "cinematic.png",
+        "outfit_girl": "dark cinematic coat with metallic trim, gold badge on dark helmet, dramatic silver accent detail"
+      }
+    },
+    {
+      "name": "citypop",
+      "softening_type": "groove",
+      "keywords": [
+        "city pop",
+        "city-pop",
+        "citypop",
+        "j-pop",
+        "japanese city pop",
+        "retro city pop"
+      ],
+      "stage_energy": "groovy retro city-pop live performance, smooth 80s funk groove, warm nostalgic chorus lift",
+      "lighting_style": "warm neon city skyline glow, pastel 80s stage light wash, soft neon-sign reflections, retro groove backlight",
+      "camera_style": "smooth retro camera glide, groovy wide city stage shots, 80s music video style cuts, nostalgic chorus lift",
+      "special_effects": "warm pastel city haze, retro neon sign scatter, soft disco-style light trails, nostalgic film grain shimmer",
+      "roles": {
+        "vocal": "performing with warm smooth city-pop screen-face display, retro groove energy",
+        "vocal_action": "gentle sway with one hand raised softly, breezy nostalgic forward tilt on the chorus",
+        "guitar": "delivering smooth city-pop chord-mute gesture with warm retro funk precision",
+        "bass": "maintaining slick city-groove walking-bass stance with breezy leaning energy",
+        "drum": "keeping smooth city-pop groove pose with light hi-hat shimmer nod",
+        "crowd": "with warm pastel city neon, retro sign scatter, and breezy groove sway atmosphere",
+        "stage": "on a warm retro city-pop stage under pastel neon city skyline light, full band wide shot",
+        "outfit": "retro pastel blazer with neon trim and city-pop logo badge",
+        "prop": "miniature DJ controller or retro cassette tape held casually",
+        "color": "warm peach and pastel neon",
+        "reference_image": "citypop.png",
+        "outfit_girl": "pastel pink retro blazer with city-pop badge, pink bow on helmet, breezy mini skirt with pastel neon trim"
+      }
+    },
+    {
+      "name": "funk",
+      "softening_type": "groove",
+      "keywords": [
+        "funk",
+        "funky",
+        "p-funk",
+        "classic funk",
+        "soul funk",
+        "bass funk"
+      ],
+      "stage_energy": "infectious funk live performance, tight rhythmic groove lock, funky punchy chorus energy",
+      "lighting_style": "warm golden-orange groove spotlight, amber funk stage glow, retro groove feel, pulsing groove rhythm light",
+      "camera_style": "fluid groove-locked camera movement, tight close-up on bass and guitar hands, funky wide stage pan, rhythm-matched cuts",
+      "special_effects": "warm golden funk particles, groove-pulse stage lights, funky warm stage haze, bass vibration shimmer",
+      "roles": {
+        "vocal": "performing with infectious groove screen-face display, funky body-roll energy",
+        "vocal_action": "rhythmic full-body groove sway with wrist-snap on the downbeat, shoulders bouncing with the funk",
+        "guitar": "delivering tight muted-stab funk gesture with groove-locked precision",
+        "bass": "maintaining deep slap-bass stance with infectious forward funk drive",
+        "drum": "keeping tight pocket funk groove pose with crisp ghost-note snare bounce",
+        "crowd": "with warm golden groove lights, funky stage haze, and infectious body-roll sway atmosphere",
+        "stage": "on an infectious funk concert stage under warm golden groove spotlight, full band wide shot",
+        "outfit": "wide-collar retro funk jacket with gold trim and funky star badge",
+        "prop": "wireless mic swung with funky wrist-flick confidence",
+        "color": "warm gold and deep orange",
+        "reference_image": "funk.png",
+        "outfit_girl": "retro pink wide-collar jacket with gold trim, star badge on pink helmet, funky pink platform look"
+      }
+    },
+    {
+      "name": "future-bass",
+      "softening_type": null,
+      "keywords": [
+        "future bass",
+        "future pop",
+        "melodic dubstep",
+        "future rave",
+        "bass drop",
+        "hybrid trap"
+      ],
+      "stage_energy": "high-energy future bass live performance, heavy drop impact, euphoric electronic chorus surge",
+      "lighting_style": "intense neon cyberspace lighting, electric blue-violet bass-drop strobe, deep space glow, sharp LED burst",
+      "camera_style": "fast dynamic pre-drop cuts, drop-synced wide blast shot, intense close-ups, sweeping energy camera pans",
+      "special_effects": "electric particle explosion on the drop, neon cyberspace trail bursts, bass-wave visual distortion, massive light flash",
+      "roles": {
+        "vocal": "performing with high-energy neon screen-face display, euphoric future bass intensity",
+        "vocal_action": "arm thrust upward on the drop, body bent forward with electric energy release",
+        "guitar": "delivering sharp synth-lead gesture with electric future bass energy",
+        "bass": "maintaining heavy drop-impact stance with deep sub-bass forward charge",
+        "drum": "delivering punishing trap-snare with electric drop-impact pose",
+        "crowd": "with electric particle explosions, neon cyberspace trails, and massive bass-drop flash atmosphere",
+        "stage": "on a euphoric future bass stage under neon cyberspace electric light, full band wide shot",
+        "outfit": "dark jacket with electric neon cyberspace circuit trim and glowing LED badge",
+        "prop": "neon-lit headphones with electric glow detail",
+        "color": "electric blue and neon violet",
+        "reference_image": "future.png",
+        "outfit_girl": "dark jacket with electric blue circuit trim, neon badge on dark helmet, electric neon violet mini skirt"
+      }
+    },
+    {
+      "name": "k-pop",
+      "softening_type": "groove",
+      "keywords": [
+        "k-pop",
+        "kpop",
+        "korean pop",
+        "idol pop",
+        "idol group"
+      ],
+      "stage_energy": "bright synchronized idol live performance, choreography-driven group energy, vibrant chorus lift",
+      "lighting_style": "bright colorful idol stage lighting, sharp choreography-sync strobes, vivid neon color wash, crowd lightstick shimmer",
+      "camera_style": "fast choreography-sync cuts, tight idol close-ups, wide synchronized formation shots, vivid chorus crane reveal",
+      "special_effects": "colorful sparkle bursts, synchronized strobe flashes, idol neon glow particles, lightstick shimmer waves",
+      "roles": {
+        "vocal": "performing with bright confident screen-face display, idol synchronization energy",
+        "vocal_action": "clean precise pointing gesture on the hook, bright smile-nod on the chorus beat",
+        "guitar": "delivering crisp bright idol-band gesture with vivid clean precision",
+        "bass": "maintaining energetic synchronized bass-groove stance with idol group drive",
+        "drum": "delivering synchronized beat with crisp idol-stage precision pose",
+        "crowd": "with vibrant lightstick shimmer, bright neon glow, and synchronized fan chant energy",
+        "stage": "on a bright synchronized K-pop idol concert stage under vivid colorful stage light, full band wide shot",
+        "outfit": "coordinated idol stage suit with vivid color trim and star badge detail",
+        "prop": "glowing lightstick or holographic idol card held raised with idol confidence",
+        "color": "vivid mint and electric pink",
+        "reference_image": "k-pop.png",
+        "outfit_girl": "bright coordinated idol outfit with vivid pink and white trim, star badge on white helmet, idol performance detail"
+      }
+    },
+    {
+      "name": "modern-kpop",
+      "softening_type": "groove",
+      "keywords": [
+        "modern k-pop",
+        "modern kpop",
+        "new k-pop",
+        "new kpop",
+        "contemporary k-pop",
+        "4th gen kpop",
+        "4세대 아이돌"
+      ],
+      "stage_energy": "sleek contemporary K-pop live performance, refined synchronized energy, sophisticated chorus lift",
+      "lighting_style": "sleek monochrome idol stage lighting, refined color accent wash, smooth choreography-sync lighting, subtle crowd shimmer",
+      "camera_style": "smooth refined close-ups, elegant wide stage shots, sophisticated chorus camera movement, clean contemporary idol framing",
+      "special_effects": "subtle sleek sparkle accents, refined light pulses, smooth neon bloom, sophisticated stage shimmer",
+      "roles": {
+        "vocal": "performing with refined sophisticated screen-face display, sleek contemporary idol energy",
+        "vocal_action": "elegant composed gesture toward the crowd, confident chin-up expression on the chorus",
+        "guitar": "delivering sleek sophisticated idol-band gesture with refined contemporary energy",
+        "bass": "maintaining smooth refined bass-groove stance with contemporary idol presence",
+        "drum": "delivering crisp contemporary beat with sleek idol-stage precision pose",
+        "crowd": "with refined light shimmer, subtle neon glow, and composed synchronized fan energy",
+        "stage": "on a sleek contemporary K-pop concert stage under refined monochrome stage light, full band wide shot",
+        "outfit": "sleek contemporary idol outfit with refined metallic trim and sophisticated badge",
+        "prop": "wireless mic held with sleek contemporary idol presence",
+        "color": "deep navy and electric white",
+        "reference_image": "modern k-pop.png",
+        "outfit_girl": "sleek contemporary idol outfit with deep navy and silver trim, refined badge on dark helmet, sophisticated performance detail"
+      }
+    },
+    {
+      "name": "kpop-girl",
+      "softening_type": "groove",
+      "keywords": [
+        "걸크러시",
+        "girl crush",
+        "girl group",
+        "걸그룹",
+        "여자아이돌",
+        "kpop girl",
+        "k-pop girl",
+        "girl band"
+      ],
+      "stage_energy": "powerful girl-crush idol live performance, fierce synchronized choreography energy, explosive chorus impact",
+      "lighting_style": "bold pink and white idol stage lighting, sharp choreography-sync strobes, vibrant girl-crush neon backlight, crowd lightstick shimmer",
+      "camera_style": "fast choreography-sync cuts, tight idol close-ups, wide synchronized performance shots, powerful chorus crane reveal",
+      "special_effects": "bold pink sparkle bursts, synchronized strobe flashes, girl-crush neon glow particles, lightstick shimmer waves",
+      "roles": {
+        "vocal": "performing with fierce confident screen-face display, girl-crush idol energy",
+        "vocal_action": "sharp pointed-finger hook gesture toward the crowd, confident chin-up stance on the chorus",
+        "guitar": "delivering crisp sharp idol-band guitar gesture with girl-crush precision",
+        "bass": "maintaining fierce confident bass-groove stance with powerful girl-group energy",
+        "drum": "delivering sharp synchronized girl-crush beat with powerful precision pose",
+        "crowd": "with vibrant lightstick shimmer, bold pink neon glow, and synchronized fan chant waves",
+        "stage": "on a fierce girl-crush idol concert stage under bold pink and white stage light, full band wide shot",
+        "outfit": "sharp girl-crush performance outfit with bold metallic accent and fierce badge detail",
+        "prop": "glowing lightstick or holographic idol card held raised with confidence",
+        "color": "bold hot pink and electric white",
+        "reference_image": "idol_girl.png",
+        "outfit_girl": "fierce girl-crush stage outfit with bold hot pink trim, star badge on white helmet, sharp metallic mini skirt"
+      }
+    },
+    {
+      "name": "korean-traditional",
+      "softening_type": "soft",
+      "keywords": [
+        "국악",
+        "한국 전통",
+        "korean traditional",
+        "gugak",
+        "haegeum",
+        "geomungo",
+        "samulnori",
+        "pansori",
+        "사물놀이",
+        "해금",
+        "판소리",
+        "거문고"
+      ],
+      "stage_energy": "intimate Korean traditional music live performance, warm haegeum emotional flow, dignified restraint",
+      "lighting_style": "warm golden traditional stage lantern glow, soft silk-red warmth, elegant theatrical amber light, gentle natural wood shimmer",
+      "camera_style": "slow dignified push-in, respectful wide stage framing, intimate instrument close-up, gentle crane reveal",
+      "special_effects": "warm golden silk light waves, traditional lantern shimmer, soft string particle trails, gentle stage warmth glow",
+      "roles": {
+        "vocal": "performing with dignified warm screen-face display, traditional Korean vocal energy",
+        "vocal_action": "graceful hand gesture flowing outward in traditional style, gentle bow between phrases",
+        "guitar": "delivering warm traditional string pluck gesture with dignified melodic energy",
+        "bass": "maintaining steady traditional rhythm stance with calm grounded presence",
+        "drum": "keeping traditional percussion nod with measured dignified beat pose",
+        "crowd": "with warm golden lantern glow, respectful quiet attention, and traditional stage warmth",
+        "stage": "on an intimate Korean traditional music stage under warm golden lantern light, full band wide shot",
+        "outfit": "traditional Korean-inspired silk stage jacket with elegant color accent and heritage badge",
+        "prop": "miniature traditional string instrument held respectfully",
+        "color": "deep traditional red and warm gold",
+        "reference_image": "koreantraditional.png",
+        "outfit_girl": "traditional Korean-inspired silk dress with elegant pastel color accent, heritage badge on helmet"
+      }
+    },
+    {
+      "name": "orchestra",
+      "softening_type": "soft",
+      "keywords": [
+        "orchestra",
+        "classical",
+        "symphonic",
+        "string quartet",
+        "chamber music",
+        "orchestral",
+        "philharmonic",
+        "concerto",
+        "symphony"
+      ],
+      "stage_energy": "grand orchestral concert hall performance, majestic symphonic build, sweeping emotional climax",
+      "lighting_style": "warm concert hall chandelier glow, deep dramatic spotlight, golden hall warmth, elegant stage illumination",
+      "camera_style": "slow majestic crane push-in, elegant wide hall reveal, close-up on bowing hands, dignified conductor framing",
+      "special_effects": "warm golden hall shimmer particles, dramatic light crescendo swell, gentle bow-stroke light trails, grand hall haze",
+      "roles": {
+        "vocal": "performing with refined dignified screen-face display, grand orchestral presence",
+        "vocal_action": "sweeping arm gesture on the crescendo peak, elegant upward gaze on the climax",
+        "guitar": "delivering elegant classical string gesture with refined orchestral energy",
+        "bass": "maintaining deep resonant cello-like stance with grand low-end presence",
+        "drum": "delivering measured orchestral timpani-style impact with grand dignified pose",
+        "crowd": "with warm hall chandelier glow, respectful concert hall quiet, and golden shimmer light",
+        "stage": "on a grand orchestral concert stage under warm hall chandelier and dramatic spotlight, full band wide shot",
+        "outfit": "formal concert black suit with elegant gold accent trim and orchestral badge",
+        "prop": "miniature violin or conductor baton held with elegant presence",
+        "color": "deep concert black and warm gold",
+        "reference_image": "orchestra.png",
+        "outfit_girl": "elegant concert dress with refined gold trim, orchestral badge on dark helmet, formal performance styling"
+      }
+    },
+    {
+      "name": "reggae",
+      "softening_type": "groove",
+      "keywords": [
+        "reggae",
+        "dancehall",
+        "ska",
+        "dub",
+        "roots reggae",
+        "island reggae",
+        "reggae pop"
+      ],
+      "stage_energy": "infectious reggae live performance, relaxed rhythmic groove, positive island energy, uplifting chorus lift",
+      "lighting_style": "warm tropical golden stage light, sunset orange glow, soft island haze, dub warm amber backlight",
+      "camera_style": "fluid relaxed camera movement, warm wide tropical stage shots, groove-locked rhythm close-ups, island-breeze smooth pans",
+      "special_effects": "warm tropical island haze, golden rhythm-pulse particles, reggae dub bass shimmer, soft island breeze warmth",
+      "roles": {
+        "vocal": "performing with relaxed warm screen-face display, positive island groove energy",
+        "vocal_action": "gentle rhythmic arm sway on the offbeat, warm smile-nod with the island groove",
+        "guitar": "delivering clean offbeat skank-chord gesture with reggae rhythmic precision",
+        "bass": "maintaining deep walking reggae-bass groove stance with warm melodic drive",
+        "drum": "keeping steady one-drop reggae beat pose with laid-back groove nod",
+        "crowd": "with warm golden tropical light, relaxed island sway, and dub warmth atmosphere",
+        "stage": "on an infectious reggae concert stage under warm tropical golden light, full band wide shot",
+        "outfit": "relaxed oversized colourful shirt with reggae badge and warm island detail",
+        "prop": "wireless mic swayed with warm island groove confidence",
+        "color": "warm tropical gold and earthy green",
+        "reference_image": "reggae.png",
+        "outfit_girl": "colourful tropical top with reggae badge, floral bow on helmet, warm earthy green and gold detail"
+      }
+    },
+    {
+      "name": "trot",
+      "softening_type": "soft",
+      "keywords": [
+        "trot",
+        "트로트",
+        "뽕짝",
+        "신트로트",
+        "new trot",
+        "korean trot",
+        "트롯"
+      ],
+      "stage_energy": "warm Korean trot live performance, emotional vocal drama, spirited audience sing-along energy",
+      "lighting_style": "warm golden trot stage spotlight, bright celebratory stage warmth, nostalgic Korean stage glow, cheerful light shimmer",
+      "camera_style": "warm close-up shots, audience reaction cuts, intimate emotional framing, sweeping trot stage reveal",
+      "special_effects": "warm golden confetti shimmer, bright sparkle particle bursts, trot-style warm light bounce, cheerful stage warmth glow",
+      "roles": {
+        "vocal": "performing with warm expressive screen-face display, spirited trot vocal drama energy",
+        "vocal_action": "expressive hand gesture reaching toward the audience, forward emotional lean on the hook",
+        "guitar": "delivering warm melodic trot chord gesture with nostalgic emotional precision",
+        "bass": "maintaining steady rhythmic trot-groove stance with warm marching drive",
+        "drum": "keeping lively trot percussion pose with bright cheerful beat nod",
+        "crowd": "with warm golden sparkle light, cheerful sing-along sway, and trot stage warmth atmosphere",
+        "stage": "on a warm spirited Korean trot concert stage under golden stage spotlight and sparkle light, full band wide shot",
+        "outfit": "vibrant colourful stage suit with sequin trim and trot star badge",
+        "prop": "wireless mic raised expressively with trot stage confidence",
+        "color": "warm gold and vibrant festive pink",
+        "reference_image": "trot.png",
+        "outfit_girl": "vibrant pink trot stage dress with sequin trim, trot star badge on pink helmet, cheerful sparkle detail"
+      }
+    }
+  ],
+  "mood_rules": [
+    {
+      "keywords": [
+        "subway",
+        "환승",
+        "열차",
+        "역",
+        "전광판"
+      ],
+      "mood": "bittersweet, nostalgic, unresolved, reflective, late-night subway transfer station ambience"
+    },
+    {
+      "keywords": [
+        "hyper-pop",
+        "hyperpop",
+        "hyper pop"
+      ],
+      "mood": "sharp, high-energy, punchy, adrenaline-driven modern performance ambience"
+    },
+    {
+      "keywords": [
+        "dance pop",
+        "future house",
+        "dance-pop",
+        "future-house"
+      ],
+      "mood": "bittersweet dance floor energy, melancholic groove, emotional club ambience, longing in motion"
+    },
+    {
+      "keywords": [
+        "r&b",
+        "heartbeat groove"
+      ],
+      "mood": "nervous excitement, heartbeat-driven night ambience, trembling confession, youth emotional warmth"
+    },
+    {
+      "keywords": [
+        "soul-pop",
+        "soul pop",
+        "dark soul",
+        "cinematic soul"
+      ],
+      "mood": "dark cinematic soul longing, powerful emotional desire, raw heartbreak energy, immersive soul atmosphere"
+    },
+    {
+      "keywords": [
+        "love",
+        "romantic",
+        "사랑",
+        "고백"
+      ],
+      "mood": "intimate, romantic, dreamy, emotional night ambience"
+    },
+    {
+      "keywords": [
+        "jazz ballad",
+        "bossa nova",
+        "swing",
+        "bebop",
+        "smooth jazz"
+      ],
+      "mood": "warm intimate jazz club ambience, late-night swing feel, restrained emotional depth"
+    },
+    {
+      "keywords": [
+        "psychedelic",
+        "surreal visuals",
+        "surreal"
+      ],
+      "mood": "dreamlike surreal atmosphere, blurred reality, warm psychedelic haze, late-night dissolution"
+    },
+    {
+      "keywords": [
+        "rock",
+        "metal",
+        "punk"
+      ],
+      "mood": "intense, defiant, explosive, dark concert ambience"
+    },
+    {
+      "keywords": [
+        "afrobeats",
+        "afro pop",
+        "afrobeat"
+      ],
+      "mood": "infectious joyful rhythm, tropical groove energy, warm celebratory afrobeats ambience"
+    },
+    {
+      "keywords": [
+        "synth-pop",
+        "synthpop",
+        "new wave",
+        "retro synth",
+        "80s retro"
+      ],
+      "mood": "dramatic retro yearning, 80s analog warmth, electric romantic ambience"
+    },
+    {
+      "keywords": [
+        "tropical house",
+        "acid house",
+        "big beat",
+        "groovy house",
+        "nu-disco"
+      ],
+      "mood": "euphoric club energy, pulsing groove, uplifting dance floor ambience"
+    },
+    {
+      "keywords": [
+        "lo-fi hip hop",
+        "lofi hip hop",
+        "lo-fi indie",
+        "lo-fi",
+        "lofi",
+        "cassette hiss",
+        "cozy study"
+      ],
+      "mood": "cozy lo-fi intimacy, warm cassette texture, late-night study vibe, unhurried emotional warmth"
+    },
+    {
+      "keywords": [
+        "boom bap",
+        "hip-hop",
+        "hip hop",
+        "trap"
+      ],
+      "mood": "hard-hitting urban intensity, raw street energy, heavy rhythmic power"
+    },
+    {
+      "keywords": [
+        "signal pop",
+        "korean signal pop",
+        "telephone pulse rhythm",
+        "telephone connection tone",
+        "ajaeng lead",
+        "ajaeng motif"
+      ],
+      "mood": "warm spacious telephone-signal-pop atmosphere, gentle telephone pulse, uplifting calm, ajaeng-led emotional shimmer"
+    },
+    {
+      "keywords": [
+        "neo-soul",
+        "neo soul",
+        "neosoul"
+      ],
+      "mood": "warm organic soul groove, soulful emotional warmth, intimate neo-soul depth, vintage-modern soul ambience"
+    },
+    {
+      "keywords": [
+        "folk",
+        "neo-folk",
+        "singer-songwriter"
+      ],
+      "mood": "intimate earthy storytelling, warm acoustic honesty, gentle folk melancholy, organic human warmth"
+    },
+    {
+      "keywords": [
+        "ambient pop",
+        "cinematic ambient",
+        "atmospheric ambient"
+      ],
+      "mood": "floating atmospheric calm, quiet emotional depth, minimal ethereal ambience, dreamlike sonic texture"
+    },
+    {
+      "keywords": [
+        "blues",
+        "delta blues",
+        "chicago blues",
+        "electric blues",
+        "12-bar blues"
+      ],
+      "mood": "raw earthy blues longing, deep emotional guitar cry, smoky bar melancholy, slow-burn soulful ambience"
+    },
+    {
+      "keywords": [
+        "cinematic pop",
+        "orchestral pop",
+        "epic pop",
+        "film score pop",
+        "epic cinematic"
+      ],
+      "mood": "epic cinematic sweep, grand emotional crescendo, dramatic orchestral longing, sweeping cinematic ambience"
+    },
+    {
+      "keywords": [
+        "city pop",
+        "city-pop",
+        "citypop",
+        "japanese city pop"
+      ],
+      "mood": "warm nostalgic city-pop groove, breezy retro urban romance, smooth 80s city ambience"
+    },
+    {
+      "keywords": [
+        "dream pop",
+        "dreampop",
+        "shoegaze pop",
+        "shoegazing",
+        "shoegaze"
+      ],
+      "mood": "hazy ethereal dreaming, reverb-soaked soft longing, pastel blur ambience, floating dreamlike warmth"
+    },
+    {
+      "keywords": [
+        "funk",
+        "funky",
+        "p-funk",
+        "classic funk"
+      ],
+      "mood": "infectious funky groove joy, tight rhythmic celebration, warm golden funk energy"
+    },
+    {
+      "keywords": [
+        "future bass",
+        "future pop",
+        "melodic dubstep"
+      ],
+      "mood": "euphoric future bass energy, electric drop anticipation, neon cyberspace emotional surge"
+    },
+    {
+      "keywords": [
+        "걸크러시",
+        "girl crush",
+        "girl group",
+        "걸그룹"
+      ],
+      "mood": "fierce girl-crush confidence, powerful synchronized girl-group energy, bold idol stage ambience"
+    },
+    {
+      "keywords": [
+        "국악",
+        "한국 전통",
+        "korean traditional",
+        "gugak",
+        "pansori",
+        "사물놀이",
+        "판소리"
+      ],
+      "mood": "dignified Korean traditional warmth, rich heritage emotional depth, ceremonial stage ambience"
+    },
+    {
+      "keywords": [
+        "orchestra",
+        "classical",
+        "symphonic",
+        "orchestral"
+      ],
+      "mood": "grand orchestral majesty, sweeping symphonic emotion, refined concert hall ambience"
+    },
+    {
+      "keywords": [
+        "reggae",
+        "dancehall",
+        "ska",
+        "roots reggae"
+      ],
+      "mood": "positive infectious island groove, relaxed tropical warmth, joyful reggae uplift ambience"
+    },
+    {
+      "keywords": [
+        "trot",
+        "트로트",
+        "뽕짝",
+        "신트로트",
+        "korean trot"
+      ],
+      "mood": "warm spirited Korean trot drama, nostalgic emotional vocal longing, cheerful festive stage ambience"
+    }
+  ],
+  "emotion_rules": [
+    {
+      "keywords": [
+        "힘들",
+        "웃어 본다",
+        "웃는다",
+        "괜찮은 척",
+        "버텨",
+        "무너져",
+        "울 수"
+      ],
+      "emotion": "smiling through pain, hidden exhaustion, quiet resilience, late-night self-comfort, emotional honesty"
+    },
+    {
+      "keywords": [
+        "환승",
+        "잘 지냈"
+      ],
+      "emotion": "unexpected reunion, awkward calm, lingering regret, emotional relapse, missed-stop nostalgia"
+    },
+    {
+      "keywords": [
+        "못 놓아",
+        "돌아와",
+        "기다리잖아",
+        "못 믿어",
+        "아직 여기 있어",
+        "제발"
+      ],
+      "emotion": "desperate longing, heartbreak, can't let go, pleading return, unforgettable love"
+    },
+    {
+      "keywords": [
+        "이별",
+        "헤어",
+        "goodbye",
+        "farewell"
+      ],
+      "emotion": "separation, self-control, lingering sadness, quiet acceptance"
+    },
+    {
+      "keywords": [
+        "심장",
+        "두근",
+        "설레",
+        "말이 막",
+        "손에 땀",
+        "숨길 수"
+      ],
+      "emotion": "shy confession, nervous heartbeat, trembling honesty, words caught in throat, hidden excitement"
+    },
+    {
+      "keywords": [
+        "사랑",
+        "고백",
+        "설렘"
+      ],
+      "emotion": "shy confession, nervous excitement, young love, trembling honesty"
+    }
+  ],
+  "defaults": {
+    "mood": "cinematic, emotional, song-specific live performance ambience",
+    "emotion": "clear song emotion, cinematic tension, memorable chorus lift",
+    "stage_energy": "song-matched live performance, clear emotional lift in chorus",
+    "lighting_style": "neon magenta moonlight, cinematic city glow, song-matched light pulses",
+    "camera_style": "cinematic push-in, section-matched close-ups, wide stage shots, chorus lift camera movement",
+    "special_effects": "volumetric smoke, subtle particles, magenta lasers, song-matched light pulses",
+    "roles": {
+      "vocal": "singing with song-matched emotion into the decorative concert microphone",
+      "vocal_action": "free hand resting naturally at side, steady emotional presence",
+      "guitar": "playing genre-matched guitar parts",
+      "bass": "playing genre-matched bass groove",
+      "drum": "playing genre-matched drums",
+      "crowd": "reacting in a way that matches the song energy",
+      "stage": "performing a song-matched live performance",
+      "outfit": "plain pastel space suit",
+      "prop": "softly glowing prop",
+      "color": "soft neon accent",
+      "reference_image": "base.png",
+      "outfit_girl": "soft pink pastel space suit with pink ribbon bow on helmet"
+    }
+  }
+}

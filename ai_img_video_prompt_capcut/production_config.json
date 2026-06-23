@@ -1,0 +1,35 @@
+{
+  "mode": "mvp",
+  "modes": {
+    "mvp": {
+      "capcut_map": {
+        "sections": [
+          "Intro        : stage_A, atmosphere_A, vocal_A",
+          "Verse 1      : vocal_A, guitar_A, bass, drum",
+          "Pre-Chorus   : stage_B, vocal_B",
+          "Chorus 1     : stage_B, vocal_B, guitar_A, drum, atmosphere_A",
+          "Post-Chorus  : atmosphere_A, bass",
+          "Verse 2      : vocal_B, bass, guitar_A, atmosphere_A",
+          "Bridge/Solo  : guitar_A, drum, stage_A",
+          "Final Chorus : stage_B, vocal_B, guitar_B, drum, atmosphere_A",
+          "Outro        : stage_A or atmosphere_A"
+        ]
+      }
+    },
+    "full": {
+      "capcut_map": {
+        "sections": [
+          "Intro        : stage_A, atmosphere_A, vocal_A, guitar_A",
+          "Verse 1      : vocal_A, vocal_B, guitar_A, guitar_B, bass, drum",
+          "Verse 2      : vocal_B, guitar_B, bass, drum, stage_A",
+          "Pre-Chorus   : stage_B, vocal_B, guitar_B",
+          "Chorus 1     : stage_B, vocal_B, guitar_A, drum, atmosphere_A, stage_C",
+          "Post-Chorus  : atmosphere_A, atmosphere_B, bass",
+          "Bridge/Solo  : guitar_A, guitar_B, drum, stage_A, vocal_A",
+          "Final Chorus : stage_B, vocal_C, guitar_B, drum, atmosphere_A, stage_C",
+          "Outro        : stage_A or atmosphere_A, vocal_A"
+        ]
+      }
+    }
+  }
+}

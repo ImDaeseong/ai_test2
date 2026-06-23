@@ -1,0 +1,8 @@
+# ai_img_video_prompt 의존성
+# 핵심 기능: 표준 라이브러리만 사용 (Python 3.10+)
+
+# 웹 UI 서버
+flask>=3.0.0
+
+# 단위 테스트
+pytest>=7.0.0

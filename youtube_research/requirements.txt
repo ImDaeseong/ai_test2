@@ -1,0 +1,8 @@
+# youtube_research — 외부 라이브러리 없음 (stdlib 전용)
+# 실행에 필요한 외부 패키지가 없습니다.
+
+# 실제 채널 수집 기능 사용 시 시스템 설치 필요 (pip 외부):
+# yt-dlp — pip install yt-dlp  또는  winget install yt-dlp
+
+# 테스트:
+pytest>=7.0

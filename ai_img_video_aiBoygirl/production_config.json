@@ -1,0 +1,70 @@
+{
+  "_doc": {
+    "purpose": "09_video_motion_prompts.md 의 variant 수와 CapCut 맵을 모드별로 자동 조정한다.",
+    "how_to_switch": "'mode' 값을 'mvp' 또는 'full' 로 바꾸고 main.py create / create-all 을 재실행하면 된다.",
+    "how_it_works": [
+      "clips: 기본 프롬프트(base) 포함 파트 총 영상 프롬프트 수.",
+      "1 = base만, 2 = base+A, 3 = base+A+B, 4 = base+A+B+C (최대)",
+      "capcut_map.sections: 실제 생성된 variant 만 참조하도록 모드별로 별도 관리.",
+      "파일이 없으면 기존 방식(base+A+B+C 전체) 으로 동작."
+    ],
+    "cost_guide": {
+      "mvp_12": "vocal 3 + guitar 2 + bass 1 + drum 1 + stage 3 + atmosphere 2 = 12 clips",
+      "full_24": "모든 파트 base+A+B+C = 24 clips",
+      "reuse_tip": "CapCut 줌인·패닝·리버스·미러로 같은 클립 2~3회 재활용 시 실질 클립 수 2배+"
+    }
+  },
+  "mode": "mvp",
+  "modes": {
+    "mvp": {
+      "_label": "MVP 12 clips — 비용 절감",
+      "clips": {
+        "vocal": 3,
+        "guitar": 2,
+        "bass": 1,
+        "drum": 1,
+        "stage": 3,
+        "atmosphere": 2
+      },
+      "capcut_map": {
+        "sections": [
+          "Intro       : stage, atmosphere, vocal",
+          "Verse 1     : vocal A, bass, guitar, drum",
+          "Pre-Chorus  : stage B, vocal B",
+          "Chorus 1    : stage B, vocal B, guitar A, drum, atmosphere A",
+          "Post-Chorus : atmosphere A, bass",
+          "Verse 2     : vocal B, bass, guitar A, atmosphere A",
+          "Bridge/Solo : guitar A, drum, stage A",
+          "Final Chorus: stage B, vocal B, guitar A, drum, atmosphere A",
+          "Outro       : stage A or atmosphere A"
+        ],
+        "reuse_note": "글자 없는 클립(vocal·guitar·stage·atmosphere·bass·drum)은 메인 프롬프트 생성 클립. bass·drum은 variant 없음 — 동일 클립을 CapCut 줌인·패닝·리버스로 재활용한다."
+      }
+    },
+    "full": {
+      "_label": "Full 24 clips — 풀 세트 (base+A+B+C 전 파트)",
+      "clips": {
+        "vocal": 4,
+        "guitar": 4,
+        "bass": 4,
+        "drum": 4,
+        "stage": 4,
+        "atmosphere": 4
+      },
+      "capcut_map": {
+        "sections": [
+          "Intro       : stage, atmosphere, vocal",
+          "Verse 1     : vocal A, bass, guitar, drum",
+          "Pre-Chorus  : stage B, vocal C",
+          "Chorus 1    : stage B, vocal B, guitar C, drum B, atmosphere C, bass C",
+          "Post-Chorus : atmosphere A, bass A, drum A",
+          "Verse 2     : vocal C, bass B, guitar A, atmosphere A",
+          "Bridge/Solo : guitar B, drum C, stage A",
+          "Final Chorus: stage C, vocal B, guitar C, drum B, atmosphere B",
+          "Outro       : stage C or atmosphere B"
+        ],
+        "reuse_note": "글자 없는 클립(vocal·guitar·stage·atmosphere·bass·drum)은 메인 프롬프트 생성 클립."
+      }
+    }
+  }
+}
