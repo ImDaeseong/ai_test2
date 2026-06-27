@@ -31,7 +31,7 @@ cinematic side-angle stage shot,
 [LIGHTING_STYLE],
 [CHARACTER_COLOR] dominant accent,
 [SPECIAL_EFFECTS],
-3D chibi toy render, smooth rounded forms.
+3D chibi toy render, smooth rounded forms, sharp clean edges, no visible artifacts.
 
 Do not change the character design.
 Do not make the character a realistic human.

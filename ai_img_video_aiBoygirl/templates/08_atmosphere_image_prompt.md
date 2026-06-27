@@ -34,7 +34,7 @@ glowing sparks and floating particles drifting through the air,
 [SPECIAL_EFFECTS],
 deep atmospheric concert haze,
 moody cinematic wide shot,
-3D chibi toy render, smooth rounded forms.
+3D chibi toy render, smooth rounded forms, sharp clean edges, no visible artifacts.
 
 Do not add crowd or audience figures.
 Do not redesign the chibi toy robot figure.

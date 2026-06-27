@@ -33,7 +33,7 @@ stage lights visible behind,
 [LIGHTING_STYLE],
 [CHARACTER_COLOR] dominant accent,
 cinematic close-up camera angle,
-3D chibi toy render, smooth rounded forms.
+3D chibi toy render, smooth rounded forms, sharp clean edges, no visible artifacts.
 
 Do not change the character design.
 Do not make the character a realistic human.

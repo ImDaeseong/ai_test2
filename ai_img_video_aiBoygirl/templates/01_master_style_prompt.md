@@ -32,7 +32,7 @@ volumetric smoke and fog,
 glowing sparks and particles,
 [CHARACTER_COLOR] dominant color accent,
 [LIGHTING_STYLE],
-high-quality 3D chibi toy render,
+high-quality 3D chibi toy render, sharp clean edges, no visible artifacts,
 16:9 wide cinematic composition,
 YouTube music video style.
 

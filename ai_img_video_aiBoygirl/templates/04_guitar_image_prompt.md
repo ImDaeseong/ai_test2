@@ -32,7 +32,7 @@ crowd silhouettes visible below the stage,
 [LIGHTING_STYLE],
 [SPECIAL_EFFECTS],
 cinematic camera angle,
-3D chibi toy render, smooth rounded forms.
+3D chibi toy render, smooth rounded forms, sharp clean edges, no visible artifacts.
 
 Do not change the character design.
 Do not make the character a realistic human.

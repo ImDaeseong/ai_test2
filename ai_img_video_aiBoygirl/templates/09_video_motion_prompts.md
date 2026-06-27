@@ -17,14 +17,15 @@ Stage energy: [STAGE_ENERGY]
 slow cinematic handheld push-in,
 AI Boy/AI Girl [CHARACTER_VOCAL],
 [CHARACTER_VOCAL_ACTION],
-screen-face display animating with the vocal rhythm,
+screen-face display syncing with the vocal melody — pulsing with each phrase and brightening on the high note,
 chibi hand holding [CHARACTER_PROP],
 smoke moving around the stage,
 [CHARACTER_COLOR] concert lights pulsing,
 sparks and particles drifting through the air,
 [CAMERA_STYLE],
 [SPECIAL_EFFECTS],
-16:9 cinematic YouTube music video shot
+motion pacing: ease in gently over the first 2 seconds, sustain peak performance through the middle, smooth ease-out in the final second,
+16:9 cinematic YouTube music video shot, smooth coherent motion, no flickering or visual artifacts
 ```
 
 ## 기타 영상 — guitar · 5초
@@ -40,10 +41,12 @@ AI Boy/AI Girl [CHARACTER_GUITAR],
 No singing or vocal gesture. Guitar performance only.
 chibi hands on the instrument,
 subtle chibi body movement with the rhythm,
+screen-face display showing intense focus during the guitar solo — flickering with each chord hit,
 [CHARACTER_COLOR] rim light on the instrument,
 [CAMERA_STYLE],
 [SPECIAL_EFFECTS],
-16:9 cinematic YouTube music video shot
+motion pacing: ease in gently over the first 2 seconds, sustain peak performance through the middle, smooth ease-out in the final second,
+16:9 cinematic YouTube music video shot, smooth coherent motion, no flickering or visual artifacts
 ```
 
 ## 베이스 영상 — bass · 5초
@@ -62,9 +65,11 @@ subtle groove-sway from the hips, eyes cast down watching the fretboard,
 steady stylized nod on the beat,
 deep stage light pulses matching the rhythm,
 smoke and fog rolling across the floor,
+screen-face display pulsing low and slow with the bass groove — deep and steady on every beat,
 [CAMERA_STYLE],
 [SPECIAL_EFFECTS],
-16:9 cinematic YouTube music video shot
+motion pacing: ease in gently over the first 2 seconds, sustain peak performance through the middle, smooth ease-out in the final second,
+16:9 cinematic YouTube music video shot, smooth coherent motion, no flickering or visual artifacts
 ```
 
 ## 드럼 영상 — drum · 5초
@@ -83,9 +88,11 @@ leaning forward over the kit,
 cymbals catching the light,
 bass drum kick reverberating through the stage floor,
 [CHARACTER_COLOR] backlight accent,
+screen-face display flashing with each cymbal hit and spiking bright on the snare crack,
 [CAMERA_STYLE],
 [SPECIAL_EFFECTS],
-16:9 cinematic YouTube music video shot
+motion pacing: ease in gently over the first 2 seconds, sustain peak performance through the middle, smooth ease-out in the final second,
+16:9 cinematic YouTube music video shot, smooth coherent motion, no flickering or visual artifacts
 ```
 
 ## 전체 무대 영상 — stage · Kling 10초 / Flow·Veo 8초
@@ -103,9 +110,11 @@ chibi figure moving in sync with the music,
 [CHARACTER_CROWD],
 [CHARACTER_COLOR] stage lighting movement,
 smoke and fog moving dynamically,
+screen-face display syncing with the full band energy — rising with the chorus and settling in the verse,
 [CAMERA_STYLE],
 [SPECIAL_EFFECTS],
-16:9 cinematic YouTube music video shot
+motion pacing: ease in gently over the first 3 seconds, sustain peak action through the middle, smooth ease-out in the final 2 seconds,
+16:9 cinematic YouTube music video shot, smooth coherent motion, no flickering or visual artifacts
 ```
 
 ## 분위기 영상 — atmosphere · Kling 10초 / Flow·Veo 8초
@@ -126,7 +135,8 @@ stage lights sweeping gently across the background,
 deep atmospheric haze pulsing softly with the music,
 [CAMERA_STYLE],
 [SPECIAL_EFFECTS],
-16:9 cinematic YouTube music video shot
+motion pacing: ease in gently over the first 3 seconds, sustain peak action through the middle, smooth ease-out in the final 2 seconds,
+16:9 cinematic YouTube music video shot, smooth coherent motion, no flickering or visual artifacts
 ```
 
 ## CapCut 편집 길이 (Kling 생성 설정 아님)

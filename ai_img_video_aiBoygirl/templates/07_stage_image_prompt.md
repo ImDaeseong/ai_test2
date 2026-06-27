@@ -32,7 +32,7 @@ AI Boy: [CHARACTER_OUTFIT] / AI Girl: [CHARACTER_OUTFIT_GIRL],
 [LIGHTING_STYLE],
 glowing sparks and particles,
 [SPECIAL_EFFECTS],
-3D chibi toy render, smooth rounded forms.
+3D chibi toy render, smooth rounded forms, sharp clean edges, no visible artifacts.
 
 Do not change the character lineup.
 Do not remove the crowd.

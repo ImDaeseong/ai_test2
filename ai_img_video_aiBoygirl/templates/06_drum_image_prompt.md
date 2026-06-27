@@ -30,7 +30,7 @@ both chibi drumsticks raised or striking the drums,
 [CHARACTER_COLOR] backlight accent,
 [LIGHTING_STYLE],
 [SPECIAL_EFFECTS],
-high-quality 3D chibi toy render, smooth rounded forms.
+high-quality 3D chibi toy render, smooth rounded forms, sharp clean edges, no visible artifacts.
 
 Do not change the character design.
 Do not make the character a realistic human.
