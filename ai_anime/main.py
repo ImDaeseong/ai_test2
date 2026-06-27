@@ -130,6 +130,12 @@ PROFILE_KEYWORDS = {
     "telephone-signal-pop": [
         "telephone", "signal", "pulse", "ajaeng",
     ],
+    "dark_trap": [
+        "dark industrial trap", "dark trap", "industrial rap", "aggressive trap", "hardcore trap",
+    ],
+    "trap_soul": [
+        "trap soul", "alt r&b", "dark moody r&b", "dark r&b", "dark rhythm",
+    ],
 }
 
 # ─── Genre → visual identity hints ───────────────────────────────────────────
@@ -204,6 +210,26 @@ _IDENTITY_HINTS = {
         "color_base": "night city with signal tower glow and pink-purple sky",
         "motif": "signal wave or heartbeat line pulsing gently through the night sky",
         "character_direction": "AI Boy/AI Girl 3D chibi toy robot figure in signal-pop space suit, neon city night staging",
+    },
+    "dark_trap": {
+        "silhouette": "grounded wide-stance chibi robot figure in all-black streetwear, cold aggressive lean, solid toy proportions",
+        "hair": "round robot helmet with minimal silver detail and cold steel visor",
+        "outfit": "all-black oversized jacket with minimal silver chain, dark cargo pants, cold urban toy-figure styling",
+        "prop": "a wireless mic gripped tightly at low angle or cold steel boombox",
+        "color_main": "cold steel grey and deep crimson red",
+        "color_base": "dark industrial concrete under harsh single spotlight",
+        "motif": "cracked concrete texture or cold red strobe pulse spreading across dark pavement",
+        "character_direction": "AI Boy/AI Girl 3D chibi toy robot figure in dark industrial trap all-black outfit, cold concrete stage staging",
+    },
+    "trap_soul": {
+        "silhouette": "relaxed chibi robot figure in dark muted jacket, slow emotional lean, soft toy proportions",
+        "hair": "round robot helmet with subtle indigo glow ring and muted display",
+        "outfit": "oversized dark muted jacket with subtle gold trim, dark relaxed pants, moody late-night toy-figure styling",
+        "prop": "a wireless mic held low or a small glowing cassette tape resting at side",
+        "color_main": "deep indigo and muted gold",
+        "color_base": "dark indigo late-night atmosphere with soft amber pool",
+        "motif": "slow indigo pulse or faint gold note dissolving in cold shadow",
+        "character_direction": "AI Boy/AI Girl 3D chibi toy robot figure in dark moody trap-soul outfit, late-night shadow staging",
     },
 }
 

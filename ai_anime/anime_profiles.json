@@ -281,6 +281,86 @@
       "narrative_direction": "treat musical exchange as conversation between faces, hands, breath, and room",
       "character_direction": "expressive but grounded clothing with material detail readable under practical light",
       "avoid": ["generic smoky club", "permanent fedora imagery", "empty luxury lounge", "random vintage filters"]
+    },
+    "dark_trap": {
+      "genre_family": "dark_trap",
+      "style_keywords": "3D chibi toy robot figure, cold dark industrial toy rendering, hard shadow concrete blocking, collectible toy aesthetic",
+      "genre_world": "dark aggressive trap anime within cold industrial and urban underground cinematic world",
+      "scene_sections": ["Intro", "Verse 1", "Hook", "Verse 2", "Hook 2", "Bridge", "Verse 3", "Hook 3", "Outro Break", "Outro"],
+      "section_intensities": ["low", "medium-high", "high", "medium-high", "high", "medium", "high", "high", "medium", "falling"],
+      "environments": [
+        "abandoned industrial warehouse with concrete pillars and cold single spotlight",
+        "underground parking structure with harsh fluorescent strips and deep shadow columns",
+        "rooftop at night with hard city light cutting through smoke",
+        "empty corridor with steel door frames and cold neon slash light",
+        "dark tunnel mouth with a single backlit figure silhouette",
+        "cracked concrete plaza under a harsh overhead floodlight",
+        "bare concrete stairwell with angular shadow geometry",
+        "industrial dock at night with chain-link fence and cold blue crane light",
+        "back alley wall with a single red neon sign casting hard shadow",
+        "empty boxing gym with a central light swinging over chalk-dusted floor"
+      ],
+      "camera_shots": [
+        "low front-on frame locked on the performer's cold approach",
+        "tight close-up on face and hands synced to lyric delivery",
+        "slow lateral creep along industrial geometry with performer in foreground",
+        "graphic top-down looking straight down at cracked concrete surface",
+        "wide cold static frame with hard shadow geometry and single spotlight",
+        "rapid cut series locked to bar rhythm, each cut a full compositional reset",
+        "close-up on footwear on wet concrete with neon reflection",
+        "over-shoulder from behind the performer facing the dark space",
+        "handheld push-in intensifying at hook peak",
+        "slow pull-back revealing the full cold industrial environment"
+      ],
+      "motion_language": [
+        "stillness interrupted by sharp deliberate gesture creates maximum impact",
+        "hard cuts on the beat replace continuous movement",
+        "shadow and light contrast defines space more than color"
+      ],
+      "transition_language": "hard smash cut on the bar drop, cold hold frames at verse ends, sharp neon flash at hook peak",
+      "narrative_direction": "frame the performer as the only source of heat in a cold indifferent space",
+      "character_direction": "minimal all-black styling with one cold metallic accent, no decorative excess",
+      "avoid": ["warm lighting", "cheerful backgrounds", "crowd celebration imagery", "colorful costume decoration"]
+    },
+    "trap_soul": {
+      "genre_family": "trap_soul",
+      "style_keywords": "3D chibi toy robot figure, deep indigo moody toy rendering, late-night shadow atmosphere, collectible toy aesthetic",
+      "genre_world": "dark emotional trap-soul anime within midnight urban and interior cinematic world",
+      "scene_sections": ["Intro", "Verse 1", "Pre-Chorus", "Chorus 1", "Verse 2", "Pre-Chorus 2", "Chorus 2", "Bridge", "Final Chorus", "Outro"],
+      "section_intensities": ["low", "medium", "medium-high", "high", "medium", "medium-high", "high", "medium", "high", "falling"],
+      "environments": [
+        "late-night rooftop with city glow bleeding through thin fog",
+        "dark apartment interior lit only by a single floor lamp and city window light",
+        "empty subway platform at midnight with ambient neon and shadow",
+        "slow-moving car interior at night with passing streetlight pulses",
+        "quiet bar corner booth with a single amber practical lamp",
+        "rain-wet alley with soft neon shop sign reflections on pavement",
+        "empty stairwell with cold indigo from a skylight above",
+        "darkened recording studio with only console LEDs and a mic light",
+        "midnight bridge over dark water with distant city reflection",
+        "small room balcony overlooking city lights under overcast sky"
+      ],
+      "camera_shots": [
+        "slow intimate push-in toward the performer with soft focus foreground",
+        "moody wide static frame with performer small in the deep shadow environment",
+        "close-up on hands and expression synced to emotional lyric peak",
+        "gentle floating drift around the performer with ambient light behind",
+        "over-shoulder looking out toward city lights or dark water",
+        "slow pull-back from close-up to wide revealing the loneliness of the space",
+        "low side-angle shot with neon reflection running across the wet floor",
+        "medium-wide hold during bridge with subtle camera breathing",
+        "handheld gentle push-in at chorus emotional peak",
+        "final wide resolving frame with performer silhouette against diffuse city glow"
+      ],
+      "motion_language": [
+        "slow body sway and subtle breath-driven movement carry emotional weight",
+        "camera movement is almost imperceptible, atmosphere does the work",
+        "light shifts and environmental texture substitute for rapid editing"
+      ],
+      "transition_language": "slow dissolve or soft match cut, hold on reaction frames after lyric peaks, no hard flash cuts",
+      "narrative_direction": "frame the performer inside the emotional weight of the space, not above it",
+      "character_direction": "muted dark layering with one warm accent detail, slow deliberate gesture",
+      "avoid": ["bright cheerful lighting", "fast aggressive cuts", "crowd energy", "hard industrial geometry"]
     }
   }
 }

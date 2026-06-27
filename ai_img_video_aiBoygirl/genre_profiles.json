@@ -208,6 +208,64 @@
       }
     },
     {
+      "name": "trap-soul",
+      "softening_type": "soft",
+      "keywords": [
+        "trap soul",
+        "alt r&b",
+        "dark moody r&b",
+        "dark r&b",
+        "dark rhythm"
+      ],
+      "stage_energy": "moody trap-soul intimate performance, slow-burn emotional build, dark late-night stage energy",
+      "lighting_style": "deep indigo moody spotlight, cold purple-grey haze, slow ambient light pulse, shadow-heavy late-night glow",
+      "camera_style": "slow intimate push-in, moody wide-angle hold, shadow-cut close-up, late-night atmospheric drift",
+      "special_effects": "slow dark mist, deep indigo ambient glow, muted heartbeat light pulse, cold shadow depth",
+      "roles": {
+        "vocal": "performing with deep moody screen-face display, dark trap-soul emotional energy",
+        "vocal_action": "slow arm reach with heavy emotional weight, downward gaze with restrained pain",
+        "guitar": "delivering dark moody chord gesture with slow trap-soul resonance",
+        "bass": "maintaining dark muted 808 sub-pulse stance with cold urban lean",
+        "drum": "keeping slow sparse trap hi-hat pose with muted dark energy",
+        "crowd": "with deep indigo spotlight, cold shadow depth, and slow dark mist",
+        "stage": "on a dark moody late-night stage, intimate trap-soul concert, full band wide shot",
+        "outfit": "oversized dark muted jacket with subtle gold detail, dark streetwear toy styling",
+        "prop": "wireless mic held low with weight of emotion",
+        "color": "deep indigo and muted gold",
+        "reference_image": "r&b.png",
+        "outfit_girl": "dark oversized jacket with soft gold trim, dark crown badge on helmet, muted dark R&B streetwear styling"
+      }
+    },
+    {
+      "name": "dark-trap",
+      "softening_type": "hiphop",
+      "keywords": [
+        "dark industrial trap",
+        "dark trap",
+        "industrial rap",
+        "aggressive trap",
+        "hardcore trap"
+      ],
+      "stage_energy": "dark aggressive trap live performance, explosive verse energy, raw street power",
+      "lighting_style": "hard dark concrete spotlight, deep black-shadow stage, red-orange strobe flash, cold industrial neon slash",
+      "camera_style": "low-angle aggression shots, rapid verse-cut editing, tight close-up on delivery, wide concrete stage reveal",
+      "special_effects": "heavy smoke columns, sharp industrial strobe, dark bass sub-woofer pulses, cold steel dust particles",
+      "roles": {
+        "vocal": "performing with cold intense screen-face display, dark trap rap energy",
+        "vocal_action": "hard downward pointing gesture with clenched fist, cold stare into crowd",
+        "guitar": "delivering dark distorted riff stance with aggressive low energy",
+        "bass": "maintaining heavy dark 808 sub-punch stance with cold industrial lean",
+        "drum": "keeping punishing trap kick-snare pose with icy hi-hat nod",
+        "crowd": "with hard dark concrete spotlight, cold industrial neon, and heavy bass smoke columns",
+        "stage": "on a dark industrial concrete stage, aggressive trap concert, full band wide shot",
+        "outfit": "all-black oversized jacket with minimal silver detail, dark streetwear toy styling",
+        "prop": "wireless mic gripped tightly at low angle",
+        "color": "cold steel grey and deep crimson red",
+        "reference_image": "hiphop.png",
+        "outfit_girl": "black oversized jacket with silver chain detail, dark crown badge on helmet, dark streetwear styling"
+      }
+    },
+    {
       "name": "r&b",
       "softening_type": "soft",
       "keywords": [

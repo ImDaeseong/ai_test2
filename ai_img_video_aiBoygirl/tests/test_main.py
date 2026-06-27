@@ -1561,10 +1561,15 @@ class TestInferProfileNewGenres2:
         assert "club" in profile["stage_energy"].lower() or "house" in profile["stage_energy"].lower()
 
     def test_trap_maps_to_hip_hop(self):
-        # 'aggressive'는 rock 키워드이므로 제외 — trap/hip-hop 키워드만 사용
-        s = make_song(raw_text="dark industrial trap heavy 808 bass hip-hop")
+        # dark industrial trap은 dark-trap 프로파일로 분리됨 — 일반 trap/hip-hop 키워드 사용
+        s = make_song(raw_text="boom bap trap heavy 808 bass hip-hop")
         profile = infer_profile(s.raw_text, {})
         assert "hip-hop" in profile["stage_energy"].lower() or "hip hop" in profile["stage_energy"].lower()
+
+    def test_dark_industrial_trap_maps_to_dark_trap(self):
+        s = make_song(raw_text="dark industrial trap heavy 808 bass aggressive rap")
+        profile = infer_profile(s.raw_text, {})
+        assert "dark" in profile["stage_energy"].lower() and "trap" in profile["stage_energy"].lower()
 
     def test_signal_pop_stage_energy(self):
         s = make_song(
