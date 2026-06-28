@@ -12,18 +12,15 @@ Style Influence: 75%
 냉장고 물 한 잔 마시고
 다시 소파에 기대 앉아
 잠깐이라도 이렇게
-쉬어도 될 것 같더라
+숨 좀 돌려도 되겠더라
 
 [Pre-Chorus]
-[build intensity]
-[breath before chorus]
+[build intensity] [breath before chorus]
 계속 잘해야 한다고
 나를 몰아왔는데
 
 [Chorus]
-[hard beat drop]
-[emotional peak]
-[no ad-libs, clean vocal delivery]
+[hard beat drop] [emotional peak]
 바닥까지 와보니까
 이제야 내가 보였어
 남들 보느라 바빴던
@@ -59,21 +56,22 @@ Style Influence: 75%
 조금 덜 급하게
 
 [Final Chorus]
-[emotional peak]
-[weight increase, heavier bass]
-[no ad-libs, clean vocal delivery]
+[emotional peak] [weight increase, heavier bass]
 바닥까지 와보니까
 이제 알 것 같았어
 무너지지 않는 사람보다
-다시 버텨내는 사람이 더 오래 가더라
+다시 버텨내는 사람이
+더 오래 가더라
+
+[Transition: 808 fill, no vocal, build into repeat]
 
 [Final Chorus - Repeat]
-[full intensity, single vocalist only, no choir, no harmony layers]
-[no ad-libs, clean vocal delivery]
+[full intensity, single vocalist only, no choir, no harmony layers] [same energy, sustained]
 바닥까지 와보니까
 이제 알 것 같았어
 무너지지 않는 사람보다
-다시 버텨내는 사람이 더 오래 가더라
+다시 버텨내는 사람이
+더 오래 가더라
 
 [Outro]
 [gentle fade]
