@@ -10,7 +10,7 @@ Five independent Python projects — from prompt generation to video editing aut
 | Project | What it does | Python | API |
 |---------|-------------|--------|-----|
 | [ai_anime](./ai_anime/) | Per-song anime character + scene prompt generator (7 genre profiles, 6 image platforms) | 3.9+ | None |
-| [ai_img_video_aiBoygirl](./ai_img_video_aiBoygirl/) | Fixed AI Boy/AI Girl robot character MV prompt builder (32 genre profiles, 22 reference PNGs) | 3.9+ | None |
+| [ai_img_video_aiBoygirl](./ai_img_video_aiBoygirl/) | Fixed AI Boy/AI Girl robot character MV prompt builder (36 genre profiles, 22 reference PNGs) | 3.9+ | None |
 | [ai_img_video_prompt_capcut](./ai_img_video_prompt_capcut/) | Auto-generates CapCut editing timeline from Suno LRC + Kling video clips | 3.9+ | None |
 | [ai_multi_agent](./ai_multi_agent/) | Prompt runner with 5 web UIs — MV, anime, webtoon, story, scenario | 3.8+ | OpenRouter (required) / OpenAI (optional) |
 | [youtube_research](./youtube_research/) | YouTube AI music channel benchmarking — metadata collection, AI-only filtering, markdown reports | 3.8+ | yt-dlp (free) |
