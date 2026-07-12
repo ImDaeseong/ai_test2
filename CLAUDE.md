@@ -1,10 +1,21 @@
-# CLAUDE.md — ai_test2
+﻿# CLAUDE.md — ai_test2
 
 AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동화, 멀티 에이전트 실행, 유튜브 리서치 도구 모음.
 
 ## 저장소 목적
 
 나는 **Suno 음원**에서 시작해 **AI 이미지·영상 프롬프트 생성 → CapCut 편집 드래프트 자동 생성** 흐름을 자동화하기 위해 이 저장소를 사용한다.
+
+## 변경 전 확인 문서
+
+구조 변경, 리팩터링, 신규 기능, 공개 배포 준비를 시작하기 전에는 루트 문서를 먼저 확인한다.
+
+1. `SPEC.md` — 목적, 범위, 완료 기준
+2. `ARCHITECTURE.md` — 현재 구조 위험, 목표 모듈 경계, 파일 계약
+3. `SECURITY_BOUNDARY.md` — API 키, 미디어, 유튜브 수집, 프롬프트 안전 경계
+4. `HOLD_CONDITIONS.md` — 중단하고 사람 검토가 필요한 조건
+5. `VERIFICATION.md` — 진행률 게이트와 검증 명령
+6. `ROADMAP.md` — 현대화 순서
 
 ## 5개 프로젝트 의존성 순서
 
@@ -57,3 +68,4 @@ cd ../youtube_research           ; python -m pytest tests_unit.py -q
 - [ ] 각 프로젝트 테스트 전량 PASS
 - [ ] .env 파일이 git에 포함되지 않음 확인
 - [ ] ai_multi_agent: `.env.example` → `.env` 복사 후 API 키 입력 검증
+

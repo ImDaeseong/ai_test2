@@ -1,4 +1,4 @@
-"""
+﻿"""
 pytest 설정 — ai_multi_agent 단위 테스트 환경 초기화.
 ai_multi_agent 디렉토리를 sys.path에 추가하여 내부 모듈을 import할 수 있도록 한다.
 
@@ -13,6 +13,8 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 
 def pytest_configure(config) -> None:
+    if getattr(config.option, "basetemp", None):
+        return
     # Windows 임시 폴더 권한 문제 우회 (pytest-of-sDev WinError 5)
     basetemp = Path(__file__).resolve().parent / ".pytest_tmp"
     basetemp.mkdir(exist_ok=True)
@@ -20,3 +22,4 @@ def pytest_configure(config) -> None:
         config.option.basetemp = str(basetemp)
     except AttributeError:
         pass
+

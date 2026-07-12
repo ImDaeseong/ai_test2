@@ -1,9 +1,22 @@
-# ai-tools
+﻿# ai-tools
 
 AI-assisted tools for music video production, storytelling, and content research.  
 Five independent Python projects — from prompt generation to video editing automation.
 
 ---
+
+## Governance Docs
+
+이 저장소는 초기 자동화 실험에서 출발한 5개 도구 모음입니다. 구조 변경이나 리팩터링 전에는 아래 문서를 먼저 확인합니다.
+
+| 문서 | 용도 |
+|---|---|
+| [SPEC.md](./SPEC.md) | 목적, 범위, 완료 기준 |
+| [ARCHITECTURE.md](./ARCHITECTURE.md) | 현재 구조 위험, 목표 모듈 경계, 프로젝트 간 파일 계약 |
+| [SECURITY_BOUNDARY.md](./SECURITY_BOUNDARY.md) | API 키, 미디어, 유튜브 수집, 프롬프트 안전 경계 |
+| [HOLD_CONDITIONS.md](./HOLD_CONDITIONS.md) | 중단하고 사람 검토가 필요한 조건 |
+| [VERIFICATION.md](./VERIFICATION.md) | 진행률 게이트와 실제 검증 명령 |
+| [ROADMAP.md](./ROADMAP.md) | 현대화 순서 |
 
 ## Projects
 
@@ -279,3 +292,4 @@ cd ../ai_img_video_prompt_capcut && python -m pytest tests_unit.py -q   # 65 pas
 cd ../ai_multi_agent             && python -m pytest tests_unit.py -q   # 27 passed
 cd ../youtube_research           && python -m pytest tests_unit.py -q   # 37 passed
 ```
+
