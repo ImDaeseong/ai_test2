@@ -24,7 +24,7 @@ youtube_research
 - `ai_img_video_aiBoygirl/main.py`: parsing, profile selection, template rendering, safety filtering, validation, CLI가 한 파일에 섞임
 - `ai_img_video_prompt_capcut/main.py`: LRC/SRT parsing, media discovery, slot mapping, output writing, CLI가 한 파일에 섞임
 - `ai_anime/main.py`: prompt generation과 CapCut draft export가 한 진입점에 공존
-- `ai_multi_agent`: 웹 UI가 프로젝트별로 복제되어 있고 공통 서비스 경계가 약함
+- `ai_multi_agent`: 웹 UI가 프로젝트별로 복제되어 있고 공통 서비스 경계가 약함 — `web_app_story.py`/`web_app_scenario.py`는 2026-07-13에 `web_app_scaffold.py`(`create_prompt_runner_app` 팩토리)로 추출 완료(각 199줄 → 27줄 래퍼, 라우트/HTML 렌더링을 스캐폴드 12개 테스트로 보호). `web_app_anime.py`/`web_app_mv.py`/`web_app_webtoon.py`는 도메인 모델(패널/파트 vs 프롬프트/챕터)이 달라 아직 미추출 상태.
 
 ## Target Module Boundaries
 

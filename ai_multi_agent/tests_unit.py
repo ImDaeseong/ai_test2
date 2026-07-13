@@ -170,3 +170,169 @@ class TestLoadEnvFile:
         monkeypatch.delenv("QUOTED_KEY", raising=False)
         load_env_file(env_file)
         assert os.environ.get("QUOTED_KEY") == "quoted_value"
+
+
+# ─────────────────────────────────────────
+# web_app_scaffold.py — create_prompt_runner_app
+# Flask test client only, no real network/API calls.
+# web_app_story.py / web_app_scenario.py are thin wrappers around this
+# scaffold, so testing the scaffold in isolation (fake managed_summary /
+# managed_output_file) covers both.
+# ─────────────────────────────────────────
+
+import web_app_scaffold
+from web_app_scaffold import PromptRunnerConfig, create_prompt_runner_app
+
+
+def _fake_runner(tmp_path, *, api_key="fake-key", **overrides):
+    project = tmp_path / "demo_project"
+    project.mkdir()
+
+    def managed_summary(project_dir):
+        return {"title": "Demo Title", "total": 2, "current": 1, "next_num": 2, "next_file": None}
+
+    def managed_output_file(project_dir, num):
+        return project_dir / f"unit{num:02d}_output.md"
+
+    fields = dict(
+        kind="teststory",
+        port=9999,
+        title="Test Prompt Runner",
+        sub_label="test sub label",
+        project_label="Test Projects",
+        unit_dirname="units",
+        unit_label_fmt="u{:02d}",
+        unit_heading="All Test Prompts",
+        accent_color="#123456",
+        accent_dark_text="#000000",
+        output_dir=tmp_path,
+        managed_summary=managed_summary,
+        managed_output_file=managed_output_file,
+        openrouter_api_key=api_key,
+    )
+    fields.update(overrides)
+    cfg = PromptRunnerConfig(**fields)
+    return create_prompt_runner_app(cfg), project
+
+
+class TestPromptRunnerScaffoldIndexAndProjects:
+    def test_index_returns_html_with_title(self, tmp_path):
+        app, _ = _fake_runner(tmp_path)
+        resp = app.test_client().get("/")
+        assert resp.status_code == 200
+        assert resp.content_type.startswith("text/html")
+        assert "Test Prompt Runner" in resp.get_data(as_text=True)
+
+    def test_projects_lists_dirs_under_output_dir(self, tmp_path):
+        app, project = _fake_runner(tmp_path)
+        data = app.test_client().get("/api/projects").get_json()
+        assert data["ok"] is True
+        assert data["output_dir_exists"] is True
+        assert "warning" not in data
+        assert [p["name"] for p in data["projects"]] == [project.name]
+
+    def test_projects_warns_when_output_dir_missing(self, tmp_path):
+        missing_dir = tmp_path / "does_not_exist"
+        app, _ = _fake_runner(tmp_path, output_dir=missing_dir)
+        data = app.test_client().get("/api/projects").get_json()
+        assert data["ok"] is True
+        assert data["output_dir_exists"] is False
+        assert data["projects"] == []
+        assert str(missing_dir) in data["warning"]
+
+
+class TestPromptRunnerScaffoldDetail:
+    def test_missing_project_returns_404(self, tmp_path):
+        app, _ = _fake_runner(tmp_path)
+        resp = app.test_client().get("/api/detail/does-not-exist")
+        assert resp.status_code == 404
+        assert resp.get_json()["ok"] is False
+
+    def test_existing_project_returns_detail_with_formatted_label(self, tmp_path):
+        app, project = _fake_runner(tmp_path)
+        data = app.test_client().get(f"/api/detail/{project.name}").get_json()
+        assert data["ok"] is True
+        assert data["title"] == "Demo Title"
+        assert data["next_label"] == "u02"  # unit_label_fmt applied to next_num
+        assert len(data["prompts"]) == 2
+
+
+class TestPromptRunnerScaffoldRun:
+    def test_missing_api_key_returns_400_without_calling_run_prompt_once(self, tmp_path, monkeypatch):
+        app, project = _fake_runner(tmp_path, api_key=None)
+        monkeypatch.setattr(
+            web_app_scaffold, "run_prompt_once",
+            lambda *a, **kw: (_ for _ in ()).throw(AssertionError("should not be called")),
+        )
+        resp = app.test_client().post("/api/run", json={"name": project.name})
+        assert resp.status_code == 400
+        assert "OPENROUTER_API_KEY" in resp.get_json()["error"]
+
+    def test_missing_project_returns_404(self, tmp_path):
+        app, _ = _fake_runner(tmp_path)
+        resp = app.test_client().post("/api/run", json={"name": "nope"})
+        assert resp.status_code == 404
+
+    def test_success_path_calls_run_prompt_once_with_kind_and_returns_result(self, tmp_path, monkeypatch):
+        app, project = _fake_runner(tmp_path)
+        (project / "units").mkdir()
+        (project / "units" / "u02_GPT_프롬프트.md").write_text("prompt body", encoding="utf-8")
+        calls = {}
+
+        def fake_run_prompt_once(prompt_file, output_file, mode, force, max_tokens):
+            calls["mode"] = mode
+            calls["force"] = force
+            output_file.parent.mkdir(parents=True, exist_ok=True)
+            output_file.write_text("generated result", encoding="utf-8")
+            return output_file
+
+        monkeypatch.setattr(web_app_scaffold, "run_prompt_once", fake_run_prompt_once)
+        resp = app.test_client().post("/api/run", json={"name": project.name, "num": 2})
+        data = resp.get_json()
+        assert data["ok"] is True
+        assert calls["mode"] == "teststory"
+        assert "generated result" in data["result"]
+
+    def test_file_exists_error_returns_409_with_exists_flag(self, tmp_path, monkeypatch):
+        app, project = _fake_runner(tmp_path)
+        (project / "units").mkdir()
+        (project / "units" / "u02_GPT_프롬프트.md").write_text("prompt body", encoding="utf-8")
+
+        def fake_run_prompt_once(*a, **kw):
+            raise FileExistsError("이미 있음")
+
+        monkeypatch.setattr(web_app_scaffold, "run_prompt_once", fake_run_prompt_once)
+        resp = app.test_client().post("/api/run", json={"name": project.name, "num": 2})
+        assert resp.status_code == 409
+        assert resp.get_json()["exists"] is True
+
+
+# ─────────────────────────────────────────
+# web_app_story.py / web_app_scenario.py — thin-wrapper wiring
+# Confirms the extraction preserved each app's identity (port, labels).
+# ─────────────────────────────────────────
+
+class TestWebAppStoryWiring:
+    def test_module_exposes_app_and_port(self):
+        import web_app_story
+        assert web_app_story.PORT == 5400
+        assert web_app_story.app is not None
+
+    def test_index_html_reflects_story_config(self):
+        import web_app_story
+        html = web_app_story.app.test_client().get("/").get_data(as_text=True)
+        assert "Story Prompt Runner" in html
+        assert "port 5400" in html
+
+
+class TestWebAppScenarioWiring:
+    def test_module_exposes_app_and_port(self):
+        import web_app_scenario
+        assert web_app_scenario.PORT == 5300
+        assert web_app_scenario.app is not None
+
+    def test_index_html_reflects_scenario_config(self):
+        import web_app_scenario
+        html = web_app_scenario.app.test_client().get("/").get_data(as_text=True)
+        assert "Scenario Prompt Runner" in html
+        assert "port 5300" in html

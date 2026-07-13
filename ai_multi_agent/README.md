@@ -233,6 +233,8 @@ WEBTOON_ROOT     → ai-webtoon/        ← v2.1 신규
 WEBTOON_ROOT=C:\custom\path\ai-webtoon
 ```
 
+**주의**: 위 기본값은 `ai_story`/`ai_Scenario` 등이 `ai_multi_agent`의 상위 폴더(워크스페이스 루트) 바로 아래에 있다고 가정한다. 실제 프로젝트가 다른 위치(예: 형제 워크스페이스 폴더)에 있으면 `.env`에 해당 `*_ROOT`를 직접 지정해야 한다. 2026-07-13부터 story/scenario 웹 UI는 설정된 폴더가 없을 때 빈 목록 대신 사이드바에 경고 메시지를 표시한다 — 프로젝트가 안 보이면 먼저 이 경고를 확인할 것.
+
 ---
 
 ## 요구사항

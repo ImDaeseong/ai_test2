@@ -35,7 +35,7 @@ Suggested extraction order:
 1. `ai_img_video_prompt_capcut`: parsing and CapCut draft writer boundaries
 2. `ai_anime`: prompt rendering and CapCut export split
 3. `ai_img_video_aiBoygirl`: parser, profile selector, safety filter, validator split
-4. `ai_multi_agent`: shared web/service helpers across 5 UIs
+4. `ai_multi_agent`: shared web/service helpers across 5 UIs — story/scenario extracted 2026-07-13 (`web_app_scaffold.py`); anime/mv/webtoon still pending (different domain models, larger effort)
 5. `youtube_research`: already small; keep mostly as-is unless adding providers
 
 ## Phase 5 — Documentation Refresh
