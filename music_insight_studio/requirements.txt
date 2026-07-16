@@ -1,0 +1,7 @@
+﻿# Core MVP can run with the Python standard library for WAV fallback.
+# Install these for advanced audio analysis:
+numpy>=1.24.0
+soundfile>=0.12.0
+pyloudnorm>=0.1.1
+# See requirements-optional.txt for optional providers (librosa, basic-pitch) that
+# improve BPM/melody accuracy when installed. The app works without them.

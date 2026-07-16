@@ -1,0 +1,31 @@
+﻿# Not required for the local MVP path (numpy+soundfile+pyloudnorm in requirements.txt).
+# Two tiers below: providers the code actually calls when installed, and
+# future/deferred packages with no code integration yet.
+
+# --- Tier 1: optional providers wired into the analyzer/notation code paths ---
+# The app works without these (built-in fallbacks apply); install to improve accuracy.
+
+# BPM/onset provider. If installed, AudioAnalyzer._estimate_bpm_from_audio_np tries
+# librosa.beat.beat_track before the built-in spectral-flux/RMS fallback chain.
+# See ARCHITECTURE.md "Librosa BPM Provider". Verified with librosa==0.11.0.
+librosa>=0.10.0
+
+# Audio-to-MIDI note transcription. If installed, ScoreTranscriber tries basic-pitch
+# note events before the built-in numpy/soundfile autocorrelation melody-guide
+# fallback. See docs/features/score_generation.md. Commented out (not installed in
+# the verified .venv): brings model/runtime dependencies and its supported Python
+# version range lags upstream releases.
+# basic-pitch>=0.4.0
+
+# --- Tier 2: future/deferred, no code integration yet ---
+
+# Later score post-processing: quantization, notation cleanup, richer MusicXML
+# export, once note events are available (basic-pitch or similar).
+# music21>=9.0.0
+
+# Stem separation, deferred (ROADMAP Phase 5).
+# demucs
+
+# Mastering preview effects, deferred (ROADMAP Phase 5).
+# pedalboard
+

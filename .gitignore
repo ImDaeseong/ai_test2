@@ -7,6 +7,11 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+.venv/
+
+# music_insight_studio runtime artifacts
+music_insight_studio/uploads/
+music_insight_studio/outputs/
 
 # Tests
 .pytest_cache/
