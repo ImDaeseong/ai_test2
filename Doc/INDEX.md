@@ -13,6 +13,7 @@
 | [ai_img_video_prompt_capcut.md](ai_img_video_prompt_capcut.md) | CapCut 타임라인 자동 생성 | LRC 파싱 + 슬롯 매핑 + 드래프트 JSON | 없음 |
 | [ai_multi_agent.md](ai_multi_agent.md) | 프롬프트 실행 관리 허브 | 5개 웹 UI + OpenRouter API + 작업 상태 관리 | OpenRouter (필수) / OpenAI (선택) |
 | [youtube_research.md](youtube_research.md) | AI 음악 유튜브 채널 벤치마킹 | yt-dlp 수집 + AI 채널 필터 + 마크다운 리포트 | yt-dlp (무료) |
+| [music_insight_studio.md](music_insight_studio.md) | 로컬 음악 분석(BPM/Key/LUFS/믹싱·마스터링·시장성 평가) | DSP 분석 + 규칙 기반 채점 + MusicXML 채보 | 없음 |
 
 ---
 
@@ -66,8 +67,10 @@ ai_multi_agent ←─ ai_img_video_aiBoygirl / ai_anime 프롬프트 실행
   └─ 5개 웹 UI (story / scenario / mv / anime / webtoon)
 
 youtube_research ←─ 독립 파이프라인 (경쟁 채널 벤치마킹)
+
+music_insight_studio ←─ 완전 독립 파이프라인 (로컬 음악 분석, 위 어느 프로젝트와도 파일 계약 없음)
 ```
 
 ---
 
-*Last Updated: 2026-06-23*
+*Last Updated: 2026-07-17*
