@@ -17,7 +17,7 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 5. `VERIFICATION.md` — 진행률 게이트와 검증 명령
 6. `ROADMAP.md` — 현대화 순서
 
-## 5개 프로젝트 의존성 순서
+## 6개 프로젝트 의존성 순서
 
 ```
 [1] ai_img_video_aiBoygirl
@@ -38,6 +38,10 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 
 [5] youtube_research
       └─ 독립 실행 — AI 음악 채널 벤치마킹 (yt-dlp 기반, API 키 불필요)
+
+[6] music_insight_studio
+      └─ 독립 실행 — 로컬 음악 분석(BPM/Key/LUFS/믹싱·마스터링 평가), 외부 API 불필요
+      └─ ai_test3에서 이동 (2026-07-17) — 다른 5개와 파일/의존성 공유 없음
 ```
 
 ## 핵심 규칙
@@ -50,8 +54,9 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 ## 보안 경계
 
 - 외부 API: ai_multi_agent만 OpenRouter 사용 (OPENROUTER_API_KEY 필요)
-- 나머지 4개 프로젝트: 외부 API 없음, 로컬 파일 처리만
+- 나머지 5개 프로젝트: 외부 API 없음, 로컬 파일 처리만
 - yt-dlp: 공개 메타데이터만 수집, 음원 다운로드 없음
+- music_insight_studio: numpy/soundfile/librosa/pyloudnorm/basic-pitch 전부 로컬 패키지, 네트워크 호출 없음
 
 ## 검증 명령
 
@@ -61,6 +66,7 @@ cd ../ai_img_video_aiBoygirl     ; python -m pytest -q
 cd ../ai_img_video_prompt_capcut ; python -m pytest tests_unit.py -q
 cd ../ai_multi_agent             ; python -m pytest tests_unit.py -q
 cd ../youtube_research           ; python -m pytest tests_unit.py -q
+cd ../music_insight_studio       ; .venv\Scripts\python.exe -m unittest discover -s tests
 ```
 
 ## HOLD 조건 (배포 전 필수)

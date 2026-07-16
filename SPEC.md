@@ -6,13 +6,14 @@
 
 ## Purpose
 
-ai_test2는 AI 음악 영상 제작을 위한 5개 독립 도구를 모은 작업공간이다.
+ai_test2는 AI 음악 영상 제작을 위한 5개 도구 + 독립 음악 분석 도구 1개, 총 6개 도구를 모은 작업공간이다.
 
 - `ai_anime`: 곡 텍스트에서 애니메이션 MV 캐릭터/씬/영상 프롬프트 생성
 - `ai_img_video_aiBoygirl`: AI Boy/AI Girl 고정 캐릭터 MV 프롬프트 생성
 - `ai_img_video_prompt_capcut`: Suno 음원/LRC/클립을 CapCut 드래프트 타임라인으로 변환
 - `ai_multi_agent`: 생성된 프롬프트를 OpenRouter/OpenAI 기반 웹 UI에서 실행 관리
 - `youtube_research`: AI 음악 유튜브 채널 공개 메타데이터 벤치마킹
+- `music_insight_studio`: 로컬 음악 분석 — BPM/Key/LUFS/주파수 밸런스 분석과 믹싱/마스터링/시장성 평가 리포트 생성. MV 제작 파이프라인과 파일/의존성 공유 없음(2026-07-17 `ai_test3`에서 이동).
 
 ## Current State
 

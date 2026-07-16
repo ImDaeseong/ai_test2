@@ -37,6 +37,9 @@ python -m pytest tests_unit.py -q
 
 cd C:\Users\cs930\Desktop\ai_test2\youtube_research
 python -m pytest tests_unit.py -q
+
+cd C:\Users\cs930\Desktop\ai_test2\music_insight_studio
+.venv\Scripts\python.exe -m unittest discover -s tests
 ```
 
 ## Document Checks
@@ -112,6 +115,22 @@ The warning in the four `--basetemp` runs is a pytest cache warning from this sa
 - `git status --short`: `ai_multi_agent/.env` correctly stays untracked (gitignored); only `.env.example`, `README.md`, `tests_unit.py`, `web_app_scaffold.py` show as the intended diff for this round, plus the story/scenario extraction files from the prior round.
 
 [LOOP-END] result: PASS — a real silent-failure usability gap (found through actually using the app, not just reading code) is now self-diagnosing / gate: 100%
+
+## music_insight_studio — moved in from ai_test3 (2026-07-17)
+
+[LOOP-START] goal: relocate music_insight_studio from ai_test3 to ai_test2 without breaking it or the 5 existing projects, and update all cross-referencing docs / exit criteria: file count matches source exactly, test suite passes fresh from the new location, no other project's files touched, all 6 root governance docs + README + CLAUDE.md reflect 6 projects consistently / max iterations: 2
+
+**Reason**: `CareerDiff` (in `ai_test3`) has significant remaining work, so `ai_test3` now keeps only that project; `music_insight_studio` (already complete/verified — see its own `VERIFICATION.md`) moved here instead.
+
+**Verification (real commands, not recalled)**:
+- File count: `Get-ChildItem -Recurse -File` on source and destination both returned `11541` before removing the source copy — exact match, including the local `.venv`.
+- Added `.venv/`, `music_insight_studio/uploads/`, `music_insight_studio/outputs/` to root `.gitignore` before staging, then confirmed `git status --short` showed zero `.venv` entries.
+- Fresh test run from the new location: `.venv\Scripts\python.exe -m unittest discover -s tests` in `music_insight_studio` -> `Ran 34 tests ... OK`.
+- `git status --short` in `ai_test3` after `git rm -r music_insight_studio`: only the removed files and the root `README.md` rewrite — `CareerDiff/` untouched. Full history for the removed project remains queryable via `git log --oneline -- music_insight_studio` in `ai_test3` (11 commits, not deleted, just not carried into this repo's history).
+- Full sibling regression in `ai_test2` (unrelated to this change, confirming the move didn't touch anything else): `ai_anime` 77, `ai_img_video_aiBoygirl` 337, `ai_img_video_prompt_capcut` 65, `ai_multi_agent` 40, `youtube_research` 37 — unchanged.
+- Synced references: `SPEC.md`, `ARCHITECTURE.md`, `CLAUDE.md`, this file's command list, and root `README.md` all updated from "5 projects" to "6 projects" with `music_insight_studio` described consistently (local-only, no external API, independent of the MV pipeline).
+
+[LOOP-END] result: PASS — moved with zero data loss (file-count verified), zero regression to the 5 existing projects, all cross-referencing docs synced / gate: 100%
 
 ## Exit Criteria
 

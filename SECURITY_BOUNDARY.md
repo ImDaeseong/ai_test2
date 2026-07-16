@@ -23,13 +23,19 @@ Not allowed in repository:
 - `ai_multi_agent` may use OpenRouter for text prompt execution when `OPENROUTER_API_KEY` is present.
 - `ai_multi_agent` may use OpenAI image generation when `OPENAI_API_KEY` is present.
 - Absence of API keys must be handled with a clear error or copy-only fallback.
-- No other project should require external API keys.
+- No other project should require external API keys. `music_insight_studio` in particular makes zero network calls — its optional dependencies (`librosa`, `basic-pitch`) are local Python packages, not remote APIs.
 
 ## Media Boundary
 
 - `ai_img_video_prompt_capcut` may read local audio, subtitle, LRC, markdown, and clip files.
 - Local media files should be treated as user-owned working assets, not source code.
 - Large or private media should not be committed unless explicitly classified as public fixture material.
+
+## Audio Analysis Boundary
+
+- `music_insight_studio` may read local user-uploaded audio files (WAV/MP3/FLAC/OGG/AIFF) for analysis only.
+- Raw audio and generated reports must not be persisted beyond the local session unless explicitly documented (see its own `docs/commercial/DATA_RETENTION.md`).
+- Must not upload user audio to any external service — analysis stays local.
 
 ## YouTube Research Boundary
 

@@ -38,6 +38,8 @@ Suggested extraction order:
 4. `ai_multi_agent`: shared web/service helpers across 5 UIs — story/scenario extracted 2026-07-13 (`web_app_scaffold.py`); anime/mv/webtoon still pending (different domain models, larger effort)
 5. `youtube_research`: already small; keep mostly as-is unless adding providers
 
+`music_insight_studio` (added 2026-07-17) is out of scope for this phase — it already has `app/{analyzers,scoring,notation,reports,services,web,cli}/` module boundaries, not a single large script.
+
 ## Phase 5 — Documentation Refresh
 
 Goal: make docs match real commands and evidence.

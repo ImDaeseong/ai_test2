@@ -1,13 +1,13 @@
 ﻿# ai-tools
 
-AI-assisted tools for music video production, storytelling, and content research.  
-Five independent Python projects — from prompt generation to video editing automation.
+AI-assisted tools for music video production, storytelling, content research, and local music analysis.  
+Six independent Python projects — from prompt generation to video editing automation to audio analysis.
 
 ---
 
 ## Governance Docs
 
-이 저장소는 초기 자동화 실험에서 출발한 5개 도구 모음입니다. 구조 변경이나 리팩터링 전에는 아래 문서를 먼저 확인합니다.
+이 저장소는 초기 자동화 실험에서 출발한 6개 도구 모음입니다. 구조 변경이나 리팩터링 전에는 아래 문서를 먼저 확인합니다.
 
 | 문서 | 용도 |
 |---|---|
@@ -27,6 +27,7 @@ Five independent Python projects — from prompt generation to video editing aut
 | [ai_img_video_prompt_capcut](./ai_img_video_prompt_capcut/) | Auto-generates CapCut editing timeline from Suno LRC + Kling video clips | 3.9+ | None |
 | [ai_multi_agent](./ai_multi_agent/) | Prompt runner with 5 web UIs — MV, anime, webtoon, story, scenario | 3.8+ | OpenRouter (required) / OpenAI (optional) |
 | [youtube_research](./youtube_research/) | YouTube AI music channel benchmarking — metadata collection, AI-only filtering, markdown reports | 3.8+ | yt-dlp (free) |
+| [music_insight_studio](./music_insight_studio/) | Local-first music analysis — BPM/Key/LUFS/frequency-balance analysis + rule-based mixing/mastering/marketability scoring, Korean reports + MusicXML | 3.9+ | None |
 
 ---
 
@@ -54,6 +55,8 @@ ai_anime  ──→  anime scene + character prompts
               (can be run through ai_multi_agent web UI)
 
 youtube_research  ──→  benchmark competitor channels independently
+
+music_insight_studio  ──→  independent local audio analysis, no dependency on any other project
 ```
 
 ---
@@ -232,9 +235,37 @@ python run.py search 30    # 쿼리당 30개 수집 → 필터 → 썸네일 →
 
 ---
 
+### music_insight_studio — Local Music Analysis
+
+음원 파일과 Suno 등 AI 음악 제작 자료를 분석해 한국어 리포트를 생성하는 로컬 우선 음악 분석 도구. 다른 5개 프로젝트와 파일/의존성 공유 없이 완전 독립 실행됩니다(2026-07-17 `ai_test3`에서 이동).
+
+**입출력**
+
+```
+입력: MP3 / WAV / FLAC (필수)
+출력: analysis_report.md, analysis_report.ko.md, analysis_report.json, analysis_lead_sheet.musicxml
+```
+
+**주요 기능**
+- BPM / Key / LUFS / 주파수 밸런스 분석 (`numpy`/`soundfile`/`pyloudnorm`, 미설치 시 stdlib WAV 폴백)
+- 규칙 기반 믹싱/마스터링/AI 자연스러움/시장성 평가
+- MusicXML 세션 악보 채보 (`basic-pitch` 선택 provider, 미설치 시 로컬 heuristic 폴백)
+- CLI + 로컬 Web UI(파일 업로드 → 같은 화면에 한국어 리포트, 페이지 이동 없음)
+- 단위 테스트 34개 통과 (2026-07-17 이동 후 재확인)
+
+**실행**
+
+```powershell
+cd music_insight_studio
+.venv\Scripts\python.exe -m app.cli analyze .\tests\fixtures\sample.wav --out .\outputs --mode general
+.venv\Scripts\python.exe -m app.web.server --host 127.0.0.1 --port 8765   # http://127.0.0.1:8765
+```
+
+---
+
 ## Quick Start
 
-### No API key needed (3 projects)
+### No API key needed (4 projects)
 
 ```powershell
 # Anime MV prompts
@@ -249,6 +280,11 @@ python main.py create-all --input-dir input --force
 cd ../youtube_research
 pip install yt-dlp
 python run.py search 30
+
+# Local music analysis (own .venv, already set up in this checkout)
+cd ../music_insight_studio
+.venv\Scripts\python.exe -m app.web.server --host 127.0.0.1 --port 8765
+# fresh clone without .venv: python -m venv .venv && .venv\Scripts\pip.exe install -r requirements.txt
 ```
 
 ### CapCut automation (after generating clips in Kling AI)
@@ -280,6 +316,7 @@ Get a free OpenRouter API key at https://openrouter.ai/keys
 
 - Python 3.9+ (3.8+ for `ai_multi_agent` and `youtube_research`)
 - Each project folder contains its own `requirements.txt` or install instructions
+- `music_insight_studio` uses its own `.venv` (not the system Python) — see its `README.md`
 
 ---
 
@@ -291,5 +328,6 @@ cd ../ai_img_video_aiBoygirl     && python -m pytest -q                  # 337 p
 cd ../ai_img_video_prompt_capcut && python -m pytest tests_unit.py -q   # 65 passed
 cd ../ai_multi_agent             && python -m pytest tests_unit.py -q   # 39 passed
 cd ../youtube_research           && python -m pytest tests_unit.py -q   # 37 passed
+cd ../music_insight_studio       && .venv\Scripts\python.exe -m unittest discover -s tests   # 34 passed
 ```
 
