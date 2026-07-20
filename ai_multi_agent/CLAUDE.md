@@ -38,7 +38,7 @@ OpenRouter API를 통해 4개 Agent가 순차 협업하여 곡 분석 → MV 프
 | `agents/image_agent.py` | 장면 → 8개 이미지 프롬프트 | 프롬프트 수 변경 시 output 구조도 함께 변경 |
 | `agents/video_agent.py` | 섹션별 영상 프롬프트 생성 | 섹션 파싱 방식이 script_agent 출력에 의존 |
 | `agents/reviewer_agent.py` | 밴드 정체성 & 품질 검수 | 검수 기준 변경 시 다른 Agent 결과에 영향 |
-| `tests_unit.py` | pytest 기반 27개 단위 테스트 | API 호출 없는 순수 함수 검증 |
+| `tests_unit.py` | pytest 기반 40개 단위 테스트 | API 호출 없는 순수 함수 검증 |
 
 ---
 
@@ -47,7 +47,7 @@ OpenRouter API를 통해 4개 Agent가 순차 협업하여 곡 분석 → MV 프
 ```bash
 # 단위 테스트
 python -m pytest tests_unit.py -q
-# 목표: 27 passed, 0 failed
+# 목표: 40 passed, 0 failed
 
 # 구문 오류 확인
 python -m py_compile main.py config.py agents/base.py agents/script_agent.py agents/image_agent.py agents/video_agent.py agents/reviewer_agent.py
@@ -66,7 +66,7 @@ python main.py create --input "경로/곡제목.txt"
 python -c "import config; print('Key loaded:', bool(config.OPENROUTER_API_KEY))"
 ```
 
-**완료 기준**: 27 passed, `story list` / `scenario list` 정상 출력, MV 실행 시 `validate` PASS
+**완료 기준**: 40 passed, `story list` / `scenario list` 정상 출력, MV 실행 시 `validate` PASS
 
 ---
 
@@ -80,4 +80,4 @@ python -c "import config; print('Key loaded:', bool(config.OPENROUTER_API_KEY))"
 
 ---
 
-*Last Updated: 2026-06-10*
+*Last Updated: 2026-07-20*

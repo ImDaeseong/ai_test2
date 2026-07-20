@@ -49,7 +49,7 @@ def workspace_path(env_name: str, default_relative: str) -> Path:
     return WORKSPACE_ROOT / default_relative
 
 
-HERMES_ROOT = workspace_path("HERMES_ROOT", "ai_img_video_prompt")
+HERMES_ROOT = workspace_path("HERMES_ROOT", "ai_img_video_aiBoygirl")
 INPUT_DIR = HERMES_ROOT / "input"
 REFERENCE_DIR = HERMES_ROOT / "reference"
 HERMES_OUTPUT_DIR = HERMES_ROOT / "output"

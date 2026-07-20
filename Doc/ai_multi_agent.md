@@ -13,7 +13,7 @@ ai_anime, ai_img_video_aiBoygirl 등 사이드 프로젝트가 "프롬프트 파
 
 | 소스 | 내용 | 웹 UI | 포트 |
 |---|---|---|---|
-| `ai_img_video_prompt` | 스켈레톤 밴드 MV 이미지 프롬프트 | `web_app_mv.py` | 5200 |
+| `ai_img_video_aiBoygirl` | AI Boy/Girl 치비 토이 로봇 MV 이미지 프롬프트 | `web_app_mv.py` | 5200 |
 | `ai_Scenario` | 시나리오 씬 프롬프트 | `web_app_scenario.py` | 5300 |
 | `ai_story` | 소설 챕터 프롬프트 | `web_app_story.py` | 5400 |
 | `ai_anime` | 애니 MV 이미지/영상 프롬프트 | `web_app_anime.py` | 5500 |
@@ -94,7 +94,7 @@ OPENAI_API_KEY     = os.getenv("OPENAI_API_KEY", "")
 OPENAI_IMAGE_MODEL = os.getenv("OPENAI_IMAGE_MODEL", "gpt-image-1")
 
 # 소스 프로젝트 루트 (재정의 가능)
-HERMES_ROOT    = os.getenv("HERMES_ROOT",    "ai_img_video_prompt")
+HERMES_ROOT    = os.getenv("HERMES_ROOT",    "ai_img_video_aiBoygirl")
 STORY_ROOT     = os.getenv("STORY_ROOT",     "ai_story")
 SCENARIO_ROOT  = os.getenv("SCENARIO_ROOT",  "ai_Scenario")
 ANIME_ROOT     = os.getenv("ANIME_ROOT",     "ai_anime")
@@ -136,7 +136,7 @@ ai_multi_agent/output/webtoon/{곡명}/panels/{panel_stem}/
 ## 8. 테스트 전략
 
 ```powershell
-python -m pytest tests_unit.py -q   # 27 passed
+python -m pytest tests_unit.py -q   # 40 passed
 ```
 
 - 단위 테스트: API 호출 없이 순수 로직만 (파싱, 포맷, 경로 처리, API 모킹)
