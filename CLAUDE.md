@@ -34,7 +34,10 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 
 [4] ai_multi_agent
       └─ [1][3] 생성 프롬프트를 OpenRouter API로 실행
-      └─ 5개 웹 UI (포트 5200/5300/5400/5500/5600)
+      └─ 5개 웹 UI (포트 5200/5300/5400/5500/5600) — 2개는 이 저장소 내부([1] ai_img_video_aiBoygirl,
+         [3] ai_anime), 나머지 3개(ai_story/ai_Scenario/ai-webtoon)는 별도 저장소 `ai_test1`의
+         프로젝트를 실행한다(README.md "5개 웹 UI" 표 참고) — 이 diagram의 [1][6] 6개 프로젝트
+         범위 밖이므로 혼동 주의
 
 [5] youtube_research
       └─ 독립 실행 — AI 음악 채널 벤치마킹 (yt-dlp 기반, API 키 불필요)
@@ -53,7 +56,7 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 
 ## 보안 경계
 
-- 외부 API: ai_multi_agent만 OpenRouter 사용 (OPENROUTER_API_KEY 필요)
+- 외부 API: ai_multi_agent만 OpenRouter 사용 (OPENROUTER_API_KEY 필요, 이미지 생성엔 OPENAI_API_KEY 선택 사용 — SECURITY_BOUNDARY.md 참고)
 - 나머지 5개 프로젝트: 외부 API 없음, 로컬 파일 처리만
 - yt-dlp: 공개 메타데이터만 수집, 음원 다운로드 없음
 - music_insight_studio: numpy/soundfile/librosa/pyloudnorm/basic-pitch 전부 로컬 패키지, 네트워크 호출 없음

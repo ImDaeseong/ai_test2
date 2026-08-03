@@ -16,7 +16,14 @@
 
 ## Current Gate
 
-100%: Root modernization documents were added, README/CLAUDE now link the governance docs, test temp-directory handling was corrected to respect explicit `--basetemp`, and all existing project tests pass. No HOLD condition remains.
+This section reflects only the first verification pass (2026-07-13). Several more dated
+verification loops were completed afterward — most recently the `music_insight_studio` move
+(2026-07-17), which brought the repo to its current 6-project state. Do not treat this section
+as the latest status; read the dated sections below in order, the last one is current. (This
+frozen-snapshot problem is itself why later sections avoid claiming to be "the" current gate and
+instead close with their own dated `[LOOP-END]`.)
+
+100%: Root modernization documents were added, README/CLAUDE now link the governance docs, test temp-directory handling was corrected to respect explicit `--basetemp`, and all existing project tests pass (5 projects, before the `music_insight_studio` move). No HOLD condition remained at that point.
 
 ## Required Commands
 

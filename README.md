@@ -265,7 +265,7 @@ cd music_insight_studio
 
 ## Quick Start
 
-### No API key needed (4 projects)
+### No API key needed — one-command quick start (4 of 5 keyless projects; `ai_img_video_prompt_capcut` is also keyless but needs pre-generated Kling clips first — see "CapCut automation" below)
 
 ```powershell
 # Anime MV prompts
