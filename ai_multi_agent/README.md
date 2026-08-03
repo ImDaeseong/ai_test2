@@ -2,6 +2,10 @@
 
 `ai_multi_agent`는 5개 사이드 프로젝트에서 생성된 프롬프트를 API로 자동 실행하고 결과를 저장하는 작업 진행 관리자입니다.
 
+> 이 README는 **웹 UI 5종**(story/scenario/anime/mv/webtoon 프롬프트 실행 관리자)을 다룹니다. 이 프로젝트에는
+> 별도로 **4-Agent CLI 파이프라인**(ScriptAgent→ImageAgent→VideoAgent→ReviewerAgent, 스켈레톤 밴드 MV
+> 전용)도 함께 있습니다 — 그쪽은 `CLAUDE.md`를 참고하세요. 둘 다 실제로 존재하는 별개 기능입니다.
+
 | 소스 프로젝트 | 내용 | 웹 UI |
 |---|---|---|
 | `ai_img_video_prompt` | 스켈레톤 밴드 MV 이미지 프롬프트 | `web_app_mv.py` |

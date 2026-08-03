@@ -6,7 +6,10 @@
 
 ## 프로젝트 개요
 
-OpenRouter API를 통해 4개 Agent가 순차 협업하여 곡 분석 → MV 프롬프트를 생성합니다.
+OpenRouter API를 통해 4개 Agent가 순차 협업하여 곡 분석 → MV 프롬프트를 생성합니다. 이 파일은 이
+**4-Agent CLI 파이프라인**만 다룹니다 — 이 프로젝트에는 별도로 다른 4개 사이드 프로젝트(story/scenario/
+anime/webtoon)의 프롬프트를 실행하는 **웹 UI 5종**도 함께 있습니다(`web_app_*.py`) — 그쪽은
+`README.md`를 참고하세요.
 
 ```
 곡 txt

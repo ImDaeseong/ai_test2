@@ -1,7 +1,7 @@
 # AI Boy/AI Girl MV 프롬프트 빌더
 
 > AI Boy/AI Girl 3D 치비 토이 로봇 피규어 고정 캐릭터를 유지하면서, 곡마다 장르·무드·템포·감정·조명·카메라·연주 방식·관중 반응만 교체하는 MV 프롬프트 자동 생성 CLI 도구.
-> **2026-06-09 기준 안정화 확인 — 285 테스트 PASS. 장르 프로파일 32개, reference 이미지 22개, 214곡 검증 PASS.**
+> **2026-08-03 기준 — 337 테스트 PASS. 장르 프로파일 36개, reference 이미지 26개, 214곡 검증 PASS.**
 
 > **실제 MV 제작 방법 (GPT 이미지 생성 → Kling/Flow 영상 → CapCut 편집):**
 > [MV_제작_가이드.md](MV_제작_가이드.md) 참조
@@ -38,7 +38,7 @@ python main.py create-all --input-dir input --force
 ```
 ai_img_video_aiBoygirl/
 ├── main.py                   ← 핵심 엔진 (단일 파일)
-├── genre_profiles.json       ← 32개 장르 프로필 (roles, lighting, camera, energy)
+├── genre_profiles.json       ← 36개 장르 프로필 (roles, lighting, camera, energy)
 ├── doc/                      ← 상세 기술 문서
 │   ├── character_design.md   ← AI Boy/AI Girl 장르별 디자인 전체 참조
 │   └── changelog.md          ← 변경 이력
@@ -52,12 +52,13 @@ ai_img_video_aiBoygirl/
 │   ├── 07_stage_image_prompt.md
 │   ├── 08_atmosphere_image_prompt.md
 │   └── 09_video_motion_prompts.md
-├── reference/                ← 장르별 기준 캐릭터 이미지 (PNG 22개)
+├── reference/                ← 장르별 기준 캐릭터 이미지 (PNG 26개)
 │   ├── base.png              ← 기본값 (defaults 프로필)
 │   ├── rock.png, jazz.png, ballad.png, hiphop.png, electronic.png
 │   ├── idol_boy.png, idol_girl.png, telephone.png
-│   ├── r&b.png, house.png
-│   └── blues.png, cinematic.png, citypop.png, dreampop.png, funk.png
+│   ├── r&b.png, house.png, soul-pop.png, melodic_rap.png, psychedelic.png
+│   ├── k-pop.png, modern k-pop.png
+│   └── blues.png, cinematic.png, citypop.png, dreampop.png, funk.png,
 │       future.png, koreantraditional.png, orchestra.png, reggae.png, trot.png
 ├── input/                    ← 곡 정보 txt 파일
 ├── output/                   ← 곡별 생성 결과
@@ -65,7 +66,7 @@ ai_img_video_aiBoygirl/
 │       ├── 01~09_*.md        ← 생성된 프롬프트
 │       ├── 00_prompt_overview.md   ← 한글 영상 설명
 │       └── README.md               ← 섹션별 편집 가이드
-├── tests/test_main.py        ← pytest 테스트 285개 PASS
+├── tests/test_main.py        ← pytest 테스트 337개 PASS
 ├── requirements-dev.txt      ← 테스트 실행용 개발 의존성
 └── conftest.py
 ```
@@ -192,16 +193,17 @@ validate_song_folder()    ← placeholder 잔여, identity lock, 파일 누락 �
 
 ---
 
-## 지원 장르 프로필 (32개)
+## 지원 장르 프로필 (36개)
 
 `genre_profiles.json`에 정의. 키워드 매칭으로 자동 선택됩니다.
 
 ```
 subway / hyper-pop / dance-pop / rock / jazz / ballad
-pop-rap / r&b / soul-pop / lo-fi / neo-soul / psychedelic
-folk / dreampop / indie / afrobeats / synth-pop / house / hip-hop / ambient
-melodic_rap / blues / cinematic / citypop / funk / future-bass
-kpop-girl / korean-traditional / orchestra / reggae / trot / telephone-signal-pop
+pop-rap / trap-soul / dark-trap / r&b / soul-pop / lo-fi
+neo-soul / psychedelic / folk / dreampop / melodic_rap / indie
+afrobeats / synth-pop / house / hip-hop / telephone-signal-pop / ambient
+blues / cinematic / citypop / funk / future-bass / k-pop
+modern-kpop / kpop-girl / korean-traditional / orchestra / reggae / trot
 defaults (감성 시네마틱 팝 — 매칭 안 된 장르용)
 ```
 
@@ -311,7 +313,7 @@ python -m pytest -q
 ```text
 python -m py_compile main.py web_app.py validate_output.py  → 통과
 python validate_output.py                                  → 214곡 전체 PASS, 정책 위험 표현 0건
-python -m pytest -q                                        → 285 passed, 0 failed
+python -m pytest -q                                        → 337 passed, 0 failed
                                                              (41 errors = Windows 임시 디렉터리 권한 문제, OS 레벨)
 ```
 

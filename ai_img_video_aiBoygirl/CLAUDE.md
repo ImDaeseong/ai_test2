@@ -25,10 +25,10 @@
 | 파일 | 역할 | 수정 시 주의사항 |
 |---|---|---|
 | `main.py` | 파이프라인 실행 진입점 | `create`, `create-all`, `validate` 명령 처리 |
-| `genre_profiles.json` | 20개 장르별 프로파일 | 색상·스타일·캐릭터 값의 유일한 출처 |
+| `genre_profiles.json` | 36개 장르별 프로파일 | 색상·스타일·캐릭터 값의 유일한 출처 |
 | `templates/` | 9개 프롬프트 템플릿 | `{변수}` 플레이스홀더 형식 — 직접 값 입력 금지 |
 | `validate_output.py` | 214곡 전체 정책 안전화 검증 | 수정 후 반드시 실행 |
-| `tests/` | pytest 기반 336개 테스트 | 수정 후 전체 통과 확인 필수 |
+| `tests/` | pytest 기반 337개 테스트 | 수정 후 전체 통과 확인 필수 |
 | `input/` | 곡 정보 txt 파일 | 수정 금지 (입력 데이터) |
 | `output/` | 곡별 생성 결과 | 직접 편집 금지 |
 
@@ -55,7 +55,7 @@ python -m py_compile main.py web_app.py validate_output.py
 
 ## genre_profiles.json 수정 규칙
 
-- 새 장르 추가 시 기존 20개 장르와 동일한 JSON 스키마 유지
+- 새 장르 추가 시 기존 36개 장르와 동일한 JSON 스키마 유지
 - `roles` 안에 반드시 포함: `outfit`, `outfit_girl`, `prop`, `color`, `reference_image`, `vocal`, `vocal_action`, `guitar`, `bass`, `drum`, `crowd`, `stage`
 - `reference_image`는 `reference/` 폴더 내 실재 파일명 사용: `base.png`, `hiphop.png`, `rock.png`, `jazz.png`, `ballad.png`, `electronic.png`, `idol_boy.png`, `idol_girl.png`, `telephone.png`
 - 추가 후 반드시 pytest 전체 실행
