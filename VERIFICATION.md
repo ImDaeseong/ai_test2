@@ -139,6 +139,19 @@ The warning in the four `--basetemp` runs is a pytest cache warning from this sa
 
 [LOOP-END] result: PASS — moved with zero data loss (file-count verified), zero regression to the 5 existing projects, all cross-referencing docs synced / gate: 100%
 
+## Full re-verification (2026-08-17)
+
+[LOOP-START] goal: re-run all 6 project suites fresh and check for security/doc drift since the 2026-07-17 entry / exit criteria: all 6 suites pass, no `.env` tracked by git, no secret-pattern hits, no undocumented TODO/HOLD markers in root docs / max iterations: 2
+
+- All 6 suites re-run fresh: `ai_anime` 77 passed, `ai_img_video_aiBoygirl` 337 passed, `ai_img_video_prompt_capcut` 65 passed, `ai_multi_agent` 40 passed, `youtube_research` 37 passed, `music_insight_studio` 34 tests OK — unchanged from the 2026-07-17 entry.
+- First pass of `ai_img_video_aiBoygirl` (41 errors), `ai_multi_agent` (18 errors), and `youtube_research` (3 errors) using the previously-used `--basetemp` subdirectories failed with setup/teardown errors. Re-run with fresh `--basetemp` subdirectories passed cleanly — root cause confirmed as stale, permission-locked leftover files in the reused scratch directories (same class of issue already documented above: "sandbox user's inability to write... inside the `ai_test2` project folders"), not a code regression. The stale directories could not even be deleted afterward (`Permission denied`), consistent with a different-user-owned leftover.
+- `git ls-files | grep -i '\.env$'` in `ai_test2`: no output — no `.env` tracked.
+- Secret-pattern scan (`api_key=`, `sk-...`, `password=`) across `*.py`/`*.md`/`*.env*`, excluding `.venv`/`node_modules`/`__pycache__`: no hits.
+- TODO/FIXME/미구현/미완성 scan across root-level `*.md` (excluding `Doc/`): no hits.
+- **Minor finding, fixed same day**: `music_insight_studio` had no project-level `CLAUDE.md`, unlike the other 5 projects which each have one with 절대 규칙/파일 역할/검증 명령. It already had its own full governance doc set (`SPEC.md`, `ARCHITECTURE.md`, `SECURITY_BOUNDARY.md`, `HOLD_CONDITIONS.md`, `VERIFICATION.md`, `ROADMAP.md`, `ACCEPTANCE_CRITERIA.md`) carried over from its `ai_test3` origin, so this was a stylistic inconsistency rather than a missing-governance gap. Added `music_insight_studio/CLAUDE.md` summarizing its absolute rules (from `SECURITY_BOUNDARY.md`/`HOLD_CONDITIONS.md`), file roles, and verification command, matching the sibling projects' format. While drafting it, re-ran the test suite and found `README.md`'s "34개 테스트(30 통과, 4 스킵)" claim doesn't hold in this `.venv` — fresh run showed `34 passed, 0 skipped` (the skips are conditional on `librosa`/`basic-pitch` being absent, and this `.venv` has them installed); the new `CLAUDE.md` states the verified result instead of repeating the stale claim.
+
+[LOOP-END] result: PASS — no regressions, no security/doc-drift issues found, the one minor stylistic inconsistency fixed / gate: 100%
+
 ## Exit Criteria
 
 [LOOP-END] result: root governance docs added and all existing tests still pass / gate: 100%
