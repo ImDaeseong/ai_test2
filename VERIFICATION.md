@@ -152,6 +152,17 @@ The warning in the four `--basetemp` runs is a pytest cache warning from this sa
 
 [LOOP-END] result: PASS — no regressions, no security/doc-drift issues found, the one minor stylistic inconsistency fixed / gate: 100%
 
+## Full re-verification + README condensation (2026-08-17, same-day follow-up)
+
+[LOOP-START] goal: re-run all 6 suites once more, re-check for conflicts/secrets, and condense root README.md / exit criteria: all 6 suites pass, `git fetch` shows no divergence from origin, no secrets tracked, README trimmed without breaking any per-project link / max iterations: 2
+
+- All 6 suites re-run fresh with new `--basetemp` subdirectories: `ai_anime` 77, `ai_img_video_aiBoygirl` 337, `ai_img_video_prompt_capcut` 65, `ai_multi_agent` 40, `youtube_research` 37 passed, `music_insight_studio` 34 tests OK — no errors this run (contrast with the entry above, where reused scratch dirs caused setup errors; confirms that was scratch-dir state, not flaky).
+- `git fetch` + `git status`: up to date with origin, clean tree before and after each commit — no conflicts.
+- `.env` tracked check and secret-pattern scan: repeated, still no hits.
+- Condensed root `README.md` from 333 to 106 lines: replaced the "Project Details" section (per-project output-file trees, full feature lists, every CLI command — all already duplicated in each project's own `README.md`/`CLAUDE.md`) with a one-line description + tech/API + one quick-start command per project added to the existing Projects table. Kept the cross-project pipeline diagram (unique content, not in any single project's README) and the `ai_multi_agent`/`ai_test1` scope-boundary note. Verified all 6 linked project `README.md` files exist before committing.
+
+[LOOP-END] result: PASS — no regressions, no conflicts, README condensed with no broken links / gate: 100%
+
 ## Exit Criteria
 
 [LOOP-END] result: root governance docs added and all existing tests still pass / gate: 100%
