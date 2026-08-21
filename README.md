@@ -77,4 +77,4 @@ music_insight_studio  → 독립 로컬 오디오 분석, 다른 프로젝트와
 - `youtube_research`: yt-dlp로 공개 메타데이터만 수집, 음원 다운로드 없음
 - `music_insight_studio`: numpy/soundfile/librosa/pyloudnorm/basic-pitch 전부 로컬 패키지, 네트워크 호출 없음, 자체 `.venv` 사용(시스템 Python 아님)
 - Python 3.9+ (`ai_multi_agent`·`youtube_research`는 3.8+), 프로젝트별 `requirements.txt` 또는 설치 안내 보유
-- 각 프로젝트 테스트 명령: `ai_anime` 77개·`ai_img_video_aiBoygirl` 337개·`ai_img_video_prompt_capcut` 65개·`ai_multi_agent` 40개·`youtube_research` 37개(모두 `pytest tests_unit.py -q`) · `music_insight_studio` 34개(`.venv\Scripts\python.exe -m unittest discover -s tests`)
+- 각 프로젝트 테스트 명령: `ai_anime` 77개·`ai_img_video_prompt_capcut` 65개·`ai_multi_agent` 40개·`youtube_research` 37개(모두 `pytest tests_unit.py -q`) · `ai_img_video_aiBoygirl` 337개(`tests/` 디렉토리 구조라 `pytest -q`) · `music_insight_studio` 34개(`.venv\Scripts\python.exe -m unittest discover -s tests`)
