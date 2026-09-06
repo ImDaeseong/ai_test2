@@ -1,7 +1,7 @@
 # ai-tools
 
-> 작성일: 2026-06-23 / 최종 수정: 2026-08-17
-> 총 6개 소스 프로젝트 수록. AI-assisted tools for music video production, storytelling, content research, and local music analysis.
+> 작성일: 2026-06-23 / 최종 수정: 2026-09-06
+> 총 7개 소스 프로젝트 수록. AI-assisted tools for music video production, storytelling, content research, local music analysis, and job-fit analysis.
 > 검증 이력·테스트 결과: [`VERIFICATION.md`](./VERIFICATION.md)
 
 ## 저장소 목표
@@ -26,6 +26,7 @@ copy .env.example .env
 | 프로젝트 | 필수 환경변수 | 발급처 |
 |----------|---------------|--------|
 | `ai_multi_agent` | `OPENROUTER_API_KEY` (필수), `OPENAI_API_KEY` (선택 — 이미지 생성용) | [OpenRouter](https://openrouter.ai/keys) |
+| `CareerDiff` | `OPENAI_API_KEY` (선택 — 미설정 시 mock 분석으로 동작) | [OpenAI Platform](https://platform.openai.com) |
 
 > 나머지 5개 프로젝트는 외부 API 없이 로컬 파일 처리만 수행합니다. `.env` 파일은 `.gitignore`에 등록되어 있으므로 Git에 커밋되지 않습니다.
 
@@ -41,6 +42,7 @@ copy .env.example .env
 | 4 | [ai_multi_agent](./ai_multi_agent/) | 5개 웹 UI 프롬프트 실행기 — MV, 애니메, 웹툰, 스토리, 시나리오 | Python 3.8+ | OpenRouter(필수)/OpenAI(선택) | `실행_web_mv.bat` → :5200 |
 | 5 | [youtube_research](./youtube_research/) | AI 음악 유튜브 채널 벤치마킹 — 메타데이터 수집·AI필터·마크다운 리포트 | Python 3.8+ | yt-dlp(무료) | `python run.py search 30` |
 | 6 | [music_insight_studio](./music_insight_studio/) | 로컬 음악 분석 — BPM/Key/LUFS/주파수 밸런스 + 규칙기반 믹싱/마스터링/시장성 평가, 한국어 리포트+MusicXML | Python 3.9+ | 없음 | `.venv\Scripts\python.exe -m app.web.server` → :8765 |
+| 7 | [CareerDiff](./CareerDiff/docs/README.md) | 채용공고+이력서 → 요건 매칭·적합도 점수·이력서 제안·보완 프로젝트·면접 준비 플랜 생성 (Job Fit Analyzer) | Next.js + TypeScript | OpenAI(선택, 미설정 시 mock) | `cd CareerDiff/app && npm run dev` |
 
 각 행의 상세 기능·기술 스택·알려진 제약은 폴더명 링크를 따라가면 확인할 수 있습니다.
 
@@ -72,7 +74,7 @@ music_insight_studio  → 독립 로컬 오디오 분석, 다른 프로젝트와
 
 ## 공통 특징
 
-- 6개 프로젝트 모두 독립 실행 가능 — 다른 프로젝트 파일을 직접 import하지 않음
+- 7개 프로젝트 모두 독립 실행 가능 — 다른 프로젝트 파일을 직접 import하지 않음
 - 대부분 **로컬 실행 우선** 설계 (외부 클라우드 API는 `ai_multi_agent`만 사용)
 - `youtube_research`: yt-dlp로 공개 메타데이터만 수집, 음원 다운로드 없음
 - `music_insight_studio`: numpy/soundfile/librosa/pyloudnorm/basic-pitch 전부 로컬 패키지, 네트워크 호출 없음, 자체 `.venv` 사용(시스템 Python 아님)
