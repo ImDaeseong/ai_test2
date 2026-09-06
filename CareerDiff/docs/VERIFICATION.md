@@ -32,7 +32,9 @@ npm run test:e2e
 
 ## 분석 품질 검토
 
-`data/*.json`에서 입력과 결과를 함께 확인한다.
+`data/*.json`에서 입력과 결과를 함께 확인한다. 이력서 원문(`candidateProfile`)은 케이스 파일에
+직접 들어있지 않고 `candidateProfileHash`로 `data/profiles/<hash>.json`을 가리키므로(중복 저장
+방지, docs/ARCHITECTURE.md 참조), 원문까지 봐야 하면 그 파일도 함께 열어야 한다.
 
 - 없는 경험을 만들지 않았는가
 - 필수와 우대를 구분했는가

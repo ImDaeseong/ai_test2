@@ -1,6 +1,6 @@
 import { link, mkdir, open, readdir, readFile, unlink } from "node:fs/promises";
 import path from "node:path";
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { backfillLegacyAnalysisResult } from "@/core/schemas/analysisResult";
 import type { AnalysisValidationCase } from "@/core/validation/analysisValidationStore";
 import { analysisValidationCaseSchema } from "@/core/validation/validationCaseSchema";
@@ -16,18 +16,27 @@ export function validationDataDirectory(): string {
   return path.resolve(/* turbopackIgnore: true */ process.cwd(), "..", "data");
 }
 
-export async function saveValidationCaseFile(
-  validationCase: AnalysisValidationCase,
-): Promise<{ filename: string; created: boolean }> {
-  const directory = validationDataDirectory();
-  const filename = `${validationCase.id}.json`;
-  const destination = path.join(directory, filename);
-  const temporary = path.join(directory, `.${validationCase.id}.${process.pid}.${randomUUID()}.tmp`);
+/**
+ * Candidate profiles repeat verbatim across many validation cases (the same
+ * resume analyzed against many job postings), so cases reference the profile
+ * text by content hash instead of embedding it -- see docs/ARCHITECTURE.md.
+ */
+function profilesDirectory(directory: string): string {
+  return path.join(directory, "profiles");
+}
+
+function profileHash(candidateProfile: string): string {
+  return createHash("sha256").update(candidateProfile, "utf8").digest("hex");
+}
+
+async function writeFileAtomic(destination: string, content: string): Promise<{ created: boolean }> {
+  const directory = path.dirname(destination);
+  const temporary = path.join(directory, `.${path.basename(destination)}.${process.pid}.${randomUUID()}.tmp`);
   await mkdir(directory, { recursive: true });
 
   const handle = await open(temporary, "wx");
   try {
-    await handle.writeFile(`${JSON.stringify(validationCase, null, 2)}\n`, "utf8");
+    await handle.writeFile(content, "utf8");
     await handle.sync();
   } finally {
     await handle.close();
@@ -35,15 +44,40 @@ export async function saveValidationCaseFile(
 
   try {
     await link(temporary, destination);
-    return { filename, created: true };
+    return { created: true };
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === "EEXIST") {
-      return { filename, created: false };
+      return { created: false };
     }
     throw error;
   } finally {
     await unlink(temporary).catch(() => undefined);
   }
+}
+
+export async function saveValidationCaseFile(
+  validationCase: AnalysisValidationCase,
+): Promise<{ filename: string; created: boolean }> {
+  const directory = validationDataDirectory();
+  const hash = profileHash(validationCase.candidateProfile);
+  await writeFileAtomic(
+    path.join(profilesDirectory(directory), `${hash}.json`),
+    `${JSON.stringify({ candidateProfile: validationCase.candidateProfile }, null, 2)}\n`,
+  );
+
+  const record = {
+    id: validationCase.id,
+    createdAt: validationCase.createdAt,
+    jobDescription: validationCase.jobDescription,
+    candidateProfileHash: hash,
+    result: validationCase.result,
+  };
+  const filename = `${validationCase.id}.json`;
+  const { created } = await writeFileAtomic(
+    path.join(directory, filename),
+    `${JSON.stringify(record, null, 2)}\n`,
+  );
+  return { filename, created };
 }
 
 /**
@@ -68,6 +102,14 @@ export async function listValidationCaseFiles(): Promise<AnalysisValidationCase[
     if (!entry.endsWith(".json") || entry.startsWith(".")) continue;
     try {
       const raw = JSON.parse(await readFile(path.join(directory, entry), "utf8")) as Record<string, unknown>;
+      // New-format files reference the profile text by hash instead of embedding it
+      // (see saveValidationCaseFile); legacy files already have candidateProfile inline.
+      if (typeof raw.candidateProfile !== "string" && typeof raw.candidateProfileHash === "string") {
+        const profileRaw = JSON.parse(
+          await readFile(path.join(profilesDirectory(directory), `${raw.candidateProfileHash}.json`), "utf8"),
+        ) as Record<string, unknown>;
+        raw.candidateProfile = profileRaw.candidateProfile;
+      }
       const backfilled = { ...raw, result: backfillLegacyAnalysisResult(raw.result) };
       const parsed = analysisValidationCaseSchema.safeParse(backfilled);
       if (parsed.success) cases.push(parsed.data);

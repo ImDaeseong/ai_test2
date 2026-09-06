@@ -1,9 +1,9 @@
-import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { mockAnalysisResult } from "@/core/mocks/mockAnalysisResult";
-import { listValidationCaseFiles, validationDataDirectory } from "./validationCaseFileStore";
+import { listValidationCaseFiles, saveValidationCaseFile, validationDataDirectory } from "./validationCaseFileStore";
 
 describe("validationDataDirectory", () => {
   const original = process.env.CAREERDIFF_DATA_DIR;
@@ -94,5 +94,81 @@ describe("listValidationCaseFiles", () => {
 
     expect(result).toHaveLength(1);
     expect(result[0].result.relatedSkillGuidance).toEqual([]);
+  });
+});
+
+describe("saveValidationCaseFile (candidate-profile dedup)", () => {
+  const originalDataDir = process.env.CAREERDIFF_DATA_DIR;
+  let directory: string;
+
+  beforeEach(async () => {
+    directory = await mkdtemp(path.join(tmpdir(), "careerdiff-validation-cases-save-"));
+    process.env.CAREERDIFF_DATA_DIR = directory;
+  });
+
+  afterEach(async () => {
+    if (originalDataDir === undefined) delete process.env.CAREERDIFF_DATA_DIR;
+    else process.env.CAREERDIFF_DATA_DIR = originalDataDir;
+    await rm(directory, { recursive: true, force: true });
+  });
+
+  it("stores the profile text once under data/profiles/<hash>.json instead of embedding it per case", async () => {
+    const sharedProfile = "shared candidate profile text repeated across many cases, over 30 chars";
+    await saveValidationCaseFile({
+      id: crypto.randomUUID(),
+      createdAt: "2026-01-01T00:00:00.000Z",
+      jobDescription: "first job description text over thirty characters",
+      candidateProfile: sharedProfile,
+      result: mockAnalysisResult,
+    });
+    await saveValidationCaseFile({
+      id: crypto.randomUUID(),
+      createdAt: "2026-01-02T00:00:00.000Z",
+      jobDescription: "second job description text over thirty characters",
+      candidateProfile: sharedProfile,
+      result: mockAnalysisResult,
+    });
+
+    const caseEntries = (await readdir(directory)).filter((entry) => entry.endsWith(".json"));
+    expect(caseEntries).toHaveLength(2);
+    for (const entry of caseEntries) {
+      const raw = JSON.parse(await readFile(path.join(directory, entry), "utf8")) as Record<string, unknown>;
+      expect(raw.candidateProfile).toBeUndefined();
+      expect(typeof raw.candidateProfileHash).toBe("string");
+    }
+
+    const profileEntries = await readdir(path.join(directory, "profiles"));
+    expect(profileEntries).toHaveLength(1);
+  });
+
+  it("round-trips through listValidationCaseFiles with the original candidateProfile text intact", async () => {
+    const original = "candidate profile text that must survive the hash round-trip, over 30 chars";
+    await saveValidationCaseFile({
+      id: crypto.randomUUID(),
+      createdAt: "2026-01-01T00:00:00.000Z",
+      jobDescription: "job description text over thirty characters long",
+      candidateProfile: original,
+      result: mockAnalysisResult,
+    });
+
+    const [loaded] = await listValidationCaseFiles();
+    expect(loaded.candidateProfile).toBe(original);
+  });
+
+  it("skips a case whose referenced profile file is missing, rather than failing the whole listing", async () => {
+    await mkdir(directory, { recursive: true });
+    await writeFile(
+      path.join(directory, `${crypto.randomUUID()}.json`),
+      JSON.stringify({
+        id: crypto.randomUUID(),
+        createdAt: "2026-01-01T00:00:00.000Z",
+        jobDescription: "job description text over thirty characters long",
+        candidateProfileHash: "0000000000000000000000000000000000000000000000000000000000000000",
+        result: mockAnalysisResult,
+      }),
+      "utf8",
+    );
+
+    expect(await listValidationCaseFiles()).toEqual([]);
   });
 });

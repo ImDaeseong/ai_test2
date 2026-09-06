@@ -13,10 +13,10 @@ build/
 music_insight_studio/uploads/
 music_insight_studio/outputs/
 
-# CareerDiff app runtime storage (data/<UUID>.json) — contains real job posting text and
-# candidate profile fields entered through the running app, not fixtures (moved from ai_test3
-# .gitignore, which excluded these for the same reason)
-CareerDiff/data/*.json
+# CareerDiff app runtime storage (data/<UUID>.json + data/profiles/<hash>.json) — contains
+# real job posting text and candidate profile fields entered through the running app, not
+# fixtures (moved from ai_test3 .gitignore, which excluded these for the same reason)
+CareerDiff/data/**/*.json
 
 # Tests
 .pytest_cache/
