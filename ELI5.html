@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ai_test2 — 쉬운 설명</title>
+<style>
+  :root{
+    --bg:#f7f8fb; --card:#ffffff; --ink:#171a24; --sub:#63687a;
+    --accent:#4a5ce0; --accent-soft:#e2e6fb; --line:#e8eaf3;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#12141c; --card:#1b1e28; --ink:#eceefa; --sub:#a4a9bd;
+      --accent:#8b98f2; --accent-soft:#242a42; --line:#2c3040; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,"Segoe UI",Pretendard,sans-serif;
+    padding:32px 20px 56px}
+  .wrap{max-width:640px;margin:0 auto}
+  .hero{text-align:center;padding:36px 16px}
+  .emoji{font-size:88px;line-height:1}
+  h1{font-size:26px;margin:14px 0 6px}
+  .tag{color:var(--sub);font-size:15px}
+  .analogy{background:var(--accent-soft);border-radius:20px;padding:24px 22px;
+    margin:24px 0;font-size:17px;line-height:1.65}
+  .analogy b{color:var(--accent)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+  @media (max-width:480px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:18px}
+  .card .ic{font-size:28px}
+  .card h3{font-size:14px;margin:8px 0 4px}
+  .card p{font-size:13px;color:var(--sub);margin:0;line-height:1.5}
+  .note{background:var(--card);border:1px dashed var(--line);border-radius:14px;
+    padding:14px 16px;font-size:13px;color:var(--sub);margin-top:14px}
+  .run{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:18px 20px;margin-top:24px}
+  .run h3{font-size:14px;margin:0 0 10px}
+  code{display:block;background:var(--accent-soft);color:var(--ink);
+    padding:12px 14px;border-radius:10px;font-size:13px;overflow-x:auto;
+    white-space:pre}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="emoji">🏢🎨</div>
+    <h1>ai_test2</h1>
+    <div class="tag">뮤직비디오 프롬프트·유튜브 조사·채용 분석, 5개 독립 도구</div>
+  </div>
+
+  <div class="analogy">
+    여러 부서가 한 사무실을 나눠 쓰는 작은 회사를 생각해보세요. <b>미술팀</b>이
+    이미지·영상 프롬프트를 만들고, <b>편집팀</b>이 그걸 CapCut 편집본으로
+    조립하고, <b>리서치팀</b>이 경쟁 채널을 조사하고, <b>채용팀</b>이 이력서와
+    공고를 비교합니다. 각 팀은 독립적으로 일하되, 미술팀 → 편집팀으로는
+    결과물이 이어집니다.
+  </div>
+
+  <div class="grid">
+    <div class="card"><div class="ic">🖼️</div><h3>ai_anime 등</h3>
+      <p>곡별 캐릭터·이미지·영상 프롬프트 생성</p></div>
+    <div class="card"><div class="ic">✂️</div><h3>capcut 조립</h3>
+      <p>음원·가사·클립을 편집 타임라인으로 조립</p></div>
+    <div class="card"><div class="ic">📊</div><h3>youtube_research</h3>
+      <p>공개 데이터로 경쟁 채널 벤치마킹</p></div>
+    <div class="card"><div class="ic">🧑‍💼</div><h3>CareerDiff</h3>
+      <p>채용공고-이력서 적합도 분석 웹서비스</p></div>
+  </div>
+
+  <div class="note">
+    ℹ️ 예전엔 프롬프트를 실행해주는 <b>ai_multi_agent</b>도 있었지만,
+    2026-09-18에 애매한 상태로 판단해 제거했습니다.
+  </div>
+
+  <div class="run">
+    <h3>🔍 확인해보려면</h3>
+    <code>python -m pytest tests_unit.py -q</code>
+  </div>
+</div>
+</body>
+</html>
