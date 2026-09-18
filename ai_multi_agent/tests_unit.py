@@ -184,7 +184,7 @@ import web_app_scaffold
 from web_app_scaffold import PromptRunnerConfig, create_prompt_runner_app
 
 
-def _fake_runner(tmp_path, *, api_key="fake-key", **overrides):
+def _fake_runner(tmp_path, *, api_key="fake-key", **overrides):  # qa:allow CWE-798 - test-only default, not a real credential
     project = tmp_path / "demo_project"
     project.mkdir()
 

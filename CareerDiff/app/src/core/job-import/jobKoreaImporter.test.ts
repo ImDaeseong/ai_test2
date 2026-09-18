@@ -10,7 +10,7 @@ import {
 describe("validateJobKoreaUrl", () => {
   it("accepts only JobKorea detail URLs", () => {
     expect(validateJobKoreaUrl("https://www.jobkorea.co.kr/Recruit/GI_Read/49431616").hostname).toBe("www.jobkorea.co.kr");
-    expect(() => validateJobKoreaUrl("http://www.jobkorea.co.kr/Recruit/GI_Read/1")).toThrow(JobImportError);
+    expect(() => validateJobKoreaUrl("http://www.jobkorea.co.kr/Recruit/GI_Read/1")).toThrow(JobImportError); // qa:allow CWE-319 - negative test asserting non-https URLs are rejected, no network call is made
     expect(() => validateJobKoreaUrl("https://evil.example/Recruit/GI_Read/1")).toThrow(JobImportError);
     expect(() => validateJobKoreaUrl("https://www.jobkorea.co.kr/Recruit")).toThrow(JobImportError);
   });

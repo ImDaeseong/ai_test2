@@ -20,7 +20,7 @@ describe("validateJobUrl", () => {
   });
 
   it("rejects non-https, unknown hosts, and non-detail paths", () => {
-    expect(() => validateJobUrl("http://www.jobkorea.co.kr/Recruit/GI_Read/1")).toThrow(JobImportError);
+    expect(() => validateJobUrl("http://www.jobkorea.co.kr/Recruit/GI_Read/1")).toThrow(JobImportError); // qa:allow CWE-319 - negative test asserting non-https URLs are rejected, no network call is made
     expect(() => validateJobUrl("https://evil.example/zf_user/jobs/relay/view?rec_idx=1")).toThrow(JobImportError);
     expect(() => validateJobUrl("https://www.saramin.co.kr/zf_user/jobs/relay/view")).toThrow(JobImportError);
     expect(() => validateJobUrl("https://www.incruit.com/jobdb_info/jobpost.asp")).toThrow(JobImportError);
