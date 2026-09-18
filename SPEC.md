@@ -2,16 +2,15 @@
 
 ## One-Sentence Use Case
 
-나는 Suno 음원과 가사, AI 이미지/영상 생성 결과를 이용해 음악 영상 제작을 반복하는 상황에서, ai_test2 도구 모음으로 프롬프트 생성, CapCut 편집 초안 생성, 프롬프트 실행, 유튜브 벤치마킹을 로컬에서 빠르게 수행한다.
+나는 Suno 음원과 가사, AI 이미지/영상 생성 결과를 이용해 음악 영상 제작을 반복하는 상황에서, ai_test2 도구 모음으로 프롬프트 생성, CapCut 편집 초안 생성, 유튜브 벤치마킹을 로컬에서 빠르게 수행한다.
 
 ## Purpose
 
-ai_test2는 AI 음악 영상 제작을 위한 5개 도구 + 독립 음악 분석 도구 1개, 총 6개 도구를 모은 작업공간이다.
+ai_test2는 AI 음악 영상 제작을 위한 4개 도구 + 독립 음악 분석 도구 1개, 총 5개 도구를 모은 작업공간이다.
 
 - `ai_anime`: 곡 텍스트에서 애니메이션 MV 캐릭터/씬/영상 프롬프트 생성
 - `ai_img_video_aiBoygirl`: AI Boy/AI Girl 고정 캐릭터 MV 프롬프트 생성
 - `ai_img_video_prompt_capcut`: Suno 음원/LRC/클립을 CapCut 드래프트 타임라인으로 변환
-- `ai_multi_agent`: 생성된 프롬프트를 OpenRouter/OpenAI 기반 웹 UI에서 실행 관리
 - `youtube_research`: AI 음악 유튜브 채널 공개 메타데이터 벤치마킹
 - `music_insight_studio`: 로컬 음악 분석 — BPM/Key/LUFS/주파수 밸런스 분석과 믹싱/마스터링/시장성 평가 리포트 생성. MV 제작 파이프라인과 파일/의존성 공유 없음(2026-07-17 `ai_test3`에서 이동).
 
@@ -24,14 +23,14 @@ ai_test2는 AI 음악 영상 제작을 위한 5개 도구 + 독립 음악 분석
 - 기존 CLI 명령과 배치 파일 사용 흐름을 깨지 않는다.
 - 기존 테스트가 통과하는 기능을 회귀시키지 않는다.
 - `input/ -> main.py -> output/` 흐름은 호환성 계층으로 유지한다.
-- 외부 API가 필요한 기능은 `ai_multi_agent`에 한정한다.
+- 이 5개 도구는 외부 API가 필요한 기능이 없다.
 - 실제 작업 자산은 소스 코드와 구분되도록 점진적으로 분리한다.
 
 ## Non-Goals
 
 - 한 번에 5개 프로젝트를 새 프레임워크로 재작성하지 않는다.
 - 실제 API 키, 비공개 채널 정보, 개인 데이터, 내부 서버 주소를 저장하지 않는다.
-- CapCut, OpenRouter, OpenAI, yt-dlp의 외부 동작을 네트워크 없이 완전 검증했다고 주장하지 않는다.
+- CapCut, yt-dlp의 외부 동작을 네트워크 없이 완전 검증했다고 주장하지 않는다.
 - 테스트 통과 없이 README의 과거 수치만 근거로 완료 처리하지 않는다.
 
 ## Acceptance Criteria

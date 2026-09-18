@@ -20,10 +20,7 @@ Not allowed in repository:
 
 ## API Boundary
 
-- `ai_multi_agent` may use OpenRouter for text prompt execution when `OPENROUTER_API_KEY` is present.
-- `ai_multi_agent` may use OpenAI image generation when `OPENAI_API_KEY` is present.
-- Absence of API keys must be handled with a clear error or copy-only fallback.
-- No other project should require external API keys. `music_insight_studio` in particular makes zero network calls — its optional dependencies (`librosa`, `basic-pitch`) are local Python packages, not remote APIs.
+- None of these 5 projects require external API keys. `music_insight_studio` in particular makes zero network calls — its optional dependencies (`librosa`, `basic-pitch`) are local Python packages, not remote APIs.
 
 ## Media Boundary
 

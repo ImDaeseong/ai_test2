@@ -31,5 +31,4 @@ Stop and ask for human review if any condition below occurs.
 
 - Public release of the repository or generated examples
 - Deleting or moving large existing `input/` working assets
-- Changing API provider behavior in `ai_multi_agent`
 - Changing the CapCut `draft_content.json` writer

@@ -1,11 +1,11 @@
 ﻿# ai-tools
 
-AI 뮤직비디오 제작, 프롬프트 생성, YouTube 조사, 로컬 음악 분석, 채용 적합도 분석을 위한 7개 독립 프로젝트 모음입니다. 각 프로젝트의 상세 옵션과 입력 형식은 해당 폴더의 `README.md`를 확인하세요.
+AI 뮤직비디오 제작, 프롬프트 생성, YouTube 조사, 로컬 음악 분석, 채용 적합도 분석을 위한 6개 독립 프로젝트 모음입니다. 각 프로젝트의 상세 옵션과 입력 형식은 해당 폴더의 `README.md`를 확인하세요.
 
 ## 사전 요구사항
 
 - Windows PowerShell
-- Python 3.11 권장 (`ai_multi_agent`는 3.8+, `ai_anime`과 `ai_img_video_aiBoygirl`은 3.9+)
+- Python 3.11 권장 (`ai_anime`과 `ai_img_video_aiBoygirl`은 3.9+)
 - Node.js와 npm (`CareerDiff`만 사용)
 - CapCut PC, Suno 음원, LRC 가사, Kling 영상 클립은 CapCut 파이프라인을 실제로 사용할 때만 필요
 
@@ -27,7 +27,6 @@ python -m pip install --upgrade pip
 | `ai_anime` | `python -m pip install -r requirements.txt` |
 | `ai_img_video_aiBoygirl` | 실행 의존성 없음 · 테스트 시 `python -m pip install -r requirements-dev.txt` |
 | `ai_img_video_prompt_capcut` | `python -m pip install click mutagen pytest` |
-| `ai_multi_agent` | `python -m pip install -r requirements.txt` |
 | `youtube_research` | `python -m pip install yt-dlp pytest` |
 | `music_insight_studio` | `python -m pip install -r requirements.txt` · 정확도 향상 시 `python -m pip install -r requirements-optional.txt` |
 | `CareerDiff` | `cd CareerDiff\app; npm install` |
@@ -37,19 +36,13 @@ python -m pip install --upgrade pip
 외부 API 키가 필요한 프로젝트만 예제 파일을 복사해 설정합니다. 실제 키가 든 `.env`와 `.env.local`은 Git에 포함하지 않습니다.
 
 ```powershell
-# ai_multi_agent: OpenRouter 필수, OpenAI 이미지 생성은 선택
-Copy-Item ai_multi_agent\.env.example ai_multi_agent\.env
-
 # CareerDiff: 선택 사항이며, 미설정 시 내장 mock 결과 사용
 Copy-Item CareerDiff\app\.env.example CareerDiff\app\.env.local
 ```
 
 | 프로젝트 | 환경변수 |
 |---|---|
-| `ai_multi_agent` | `OPENROUTER_API_KEY` 필수, `OPENAI_API_KEY` 선택 |
 | `CareerDiff` | `OPENAI_API_KEY`, `OPENAI_MODEL` 모두 선택 |
-
-`ai_multi_agent`의 story/scenario/webtoon 프로젝트가 기본 위치에 없다면 `.env`에서 `STORY_ROOT`, `SCENARIO_ROOT`, `WEBTOON_ROOT`를 실제 경로로 지정하세요. 현재 구성에서는 이 3개 프로젝트가 별도 저장소 `ai_test1`에 있습니다.
 
 ## 프로젝트와 실행 방법
 
@@ -58,12 +51,9 @@ Copy-Item CareerDiff\app\.env.example CareerDiff\app\.env.local
 | [`ai_anime`](./ai_anime/) | 곡별 애니메 캐릭터·이미지·영상 프롬프트 생성 | `python main.py create-all --force` |
 | [`ai_img_video_aiBoygirl`](./ai_img_video_aiBoygirl/) | 고정 AI Boy/Girl 캐릭터 MV 프롬프트 생성 | `python main.py create-all --input-dir input --force` |
 | [`ai_img_video_prompt_capcut`](./ai_img_video_prompt_capcut/) | 음원·LRC·Kling 클립으로 CapCut 타임라인과 드래프트 생성 | `python main.py build --song "곡명"` |
-| [`ai_multi_agent`](./ai_multi_agent/) | MV·애니·스토리·시나리오·웹툰 프롬프트 웹 UI | `실행_web_mv.bat` 등 용도별 배치 파일 실행 |
 | [`youtube_research`](./youtube_research/) | 공개 YouTube 메타데이터 수집과 벤치마킹 리포트 | `python run.py search 30` 또는 `run.bat` |
 | [`music_insight_studio`](./music_insight_studio/) | 로컬 음원의 BPM·Key·LUFS·믹싱 상태 분석 | `python -m app.web.server --host 127.0.0.1 --port 8765` |
 | [`CareerDiff`](./CareerDiff/docs/README.md) | 채용공고와 이력서의 적합도 분석 | `cd CareerDiff\app; npm run dev` |
-
-`ai_multi_agent` 웹 UI 기본 포트는 MV 5200, 시나리오 5300, 스토리 5400, 애니 5500, 웹툰 5600입니다.
 
 ## MV 제작 흐름
 
@@ -82,7 +72,7 @@ ai_img_video_aiBoygirl
 
 ```powershell
 # Python 프로젝트
-python -m pytest tests_unit.py -q       # ai_anime, ai_img_video_prompt_capcut, ai_multi_agent, youtube_research
+python -m pytest tests_unit.py -q       # ai_anime, ai_img_video_prompt_capcut, youtube_research
 python -m pytest -q                     # ai_img_video_aiBoygirl
 python -m unittest discover -s tests    # music_insight_studio
 

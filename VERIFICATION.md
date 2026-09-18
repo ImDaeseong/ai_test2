@@ -25,6 +25,8 @@ instead close with their own dated `[LOOP-END]`.)
 
 100%: Root modernization documents were added, README/CLAUDE now link the governance docs, test temp-directory handling was corrected to respect explicit `--basetemp`, and all existing project tests pass (5 projects, before the `music_insight_studio` move). No HOLD condition remained at that point.
 
+**2026-09-18: `ai_multi_agent` removed.** The user judged it an ambiguous/unneeded project and asked for removal. The folder, its dedicated `Doc/ai_multi_agent.md`, and all references in README/CLAUDE/ARCHITECTURE/SPEC/SECURITY_BOUNDARY/HOLD_CONDITIONS/ROADMAP/Doc/INDEX were removed; the repo is now a 5-project workspace. The dated verification entries below that mention `ai_multi_agent` are kept as historical record of work actually done at the time — they are not current state.
+
 ## Required Commands
 
 Run from each project directory:
@@ -37,9 +39,6 @@ cd C:\Users\cs930\Desktop\ai_test2\ai_img_video_aiBoygirl
 python -m pytest -q
 
 cd C:\Users\cs930\Desktop\ai_test2\ai_img_video_prompt_capcut
-python -m pytest tests_unit.py -q
-
-cd C:\Users\cs930\Desktop\ai_test2\ai_multi_agent
 python -m pytest tests_unit.py -q
 
 cd C:\Users\cs930\Desktop\ai_test2\youtube_research
