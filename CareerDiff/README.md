@@ -40,7 +40,10 @@ npm run dev
 ## 현재 분석 방식
 
 - `OPENAI_API_KEY`가 없으면 입력 공고와 후보자 프로필을 실제로 분석하는 로컬 키워드 분석기(`LocalAnalysisProvider`)를 사용합니다.
-- 키가 있으면 OpenAI Structured Outputs를 사용합니다. 안정화 이전에는 키를 연결하지 않고 Claude
+- 키가 있으면 OpenAI Structured Outputs를 사용합니다. 앱 환경변수가 비어 있으면 개인 공유 파일
+  `../../ai_agent/keyinfo/keys.env`의 `OPENAI_API_KEY`만 서버 메모리로 불러오며 원문을 출력하지 않습니다. 안정화 이전에는 키를 연결하지 않고 Claude
+- 2026-09-22 실제 사용자 분석에서 OpenAI 경로를 확인했습니다. 최신 결과는 로컬 분석기의
+  `local-1.0.0`/`local-keyword-analyzer` 표식 없이 Structured Outputs 결과로 저장됐습니다.
   Code에서 로컬 분석기를 반복 개선합니다(자세한 방침은 [구조와 보안](docs/ARCHITECTURE.md) 참고).
 - 채용공고 수집(공고 가져오기)은 지원 사이트의 공개 상세 페이지 HTML만 직접 읽으며 로그인, CAPTCHA
   또는 접근통제를 우회하지 않습니다.

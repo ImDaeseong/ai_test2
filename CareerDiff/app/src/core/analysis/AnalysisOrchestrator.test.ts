@@ -1,8 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import type { LlmAnalysisProvider } from "@/core/llm/LlmAnalysisProvider";
 import { mockAnalysisResult } from "@/core/mocks/mockAnalysisResult";
 import { careerDiffAnalysisResultSchema } from "@/core/schemas/analysisResult";
 import { AnalysisOrchestrator, AnalysisOrchestratorValidationError, AnalysisProviderError } from "./AnalysisOrchestrator";
+
+vi.mock("@/core/llm/loadSharedOpenAiKey", () => ({
+  loadSharedOpenAiKey: () => false,
+}));
 
 const validRequest = {
   jobDescription: "a".repeat(40),

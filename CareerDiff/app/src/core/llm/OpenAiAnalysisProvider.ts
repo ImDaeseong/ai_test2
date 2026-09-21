@@ -5,8 +5,10 @@ import { careerDiffAnalysisResultSchema } from "@/core/schemas/analysisResult";
 import type { CareerDiffAnalysisResult } from "@/core/types";
 import { buildAnalysisPrompt } from "./buildAnalysisPrompt";
 import type { LlmAnalysisProvider } from "./LlmAnalysisProvider";
+import { loadSharedOpenAiKey } from "./loadSharedOpenAiKey";
 
 const DEFAULT_MODEL = "gpt-4o-mini";
+export const OPENAI_TIMEOUT_MS = 30_000;
 
 type JsonSchema = Record<string, unknown>;
 
@@ -80,7 +82,7 @@ export function omitNullObjectFields(value: unknown): unknown {
  */
 export class OpenAiAnalysisProvider implements LlmAnalysisProvider {
   isConfigured(): boolean {
-    return Boolean(process.env.OPENAI_API_KEY);
+    return loadSharedOpenAiKey();
   }
 
   async generate(input: AnalyzeRequestInput): Promise<CareerDiffAnalysisResult> {
@@ -88,7 +90,11 @@ export class OpenAiAnalysisProvider implements LlmAnalysisProvider {
       throw new Error("OPENAI_API_KEY is not set.");
     }
 
-    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const client = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+      timeout: OPENAI_TIMEOUT_MS,
+      maxRetries: 0,
+    });
     const model = process.env.OPENAI_MODEL || DEFAULT_MODEL;
     const jsonSchema = toOpenAiStrictSchema(z.toJSONSchema(careerDiffAnalysisResultSchema));
 

@@ -105,18 +105,22 @@ app/src/
 분석기(`LocalAnalysisProvider`)를 사용합니다. 키가 있으면 `OpenAiAnalysisProvider`가 Structured
 Outputs 스키마로 실제 분석을 수행합니다. RAG와 retrieval은 MVP에서 비활성화합니다.
 
-### 개발 단계 방침: API 대신 Claude Code로 반복
+앱 환경변수에 키가 없으면 서버 전용 로더가 개인 공유 파일
+`../../ai_agent/keyinfo/keys.env`에서 `OPENAI_API_KEY` 항목만 메모리로 읽습니다. 키 원문은 응답이나
+로그에 기록하지 않으며 브라우저 번들로 전달하지 않습니다.
 
-`OPENAI_API_KEY`는 아직 연결하지 않는다. 안정화 이전 단계에서는 유료 API 호출 없이, 실제 채용공고로
+### 개발 단계 방침: 로컬 분석 우선 반복
+
+`OPENAI_API_KEY`가 없으면 유료 API 호출 없이 실제 채용공고로
 `data/<UUID>.json` 검증 케이스를 쌓고 그 결과를 Claude Code(웹 Claude Code 프로젝트 또는 Claude
 Code cowork)에서 직접 검토해 `LocalAnalysisProvider`의 스킬 사전과 `relatedTo` 온톨로지를 넓히는
 방식으로 반복한다 — 실제로 이 저장소의 최근 커밋들(WPF/CATIA/Linux 등 스킬 추가, 온톨로지 관계
 확장)이 이 과정으로 진행되었다. 로컬 분석기가 결정론적이라 같은 입력에 같은 결과가 나오므로
 API 비용 없이 회귀 테스트가 가능하다.
 
-`OpenAiAnalysisProvider`(및 `OPENAI_API_KEY` 연결)는 로컬 분석기 커버리지가 안정화 단계에
-도달했다고 판단될 때 진행한다. 그 전환 시점에는 `docs/VERIFICATION.md`의 "알려진 후속 작업"에
-있는 실제 API 검증(합의된 합성 요청으로 스키마 통과 확인)을 먼저 수행한다.
+`OpenAiAnalysisProvider`는 `OPENAI_API_KEY`가 설정된 경우에만 사용합니다. 실제 운영 키를 연결하기
+전에는 `docs/VERIFICATION.md`의 "알려진 후속 작업"에 있는 실제 API 검증(합의된 합성 요청으로
+스키마 통과 확인)을 먼저 수행합니다.
 
 ## 연관 기술 가이드 (경량 온톨로지)
 

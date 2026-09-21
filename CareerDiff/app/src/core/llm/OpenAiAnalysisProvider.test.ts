@@ -2,15 +2,29 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { z } from "zod";
 import { mockAnalysisResult } from "@/core/mocks/mockAnalysisResult";
 import { careerDiffAnalysisResultSchema } from "@/core/schemas/analysisResult";
-import { OpenAiAnalysisProvider, omitNullObjectFields, toOpenAiStrictSchema } from "./OpenAiAnalysisProvider";
+import {
+  OPENAI_TIMEOUT_MS,
+  OpenAiAnalysisProvider,
+  omitNullObjectFields,
+  toOpenAiStrictSchema,
+} from "./OpenAiAnalysisProvider";
 
 // Mock the OpenAI SDK so generate() runs its full parse/normalize/validate
 // pipeline without a real key or any network call (no cost).
-const { responsesCreate } = vi.hoisted(() => ({ responsesCreate: vi.fn() }));
+const { constructorOptions, responsesCreate } = vi.hoisted(() => ({
+  constructorOptions: vi.fn(),
+  responsesCreate: vi.fn(),
+}));
 vi.mock("openai", () => ({
   default: class {
+    constructor(options: unknown) {
+      constructorOptions(options);
+    }
     responses = { create: responsesCreate };
   },
+}));
+vi.mock("./loadSharedOpenAiKey", () => ({
+  loadSharedOpenAiKey: () => Boolean(process.env.OPENAI_API_KEY),
 }));
 
 function expectAllObjectPropertiesRequired(node: unknown) {
@@ -61,6 +75,7 @@ describe("OpenAI structured-output schema", () => {
 describe("OpenAiAnalysisProvider.generate", () => {
   beforeEach(() => {
     process.env.OPENAI_API_KEY = "test-key-not-real";
+    constructorOptions.mockReset();
     responsesCreate.mockReset();
   });
   afterEach(() => {
@@ -102,6 +117,11 @@ describe("OpenAiAnalysisProvider.generate", () => {
     expect(args.input).toContain("Python 백엔드 개발자");
     expect(args.text.format.type).toBe("json_schema");
     expect(args.text.format.strict).toBe(true);
+    expect(constructorOptions).toHaveBeenCalledWith({
+      apiKey: "test-key-not-real",
+      timeout: OPENAI_TIMEOUT_MS,
+      maxRetries: 0,
+    });
   });
 
   it("throws when no API key is configured", async () => {
