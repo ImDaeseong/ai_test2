@@ -95,3 +95,11 @@ npm run lint
 - [`ROADMAP.md`](./ROADMAP.md): 개선 순서
 
 생성 결과와 개인 입력 데이터는 프로젝트별 `output/`, `outputs/`, `uploads/`, `CareerDiff/data/`에 저장될 수 있습니다. 커밋 전 비밀값과 개인 데이터가 포함되지 않았는지 확인하세요.
+# Source-only public release
+
+This repository distributes source code only. Images, audio, video, and
+compiled executables are excluded. Supply your own files in the input,
+reference, assets, or static directories described by each subproject before
+running workflows that require them. A fresh clone contains no example media;
+some demonstrations and documented commands need local media to run.
+Run `python scripts/check_source_only.py` before committing.
