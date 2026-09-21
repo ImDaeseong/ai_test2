@@ -266,6 +266,8 @@ python main.py summarize-all --input-dir input --output-dir output
 
 ## 입력 형식
 
+`input/`은 사용자 곡·가사를 로컬에 보관하며 Git 배포에는 빈 폴더만 포함됩니다. 사용할 파일을 직접 넣으세요.
+
 ```text
 title: 들리잖아
 genre: youth r&b, heartbeat groove, 89 BPM

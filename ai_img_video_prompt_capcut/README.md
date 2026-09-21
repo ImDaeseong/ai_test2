@@ -44,6 +44,8 @@ pip install click mutagen
 
 ## 입력 폴더 구조
 
+`input/`의 음원·가사·영상 클립은 로컬 작업 자료로 Git 배포에서 제외됩니다. 아래 구조에 사용할 파일을 직접 넣으세요.
+
 ```
 input/
 └─ {곡명}/
@@ -302,7 +304,7 @@ python main.py export-draft --song UPGRADE
    자막(EN): *_en.srt 없음 — 영어 자막 트랙 생략
 
 ✅ 드래프트 생성 완료
-   위치  : C:\Users\...\com.lveditor.draft\{draft_id}\
+   위치  : C:\path\to\com.lveditor.draft\{draft_id}\
    이름  : UPGRADE_MV
    영상  : 30개 세그먼트
    자막  : 45개 세그먼트

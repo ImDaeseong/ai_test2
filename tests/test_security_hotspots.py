@@ -22,7 +22,9 @@ class SecurityHotspotScannerTests(unittest.TestCase):
         subprocess.run(["git", "init", "--quiet"], cwd=self._tmp_root, check=True)
 
     def _scan(self, filename: str, content: str) -> list[str]:
-        (self._tmp_root / filename).write_text(content, encoding="utf-8")
+        target = self._tmp_root / filename
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(content, encoding="utf-8")
         subprocess.run(["git", "add", "-A"], cwd=self._tmp_root, check=True, capture_output=True)
         original_root = scanner.REPO_ROOT
         scanner.REPO_ROOT = self._tmp_root
@@ -34,6 +36,20 @@ class SecurityHotspotScannerTests(unittest.TestCase):
     def test_detects_hardcoded_api_key(self) -> None:
         findings = self._scan("app.py", 'API_KEY = "zz9f8a7b6c5d4e3f2a1b0c"\n')
         self.assertTrue(any("CWE-798" in f for f in findings))
+
+    def test_rejects_tracked_creative_input(self) -> None:
+        findings = self._scan("ai_anime/input/song.txt", "fixture\n")
+        self.assertTrue(any("[TRACKED-USER-INPUT]" in f for f in findings))
+
+    def test_accepts_input_placeholder(self) -> None:
+        self.assertEqual(self._scan("ai_anime/input/.gitkeep", ""), [])
+
+    def test_rejects_local_home_path_in_docs(self) -> None:
+        findings = self._scan("guide.md", "See C:" + "\\Users\\someone\\Desktop\\project\n")
+        self.assertTrue(any("[LOCAL-HOME-PATH]" in f for f in findings))
+
+    def test_accepts_portable_path_in_docs(self) -> None:
+        self.assertEqual(self._scan("guide.md", "See C:\\path\\to\\project\n"), [])
 
     def test_detects_cleartext_external_http(self) -> None:
         findings = self._scan("client.py", 'BASE_URL = "http://api.example.org.kr/v1"\n')

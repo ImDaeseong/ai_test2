@@ -32,6 +32,14 @@ htmlcov/
 output/
 output_raw/
 
+# User-provided songs, lyrics, and editing clips
+ai_anime/input/*
+!ai_anime/input/.gitkeep
+ai_img_video_aiBoygirl/input/*
+!ai_img_video_aiBoygirl/input/.gitkeep
+ai_img_video_prompt_capcut/input/*
+!ai_img_video_prompt_capcut/input/.gitkeep
+
 # OS
 .DS_Store
 Thumbs.db

@@ -25,7 +25,7 @@
 | `templates/01_image_prompts.md` | 씬 이미지 프롬프트 템플릿 | `[SCENE_IMAGE_BLOCKS]` 플레이스홀더 |
 | `templates/02_video_prompts.md` | 씬 영상 프롬프트 템플릿 | `[SCENE_VIDEO_BLOCKS]` 플레이스홀더 |
 | `templates/03_production_guide.md` | 제작 가이드 템플릿 | 메타데이터 + 워크플로우 |
-| `input/` | 곡 정보 txt 파일 | 수정 금지 (입력 데이터) |
+| `input/` | 곡 정보 txt 파일 | 로컬 전용·Git 제외; 기존 입력 데이터 보존 |
 | `output/` | 곡별 생성 결과 | 직접 편집 금지 |
 | `tests_unit.py` | pytest 단위 테스트 | 수정 후 전체 통과 확인 필수 |
 

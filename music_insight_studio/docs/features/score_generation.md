@@ -129,7 +129,7 @@ Acceptance boundary:
 
 ## 2026-07-17 Verification Fix: heuristic coverage was truncated below its own stated window
 
-Verification against 44 real mastered WAVs (`C:\Users\cs930\Downloads\wav_마스터링\작업완료`, 1:30-3:20 each)
+Verification against 44 real mastered WAVs (`C:\path\to\Downloads\wav_마스터링\작업완료`, 1:30-3:20 each)
 found `ScoreTranscriber`'s heuristic path stopped collecting note events at `MAX_EVENTS=96` well before
 reaching the `MAX_HEURISTIC_SECONDS=90` window it advertised in its own warning text — average coverage was
 33% of track duration (min 23%, max 54%), while the score's warning claimed "first 90s" regardless.

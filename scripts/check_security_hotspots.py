@@ -105,7 +105,18 @@ def tracked_files() -> list[Path]:
 def scan() -> list[str]:
     findings: list[str] = []
     for path in tracked_files():
+        rel_path = path.relative_to(REPO_ROOT).as_posix()
+        if path.name != ".gitkeep" and any(rel_path.startswith(prefix) for prefix in (
+            "ai_anime/input/", "ai_img_video_aiBoygirl/input/", "ai_img_video_prompt_capcut/input/"
+        )):
+            findings.append(f"{rel_path}: [TRACKED-USER-INPUT] keep creative inputs local")
+            continue
         if path.name in SELF_EXCLUDE:
+            continue
+        if path.suffix.lower() in {".md", ".txt", ".html"} and path.is_file():
+            for line_no, line in enumerate(path.read_text(encoding="utf-8", errors="replace").splitlines(), 1):
+                if re.search(r"(?i)[A-Z]:\\Users\\[^\\\s]+\\", line):
+                    findings.append(f"{rel_path}:{line_no}: [LOCAL-HOME-PATH] use a portable path in public docs")
             continue
         if path.suffix.lower() not in SOURCE_EXTENSIONS or not path.is_file():
             continue
@@ -113,7 +124,6 @@ def scan() -> list[str]:
             text = path.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             continue
-        rel_path = path.relative_to(REPO_ROOT).as_posix()
         for line_no, line in enumerate(text.splitlines(), start=1):
             if ALLOW_MARKER in line:
                 continue
