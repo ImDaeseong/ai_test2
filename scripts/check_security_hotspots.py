@@ -3,8 +3,10 @@
 Static pattern scan only (not a full security audit): it cannot see runtime
 behaviour, auth flows, or business-logic flaws, only what is literally
 written in tracked source files. Each rule maps to a CWE ID from the
-CISA/MITRE 2025 CWE Top 25 and OWASP Top 10:2025 (see qa_manager's
-SECURITY_NETWORK_QA_STANDARD.md for the cited sources). A line with an
+CISA/MITRE 2025 CWE Top 25 and OWASP Top 10:2025 (see the sibling
+`qa_manager` repository's `SECURITY_NETWORK_QA_STANDARD.md`, e.g.
+`../qa_manager/SECURITY_NETWORK_QA_STANDARD.md` relative to this repo's
+root, for the cited sources). A line with an
 accompanying `qa:allow` comment is an acknowledged, documented risk and is
 not reported as a failure.
 """
