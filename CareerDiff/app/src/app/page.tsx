@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { inspectJobDescription } from "@/core/analysis/LocalAnalysisProvider";
-import type { AnalyzeResponse, ApiErrorResponse, CareerDiffAnalysisResult } from "@/core/types";
+import type { AnalyzeResponse, ApiErrorResponse, CareerDiffAnalysisResult, ProviderStatusResponse } from "@/core/types";
 import { appendValidationCase, loadValidationCases } from "@/core/validation/analysisValidationStore";
 import { AnalysisDashboard } from "@/features/analysis-dashboard/AnalysisDashboard";
 import { AnalysisJsonPanel } from "@/features/analysis-dashboard/AnalysisJsonPanel";
@@ -14,6 +14,7 @@ import {
 import { JobDescriptionInputPanel } from "@/features/job-description-input/JobDescriptionInputPanel";
 
 type Status = "idle" | "loading" | "error" | "done";
+type ProviderMode = "loading" | "local" | "openai" | "unavailable";
 
 /**
  * Owns page composition and analysis state (docs/ARCHITECTURE.md
@@ -34,6 +35,8 @@ export default function AnalyzerPage() {
   const [validationError, setValidationError] = useState<string | null>(null);
   const [validationCount, setValidationCount] = useState(0);
   const [result, setResult] = useState<CareerDiffAnalysisResult | null>(null);
+  const [providerMode, setProviderMode] = useState<ProviderMode>("loading");
+  const [allowExternalProcessing, setAllowExternalProcessing] = useState(false);
 
   useEffect(() => {
     // Deferred to a microtask so state updates happen in a callback rather
@@ -43,6 +46,13 @@ export default function AnalyzerPage() {
       setValidationCount(cases.length);
       if (cases.length > 0) setResult(cases[cases.length - 1].result);
     });
+    void fetch("/api/provider-status")
+      .then(async (response) => {
+        if (!response.ok) throw new Error("Provider status unavailable.");
+        const body = (await response.json()) as ProviderStatusResponse;
+        setProviderMode(body.mode);
+      })
+      .catch(() => setProviderMode("unavailable"));
   }, []);
 
   // Enable on length only. The local skill dictionary is incomplete, so a job
@@ -52,7 +62,8 @@ export default function AnalyzerPage() {
   const jobReadiness = inspectJobDescription(jobDescription);
   const jobLengthOk = jobReadiness.reason !== "too-short";
   const candidateReady = isCandidateProfileValid(candidateProfile);
-  const canAnalyze = jobLengthOk && candidateReady && status !== "loading";
+  const externalConsentReady = providerMode !== "openai" || allowExternalProcessing;
+  const canAnalyze = jobLengthOk && candidateReady && status !== "loading" && externalConsentReady;
   const missingInputs = [!jobLengthOk && "채용공고", !candidateReady && "이력서/커리어"].filter(Boolean);
   const noSkillWarning = canAnalyze && jobReadiness.reason === "no-known-skills";
 
@@ -67,6 +78,7 @@ export default function AnalyzerPage() {
         body: JSON.stringify({
           jobDescription,
           candidateProfile,
+          allowExternalProcessing,
         }),
       });
       if (!response.ok) {
@@ -128,6 +140,23 @@ export default function AnalyzerPage() {
         첨부한 후보자 JSON은 이 브라우저에 저장되고, 분석 검증 데이터는 브라우저와 CareerDiff/data 폴더에 저장됩니다.
         비밀번호, 토큰, 사내 전용 식별자, 고객 개인정보 등 민감한 정보는 첨부하지 마세요. 누적 JSON을 외부에 공유하기
         전 개인정보를 확인하세요.
+      </div>
+
+      <div className="rounded-2xl border border-sky-200 bg-sky-50 p-4 text-sm text-sky-950">
+        {providerMode === "loading" && "분석 처리 위치를 확인하고 있습니다."}
+        {providerMode === "local" && "현재 로컬 분석 모드입니다. 입력 내용은 OpenAI로 전송되지 않습니다."}
+        {providerMode === "unavailable" && "분석 처리 위치를 확인하지 못했습니다. 외부 전송 여부를 확인한 뒤 다시 시도하세요."}
+        {providerMode === "openai" && (
+          <label className="flex items-start gap-2">
+            <input
+              type="checkbox"
+              checked={allowExternalProcessing}
+              onChange={(event) => setAllowExternalProcessing(event.target.checked)}
+              className="mt-0.5"
+            />
+            <span>OpenAI 분석 모드입니다. 채용공고와 이력서 내용이 OpenAI API로 전송되는 데 동의합니다.</span>
+          </label>
+        )}
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

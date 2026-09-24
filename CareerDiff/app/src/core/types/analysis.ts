@@ -178,6 +178,7 @@ export type AnalyzeRequest = {
   candidateProfile: string;
   targetRole?: string;
   targetSeniority?: string;
+  allowExternalProcessing?: boolean;
   retrieval?: {
     enabled: boolean;
     includeSavedEvidence?: boolean;
@@ -193,6 +194,11 @@ export type AnalyzeResponse = {
     rawInputLogged: false;
     retrievalUsed: boolean;
   };
+};
+
+export type ProviderStatusResponse = {
+  mode: "local" | "openai";
+  externalProcessing: boolean;
 };
 
 export type ApiErrorResponse = {

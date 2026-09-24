@@ -1,6 +1,6 @@
 ﻿# CLAUDE.md — ai_test2
 
-AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동화, 유튜브 리서치 도구 모음.
+AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동화, 유튜브 리서치, 음악 분석, 채용 적합도 분석 프로젝트 모음.
 
 ## 저장소 목적
 
@@ -17,7 +17,7 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 5. `VERIFICATION.md` — 진행률 게이트와 검증 명령
 6. `ROADMAP.md` — 현대화 순서
 
-## 5개 프로젝트 의존성 순서
+## 6개 프로젝트 구조
 
 ```
 [1] ai_img_video_aiBoygirl
@@ -37,6 +37,10 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 [5] music_insight_studio
       └─ 독립 실행 — 로컬 음악 분석(BPM/Key/LUFS/믹싱·마스터링 평가), 외부 API 불필요
       └─ ai_test3에서 이동 (2026-07-17) — 다른 4개와 파일/의존성 공유 없음
+
+[6] CareerDiff
+      └─ 독립 실행 — 채용공고·이력서 적합도 분석, 키가 있으면 OpenAI 사용
+      └─ 기본 mock 경로와 런타임 개인 데이터는 다른 5개 프로젝트와 공유하지 않음
 ```
 
 ## 핵심 규칙
@@ -48,7 +52,7 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 
 ## 보안 경계
 
-- 외부 API 없음: 위 5개 프로젝트는 전부 로컬 파일 처리만 (CareerDiff는 OPENAI_API_KEY 선택 사용 — SECURITY_BOUNDARY.md 참고)
+- 음악·영상 도구 5개는 로컬 처리만 수행한다. CareerDiff는 앱 환경변수나 Git 제외 개인 공유 파일의 OPENAI_API_KEY를 선택적으로 사용하며 외부 전송 고지가 필요하다.
 - yt-dlp: 공개 메타데이터만 수집, 음원 다운로드 없음
 - music_insight_studio: numpy/soundfile/librosa/pyloudnorm/basic-pitch 전부 로컬 패키지, 네트워크 호출 없음
 
@@ -60,6 +64,8 @@ cd ../ai_img_video_aiBoygirl     ; python -m pytest -q
 cd ../ai_img_video_prompt_capcut ; python -m pytest tests_unit.py -q
 cd ../youtube_research           ; python -m pytest tests_unit.py -q
 cd ../music_insight_studio       ; .venv\Scripts\python.exe -m unittest discover -s tests
+cd ../CareerDiff/app             ; npm run typecheck ; npm test ; npm run lint
+cd ../..                         ; python -m unittest tests.test_repository_contract
 ```
 
 ## HOLD 조건 (배포 전 필수)

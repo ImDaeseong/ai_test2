@@ -39,6 +39,8 @@ Suggested extraction order:
 
 `music_insight_studio` (added 2026-07-17) is out of scope for this phase — it already has `app/{analyzers,scoring,notation,reports,services,web,cli}/` module boundaries, not a single large script.
 
+`CareerDiff`도 이 추출 단계의 범위 밖이다. 독립 Next.js 앱과 자체 `docs/VERIFICATION.md`를 유지하며, 채용 분석 품질·개인정보·선택적 OpenAI 경계는 그 프로젝트 안에서 개선한다.
+
 ## Phase 5 — Documentation Refresh
 
 Goal: make docs match real commands and evidence.

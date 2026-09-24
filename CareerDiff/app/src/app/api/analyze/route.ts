@@ -3,6 +3,7 @@ import {
   AnalysisOrchestrator,
   AnalysisOrchestratorValidationError,
   AnalysisProviderError,
+  ExternalProcessingConsentError,
 } from "@/core/analysis/AnalysisOrchestrator";
 import type { AnalyzeResponse, ApiErrorResponse } from "@/core/types";
 
@@ -33,6 +34,12 @@ export async function POST(request: Request) {
     };
     return NextResponse.json(response);
   } catch (error) {
+    if (error instanceof ExternalProcessingConsentError) {
+      return NextResponse.json<ApiErrorResponse>(
+        { error: { code: "PRIVACY_BLOCKED", message: "OpenAI 외부 전송 동의가 필요합니다.", retryable: false } },
+        { status: 403 },
+      );
+    }
     if (error instanceof AnalysisOrchestratorValidationError) {
       return NextResponse.json<ApiErrorResponse>(
         { error: { code: "VALIDATION_ERROR", message: error.issues.join(" "), retryable: false } },

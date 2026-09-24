@@ -22,6 +22,14 @@ export class AnalysisProviderError extends Error {
   }
 }
 
+/** A configured external provider was requested without explicit user consent. */
+export class ExternalProcessingConsentError extends Error {
+  constructor() {
+    super("External processing consent is required.");
+    this.name = "ExternalProcessingConsentError";
+  }
+}
+
 /**
  * Coordinates one job-fit analysis request.
  *
@@ -51,6 +59,10 @@ export class AnalysisOrchestrator {
 
     if (!this.llmProvider.isConfigured()) {
       return buildLocalAnalysis(parsed.data);
+    }
+
+    if (!parsed.data.allowExternalProcessing) {
+      throw new ExternalProcessingConsentError();
     }
 
     try {

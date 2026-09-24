@@ -2,7 +2,12 @@ import { describe, expect, it, vi } from "vitest";
 import type { LlmAnalysisProvider } from "@/core/llm/LlmAnalysisProvider";
 import { mockAnalysisResult } from "@/core/mocks/mockAnalysisResult";
 import { careerDiffAnalysisResultSchema } from "@/core/schemas/analysisResult";
-import { AnalysisOrchestrator, AnalysisOrchestratorValidationError, AnalysisProviderError } from "./AnalysisOrchestrator";
+import {
+  AnalysisOrchestrator,
+  AnalysisOrchestratorValidationError,
+  AnalysisProviderError,
+  ExternalProcessingConsentError,
+} from "./AnalysisOrchestrator";
 
 vi.mock("@/core/llm/loadSharedOpenAiKey", () => ({
   loadSharedOpenAiKey: () => false,
@@ -75,7 +80,7 @@ describe("AnalysisOrchestrator (dependency-injected fake provider, no real API c
     const providerResult = { ...mockAnalysisResult, summary: "provider-backed result" };
     const provider = new FakeLlmProvider(true, async () => providerResult);
     const orchestrator = new AnalysisOrchestrator(provider);
-    const result = await orchestrator.analyze(validRequest);
+    const result = await orchestrator.analyze({ ...validRequest, allowExternalProcessing: true });
     expect(result.summary).toBe("provider-backed result");
   });
 
@@ -84,7 +89,13 @@ describe("AnalysisOrchestrator (dependency-injected fake provider, no real API c
       throw new Error("upstream timeout");
     });
     const orchestrator = new AnalysisOrchestrator(provider);
-    await expect(orchestrator.analyze(validRequest)).rejects.toThrow(AnalysisProviderError);
+    await expect(orchestrator.analyze({ ...validRequest, allowExternalProcessing: true })).rejects.toThrow(AnalysisProviderError);
+  });
+
+  it("blocks a configured provider until the user explicitly consents", async () => {
+    const provider = new FakeLlmProvider(true, async () => mockAnalysisResult);
+    const orchestrator = new AnalysisOrchestrator(provider);
+    await expect(orchestrator.analyze(validRequest)).rejects.toThrow(ExternalProcessingConsentError);
   });
 });
 

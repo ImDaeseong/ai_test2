@@ -19,6 +19,7 @@ export const analyzeRequestSchema = z.object({
   candidateProfile: longText,
   targetRole: z.string().trim().max(200).optional(),
   targetSeniority: z.string().trim().max(200).optional(),
+  allowExternalProcessing: z.boolean().optional(),
   retrieval: z
     .object({
       enabled: z.boolean(),

@@ -48,6 +48,14 @@ python -m pytest tests_unit.py -q
 
 cd C:\path\to\ai_test2\music_insight_studio
 .venv\Scripts\python.exe -m unittest discover -s tests
+
+cd C:\path\to\ai_test2\CareerDiff\app
+npm run typecheck
+npm test
+npm run lint
+
+cd C:\path\to\ai_test2
+python -m unittest tests.test_repository_contract
 ```
 
 ## Document Checks
@@ -163,6 +171,19 @@ The warning in the four `--basetemp` runs is a pytest cache warning from this sa
 - Condensed root `README.md` from 333 to 106 lines: replaced the "Project Details" section (per-project output-file trees, full feature lists, every CLI command — all already duplicated in each project's own `README.md`/`CLAUDE.md`) with a one-line description + tech/API + one quick-start command per project added to the existing Projects table. Kept the cross-project pipeline diagram (unique content, not in any single project's README) and the `ai_multi_agent`/`ai_test1` scope-boundary note. Verified all 6 linked project `README.md` files exist before committing.
 
 [LOOP-END] result: PASS — no regressions, no conflicts, README condensed with no broken links / gate: 100%
+
+## Project discovery and CareerDiff privacy boundary (2026-09-24)
+
+[LOOP-START] goal: discover projects from executable structure and recent history, reconcile root governance, and prevent unannounced CareerDiff external processing / exit criteria: discovered registry matches README; all six suites pass; OpenAI mode requires explicit UI and server-side consent; no tracked media or diff errors / max iterations: 3
+
+- Filesystem discovery found six runnable top-level projects. `CareerDiff` existed in the README and recent Git history but was missing from `SPEC.md`, `ARCHITECTURE.md`, `SECURITY_BOUNDARY.md`, `CLAUDE.md`, and the root verification commands.
+- Added `tests/test_repository_contract.py`, which discovers runnable top-level directories from entry points/manifests and compares them with the README registry. It also protects the six-project count, CareerDiff governance coverage, shared-key boundary, local-analyzer fallback, and human-review requirement.
+- Reconciled the current CareerDiff implementation: without a key it uses the deterministic local analyzer, not a mock result; if the app environment has no key, the server may load only `OPENAI_API_KEY` from the Git-excluded sibling `ai_agent/keyinfo/keys.env` file.
+- Added `/api/provider-status`, an OpenAI-mode disclosure and consent checkbox, and a server-side `allowExternalProcessing` guard. The status response exposes only `local`/`openai`, never the key or credential path. A direct API request cannot bypass the consent boundary.
+- Fresh verification: `ai_anime` 77 passed; `ai_img_video_aiBoygirl` 337 passed; `ai_img_video_prompt_capcut` 65 passed; `youtube_research` 37 passed; `music_insight_studio` 34 tests OK; CareerDiff 123 passed, typecheck and lint passed; root contract/security tests 15 passed; source-only guard passed with 0 tracked media/executables; `git diff --check` passed.
+- The first `ai_img_video_aiBoygirl` and `youtube_research` runs used missing `--basetemp` child paths and failed during `tmp_path` setup before product code ran. After creating the shared scratch parent, one unchanged retry passed (337 and 37); no product fix was needed.
+
+[LOOP-END] result: PASS — the executable registry and recent CareerDiff improvements are now reflected in root governance, and external processing requires explicit consent at both UI and server boundaries / gate: 100%
 
 ## Exit Criteria
 

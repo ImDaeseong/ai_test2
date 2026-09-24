@@ -2,7 +2,7 @@
 
 ## System Shape
 
-ai_test2는 단일 애플리케이션이 아니라 5개 로컬 도구의 monorepo형 작업공간이다. 각 도구는 독립 실행 가능해야 하지만 음악 영상 제작 파이프라인에서는 파일 산출물을 통해 연결된다. `music_insight_studio`는 이 파이프라인과 무관한 완전 독립 도구다.
+ai_test2는 단일 애플리케이션이 아니라 6개 독립 프로젝트의 monorepo형 작업공간이다. 음악 영상 제작 프로젝트 일부는 파일 산출물로 연결되고, `music_insight_studio`와 `CareerDiff`는 이 파이프라인과 무관한 독립 도구다.
 
 ```text
 ai_img_video_aiBoygirl / ai_anime
@@ -15,6 +15,9 @@ youtube_research
 
 music_insight_studio
   -> independent local audio analysis; no file/dependency sharing with any other project
+
+CareerDiff
+  -> independent Next.js app; local job/resume comparison with optional OpenAI generation
 ```
 
 ## Current Architectural Risk
@@ -25,6 +28,7 @@ music_insight_studio
 - `ai_img_video_prompt_capcut/main.py`: LRC/SRT parsing, media discovery, slot mapping, output writing, CLI가 한 파일에 섞임
 - `ai_anime/main.py`: prompt generation과 CapCut draft export가 한 진입점에 공존
 - `music_insight_studio`: 위 위험에 해당 없음 — `app/{analyzers,scoring,notation,reports,services,web,cli}/` 패키지 구조로 이미 모듈 경계가 분리돼 있어 Phase 4 추출 대상이 아니다.
+- `CareerDiff`: 별도 Next.js 경계와 자체 검증 문서를 유지한다. 이력서 원문과 선택적 OpenAI 호출은 다른 프로젝트로 공유하지 않는다.
 
 ## Target Module Boundaries
 
@@ -68,6 +72,7 @@ These contracts must be protected with contract tests before deep refactoring.
 - Local-only prompt builders should not import API clients.
 - `youtube_research` owns yt-dlp metadata collection and must not download audio/video content.
 - `music_insight_studio` makes no network calls at all — numpy/soundfile/librosa/pyloudnorm/basic-pitch are local packages only.
+- `CareerDiff`는 기본 mock 경로를 유지하며, 사용자가 OpenAI를 선택한 요청에서만 채용공고와 이력서 내용을 외부 API로 전송한다.
 - Generated output should be written under project output folders only.
 
 ## Refactoring Strategy

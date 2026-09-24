@@ -109,6 +109,11 @@ Outputs 스키마로 실제 분석을 수행합니다. RAG와 retrieval은 MVP�
 `../../ai_agent/keyinfo/keys.env`에서 `OPENAI_API_KEY` 항목만 메모리로 읽습니다. 키 원문은 응답이나
 로그에 기록하지 않으며 브라우저 번들로 전달하지 않습니다.
 
+메인 화면은 `/api/provider-status`에서 키의 존재 여부가 아니라 `local`/`openai` 처리 모드만 확인합니다.
+OpenAI 모드에서는 채용공고와 이력서의 외부 전송 안내와 동의 체크를 표시하며, 서버도
+`allowExternalProcessing=true`가 없는 요청을 `PRIVACY_BLOCKED`로 거부합니다. UI 우회만으로 동의 경계를
+넘을 수 없고 키 원문이나 출처 경로는 상태 응답에 포함되지 않습니다.
+
 ### 개발 단계 방침: 로컬 분석 우선 반복
 
 `OPENAI_API_KEY`가 없으면 유료 API 호출 없이 실제 채용공고로

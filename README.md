@@ -38,13 +38,15 @@ python -m pip install --upgrade pip
 외부 API 키가 필요한 프로젝트만 예제 파일을 복사해 설정합니다. 실제 키가 든 `.env`와 `.env.local`은 Git에 포함하지 않습니다.
 
 ```powershell
-# CareerDiff: 선택 사항이며, 미설정 시 내장 mock 결과 사용
+# CareerDiff: 선택 사항이며, 미설정 시 결정론적 로컬 분석기 사용
 Copy-Item CareerDiff\app\.env.example CareerDiff\app\.env.local
 ```
 
 | 프로젝트 | 환경변수 |
 |---|---|
-| `CareerDiff` | `OPENAI_API_KEY`, `OPENAI_MODEL` 모두 선택 |
+| `CareerDiff` | `OPENAI_API_KEY`, `OPENAI_MODEL` 모두 선택. 앱 환경변수에 키가 없으면 Git에서 제외된 `../ai_agent/keyinfo/keys.env`의 `OPENAI_API_KEY`를 서버에서만 읽음 |
+
+`CareerDiff`가 OpenAI 모드이면 분석 전에 외부 전송 안내와 동의 체크를 표시합니다. 동의하지 않은 요청은 서버에서도 거부되며, 키가 없으면 입력을 외부로 보내지 않는 로컬 분석기를 사용합니다.
 
 ## 프로젝트와 실행 방법
 
