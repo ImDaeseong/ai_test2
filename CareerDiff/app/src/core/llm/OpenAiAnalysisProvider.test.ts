@@ -113,7 +113,7 @@ describe("OpenAiAnalysisProvider.generate", () => {
     });
 
     const args = responsesCreate.mock.calls[0][0];
-    expect(args.model).toBe("gpt-4o-mini");
+    expect(args.model).toBe("gpt-6-luna");
     expect(args.input).toContain("Python 백엔드 개발자");
     expect(args.text.format.type).toBe("json_schema");
     expect(args.text.format.strict).toBe(true);

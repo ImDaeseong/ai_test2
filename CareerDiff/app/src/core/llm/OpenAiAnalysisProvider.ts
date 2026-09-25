@@ -7,7 +7,7 @@ import { buildAnalysisPrompt } from "./buildAnalysisPrompt";
 import type { LlmAnalysisProvider } from "./LlmAnalysisProvider";
 import { loadSharedOpenAiKey } from "./loadSharedOpenAiKey";
 
-const DEFAULT_MODEL = "gpt-4o-mini";
+const DEFAULT_MODEL = "gpt-6-luna";
 export const OPENAI_TIMEOUT_MS = 30_000;
 
 type JsonSchema = Record<string, unknown>;
