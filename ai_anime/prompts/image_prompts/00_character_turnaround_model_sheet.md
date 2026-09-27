@@ -1,6 +1,6 @@
 # Character Turnaround / Model Sheet
 
-## GPT Image (gpt-image-2 / OpenAI)
+## GPT Image (gpt-image-2.5-sunburst / OpenAI)
 # Character Turnaround Model Sheet Prompt
 
 Create the master character turnaround model sheet for this song. This model sheet will be attached as the identity reference for every later scene image, and optionally as a secondary reference for video generation.
@@ -41,10 +41,10 @@ Production workflow:
 
 Do not add any text, letters, numbers, watermarks, logos, or UI overlays to the image.
 
-**Model:** `gpt-image-2` | **Quality:** `high` | **Size:** `1536x1024` (landscape) / `1024x1536` (portrait) / `1024x1024` (square)
+**Model:** `gpt-image-2.5-sunburst` | **Quality:** `high` | **Size:** `1536x1024` (landscape) / `1024x1536` (portrait) / `1024x1024` (square)
 **필수 추가:** `Do not add any text, letters, numbers, watermarks, logos, or UI overlays to the image.`
 
-> Use for scene reference frames and character model sheets. Use gpt-image-2 at quality='high' for detailed anime scenes. Specify 'anime cel-shaded illustration, vibrant saturated colors, clean linework' for style consistency. Include 'no watermark, no logos, no extra text' in every prompt. Use 1536x1024 for landscape MV frames, 1024x1536 for portrait/vertical.
+> Use for scene reference frames and character model sheets. Use gpt-image-2.5-sunburst at quality='high' for detailed anime scenes. Specify 'anime cel-shaded illustration, vibrant saturated colors, clean linework' for style consistency. Include 'no watermark, no logos, no extra text' in every prompt. Use 1536x1024 for landscape MV frames, 1024x1536 for portrait/vertical.
 
 ## Google Gemini (나노바나 프로 / Imagen 3)
 # Character Turnaround Model Sheet Prompt

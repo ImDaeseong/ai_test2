@@ -9,16 +9,16 @@ Attach this design sheet as a reference when generating every scene image.
 
 ---
 
-## GPT Image (gpt-image-2 / OpenAI)
+## GPT Image (gpt-image-2.5-sunburst / OpenAI)
 
 Create a 3D chibi toy figure design sheet for '[SONG_TITLE]'. Show the character in 8 views: front full-body, left side full-body, right side full-body, back full-body, three-quarter full-body, face close-up, prop close-up of [CHARACTER_PROP], and a gender/subject check label. Character: [CHARACTER]. Helmet: [CHARACTER_HAIR]. Outfit: [CHARACTER_OUTFIT]. Prop: [CHARACTER_PROP]. Silhouette: [CHARACTER_SILHOUETTE]. [COLOR_RULE]. 3D chibi toy figure design sheet, collectible toy aesthetic, smooth rounded 3D toy rendering, white or neutral background, no scene environment, no action pose.
 
 Do not add any text, letters, numbers, watermarks, logos, or UI overlays to the image.
 
-**Model:** `gpt-image-2` | **Quality:** `high` | **Size:** `1536x1024`
+**Model:** `gpt-image-2.5-sunburst` | **Quality:** `high` | **Size:** `1536x1024`
 **필수 추가:** `Do not add any text, letters, numbers, watermarks, logos, or UI overlays to the image.`
 
-> Use gpt-image-2 at quality='high' for the model sheet. Specify 'anime cel-shaded illustration, clean linework, white background' for the sheet layout. Generate the full turnaround before any scene work.
+> Use gpt-image-2.5-sunburst at quality='high' for the model sheet. Specify 'anime cel-shaded illustration, clean linework, white background' for the sheet layout. Generate the full turnaround before any scene work.
 
 ---
 

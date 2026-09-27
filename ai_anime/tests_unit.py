@@ -11,7 +11,7 @@ from main import (
     _build_scene_image_blocks, _build_scene_video_blocks,
     adapt_template, safety_filter, _unresolved_placeholders,
     build_readme, _DEFAULT_SECTIONS, SAFETY_BLOCKLIST,
-    PROMPT_FILES, PROFILES_FILE, TEMPLATE_DIR,
+    PROMPT_FILES, PROFILES_FILE, TEMPLATE_DIR, OPENAI_IMAGE_MODEL,
     _required_variants,
 )
 
@@ -285,6 +285,14 @@ def test_build_scene_image_blocks_all_platforms():
     assert "Nijijourney" in result
     assert "FLUX.1" in result
     assert "Leonardo.Ai" in result
+
+
+def test_build_scene_image_blocks_uses_configured_openai_model():
+    """Keep generated prompt metadata synchronized with the model boundary."""
+    result = _build_scene_image_blocks(_make_song(), _make_identity())
+    assert f"GPT Image ({OPENAI_IMAGE_MODEL} / OpenAI)" in result
+    assert f"**Model:** `{OPENAI_IMAGE_MODEL}`" in result
+    assert "`gpt-image-2`" not in result
 
 
 def test_build_scene_image_blocks_avoid_in_output():

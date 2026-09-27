@@ -8,6 +8,7 @@ No external API. Pure Python template pipeline.
 import argparse
 import datetime
 import json
+import os
 import re
 import sys
 from dataclasses import dataclass, field
@@ -28,6 +29,7 @@ OUTPUT_DIR = ROOT / "output"
 TEMPLATE_DIR = ROOT / "templates"
 PROFILES_FILE = ROOT / "anime_profiles.json"
 REFERENCE_DIR = ROOT / "reference"
+OPENAI_IMAGE_MODEL = os.getenv("AI_ANIME_OPENAI_IMAGE_MODEL", "gpt-image-2.5-sunburst")
 
 # 장르 프로파일 → reference 이미지 매핑 (성별 중립 우선, idol_pop은 gender로 분기)
 REFERENCE_IMAGE_MAP: dict[str, str] = {
@@ -639,9 +641,9 @@ def _scene_image_block(idx: int, section: str, env: str, camera: str,
     )
     return (
         f"## Scene {idx:02d} — {section}\n\n"
-        f"### GPT Image (gpt-image-2 / OpenAI)\n"
+        f"### GPT Image ({OPENAI_IMAGE_MODEL} / OpenAI)\n"
         f"{common}\n\n{_NO_TEXT_NOTE}\n\n"
-        f"**Model:** `gpt-image-2` | **Quality:** `high` | "
+        f"**Model:** `{OPENAI_IMAGE_MODEL}` | **Quality:** `high` | "
         f"**Size:** `1536x1024` (landscape) / `1024x1536` (portrait) / `1024x1024` (square)\n\n"
         f"### Google Gemini (Imagen 3)\n"
         f"{common}\n\n{_NO_TEXT_NOTE}\n\n"
