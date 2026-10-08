@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "smoke:openai": "node scripts/openai-live-smoke.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

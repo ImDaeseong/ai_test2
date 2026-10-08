@@ -16,10 +16,25 @@ export class AnalysisOrchestratorValidationError extends Error {
 
 /** A configured LLM provider failed while generating an analysis. */
 export class AnalysisProviderError extends Error {
-  constructor(message: string) {
-    super(message);
+  readonly failureKind: "timeout" | "rate_limit" | "auth" | "provider" | "unexpected";
+
+  constructor(failureKind: AnalysisProviderError["failureKind"]) {
+    super("OpenAI analysis failed.");
     this.name = "AnalysisProviderError";
+    this.failureKind = failureKind;
   }
+}
+
+function classifyProviderFailure(error: unknown): AnalysisProviderError["failureKind"] {
+  const candidate = error as { name?: unknown; status?: unknown; code?: unknown };
+  const name = typeof candidate?.name === "string" ? candidate.name.toLowerCase() : "";
+  const code = typeof candidate?.code === "string" ? candidate.code.toLowerCase() : "";
+  const status = typeof candidate?.status === "number" ? candidate.status : 0;
+  if (name.includes("timeout") || code.includes("timeout")) return "timeout";
+  if (status === 429 || name.includes("ratelimit") || code.includes("rate_limit")) return "rate_limit";
+  if (status === 401 || status === 403 || name.includes("authentication")) return "auth";
+  if (status >= 500) return "provider";
+  return "unexpected";
 }
 
 /** A configured external provider was requested without explicit user consent. */
@@ -68,7 +83,7 @@ export class AnalysisOrchestrator {
     try {
       return await this.llmProvider.generate(parsed.data);
     } catch (error) {
-      throw new AnalysisProviderError(error instanceof Error ? error.message : "LLM analysis failed.");
+      throw new AnalysisProviderError(classifyProviderFailure(error));
     }
   }
 }

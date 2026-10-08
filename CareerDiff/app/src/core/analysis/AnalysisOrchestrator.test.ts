@@ -92,6 +92,23 @@ describe("AnalysisOrchestrator (dependency-injected fake provider, no real API c
     await expect(orchestrator.analyze({ ...validRequest, allowExternalProcessing: true })).rejects.toThrow(AnalysisProviderError);
   });
 
+  it("classifies provider failures without retaining the upstream message", async () => {
+    const timeout = new Error("raw provider detail that may contain input");
+    timeout.name = "APIConnectionTimeoutError";
+    const provider = new FakeLlmProvider(true, async () => {
+      throw timeout;
+    });
+
+    try {
+      await new AnalysisOrchestrator(provider).analyze({ ...validRequest, allowExternalProcessing: true });
+      throw new Error("expected provider failure");
+    } catch (error) {
+      expect(error).toBeInstanceOf(AnalysisProviderError);
+      expect((error as AnalysisProviderError).failureKind).toBe("timeout");
+      expect((error as Error).message).not.toContain("raw provider detail");
+    }
+  });
+
   it("blocks a configured provider until the user explicitly consents", async () => {
     const provider = new FakeLlmProvider(true, async () => mockAnalysisResult);
     const orchestrator = new AnalysisOrchestrator(provider);

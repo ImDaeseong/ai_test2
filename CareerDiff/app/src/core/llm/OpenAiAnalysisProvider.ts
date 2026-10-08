@@ -8,7 +8,7 @@ import type { LlmAnalysisProvider } from "./LlmAnalysisProvider";
 import { loadSharedOpenAiKey } from "./loadSharedOpenAiKey";
 
 const DEFAULT_MODEL = "gpt-6-luna";
-export const OPENAI_TIMEOUT_MS = 30_000;
+export const OPENAI_TIMEOUT_MS = 90_000;
 
 type JsonSchema = Record<string, unknown>;
 
@@ -72,13 +72,9 @@ export function omitNullObjectFields(value: unknown): unknown {
  * reaches generate() when a key is present, and otherwise falls back to the
  * deterministic local analyzer (LocalAnalysisProvider), not a mock.
  *
- * Not yet exercised against the real API in this repo (no OPENAI_API_KEY is
- * configured here), but generate()'s full pipeline — strict-schema request,
- * response parse, null stripping, and Zod validation — is covered by a
- * mocked-client unit test, along with provider selection and the
- * required+nullable strict-schema conversion. Before production, run one
- * consented, synthetic request with a real key and confirm the response
- * validates against careerDiffAnalysisResultSchema.
+ * The live path is exercised only by the explicit, synthetic
+ * `npm run smoke:openai` command; normal tests remain offline. The request is
+ * non-stored, output-bounded, and validated against the domain Zod schema.
  */
 export class OpenAiAnalysisProvider implements LlmAnalysisProvider {
   isConfigured(): boolean {
@@ -101,6 +97,8 @@ export class OpenAiAnalysisProvider implements LlmAnalysisProvider {
     const response = await client.responses.create({
       model,
       input: buildAnalysisPrompt(input),
+      store: false,
+      max_output_tokens: 8000,
       text: {
         format: {
           type: "json_schema",

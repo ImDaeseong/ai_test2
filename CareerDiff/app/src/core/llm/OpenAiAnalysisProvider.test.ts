@@ -115,6 +115,8 @@ describe("OpenAiAnalysisProvider.generate", () => {
     const args = responsesCreate.mock.calls[0][0];
     expect(args.model).toBe("gpt-6-luna");
     expect(args.input).toContain("Python 백엔드 개발자");
+    expect(args.store).toBe(false);
+    expect(args.max_output_tokens).toBe(8000);
     expect(args.text.format.type).toBe("json_schema");
     expect(args.text.format.strict).toBe(true);
     expect(constructorOptions).toHaveBeenCalledWith({
@@ -122,6 +124,7 @@ describe("OpenAiAnalysisProvider.generate", () => {
       timeout: OPENAI_TIMEOUT_MS,
       maxRetries: 0,
     });
+    expect(OPENAI_TIMEOUT_MS).toBe(90_000);
   });
 
   it("throws when no API key is configured", async () => {

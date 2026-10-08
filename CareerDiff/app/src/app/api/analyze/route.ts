@@ -47,7 +47,9 @@ export async function POST(request: Request) {
       );
     }
     if (error instanceof AnalysisProviderError) {
-      // Do not log error.message here — it may echo provider-side details derived from raw input.
+      // The wrapper contains only a low-cardinality failure kind and no provider
+      // message or request content, so the exception object is safe to retain.
+      console.error(`provider_failure=${error.failureKind} component=career_diff route=/api/analyze`, error);
       return NextResponse.json<ApiErrorResponse>(
         { error: { code: "ANALYSIS_FAILED", message: "AI 분석에 실패했습니다. 잠시 후 다시 시도해 주세요.", retryable: true } },
         { status: 502 },

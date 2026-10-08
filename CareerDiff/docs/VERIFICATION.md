@@ -10,6 +10,18 @@ npm run build
 npm run test:e2e
 ```
 
+실제 OpenAI 경로는 키를 로드한 서버를 `http://127.0.0.1:3011`에서 실행한 뒤, 별도 터미널에서
+명시적으로 다음을 실행한다. 고정된 가상 공고·후보자만 전송하며 `store=false`로 요청한다.
+
+```powershell
+$env:CAREERDIFF_LIVE_OPENAI='1'
+npm run smoke:openai
+```
+
+이 스모크는 strict schema 검증, FastAPI/AWS 격차 인식, 없는 경험의 strong 판정 방지,
+미니 프로젝트 3개와 격차 연결, 비저장·미검색 메타데이터를 검사한다. 유료 호출이므로 일반
+`npm test`에는 포함하지 않는다.
+
 ## 필수 검증
 
 - 지원 사이트(잡코리아·사람인·인크루트) 허용 URL과 거부 URL, http·타 호스트 거부, 인크루트 `www`→`job` 재작성
@@ -24,7 +36,8 @@ npm run test:e2e
 - 공개 HTML에서 한글 제목·회사명·본문 추출
 - 후보자 JSON 첨부, 잘못된 JSON 거부, 새로고침 복원
 - 분석 요청 스키마와 결과 스키마, 미니 프로젝트 정확히 3개
-- OpenAI `generate()` 경로: 모킹으로 파싱→null 제거→스키마 검증(키·비용 없이)
+- OpenAI `generate()` 경로: 모킹으로 파싱→null 제거→스키마 검증(키·비용 없이), 명시적 합성
+  스모크로 실제 Responses API와 9개 품질·개인정보 단언 검증
 - OpenAI 모드는 화면에 외부 전송 안내·동의 체크를 표시하고, 동의 없는 직접 API 요청도 `PRIVACY_BLOCKED`로 거부
 - 프롬프트 인젝션 방어 및 비요구사항 문단 제외 규칙
 - 검증 JSON 생성, 동일 (입력+결과) 중복 방지, 경로 이탈 차단, 누적은 분석 품질과 무관
