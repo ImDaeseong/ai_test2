@@ -2,7 +2,7 @@
 
 ## Actual Stack
 
-- Python 3.11+ (verified against 3.14)
+- Python 3.12+ (verified against 3.14; current NumPy/librosa lines require 3.12+)
 - Web MVP: stdlib `http.server` (`ThreadingHTTPServer`/`BaseHTTPRequestHandler`) — no Flask/FastAPI dependency
 - Markdown/JSON report renderer (no HTML templating engine)
 
@@ -14,7 +14,7 @@ Every package below is technically optional in the sense that the app never cras
 |---|---|---|---|
 | `numpy`, `soundfile` | `requirements.txt` | Full DSP analysis path (BPM/key/frequency bands/etc.) | stdlib WAV-only fallback; MP3/FLAC analysis unavailable |
 | `pyloudnorm` | `requirements.txt` | LUFS is measured and included in the report | LUFS field is omitted from the report, everything else still runs |
-| `librosa` | `requirements-optional.txt` tier 1 (wired into code, uncommented) | `AudioAnalyzer` prefers `librosa.beat.beat_track` for BPM — see "Librosa BPM Provider" below. Installed and verified in this `.venv` (`0.11.0`). | Falls back to the built-in spectral-flux onset estimator, then RMS envelope |
+| `librosa` | `requirements-optional.txt` tier 1 (wired into code, uncommented) | `AudioAnalyzer` prefers `librosa.beat.beat_track` for BPM — see "Librosa BPM Provider" below. Current requirement is `>=1.0,<2` on Python 3.12+. | Falls back to the built-in spectral-flux onset estimator, then RMS envelope |
 | `basic-pitch` | `requirements-optional.txt` tier 1 (wired into code, commented out) | `ScoreTranscriber` prefers real audio-to-MIDI note events — see "Notation Export Boundary" below | Falls back to a local numpy/soundfile autocorrelation melody guide, then a section-energy chart. Not installed in this `.venv`, so this is the current default. |
 | `music21`, `demucs`, `pedalboard` | `requirements-optional.txt` tier 2 (commented out, not referenced anywhere in `app/`) | N/A — no code calls these yet | No effect either way; listed only as future/deferred candidates (ROADMAP Phase 5, later score post-processing) |
 

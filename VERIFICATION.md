@@ -185,6 +185,30 @@ The warning in the four `--basetemp` runs is a pytest cache warning from this sa
 
 [LOOP-END] result: PASS — the executable registry and recent CareerDiff improvements are now reflected in root governance, and external processing requires explicit consent at both UI and server boundaries / gate: 100%
 
+## AI/API and dependency precision loop (2026-10-09)
+
+[LOOP-START] goal: verify the actual AI/API boundary and current provider/dependency contracts for five media projects / exit criteria: no stale image-model identifier, provider failures are not flattened, reviewed dependency floors install cleanly, all five suites and root contracts pass / max iterations: 3
+
+- `ai_anime`: retained the officially supported `gpt-image-2.5-sunburst`; replaced retired Imagen 3 metadata with `gemini-3.1-flash-image` in the generator, template, and generated prompt examples. Added a regression test. Result: 79 passed.
+- `ai_img_video_aiBoygirl`: confirmed provider-agnostic local prompt generation, no external AI SDK import, rights boundary retained. Result: 337 passed.
+- `ai_img_video_prompt_capcut`: confirmed local file/media consumer boundary and protected `schema_version: 1.2`. Result: 65 passed.
+- `youtube_research`: added yt-dlp security-version gating and fail-closed command handling. Updated the environment to `2026.08.19`; 40 tests passed and a live public metadata query returned one identified row.
+- `music_insight_studio`: updated the Python 3.12+ dependency floor to NumPy 2.5.3, SoundFile 0.14.0, pyloudnorm 0.2.0, and optional librosa 1.0.0. `pip check` reported no conflicts; 34 tests and the sample-WAV end-to-end report chain passed.
+- Root AI/API and repository contracts: 8 tests passed. The five projects contain no paid generative API call path; no paid API call was applicable.
+- qa_manager: 89 tests plus 77 subtests passed; the ai_test2 checklist executed 12 items with 0 failures and 0 stale recorded-status mismatches.
+- Existing CareerDiff working-tree changes were outside this scope and were preserved.
+
+[LOOP-END] result: PASS / gate: 100% / self-declared passes this scope: 1 / live API: NOT APPLICABLE (no paid generative API path; yt-dlp public metadata boundary RUN, one query)
+
+## 2026-10-09 — explicit paid API smoke path
+
+- Added `ai_anime/live_api_smoke.py`, an opt-in one-call OpenAI image smoke check. It requires both `OPENAI_API_KEY` and `--confirm-paid-call`, requests one low-quality 1024×1024 image, validates decoded bytes in memory, and saves no image.
+- Added request-shape, response-validation, provider-error classification, sanitized CLI failure, and safe HTTP metadata regression tests: `ai_anime` now reports 84 passed.
+- Root AI/API and repository contract checks report 9 tests OK.
+- Process, user, machine, and project dotenv checks found no configured real key. Cost-free negative live requests reached OpenAI three times and returned HTTP 401; the final run exposed only safe diagnostics (`invalid_api_key`, HTTP 401, request-ID presence), classified the failure as `auth`, and exited 1. A provider success result is therefore still HOLD, not PASS.
+
+[LOOP-END] result: HOLD / gate: 95% / self-declared passes this scope: 1 / live API: NOT RUN (OPENAI_API_KEY is not configured)
+
 ## Exit Criteria
 
 [LOOP-END] result: root governance docs added and all existing tests still pass / gate: 100%

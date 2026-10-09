@@ -1,5 +1,7 @@
 # ai_img_video_prompt_capcut
 
+이 프로젝트는 생성형 AI API를 호출하지 않습니다. 앞 단계의 프롬프트·클립과 로컬 미디어를 `schema_version: 1.2` 타임라인/CapCut 초안으로 조립하며, 루트 `AI_API_VERSION_AUDIT.md`가 이 파일 계약을 회귀 검사합니다.
+
 Suno 음원 + LRC 파일을 분석해 CapCut MV 편집용 타임라인(`timeline.json`)과 편집 가이드(`shot_list.md`)를 자동 생성하는 CLI 도구.
 
 ---

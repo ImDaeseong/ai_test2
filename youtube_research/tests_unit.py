@@ -20,7 +20,14 @@ from analyze import (
     build_url_list,
     build_report,
 )
-from collect import _parse_jsonl, _normalize
+from collect import (
+    MIN_YTDLP_VERSION,
+    _normalize,
+    _parse_jsonl,
+    _parse_ytdlp_version,
+    _ytdlp,
+    ensure_ytdlp_supported,
+)
 
 # ── 공통 픽스처 데이터 ────────────────────────────────────────────────────────
 
@@ -41,6 +48,29 @@ VIDEOS = [
         "upload_date": "20240310", "tags": ["rock"], "description": "x" * 400,
     },
 ]
+
+
+def test_ytdlp_version_parser_and_security_floor():
+    assert _parse_ytdlp_version("2026.08.19") == (2026, 8, 19)
+    assert _parse_ytdlp_version("2026.02.20") < MIN_YTDLP_VERSION
+
+
+def test_ytdlp_version_gate_rejects_old_release(monkeypatch):
+    import collect
+
+    result = type("Result", (), {"returncode": 0, "stdout": "2026.02.20\n", "stderr": ""})()
+    monkeypatch.setattr(collect.subprocess, "run", lambda *args, **kwargs: result)
+    with pytest.raises(RuntimeError, match="below the security baseline"):
+        ensure_ytdlp_supported()
+
+
+def test_ytdlp_failure_is_not_flattened_into_empty_success(monkeypatch):
+    import collect
+
+    result = type("Result", (), {"returncode": 1, "stdout": "", "stderr": "provider unavailable"})()
+    monkeypatch.setattr(collect.subprocess, "run", lambda *args, **kwargs: result)
+    with pytest.raises(RuntimeError, match="provider unavailable"):
+        _ytdlp("--version")
 
 
 # ── top_videos ────────────────────────────────────────────────────────────────

@@ -9,7 +9,7 @@ AI 뮤직비디오 제작, 프롬프트 생성, YouTube 조사, 로컬 음악 �
 ## 사전 요구사항
 
 - Windows PowerShell
-- Python 3.11 권장 (`ai_anime`과 `ai_img_video_aiBoygirl`은 3.9+)
+- Python 3.12+ 권장 (`ai_anime`과 `ai_img_video_aiBoygirl`은 3.9+; 현재 `music_insight_studio` 수치 패키지 기준은 3.12+)
 - Node.js와 npm (`CareerDiff`만 사용)
 - CapCut PC, Suno 음원, LRC 가사, Kling 영상 클립은 CapCut 파이프라인을 실제로 사용할 때만 필요
 
@@ -31,7 +31,7 @@ python -m pip install --upgrade pip
 | `ai_anime` | `python -m pip install -r requirements.txt` |
 | `ai_img_video_aiBoygirl` | 실행 의존성 없음 · 테스트 시 `python -m pip install -r requirements-dev.txt` |
 | `ai_img_video_prompt_capcut` | `python -m pip install click mutagen pytest` |
-| `youtube_research` | `python -m pip install yt-dlp pytest` |
+| `youtube_research` | `python -m pip install -r requirements.txt` |
 | `music_insight_studio` | `python -m pip install -r requirements.txt` · 정확도 향상 시 `python -m pip install -r requirements-optional.txt` |
 | `CareerDiff` | `cd CareerDiff\app; npm install` |
 
@@ -97,6 +97,7 @@ npm run lint
 - [`HOLD_CONDITIONS.md`](./HOLD_CONDITIONS.md): 사람 검토가 필요한 중단 조건
 - [`VERIFICATION.md`](./VERIFICATION.md): 상세 검증 명령과 이력
 - [`ROADMAP.md`](./ROADMAP.md): 개선 순서
+- [`AI_API_VERSION_AUDIT.md`](./AI_API_VERSION_AUDIT.md): 다섯 로컬 AI/미디어 프로젝트의 실제 API 경계와 검증된 모델·의존성 기준
 
 생성 결과와 개인 입력 데이터는 프로젝트별 `output/`, `outputs/`, `uploads/`, `CareerDiff/data/`에 저장될 수 있습니다. 커밋 전 비밀값과 개인 데이터가 포함되지 않았는지 확인하세요.
 # Source-only public release

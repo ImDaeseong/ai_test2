@@ -46,7 +46,7 @@ Do not add any text, letters, numbers, watermarks, logos, or UI overlays to the 
 
 > Use for scene reference frames and character model sheets. Use gpt-image-2.5-sunburst at quality='high' for detailed anime scenes. Specify 'anime cel-shaded illustration, vibrant saturated colors, clean linework' for style consistency. Include 'no watermark, no logos, no extra text' in every prompt. Use 1536x1024 for landscape MV frames, 1024x1536 for portrait/vertical.
 
-## Google Gemini (나노바나 프로 / Imagen 3)
+## Google Gemini (gemini-3.1-flash-image)
 # Character Turnaround Model Sheet Prompt
 
 Create the master character turnaround model sheet for this song. This model sheet will be attached as the identity reference for every later scene image, and optionally as a secondary reference for video generation.
@@ -91,7 +91,7 @@ Do not add any text, letters, numbers, watermarks, logos, or UI overlays to the 
 **언어:** 한국어 프롬프트 직접 사용 가능
 **편집:** 생성 후 자연어로 반복 수정 가능 (예: '배경만 밤으로 바꿔줘')
 
-> Google Gemini (Imagen 3) 이미지 생성. 한국어 프롬프트 직접 사용 가능. 자연어로 작성하며 특수 문법 불필요. 캐릭터 일관성과 대화형 반복 편집이 강점. MV 파이프라인에서 씬 레퍼런스 이미지, 캐릭터 시트, 환경 컨셉아트 생성에 활용. 비율은 16:9 (가로형 MV 프레임), 9:16 (세로형/숏폼) 권장.
+> Google Gemini (gemini-3.1-flash-image) 이미지 생성. 한국어 프롬프트 직접 사용 가능. 자연어로 작성하며 특수 문법 불필요. 캐릭터 일관성과 대화형 반복 편집이 강점. MV 파이프라인에서 씬 레퍼런스 이미지, 캐릭터 시트, 환경 컨셉아트 생성에 활용. 비율은 16:9 (가로형 MV 프레임), 9:16 (세로형/숏폼) 권장.
 
 ## Midjourney v7
 # Character Turnaround Model Sheet Prompt

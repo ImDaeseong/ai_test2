@@ -7,8 +7,8 @@
 
 # BPM/onset provider. If installed, AudioAnalyzer._estimate_bpm_from_audio_np tries
 # librosa.beat.beat_track before the built-in spectral-flux/RMS fallback chain.
-# See ARCHITECTURE.md "Librosa BPM Provider". Verified with librosa==0.11.0.
-librosa>=0.10.0
+# See ARCHITECTURE.md "Librosa BPM Provider". Current 1.x requires Python 3.12+.
+librosa>=1.0.0,<2; python_version >= "3.12"
 
 # Audio-to-MIDI note transcription. If installed, ScoreTranscriber tries basic-pitch
 # note events before the built-in numpy/soundfile autocorrelation melody-guide

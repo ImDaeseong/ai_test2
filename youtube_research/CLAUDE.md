@@ -26,7 +26,7 @@
 | `channels.json` | 수집 대상 채널 목록 + AI 필터 키워드 | PLACEHOLDER를 실제 채널로 교체 후 사용 |
 | `output/raw/` | 수집된 raw JSON | |
 | `output/reports/` | 생성된 마크다운 리포트 + URL 목록 | |
-| `tests_unit.py` | pytest 순수 함수 37개 단위 테스트 | 네트워크 호출 없음 |
+| `tests_unit.py` | pytest 순수 함수 40개 단위 테스트 | 네트워크 호출 없음 |
 
 ---
 
@@ -35,7 +35,7 @@
 ```bash
 # 단위 테스트
 python -m pytest tests_unit.py -q
-# 목표: 37 passed, 0 failed
+# 목표: 40 passed, 0 failed
 
 # 구문 컴파일
 python -m py_compile collect.py analyze.py rank_channels.py run.py
@@ -43,7 +43,7 @@ python -m py_compile collect.py analyze.py rank_channels.py run.py
 
 ## 완료 기준
 
-`tests_unit.py` 37개 전체 통과. `channels.json` 교체 후 `python run.py` 실행 시 수집→리포트 파이프라인 정상 동작.
+`tests_unit.py` 40개 전체 통과. 지원 하한보다 오래된 yt-dlp는 시작 전에 차단하고, 공급자 실패는 빈 성공 결과로 바꾸지 않는다. `channels.json` 교체 후 `python run.py` 실행 시 수집→리포트 파이프라인 정상 동작.
 
 ---
 

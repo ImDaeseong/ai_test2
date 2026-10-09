@@ -2,7 +2,7 @@
 
 애니메이션 뮤직비디오 이미지·영상 프롬프트 자동 생성 파이프라인.
 Suno txt 파일 하나로 캐릭터 시트·씬 이미지·Kling 영상 클립·CapCut 편집 맵·제작가이드 5개 파일을 자동 생성합니다.
-외부 API 없음. 순수 Python 템플릿 치환 엔진.
+기본 생성 경로는 외부 API가 없는 순수 Python 템플릿 치환 엔진입니다. 별도의 명시적 스모크 명령만 OpenAI 이미지 API를 1회 호출합니다.
 
 ---
 
@@ -18,7 +18,19 @@ output/{곡 제목}/
 ```
 
 ## 이미지 플랫폼 (6종)
-GPT Image (gpt-image-2) · Google Gemini (Imagen 3) · Midjourney v7 · Nijijourney (--niji 7) · FLUX.1 · Leonardo.Ai Phoenix 2.0
+GPT Image (gpt-image-2.5-sunburst) · Google Gemini (gemini-3.1-flash-image) · Midjourney v7 · Nijijourney (--niji 7) · FLUX.1 · Leonardo.Ai Phoenix 2.0
+
+모델 식별자는 루트 [AI_API_VERSION_AUDIT.md](../AI_API_VERSION_AUDIT.md)의 공식 제공자 확인 기록을 따릅니다. 기본 도구는 실행용 프롬프트 문서만 생성합니다.
+
+## 실제 OpenAI API 스모크 검사
+
+비용이 발생하는 호출은 기본 배치에서 분리되어 있습니다. `OPENAI_API_KEY`를 현재 셸 환경에 설정한 뒤 다음 명령을 명시적으로 실행하면 `gpt-image-2.5-sunburst`로 저품질 1024×1024 이미지 1장을 생성해 응답만 검증합니다. 이미지와 키는 저장하지 않습니다.
+
+```powershell
+python live_api_smoke.py --confirm-paid-call
+```
+
+키 누락, 인증 실패, 사용량 제한, 공급자 장애는 실패로 종료하며 빈 성공 결과로 바꾸지 않습니다. HTTP 실패는 키·프롬프트·공급자 메시지를 노출하지 않고 상태 코드, 공급자 오류 코드·유형, 요청 ID 존재 여부만 진단 로그에 남깁니다.
 
 ## 영상 제작 방식
 **Kling AI (Image to Video)** — 씬 이미지 1장 → Variant A/B/C 클립 생성 → **CapCut 편집** → 완성 MV
@@ -140,7 +152,8 @@ ai_anime/
 ├── output/                  # 자동 생성 결과 (직접 편집 금지)
 ├── tests_unit.py            # pytest 단위 테스트
 ├── conftest.py              # Windows stdout UTF-8 픽스
-└── .env.example             # 외부 API 없음
+├── live_api_smoke.py        # 명시적 OpenAI 유료 API 1회 스모크 검사
+└── .env.example             # 스모크 검사 키 변수명 예시(실제 키 저장 금지)
 ```
 
 ---

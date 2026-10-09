@@ -1,6 +1,6 @@
 # ai_test2 Design
 
-Updated: 2026-09-27
+Updated: 2026-10-09
 
 ## Purpose
 
@@ -18,6 +18,7 @@ Collect research, career-analysis, animation, and image/video prompt application
 - Each subproject owns its execution and data contract.
 - Career and research inputs remain local unless the user explicitly selects an external provider.
 - Prompt generation, asset production, and publication are separate stages.
+- The five media/research projects remain local-first. Only `ai_anime/live_api_smoke.py` may call a generative AI API, and it requires a key plus explicit paid-call confirmation; `youtube_research` has a separate yt-dlp provider boundary.
 
 ## Main components
 
@@ -48,6 +49,7 @@ File contracts?봢diting-map sections, LRC/SRT labels, clip names, timeline JSON
 
 - Make local versus external processing an explicit user choice rather than an implementation detail.
 - Separate research conclusions from generated media artifacts because their evidence and review criteria differ.
+- Guard provider identifiers and dependency floors with executable contract tests instead of trusting prose or generated examples.
 
 ## Verification and human review
 

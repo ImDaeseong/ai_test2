@@ -1,8 +1,10 @@
 """Unit tests for ai_anime main.py pipeline (rebuilt 2026-06-08)."""
 import json
+import io
 import tempfile
 from pathlib import Path
 import sys
+import urllib.error
 
 sys.path.insert(0, str(Path(__file__).parent))
 from main import (
@@ -11,9 +13,13 @@ from main import (
     _build_scene_image_blocks, _build_scene_video_blocks,
     adapt_template, safety_filter, _unresolved_placeholders,
     build_readme, _DEFAULT_SECTIONS, SAFETY_BLOCKLIST,
-    PROMPT_FILES, PROFILES_FILE, TEMPLATE_DIR, OPENAI_IMAGE_MODEL,
+    PROMPT_FILES, PROFILES_FILE, TEMPLATE_DIR, OPENAI_IMAGE_MODEL, GOOGLE_IMAGE_MODEL,
     _required_variants,
 )
+from live_api_smoke import (
+    build_request, classify_provider_error, provider_error_metadata, validate_response,
+)
+import live_api_smoke
 
 ROOT = Path(__file__).parent
 
@@ -293,6 +299,14 @@ def test_build_scene_image_blocks_uses_configured_openai_model():
     assert f"GPT Image ({OPENAI_IMAGE_MODEL} / OpenAI)" in result
     assert f"**Model:** `{OPENAI_IMAGE_MODEL}`" in result
     assert "`gpt-image-2`" not in result
+
+
+def test_build_scene_image_blocks_uses_current_google_model_not_retired_imagen():
+    """Keep generated Google metadata on the configured Gemini image boundary."""
+    result = _build_scene_image_blocks(_make_song(), _make_identity())
+    assert f"Google Gemini ({GOOGLE_IMAGE_MODEL})" in result
+    assert f"**Model:** `{GOOGLE_IMAGE_MODEL}`" in result
+    assert "Imagen 3" not in result
 
 
 def test_build_scene_image_blocks_avoid_in_output():
@@ -578,3 +592,57 @@ def test_reference_image_in_prompt_output():
     identity = build_visual_identity(_make_song(genre="rock metal"), profiles)
     blocks = _build_scene_image_blocks(_make_song(genre="rock metal"), identity)
     assert identity.reference_image in blocks
+
+
+def test_live_api_request_is_one_low_quality_image():
+    request = build_request("safe test prompt")
+    assert request == {
+        "model": OPENAI_IMAGE_MODEL,
+        "prompt": "safe test prompt",
+        "n": 1,
+        "quality": "low",
+        "size": "1024x1024",
+    }
+
+
+def test_live_api_response_validation_decodes_one_image():
+    assert validate_response({"data": [{"b64_json": "aW1hZ2U="}]}) == 5
+
+
+def test_live_api_error_classification_distinguishes_auth_and_rate_limit():
+    auth = urllib.error.HTTPError("url", 401, "unauthorized", {}, None)
+    rate_limit = urllib.error.HTTPError("url", 429, "rate limited", {}, None)
+    assert classify_provider_error(auth) == "auth"
+    assert classify_provider_error(rate_limit) == "rate_limit"
+
+
+def test_live_api_error_metadata_keeps_codes_but_not_provider_message():
+    body = io.BytesIO(json.dumps({
+        "error": {
+            "message": "sensitive prompt details must not be surfaced",
+            "type": "invalid_request_error",
+            "code": "invalid_api_key",
+        }
+    }).encode("utf-8"))
+    error = urllib.error.HTTPError(
+        "url", 401, "unauthorized", {"x-request-id": "req_test"}, body,
+    )
+    assert provider_error_metadata(error) == {
+        "http_status": 401,
+        "provider_code": "invalid_api_key",
+        "provider_type": "invalid_request_error",
+        "request_id_present": True,
+    }
+
+
+def test_live_api_cli_sanitizes_provider_failure(monkeypatch, capsys):
+    monkeypatch.setenv("OPENAI_API_KEY", "test-key")
+
+    def fail_once(*_args, **_kwargs):
+        raise RuntimeError("OpenAI live smoke failed (auth)")
+
+    monkeypatch.setattr(live_api_smoke, "call_openai", fail_once)
+    assert live_api_smoke.main(["--confirm-paid-call"]) == 1
+    captured = capsys.readouterr()
+    assert captured.out == ""
+    assert captured.err.strip() == "OpenAI live smoke failed (auth)"

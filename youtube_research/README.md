@@ -27,10 +27,12 @@ youtube_research/
 ## 설치
 
 ```bash
-pip install yt-dlp
+python -m pip install -r requirements.txt
 ```
 
-yt-dlp 경로: `%APPDATA%\Python\Python3*\Scripts\yt-dlp.exe` (버전 무관 자동 탐지)
+수집 전 `yt-dlp --version`을 검사합니다. `2026.02.21` 미만은 알려진 명령 주입 취약점 수정 전 버전이므로 차단하며, requirements는 검증한 `2026.08.19` 이상과 다음 연도 미만을 요구합니다. yt-dlp가 실패하면 빈 수집 결과를 성공처럼 저장하지 않고 명시적으로 종료합니다.
+
+yt-dlp 경로: `%APPDATA%\Python\Python3*\Scripts\yt-dlp.exe` (자동 탐지 후 버전 검증)
 
 ---
 

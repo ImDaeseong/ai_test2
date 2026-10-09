@@ -22,7 +22,7 @@ Do not add any text, letters, numbers, watermarks, logos, or UI overlays to the 
 
 ---
 
-## Google Gemini (Imagen 3)
+## Google Gemini (gemini-3.1-flash-image)
 
 3D 치비 토이 피규어 디자인 시트. '[SONG_TITLE]' AI Boy/AI Girl 로봇 캐릭터. 8가지 뷰: 정면 전신, 왼쪽 측면, 오른쪽 측면, 후면 전신, 3/4 전신, 얼굴 클로즈업, [CHARACTER_PROP] 소품 클로즈업, 성별/유형 레이블. 캐릭터: [CHARACTER]. 헬멧: [CHARACTER_HAIR]. 의상: [CHARACTER_OUTFIT]. 실루엣: [CHARACTER_SILHOUETTE]. [COLOR_RULE]. 3D 치비 토이 피규어 스타일, 컬렉터블 토이 렌더링, 흰색 또는 중립 배경, 배경 장면 없음.
 

@@ -9,7 +9,9 @@ AI 음악 유튜브 채널 벤치마킹 - 메타데이터 수집기
 
 import glob
 import json
+import logging
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -21,6 +23,8 @@ ROOT = Path(__file__).parent
 CHANNELS_FILE = ROOT / "channels.json"
 OUTPUT_RAW    = ROOT / "output" / "raw"
 OUTPUT_THUMB  = ROOT / "output" / "thumbnails"
+MIN_YTDLP_VERSION = (2026, 2, 21)
+LOGGER = logging.getLogger(__name__)
 
 
 # ── yt-dlp 경로 자동 탐지 ────────────────────────────────────────────────────
@@ -41,6 +45,29 @@ def _find_ytdlp() -> str:
 YTDLP = _find_ytdlp()
 
 
+def _parse_ytdlp_version(value: str) -> tuple[int, int, int]:
+    """Parse yt-dlp's calendar version into a comparable three-part tuple."""
+    match = re.fullmatch(r"(\d{4})\.(\d{1,2})\.(\d{1,2})", value.strip())
+    if not match:
+        raise RuntimeError(f"Unsupported yt-dlp version format: {value.strip() or '<empty>'}")
+    return tuple(int(part) for part in match.groups())
+
+
+def ensure_ytdlp_supported() -> str:
+    """Reject yt-dlp versions older than the reviewed security baseline."""
+    result = subprocess.run(
+        [YTDLP, "--version"], capture_output=True, text=True,
+        encoding="utf-8", errors="replace",
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"yt-dlp version check failed (exit {result.returncode}): {result.stderr.strip()[:200]}")
+    version = result.stdout.strip()
+    if _parse_ytdlp_version(version) < MIN_YTDLP_VERSION:
+        minimum = ".".join(str(part) for part in MIN_YTDLP_VERSION)
+        raise RuntimeError(f"yt-dlp {version} is below the security baseline {minimum}; update before collection.")
+    return version
+
+
 # ── 내부 유틸 ────────────────────────────────────────────────────────────────
 
 def _ytdlp(*args) -> str:
@@ -48,8 +75,13 @@ def _ytdlp(*args) -> str:
         [YTDLP, *args],
         capture_output=True, text=True, encoding="utf-8", errors="replace",
     )
-    if r.returncode != 0 and r.stderr:
-        print(f"  [경고] yt-dlp 오류 (exit {r.returncode}): {r.stderr.strip()[:200]}", flush=True)
+    if r.returncode != 0:
+        detail = r.stderr.strip()[:200] or "no stderr"
+        try:
+            raise RuntimeError(f"yt-dlp failed (exit {r.returncode}): {detail}")
+        except RuntimeError:
+            LOGGER.exception("provider_failure=yt_dlp call_site=_ytdlp")
+            raise
     return r.stdout
 
 
@@ -141,6 +173,8 @@ def main():
 
     mode    = sys.argv[1] if len(sys.argv) > 1 else "channel"
     max_n   = int(sys.argv[2]) if len(sys.argv) > 2 else 50
+
+    ensure_ytdlp_supported()
 
     config  = json.loads(CHANNELS_FILE.read_text(encoding="utf-8"))
     all_v: list[dict] = []

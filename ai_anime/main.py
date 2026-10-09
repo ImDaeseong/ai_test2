@@ -30,6 +30,7 @@ TEMPLATE_DIR = ROOT / "templates"
 PROFILES_FILE = ROOT / "anime_profiles.json"
 REFERENCE_DIR = ROOT / "reference"
 OPENAI_IMAGE_MODEL = os.getenv("AI_ANIME_OPENAI_IMAGE_MODEL", "gpt-image-2.5-sunburst")
+GOOGLE_IMAGE_MODEL = os.getenv("AI_ANIME_GOOGLE_IMAGE_MODEL", "gemini-3.1-flash-image")
 
 # 장르 프로파일 → reference 이미지 매핑 (성별 중립 우선, idol_pop은 gender로 분기)
 REFERENCE_IMAGE_MAP: dict[str, str] = {
@@ -645,8 +646,9 @@ def _scene_image_block(idx: int, section: str, env: str, camera: str,
         f"{common}\n\n{_NO_TEXT_NOTE}\n\n"
         f"**Model:** `{OPENAI_IMAGE_MODEL}` | **Quality:** `high` | "
         f"**Size:** `1536x1024` (landscape) / `1024x1536` (portrait) / `1024x1024` (square)\n\n"
-        f"### Google Gemini (Imagen 3)\n"
+        f"### Google Gemini ({GOOGLE_IMAGE_MODEL})\n"
         f"{common}\n\n{_NO_TEXT_NOTE}\n\n"
+        f"**Model:** `{GOOGLE_IMAGE_MODEL}` | **Aspect ratio:** `16:9` or `9:16` | **Image size:** `2K`\n\n"
         f"**비율:** `16:9` (가로형 MV 프레임) / `9:16` (세로형/숏폼)\n\n"
         f"### Midjourney v7\n"
         f"> **Character Reference:** `{identity.reference_image}` 업로드 후 `--cref` 사용\n\n"

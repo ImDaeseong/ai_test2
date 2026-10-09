@@ -14,9 +14,9 @@
 
 | 구분 | 내용 |
 |---|---|
-| 언어/런타임 | Python, stdlib `http.server` (Flask/FastAPI 미사용) |
-| 필수 의존성 | `numpy`, `soundfile`, `pyloudnorm` (`requirements.txt`) |
-| 선택 의존성 | `librosa`(BPM 추정 1순위 provider), `basic-pitch`(악보 채보 1순위 provider) — 둘 다 미설치 시 내장 폴백 자동 사용. 상세: `ARCHITECTURE.md` "Dependency Table" |
+| 언어/런타임 | Python 3.12+, stdlib `http.server` (Flask/FastAPI 미사용) |
+| 필수 의존성 | `numpy>=2.5.3,<3`, `soundfile>=0.14,<0.15`, `pyloudnorm>=0.2,<0.3` (`requirements.txt`) |
+| 선택 의존성 | `librosa>=1,<2`(BPM 추정 1순위 provider), `basic-pitch`(악보 채보 1순위 provider) — 둘 다 미설치 시 내장 폴백 자동 사용. Basic Pitch는 현재 Python 3.14 검증 환경에 설치하지 않는다. 상세: `ARCHITECTURE.md` "Dependency Table" |
 | 참조 소스 | `Analysis_music`, `mp3_daw` (이 저장소 밖 로컬 프로젝트, 상세: `docs/reference_sources.md`) |
 
 ## 시작하기
