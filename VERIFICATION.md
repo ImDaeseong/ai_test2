@@ -209,6 +209,14 @@ The warning in the four `--basetemp` runs is a pytest cache warning from this sa
 
 [LOOP-END] result: HOLD / gate: 95% / self-declared passes this scope: 1 / live API: NOT RUN (OPENAI_API_KEY is not configured)
 
+## 2026-10-09 — successful paid OpenAI image smoke
+
+- The user explicitly authorized one paid call and identified a local credential source outside this repository. The key value was extracted programmatically, was never printed or copied into repository files, and was removed from the child-process environment after the call.
+- `python live_api_smoke.py --confirm-paid-call` returned `status=PASS` using `gpt-image-2.5-sunburst`: one call, 1,504,804 decoded image bytes, request ID present, and `image_saved=false`.
+- The generated image existed only in memory and was not retained. The credential source was not modified.
+
+[LOOP-END] result: PASS / gate: 100% / self-declared passes this scope: 1 / live API: RUN (calls: 1, cost: account-billed amount not exposed by response)
+
 ## Exit Criteria
 
 [LOOP-END] result: root governance docs added and all existing tests still pass / gate: 100%

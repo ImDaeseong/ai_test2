@@ -26,3 +26,5 @@ python -m unittest tests.test_repository_contract
 ```
 
 Only `ai_anime/live_api_smoke.py` has a paid/live generative API path. It is excluded from ordinary batches, performs one low-quality 1024×1024 request, validates the returned image bytes in memory, and does not save the image. A live result must not be claimed unless that command actually returns PASS in the current session.
+
+The 2026-10-09 verification run returned PASS for one `gpt-image-2.5-sunburst` request. It decoded 1,504,804 image bytes in memory, received a request ID, and saved no image. See `VERIFICATION.md` for the loop record.
