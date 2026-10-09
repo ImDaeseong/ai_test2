@@ -1,10 +1,13 @@
 """Unit tests for ai_anime main.py pipeline (rebuilt 2026-06-08)."""
+import base64
 import json
 import io
 import tempfile
 from pathlib import Path
 import sys
 import urllib.error
+
+import pytest
 
 sys.path.insert(0, str(Path(__file__).parent))
 from main import (
@@ -17,7 +20,8 @@ from main import (
     _required_variants,
 )
 from live_api_smoke import (
-    build_request, classify_provider_error, provider_error_metadata, validate_response,
+    ImageValidation, build_generated_prompt, build_request, classify_provider_error,
+    inspect_image, load_api_key, provider_error_metadata, validate_response,
 )
 import live_api_smoke
 
@@ -605,8 +609,62 @@ def test_live_api_request_is_one_low_quality_image():
     }
 
 
-def test_live_api_response_validation_decodes_one_image():
-    assert validate_response({"data": [{"b64_json": "aW1hZ2U="}]}) == 5
+def _png(width=1024, height=1024):
+    return (
+        b"\x89PNG\r\n\x1a\n"
+        + b"\x00\x00\x00\rIHDR"
+        + width.to_bytes(4, "big")
+        + height.to_bytes(4, "big")
+    )
+
+
+def test_live_api_uses_the_production_first_scene_prompt():
+    prompt = build_generated_prompt()
+    assert "Character consistency:" in prompt
+    assert "No text" in prompt
+    assert build_request()["prompt"] == prompt
+
+
+def test_live_api_response_validates_png_format_and_dimensions():
+    encoded = base64.b64encode(_png()).decode("ascii")
+    assert validate_response({"data": [{"b64_json": encoded}]}) == ImageValidation(
+        byte_count=24, image_format="png", width=1024, height=1024,
+    )
+
+
+def test_live_api_response_rejects_wrong_dimensions_and_malformed_bytes():
+    wrong = base64.b64encode(_png(512, 512)).decode("ascii")
+    with pytest.raises(ValueError, match="512x512"):
+        validate_response({"data": [{"b64_json": wrong}]})
+    with pytest.raises(ValueError, match="unsupported or malformed"):
+        inspect_image(b"not an image")
+
+
+def test_live_api_key_file_is_explicit_and_rejects_directories(monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+
+    class FakeKeyFile:
+        def __init__(self, *, is_file=True):
+            self._is_file = is_file
+
+        def is_symlink(self):
+            return False
+
+        def resolve(self, strict=True):
+            return self
+
+        def is_file(self):
+            return self._is_file
+
+        def stat(self):
+            return type("Stat", (), {"st_size": 30})()
+
+        def read_text(self, encoding):
+            return "OPENAI_API_KEY=test-secret"
+
+    assert load_api_key(FakeKeyFile()) == "test-secret"
+    with pytest.raises(ValueError, match="regular non-symlink"):
+        load_api_key(FakeKeyFile(is_file=False))
 
 
 def test_live_api_error_classification_distinguishes_auth_and_rate_limit():

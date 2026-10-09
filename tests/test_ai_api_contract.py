@@ -50,6 +50,9 @@ class AiApiContractTests(unittest.TestCase):
         self.assertIn('"n": 1', source)
         self.assertIn('"quality": "low"', source)
         self.assertIn('"image_saved": False', source)
+        self.assertIn('"prompt_source": "generated_first_scene"', source)
+        self.assertIn("EXPECTED_SIZE = (1024, 1024)", source)
+        self.assertIn('parser.add_argument("--key-file"', source)
 
         live_paths = {
             path.relative_to(ROOT)

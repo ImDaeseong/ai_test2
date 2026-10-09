@@ -18,7 +18,7 @@ Collect research, career-analysis, animation, and image/video prompt application
 - Each subproject owns its execution and data contract.
 - Career and research inputs remain local unless the user explicitly selects an external provider.
 - Prompt generation, asset production, and publication are separate stages.
-- The five media/research projects remain local-first. Only `ai_anime/live_api_smoke.py` may call a generative AI API, and it requires a key plus explicit paid-call confirmation; `youtube_research` has a separate yt-dlp provider boundary.
+- The five media/research projects remain local-first. Only `ai_anime/live_api_smoke.py` may call a generative AI API: it requires explicit paid-call confirmation, accepts only an environment key or one named key file, uses the production first-scene prompt, and validates the in-memory image format and exact dimensions; `youtube_research` has a separate yt-dlp provider boundary.
 
 ## Main components
 

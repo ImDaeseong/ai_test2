@@ -24,13 +24,19 @@ GPT Image (gpt-image-2.5-sunburst) · Google Gemini (gemini-3.1-flash-image) · 
 
 ## 실제 OpenAI API 스모크 검사
 
-비용이 발생하는 호출은 기본 배치에서 분리되어 있습니다. `OPENAI_API_KEY`를 현재 셸 환경에 설정한 뒤 다음 명령을 명시적으로 실행하면 `gpt-image-2.5-sunburst`로 저품질 1024×1024 이미지 1장을 생성해 응답만 검증합니다. 이미지와 키는 저장하지 않습니다.
+비용이 발생하는 호출은 기본 배치에서 분리되어 있습니다. `OPENAI_API_KEY`를 현재 셸 환경에 설정한 뒤 다음 명령을 명시적으로 실행하면 실제 생성기가 만든 첫 장면 GPT 프롬프트로 `gpt-image-2.5-sunburst` 저품질 1024×1024 이미지 1장을 생성합니다. 응답은 Base64뿐 아니라 PNG/JPEG/WebP 형식과 실제 1024×1024 크기까지 검증합니다. 이미지와 키는 저장하지 않습니다.
 
 ```powershell
 python live_api_smoke.py --confirm-paid-call
 ```
 
-키 누락, 인증 실패, 사용량 제한, 공급자 장애는 실패로 종료하며 빈 성공 결과로 바꾸지 않습니다. HTTP 실패는 키·프롬프트·공급자 메시지를 노출하지 않고 상태 코드, 공급자 오류 코드·유형, 요청 ID 존재 여부만 진단 로그에 남깁니다.
+환경 변수를 사용할 수 없는 격리 환경에서는 키 하나만 들어 있는 파일을 정확히 지정할 수 있습니다. 디렉터리 검색, 심볼릭 링크, 16KiB 초과 파일은 거부합니다.
+
+```powershell
+python live_api_smoke.py --confirm-paid-call --key-file C:\secure\openai.key
+```
+
+키 누락, 인증 실패, 사용량 제한, 공급자 장애, 손상 이미지, 크기 불일치는 실패로 종료하며 빈 성공 결과로 바꾸지 않습니다. HTTP 실패는 키·프롬프트·공급자 메시지를 노출하지 않고 상태 코드, 공급자 오류 코드·유형, 요청 ID 존재 여부만 진단 로그에 남깁니다.
 
 ## 영상 제작 방식
 **Kling AI (Image to Video)** — 씬 이미지 1장 → Variant A/B/C 클립 생성 → **CapCut 편집** → 완성 MV

@@ -217,6 +217,15 @@ The warning in the four `--basetemp` runs is a pytest cache warning from this sa
 
 [LOOP-END] result: PASS / gate: 100% / self-declared passes this scope: 1 / live API: RUN (calls: 1, cost: account-billed amount not exposed by response)
 
+## 2026-10-09 — production-prompt and image-integrity live loop
+
+- Replaced the fixed smoke prompt with the first GPT Image prompt produced through `load_profiles()` → `build_visual_identity()` → `_build_scene_image_blocks()`.
+- Strengthened response validation from non-empty decoded bytes to PNG/JPEG/WebP header parsing plus exact 1024×1024 dimensions. Added malformed-image and wrong-size regression cases.
+- Added `--key-file` for one explicit regular non-symlink file (maximum 16KiB); the command still supports `OPENAI_API_KEY` and never searches directories itself.
+- Offline `ai_anime` result: 87 passed. The strengthened live command returned `status=PASS`: one `gpt-image-2.5-sunburst` call, PNG, 1024×1024, 1,389,554 bytes, production first-scene prompt, request ID present, and no saved image.
+
+[LOOP-END] result: PASS / gate: 100% / self-declared passes this scope: 1 / live API: RUN (calls: 1, cost: account-billed amount not exposed by response)
+
 ## Exit Criteria
 
 [LOOP-END] result: root governance docs added and all existing tests still pass / gate: 100%
