@@ -2,7 +2,7 @@
 
 > **핵심:** 이미지·영상·조사·채용 도구를 독립 실행하고 AI 호출은 명시적 동의와 계약 검사로 제한합니다.
 
-[쉬운 설명](ELI5.html) · [구조와 설계](DESIGN.md)
+[쉬운 설명](ELI5.html) · [구조와 설계](DESIGN.md) · [브라우저에서 보기](https://htmlpreview.github.io/?https://github.com/ImDaeseong/ai_test2/blob/main/ELI5.html)
 
 AI 뮤직비디오 제작, 프롬프트 생성, YouTube 조사, 로컬 음악 분석, 채용 적합도 분석을 위한 6개 독립 프로젝트 모음입니다. 각 프로젝트의 상세 옵션과 입력 형식은 해당 폴더의 `README.md`를 확인하세요.
 
