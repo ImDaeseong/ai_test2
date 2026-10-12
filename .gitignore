@@ -36,6 +36,8 @@ music_insight_studio/outputs/
 # real job posting text and candidate profile fields entered through the running app, not
 # fixtures (moved from ai_test3 .gitignore, which excluded these for the same reason)
 CareerDiff/data/**/*.json
+# The app's unconfigured fallback is app/data (the launcher points CAREERDIFF_DATA_DIR at CareerDiff/data).
+CareerDiff/app/data/**/*.json
 
 # Tests
 .pytest_cache/

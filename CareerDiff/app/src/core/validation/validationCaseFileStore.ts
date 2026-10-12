@@ -9,11 +9,11 @@ export function validationDataDirectory(): string {
   // Tests and E2E point this at a throwaway directory so they never write
   // into the real CareerDiff/data folder (see playwright.config.ts).
   const override = process.env.CAREERDIFF_DATA_DIR;
-  if (override) return path.resolve(override);
-  // turbopackIgnore: process.cwd() is dynamic to Next's file tracer, which
-  // otherwise falls back to tracing the whole project (including data/*.json,
-  // which holds candidate PII) as a build-time NFT warning.
-  return path.resolve(/* turbopackIgnore: true */ process.cwd(), "..", "data");
+  if (override) return path.resolve(/* turbopackIgnore: true */ override);
+  // Keep the fallback inside the app so Next can trace a fixed subtree.
+  // The desktop launcher explicitly points CAREERDIFF_DATA_DIR at the existing
+  // CareerDiff/data folder, preserving the user's local storage location.
+  return path.resolve(/* turbopackIgnore: true */ process.cwd(), "data");
 }
 
 /**
@@ -22,7 +22,7 @@ export function validationDataDirectory(): string {
  * text by content hash instead of embedding it -- see docs/ARCHITECTURE.md.
  */
 function profilesDirectory(directory: string): string {
-  return path.join(directory, "profiles");
+  return path.join(/* turbopackIgnore: true */ directory, "profiles");
 }
 
 function profileHash(candidateProfile: string): string {
@@ -31,7 +31,7 @@ function profileHash(candidateProfile: string): string {
 
 async function writeFileAtomic(destination: string, content: string): Promise<{ created: boolean }> {
   const directory = path.dirname(destination);
-  const temporary = path.join(directory, `.${path.basename(destination)}.${process.pid}.${randomUUID()}.tmp`);
+  const temporary = path.join(/* turbopackIgnore: true */ directory, `.${path.basename(destination)}.${process.pid}.${randomUUID()}.tmp`);
   await mkdir(directory, { recursive: true });
 
   const handle = await open(temporary, "wx");
@@ -61,7 +61,7 @@ export async function saveValidationCaseFile(
   const directory = validationDataDirectory();
   const hash = profileHash(validationCase.candidateProfile);
   await writeFileAtomic(
-    path.join(profilesDirectory(directory), `${hash}.json`),
+    path.join(/* turbopackIgnore: true */ profilesDirectory(directory), `${hash}.json`),
     `${JSON.stringify({ candidateProfile: validationCase.candidateProfile }, null, 2)}\n`,
   );
 
@@ -74,7 +74,7 @@ export async function saveValidationCaseFile(
   };
   const filename = `${validationCase.id}.json`;
   const { created } = await writeFileAtomic(
-    path.join(directory, filename),
+    path.join(/* turbopackIgnore: true */ directory, filename),
     `${JSON.stringify(record, null, 2)}\n`,
   );
   return { filename, created };
@@ -91,7 +91,7 @@ export async function listValidationCaseFiles(): Promise<AnalysisValidationCase[
   const directory = validationDataDirectory();
   let entries: string[];
   try {
-    entries = await readdir(directory);
+    entries = await readdir(/* turbopackIgnore: true */ directory);
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === "ENOENT") return [];
     throw error;
@@ -101,12 +101,12 @@ export async function listValidationCaseFiles(): Promise<AnalysisValidationCase[
   for (const entry of entries) {
     if (!entry.endsWith(".json") || entry.startsWith(".")) continue;
     try {
-      const raw = JSON.parse(await readFile(path.join(directory, entry), "utf8")) as Record<string, unknown>;
+      const raw = JSON.parse(await readFile(/* turbopackIgnore: true */ path.join(/* turbopackIgnore: true */ directory, entry), "utf8")) as Record<string, unknown>;
       // New-format files reference the profile text by hash instead of embedding it
       // (see saveValidationCaseFile); legacy files already have candidateProfile inline.
       if (typeof raw.candidateProfile !== "string" && typeof raw.candidateProfileHash === "string") {
         const profileRaw = JSON.parse(
-          await readFile(path.join(profilesDirectory(directory), `${raw.candidateProfileHash}.json`), "utf8"),
+          await readFile(/* turbopackIgnore: true */ path.join(/* turbopackIgnore: true */ profilesDirectory(directory), `${raw.candidateProfileHash}.json`), "utf8"),
         ) as Record<string, unknown>;
         raw.candidateProfile = profileRaw.candidateProfile;
       }

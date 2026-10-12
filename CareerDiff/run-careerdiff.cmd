@@ -1,5 +1,6 @@
 @echo off
 setlocal
+if not defined CAREERDIFF_DATA_DIR set "CAREERDIFF_DATA_DIR=%~dp0data"
 cd /d "%~dp0app"
 
 if not exist "package.json" goto missing_project

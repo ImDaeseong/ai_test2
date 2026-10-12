@@ -71,6 +71,24 @@ class RepositoryContractTests(unittest.TestCase):
         self.assertIn("ai_agent/keyinfo/keys.env", security)
         self.assertIn("사람 검토", security)
 
+    def test_careerdiff_launcher_preserves_local_data_outside_build_trace(self) -> None:
+        launcher = (ROOT / "CareerDiff" / "run-careerdiff.cmd").read_text(encoding="utf-8")
+        store = (
+            ROOT
+            / "CareerDiff"
+            / "app"
+            / "src"
+            / "core"
+            / "validation"
+            / "validationCaseFileStore.ts"
+        ).read_text(encoding="utf-8")
+        self.assertIn("CAREERDIFF_DATA_DIR=%~dp0data", launcher)
+        self.assertIn('path.resolve(/* turbopackIgnore: true */ process.cwd(), "data")', store)
+        self.assertNotIn('process.cwd(), "..", "data"', store)
+        gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
+        self.assertIn("CareerDiff/data/**/*.json", gitignore)
+        self.assertIn("CareerDiff/app/data/**/*.json", gitignore)
+
 
 if __name__ == "__main__":
     unittest.main()

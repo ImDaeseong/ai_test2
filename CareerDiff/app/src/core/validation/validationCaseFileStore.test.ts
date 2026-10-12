@@ -13,9 +13,9 @@ describe("validationDataDirectory", () => {
     else process.env.CAREERDIFF_DATA_DIR = original;
   });
 
-  it("defaults to the sibling data folder when no override is set", () => {
+  it("keeps the unconfigured fallback inside the app trace root", () => {
     delete process.env.CAREERDIFF_DATA_DIR;
-    expect(validationDataDirectory().endsWith(`${path.sep}data`)).toBe(true);
+    expect(validationDataDirectory()).toBe(path.resolve(process.cwd(), "data"));
   });
 
   it("honors CAREERDIFF_DATA_DIR so tests and E2E never touch the real data folder", () => {
