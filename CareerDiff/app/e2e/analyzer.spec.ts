@@ -8,7 +8,7 @@ const CANDIDATE_PROFILE =
 test.describe("CareerDiff analyzer flow", () => {
   test("shows the privacy notice and per-field sensitive-data warning before any input", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByText("브라우저와 CareerDiff/data 폴더에 저장됩니다")).toBeVisible();
+    await expect(page.getByText("브라우저와 이 PC의 data 폴더에 저장됩니다")).toBeVisible();
     await expect(page.getByText("민감한 정보는 첨부하지 마세요")).toBeVisible();
   });
 
