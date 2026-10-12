@@ -88,6 +88,9 @@ class RepositoryContractTests(unittest.TestCase):
         gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
         self.assertIn("CareerDiff/data/**/*.json", gitignore)
         self.assertIn("CareerDiff/app/data/**/*.json", gitignore)
+        readme = (ROOT / "CareerDiff" / "README.md").read_text(encoding="utf-8")
+        self.assertIn("CAREERDIFF_DATA_DIR", readme)
+        self.assertIn("CareerDiff/app/data/", readme)
 
 
 if __name__ == "__main__":

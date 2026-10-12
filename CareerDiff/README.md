@@ -16,6 +16,14 @@ npm install
 npm run dev
 ```
 
+`CAREERDIFF_DATA_DIR`가 없으면 데이터는 `CareerDiff/app/data/`에 저장됩니다. `run-careerdiff.cmd`는 이
+값을 기존 `CareerDiff/data/`로 지정하므로, 직접 실행할 때도 같은 폴더를 쓰려면 먼저 지정하세요.
+
+```powershell
+$env:CAREERDIFF_DATA_DIR = (Resolve-Path ../data).Path
+npm run dev
+```
+
 ## 사용
 
 1. 채용공고 입력란에 상세 모집요강을 붙여넣습니다(가장 정확한 주 경로). 잡코리아·사람인·인크루트
@@ -28,7 +36,7 @@ npm run dev
 
 ### 데이터 저장과 개인정보
 
-- 분석 결과는 `data/<UUID>.json`으로 누적 저장됩니다(결과 검토용, 누적된다고 분석 품질이 올라가진
+- 분석 결과는 `data/<UUID>.json`으로 누적 저장됩니다(런처는 `CareerDiff/data/`, 직접 실행은 위 설정이 없으면 `CareerDiff/app/data/`. 둘 다 git에서 제외됩니다)(결과 검토용, 누적된다고 분석 품질이 올라가진
   않습니다). 채용공고·후보자 프로필 원문이 그대로 들어가므로 외부 공유 전 개인정보 확인이 필요합니다.
   메인 화면엔 자동으로 안 불러오고, `/history`(우측 상단 "분석 히스토리 보기")에서만 훑어봅니다.
 - 후보자 프로필을 파일로 저장해 반복 첨부하려면 파일명을 `candidate-profile-*.json`으로 두세요 —
