@@ -4,7 +4,7 @@
 
 [쉬운 설명](ELI5.html) · [구조와 설계](DESIGN.md) · [브라우저에서 보기](https://htmlpreview.github.io/?https://github.com/ImDaeseong/ai_test2/blob/main/ELI5.html)
 
-AI 뮤직비디오 제작, 프롬프트 생성, YouTube 조사, 로컬 음악 분석, 채용 적합도 분석을 위한 6개 독립 프로젝트 모음입니다. 각 프로젝트의 상세 옵션과 입력 형식은 해당 폴더의 `README.md`를 확인하세요.
+AI 뮤직비디오 제작, 프롬프트 생성, YouTube 조사, 로컬 음악 분석, 채용 적합도 분석, 마케팅 운영을 위한 7개 독립 프로젝트 모음입니다. 각 프로젝트의 상세 옵션과 입력 형식은 해당 폴더의 `README.md`를 확인하세요.
 
 ## 사전 요구사항
 
@@ -34,6 +34,7 @@ python -m pip install --upgrade pip
 | `youtube_research` | `python -m pip install -r requirements.txt` |
 | `music_insight_studio` | `python -m pip install -r requirements.txt` · 정확도 향상 시 `python -m pip install -r requirements-optional.txt` |
 | `CareerDiff` | `cd CareerDiff\app; npm install` |
+| `marketing_command_center` | 설치 의존성 없음 · 정적 파일과 Node 내장 테스트 사용 |
 
 ### API 키
 
@@ -60,6 +61,7 @@ Copy-Item CareerDiff\app\.env.example CareerDiff\app\.env.local
 | [`youtube_research`](./youtube_research/) | 공개 YouTube 메타데이터 수집과 벤치마킹 리포트 | `python run.py search 30` 또는 `run.bat` |
 | [`music_insight_studio`](./music_insight_studio/) | 로컬 음원의 BPM·Key·LUFS·믹싱 상태 분석 | `python -m app.web.server --host 127.0.0.1 --port 8765` |
 | [`CareerDiff`](./CareerDiff/docs/README.md) | 채용공고와 이력서의 적합도 분석 | `cd CareerDiff\app; npm run dev` |
+| [`marketing_command_center`](./marketing_command_center/) | 멀티채널 콘텐츠·승인·성과·실험 운영 | `cd marketing_command_center; python serve.py` |
 
 ## MV 제작 흐름
 
@@ -87,6 +89,11 @@ cd CareerDiff\app
 npm test
 npm run typecheck
 npm run lint
+
+# Marketing Command Center
+cd ..\..\marketing_command_center
+node --test tests/*.test.mjs
+node scripts/validate.mjs
 ```
 
 ## 저장소 문서

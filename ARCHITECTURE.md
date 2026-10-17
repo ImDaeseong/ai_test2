@@ -4,7 +4,7 @@ Repository-wide purpose, boundaries, and human-review gates are summarized in [D
 
 ## System Shape
 
-ai_test2는 단일 애플리케이션이 아니라 6개 독립 프로젝트의 monorepo형 작업공간이다. 음악 영상 제작 프로젝트 일부는 파일 산출물로 연결되고, `music_insight_studio`와 `CareerDiff`는 이 파이프라인과 무관한 독립 도구다.
+ai_test2는 단일 애플리케이션이 아니라 7개 독립 프로젝트의 monorepo형 작업공간이다. 음악 영상 제작 프로젝트 일부는 파일 산출물로 연결되고, `music_insight_studio`, `CareerDiff`, `marketing_command_center`는 이 파이프라인과 무관한 독립 도구다.
 
 ```text
 ai_img_video_aiBoygirl / ai_anime
@@ -20,6 +20,9 @@ music_insight_studio
 
 CareerDiff
   -> independent Next.js app; local job/resume comparison with optional OpenAI generation
+
+marketing_command_center
+  -> independent static web app; browser-local marketing content and aggregate metrics
 ```
 
 ## Current Architectural Risk

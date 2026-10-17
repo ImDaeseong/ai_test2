@@ -10,6 +10,7 @@
 *.exe
 *.ico
 *.svg
+!marketing_command_center/assets/favicon.svg
 *.flac
 *.lrc
 *.srt

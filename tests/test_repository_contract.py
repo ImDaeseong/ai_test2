@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import subprocess
 import unittest
 from pathlib import Path
 
@@ -15,6 +16,7 @@ EXPECTED_PROJECTS = {
     "youtube_research",
     "music_insight_studio",
     "CareerDiff",
+    "marketing_command_center",
 }
 
 
@@ -46,7 +48,7 @@ class RepositoryContractTests(unittest.TestCase):
         discovered = self._discover_project_directories()
         self.assertEqual(discovered, EXPECTED_PROJECTS)
         self.assertEqual(registered, discovered)
-        self.assertIn("6개 독립 프로젝트", readme)
+        self.assertIn("7개 독립 프로젝트", readme)
         self.assertIn("결정론적 로컬 분석기", readme)
         self.assertNotIn("내장 mock 결과", readme)
 
@@ -70,6 +72,19 @@ class RepositoryContractTests(unittest.TestCase):
         self.assertIn("OPENAI_API_KEY", security)
         self.assertIn("ai_agent/keyinfo/keys.env", security)
         self.assertIn("사람 검토", security)
+
+    def test_governance_docs_register_marketing_command_center(self) -> None:
+        for name in ("SPEC.md", "ARCHITECTURE.md", "SECURITY_BOUNDARY.md", "HOLD_CONDITIONS.md", "CLAUDE.md"):
+            with self.subTest(document=name):
+                content = (ROOT / name).read_text(encoding="utf-8")
+                self.assertIn("marketing_command_center", content)
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("node --test tests/*.test.mjs", readme)
+        tracked = subprocess.run(
+            ["git", "ls-files", "--error-unmatch", "marketing_command_center/assets/favicon.svg"],
+            cwd=ROOT, capture_output=True, text=True, check=False,
+        )
+        self.assertEqual(tracked.returncode, 0, tracked.stderr)
 
     def test_careerdiff_launcher_preserves_local_data_outside_build_trace(self) -> None:
         launcher = (ROOT / "CareerDiff" / "run-careerdiff.cmd").read_text(encoding="utf-8")

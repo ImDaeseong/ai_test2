@@ -29,6 +29,9 @@ Stop and ask for human review if any condition below occurs.
 - YouTube research outputs imply private metrics or claims not supported by collected public metadata.
 - CapCut export changes risk corrupting a user's existing local draft folder.
 - `CareerDiff` 결과가 사람 검토 없이 채용·탈락 또는 지원 여부를 자동 결정하도록 사용된다.
+- `marketing_command_center`가 계정 비밀값을 저장하거나 사람 승인 없이 외부 채널에 게시한다.
+- 참가자 개인 식별정보, 비공개 커뮤니티 데이터 또는 행동 기반 타기팅 데이터를 수집하려 한다.
+- 마케팅 조회·좋아요를 제품 효과나 인과적 성과로 자동 해석하려 한다.
 
 ## Human Review Required Before
 

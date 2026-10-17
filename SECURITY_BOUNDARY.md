@@ -30,6 +30,13 @@ Not allowed in repository:
 - 실제 후보자 데이터는 소스 fixture로 커밋하지 않으며 `CareerDiff/data/`의 런타임 파일도 Git 추적 대상이 아니다.
 - 적합도 점수와 보완 제안은 의사결정 지원 정보이며 채용·탈락을 자동 결정하지 않는다. 실제 지원 또는 채용 판단에는 사람 검토가 필요하다.
 
+## Marketing Data Boundary
+
+- `marketing_command_center`는 외부 API 호출과 자동 게시를 하지 않으며 브라우저 `localStorage`에 콘텐츠와 집계 수치만 저장한다.
+- 참가자의 실명, 이메일, 회사명, 계정 토큰, 쿠키, 비공개 채널 분석값을 입력하지 않는다.
+- JSON 백업은 사용자가 직접 보관하며 내보내기 전에 개인 데이터와 비밀값이 없는지 확인한다.
+- 실제 게시, 계정 연동, 유료 광고, 행동 기반 타기팅은 별도 사람 검토가 필요하다.
+
 ## Media Boundary
 
 - `ai_img_video_prompt_capcut` may read local audio, subtitle, LRC, markdown, and clip files.
