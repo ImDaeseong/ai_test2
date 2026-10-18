@@ -250,3 +250,4 @@ The warning in the four `--basetemp` runs is a pytest cache warning from this sa
 - A clean Git archive exposed one test-only portability defect: the favicon contract called `git ls-files` even when `.git` was absent. The guard now always checks the file and checks Git tracking only in a checkout; the same archive run is required to pass before publication.
 - External platform OAuth/API account access, real publishing, and final subjective release approval remain human-review HOLD conditions. This loop did not require another metered OpenAI call because no provider-facing code changed.
 
+[LOOP-END] result: PASS_WITH_HOLD / gate: 100% automated / self-declared passes this scope: 6 / independent verification: clean Git archive without .git + qa_manager 12/12 + remote HEAD equality / live API: NOT RUN (documentation and publication verification; no provider-facing code changed)
