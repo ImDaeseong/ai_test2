@@ -56,6 +56,13 @@ npm run lint
 
 cd C:\path\to\ai_test2
 python -m unittest tests.test_repository_contract
+
+cd C:\path\to\ai_test2\marketing_command_center
+npm test
+python -m unittest discover -s tests -v
+npm run validate
+python scripts\smoke_lifecycle.py
+npm run e2e
 ```
 
 ## Document Checks
@@ -229,4 +236,17 @@ The warning in the four `--basetemp` runs is a pytest cache warning from this sa
 ## Exit Criteria
 
 [LOOP-END] result: root governance docs added and all existing tests still pass / gate: 100%
+
+
+## 2026-10-18 — Marketing Command Center final documentation and release loop
+
+[LOOP-START] goal: finalize Marketing Command Center documentation, security checks, regression verification, and publication / exit criteria: README, ELI5, design, verification, and repository contracts agree; no credential is tracked; all registered QA passes; remote commit matches local HEAD / max iterations: 3
+
+- Synchronized the seven-project count and added the marketing workflow, local-data boundary, optional OpenAI draft boundary, external OAuth HOLD, launcher, and repeatable verification commands to the root ELI5, design, agent guide, and this verification document.
+- Added repository contract assertions so future changes cannot silently remove Marketing Command Center from the design, ELI5, or verification documents, or regress the seven-project count.
+- Marketing Command Center: JavaScript 20/20, Python 19/19, static validation, lifecycle smoke, and Chrome E2E including ZIP backup/restore and 390px overflow all passed.
+- Repository contract: 5/5 passed. Security hotspot scan passed; only `.env.example` files are tracked, credential-like example values are blank, and conflict markers are absent.
+- qa_manager: all 12 registered ai_test2 checks passed with 0 stale status mismatches.
+- A clean Git archive exposed one test-only portability defect: the favicon contract called `git ls-files` even when `.git` was absent. The guard now always checks the file and checks Git tracking only in a checkout; the same archive run is required to pass before publication.
+- External platform OAuth/API account access, real publishing, and final subjective release approval remain human-review HOLD conditions. This loop did not require another metered OpenAI call because no provider-facing code changed.
 

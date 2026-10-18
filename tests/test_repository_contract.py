@@ -74,17 +74,23 @@ class RepositoryContractTests(unittest.TestCase):
         self.assertIn("사람 검토", security)
 
     def test_governance_docs_register_marketing_command_center(self) -> None:
-        for name in ("SPEC.md", "ARCHITECTURE.md", "SECURITY_BOUNDARY.md", "HOLD_CONDITIONS.md", "CLAUDE.md"):
+        for name in ("SPEC.md", "ARCHITECTURE.md", "SECURITY_BOUNDARY.md", "HOLD_CONDITIONS.md", "CLAUDE.md", "DESIGN.md", "VERIFICATION.md", "ELI5.html"):
             with self.subTest(document=name):
                 content = (ROOT / name).read_text(encoding="utf-8")
                 self.assertIn("marketing_command_center", content)
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("node --test tests/*.test.mjs", readme)
-        tracked = subprocess.run(
-            ["git", "ls-files", "--error-unmatch", "marketing_command_center/assets/favicon.svg"],
-            cwd=ROOT, capture_output=True, text=True, check=False,
-        )
-        self.assertEqual(tracked.returncode, 0, tracked.stderr)
+        self.assertIn("7개 프로젝트 구조", (ROOT / "CLAUDE.md").read_text(encoding="utf-8"))
+        self.assertIn("7개 독립 도구", (ROOT / "ELI5.html").read_text(encoding="utf-8"))
+        self.assertIn("npm run e2e", (ROOT / "VERIFICATION.md").read_text(encoding="utf-8"))
+        favicon = ROOT / "marketing_command_center" / "assets" / "favicon.svg"
+        self.assertTrue(favicon.is_file())
+        if (ROOT / ".git").is_dir():
+            tracked = subprocess.run(
+                ["git", "ls-files", "--error-unmatch", "marketing_command_center/assets/favicon.svg"],
+                cwd=ROOT, capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(tracked.returncode, 0, tracked.stderr)
 
     def test_careerdiff_launcher_preserves_local_data_outside_build_trace(self) -> None:
         launcher = (ROOT / "CareerDiff" / "run-careerdiff.cmd").read_text(encoding="utf-8")

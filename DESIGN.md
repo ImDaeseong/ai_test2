@@ -1,6 +1,6 @@
 # ai_test2 Design
 
-Updated: 2026-10-09
+Updated: 2026-10-18
 
 ## Purpose
 
@@ -23,6 +23,7 @@ Collect research, career-analysis, animation, and image/video prompt application
 ## Main components
 
 - `CareerDiff/`: local or consented external career comparison.
+- `marketing_command_center/`: local-first content planning, approval, scheduling, aggregate metrics, backup, and optional consented OpenAI drafting.
 - `music_insight_studio/` and `youtube_research/`: research and analysis workflows.
 - `ai_anime/`, `ai_img_video_aiBoygirl/`, and `ai_img_video_prompt_capcut/`: visual prompt pipelines.
 - [ARCHITECTURE.md](ARCHITECTURE.md): repository-level component map.
@@ -41,9 +42,14 @@ The detailed implementation and target module boundaries are maintained in [ARCH
 
 `youtube_research/`, `music_insight_studio/`, and `CareerDiff/`
   -> independent research, local audio, and career-analysis products
+
+`marketing_command_center/`
+  -> browser UI -> local server -> media directory or one optional OpenAI draft call
+  -> JSON/ZIP backup and CSV report
+  -> human approval -> external platform (HOLD until real OAuth/API access exists)
 ```
 
-File contracts?봢diting-map sections, LRC/SRT labels, clip names, timeline JSON, and CapCut draft files?봞re the only intentional cross-project integration. `music_insight_studio` is local-only; `CareerDiff` owns its Next.js boundary and sends job/resume text externally only after the user selects that path.
+File contracts—editing-map sections, LRC/SRT labels, clip names, timeline JSON, and CapCut draft files—are the only intentional cross-project integration. `music_insight_studio` is local-only; `CareerDiff` owns its Next.js boundary and sends job/resume text externally only after the user selects that path. `marketing_command_center` stores operating data in browser `localStorage`, stores uploaded media only in its ignored `media/` directory, keeps provider credentials in process environment variables, and does not treat detected settings as verified account access.
 
 ## Key decisions and tradeoffs
 

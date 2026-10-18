@@ -17,7 +17,7 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 5. `VERIFICATION.md` — 진행률 게이트와 검증 명령
 6. `ROADMAP.md` — 현대화 순서
 
-## 6개 프로젝트 구조
+## 7개 프로젝트 구조
 
 ```
 [1] ai_img_video_aiBoygirl
