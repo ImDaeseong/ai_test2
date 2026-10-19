@@ -10,7 +10,6 @@
 *.exe
 *.ico
 *.svg
-!marketing_command_center/assets/favicon.svg
 *.flac
 *.lrc
 *.srt
@@ -75,3 +74,6 @@ desktop.ini
 
 # Windows batch temp
 *.tmp
+
+# Private project under development: kept local only, never tracked or published.
+marketing_command_center/

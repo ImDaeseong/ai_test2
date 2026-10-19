@@ -1,6 +1,6 @@
 ﻿# CLAUDE.md — ai_test2
 
-AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동화, 유튜브 리서치, 음악 분석, 채용 적합도 분석, 마케팅 운영 프로젝트 모음.
+AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동화, 유튜브 리서치, 음악 분석, 채용 적합도 분석 프로젝트 모음.
 
 ## 저장소 목적
 
@@ -17,7 +17,7 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 5. `VERIFICATION.md` — 진행률 게이트와 검증 명령
 6. `ROADMAP.md` — 현대화 순서
 
-## 7개 프로젝트 구조
+## 6개 프로젝트 구조
 
 ```
 [1] ai_img_video_aiBoygirl
@@ -41,10 +41,6 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 [6] CareerDiff
       └─ 독립 실행 — 채용공고·이력서 적합도 분석, 키가 있으면 OpenAI 사용
       └─ 기본 mock 경로와 런타임 개인 데이터는 다른 5개 프로젝트와 공유하지 않음
-
-[7] marketing_command_center
-      └─ 독립 실행 — 커뮤니티별 홍보 글 작성·올리기 전 점검·반응 기록
-      └─ 자동 게시 없음, 데이터는 브라우저 localStorage에만 저장, OpenAI 호출은 선택(호출마다 확인)
 ```
 
 ## 핵심 규칙
@@ -69,7 +65,6 @@ cd ../ai_img_video_prompt_capcut ; python -m pytest tests_unit.py -q
 cd ../youtube_research           ; python -m pytest tests_unit.py -q
 cd ../music_insight_studio       ; .venv\Scripts\python.exe -m unittest discover -s tests
 cd ../CareerDiff/app             ; npm run typecheck ; npm test ; npm run lint
-cd ../../marketing_command_center; node --test tests/*.test.mjs ; node scripts/validate.mjs
 cd ../..                         ; python -m unittest tests.test_repository_contract
 ```
 

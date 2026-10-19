@@ -57,12 +57,6 @@ npm run lint
 cd C:\path\to\ai_test2
 python -m unittest tests.test_repository_contract
 
-cd C:\path\to\ai_test2\marketing_command_center
-npm test
-python -m unittest discover -s tests -v
-npm run validate
-python scripts\smoke_lifecycle.py
-npm run e2e
 ```
 
 ## Document Checks
@@ -236,31 +230,3 @@ The warning in the four `--basetemp` runs is a pytest cache warning from this sa
 ## Exit Criteria
 
 [LOOP-END] result: root governance docs added and all existing tests still pass / gate: 100%
-
-
-## 2026-10-18 — Marketing Command Center final documentation and release loop
-
-[LOOP-START] goal: finalize Marketing Command Center documentation, security checks, regression verification, and publication / exit criteria: README, ELI5, design, verification, and repository contracts agree; no credential is tracked; all registered QA passes; remote commit matches local HEAD / max iterations: 3
-
-- Synchronized the seven-project count and added the marketing workflow, local-data boundary, optional OpenAI draft boundary, external OAuth HOLD, launcher, and repeatable verification commands to the root ELI5, design, agent guide, and this verification document.
-- Added repository contract assertions so future changes cannot silently remove Marketing Command Center from the design, ELI5, or verification documents, or regress the seven-project count.
-- Marketing Command Center: JavaScript 20/20, Python 19/19, static validation, lifecycle smoke, and Chrome E2E including ZIP backup/restore and 390px overflow all passed.
-- Repository contract: 5/5 passed. Security hotspot scan passed; only `.env.example` files are tracked, credential-like example values are blank, and conflict markers are absent.
-- qa_manager: all 12 registered ai_test2 checks passed with 0 stale status mismatches.
-- A clean Git archive exposed one test-only portability defect: the favicon contract called `git ls-files` even when `.git` was absent. The guard now always checks the file and checks Git tracking only in a checkout; the same archive run is required to pass before publication.
-- External platform OAuth/API account access, real publishing, and final subjective release approval remain human-review HOLD conditions. This loop did not require another metered OpenAI call because no provider-facing code changed.
-
-[LOOP-END] result: PASS_WITH_HOLD / gate: 100% automated / self-declared passes this scope: 6 / independent verification: clean Git archive without .git + qa_manager 12/12 + remote HEAD equality / live API: NOT RUN (documentation and publication verification; no provider-facing code changed)
-
-## 2026-10-20 — Marketing Studio redesign around pre-post quality checks
-
-[LOOP-START] goal: replace the multi-view dashboard with a four-step write, check, post, record flow and remove every leftover of the old features / exit criteria: all project checks pass, no stale term in docs or code, repository contracts agree / max iterations: 3
-
-- Removed the calendar, publish queue, platform and OAuth checks, media upload, ZIP backup, CSV report, `model.js`, `PLATFORM_INTEGRATION.md`, the old media folder and its ignore rule. Default port is now 4175 everywhere.
-- Added rule checks (`src/quality.js`), an AI review endpoint with strict reply parsing, per-channel starter posts for six channels (`src/starter.js`), a load-problem banner, and a launcher that restarts a server running outdated code.
-- `npm run validate` now fails when a removed feature's term (calendar, queue, ZIP, OAuth, CSV, port 4173, `media/`) reappears in the current docs or code, or when a `media/` folder returns.
-- Project: JavaScript 9/9, Python 12/12, validate, lifecycle smoke, launcher smoke, and Chrome E2E (first-run starter, empty and older saved states, six channels, AI response display, seven error messages, copy, record, reload, 390px, console) passed. Repository contract tests 23/23 passed.
-- Live OpenAI: draft and review calls through the real endpoint returned valid output on 2026-10-20 (draft 1, review 2 for the massage-practice posts); review feedback was folded into the starter posts. The review's judgments are model opinion, not measured reader response.
-- Human-review HOLD: whether the checks predict real community response (track with the in-app record), each community's promotion rules, safety of in-person meetings, and the rights and quality of any image, video, or music.
-
-[LOOP-END] result: PASS_WITH_HOLD / gate: 100% automated / self-declared passes this scope: 9 / live API: RUN (calls: 3 on the final content) / independent verification: deterministic commands and a real Chrome run decided each step; no fresh-agent review was run.

@@ -16,8 +16,9 @@ EXPECTED_PROJECTS = {
     "youtube_research",
     "music_insight_studio",
     "CareerDiff",
-    "marketing_command_center",
 }
+# Developed locally and kept out of the public repository; never registered, documented, or tracked here.
+PRIVATE_LOCAL_PROJECTS = {"marketing_command_center"}
 
 
 class RepositoryContractTests(unittest.TestCase):
@@ -28,7 +29,7 @@ class RepositoryContractTests(unittest.TestCase):
         """Find runnable top-level projects without trusting the README registry."""
         discovered: set[str] = set()
         for directory in ROOT.iterdir():
-            if not directory.is_dir() or not (directory / "README.md").is_file():
+            if not directory.is_dir() or directory.name in PRIVATE_LOCAL_PROJECTS or not (directory / "README.md").is_file():
                 continue
             markers = (
                 directory / "main.py",
@@ -48,7 +49,7 @@ class RepositoryContractTests(unittest.TestCase):
         discovered = self._discover_project_directories()
         self.assertEqual(discovered, EXPECTED_PROJECTS)
         self.assertEqual(registered, discovered)
-        self.assertIn("7개 독립 프로젝트", readme)
+        self.assertIn("6개 독립 프로젝트", readme)
         self.assertIn("결정론적 로컬 분석기", readme)
         self.assertNotIn("내장 mock 결과", readme)
 
@@ -73,24 +74,17 @@ class RepositoryContractTests(unittest.TestCase):
         self.assertIn("ai_agent/keyinfo/keys.env", security)
         self.assertIn("사람 검토", security)
 
-    def test_governance_docs_register_marketing_command_center(self) -> None:
-        for name in ("SPEC.md", "ARCHITECTURE.md", "SECURITY_BOUNDARY.md", "HOLD_CONDITIONS.md", "CLAUDE.md", "DESIGN.md", "VERIFICATION.md", "ELI5.html"):
-            with self.subTest(document=name):
-                content = (ROOT / name).read_text(encoding="utf-8")
-                self.assertIn("marketing_command_center", content)
-        readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertIn("node --test tests/*.test.mjs", readme)
-        self.assertIn("7개 프로젝트 구조", (ROOT / "CLAUDE.md").read_text(encoding="utf-8"))
-        self.assertIn("7개 독립 도구", (ROOT / "ELI5.html").read_text(encoding="utf-8"))
-        self.assertIn("npm run e2e", (ROOT / "VERIFICATION.md").read_text(encoding="utf-8"))
-        favicon = ROOT / "marketing_command_center" / "assets" / "favicon.svg"
-        self.assertTrue(favicon.is_file())
-        if (ROOT / ".git").is_dir():
-            tracked = subprocess.run(
-                ["git", "ls-files", "--error-unmatch", "marketing_command_center/assets/favicon.svg"],
-                cwd=ROOT, capture_output=True, text=True, check=False,
-            )
-            self.assertEqual(tracked.returncode, 0, tracked.stderr)
+    def test_private_projects_stay_untracked_and_undocumented(self) -> None:
+        gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
+        docs = ("README.md", "SPEC.md", "ARCHITECTURE.md", "DESIGN.md", "SECURITY_BOUNDARY.md", "HOLD_CONDITIONS.md", "CLAUDE.md", "VERIFICATION.md", "ELI5.html")
+        for project in sorted(PRIVATE_LOCAL_PROJECTS):
+            with self.subTest(project=project):
+                self.assertIn(f"{project}/", gitignore.splitlines())
+                for name in docs:
+                    self.assertNotIn(project, (ROOT / name).read_text(encoding="utf-8"), name)
+                if (ROOT / ".git").is_dir():
+                    tracked = subprocess.run(["git", "ls-files", project], cwd=ROOT, capture_output=True, text=True, check=False)
+                    self.assertEqual(tracked.stdout.strip(), "", "private project files must not be tracked")
 
     def test_careerdiff_launcher_preserves_local_data_outside_build_trace(self) -> None:
         launcher = (ROOT / "CareerDiff" / "run-careerdiff.cmd").read_text(encoding="utf-8")
