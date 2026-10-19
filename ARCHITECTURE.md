@@ -22,7 +22,7 @@ CareerDiff
   -> independent Next.js app; local job/resume comparison with optional OpenAI generation
 
 marketing_command_center
-  -> independent static web app; browser-local marketing content and aggregate metrics
+  -> independent local web app; community posts written and rule/AI-checked before manual posting; results kept in browser localStorage
 ```
 
 ## Current Architectural Risk

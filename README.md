@@ -61,7 +61,7 @@ Copy-Item CareerDiff\app\.env.example CareerDiff\app\.env.local
 | [`youtube_research`](./youtube_research/) | 공개 YouTube 메타데이터 수집과 벤치마킹 리포트 | `python run.py search 30` 또는 `run.bat` |
 | [`music_insight_studio`](./music_insight_studio/) | 로컬 음원의 BPM·Key·LUFS·믹싱 상태 분석 | `python -m app.web.server --host 127.0.0.1 --port 8765` |
 | [`CareerDiff`](./CareerDiff/docs/README.md) | 채용공고와 이력서의 적합도 분석 | `cd CareerDiff\app; npm run dev` |
-| [`marketing_command_center`](./marketing_command_center/) | 멀티채널 콘텐츠·승인·성과·실험 운영 | `cd marketing_command_center; python serve.py` |
+| [`marketing_command_center`](./marketing_command_center/) | 커뮤니티별 홍보 글 작성·올리기 전 점검·반응 기록 | `cd marketing_command_center; python serve.py` |
 
 ## MV 제작 흐름
 

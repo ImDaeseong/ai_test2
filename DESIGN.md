@@ -23,7 +23,7 @@ Collect research, career-analysis, animation, and image/video prompt application
 ## Main components
 
 - `CareerDiff/`: local or consented external career comparison.
-- `marketing_command_center/`: local-first content planning, approval, scheduling, aggregate metrics, backup, and optional consented OpenAI drafting.
+- `marketing_command_center/`: local-first community post writing, rule-based and optional OpenAI pre-post checks, and manual posting records.
 - `music_insight_studio/` and `youtube_research/`: research and analysis workflows.
 - `ai_anime/`, `ai_img_video_aiBoygirl/`, and `ai_img_video_prompt_capcut/`: visual prompt pipelines.
 - [ARCHITECTURE.md](ARCHITECTURE.md): repository-level component map.
@@ -44,12 +44,11 @@ The detailed implementation and target module boundaries are maintained in [ARCH
   -> independent research, local audio, and career-analysis products
 
 `marketing_command_center/`
-  -> browser UI -> local server -> media directory or one optional OpenAI draft call
-  -> JSON/ZIP backup and CSV report
-  -> human approval -> external platform (HOLD until real OAuth/API access exists)
+  -> browser UI (rule check in the page) -> local server -> one optional OpenAI draft or review call per click
+  -> human copies the post and publishes it manually; results are recorded in the browser
 ```
 
-File contracts—editing-map sections, LRC/SRT labels, clip names, timeline JSON, and CapCut draft files—are the only intentional cross-project integration. `music_insight_studio` is local-only; `CareerDiff` owns its Next.js boundary and sends job/resume text externally only after the user selects that path. `marketing_command_center` stores operating data in browser `localStorage`, stores uploaded media only in its ignored `media/` directory, keeps provider credentials in process environment variables, and does not treat detected settings as verified account access.
+File contracts—editing-map sections, LRC/SRT labels, clip names, timeline JSON, and CapCut draft files—are the only intentional cross-project integration. `music_insight_studio` is local-only; `CareerDiff` owns its Next.js boundary and sends job/resume text externally only after the user selects that path. `marketing_command_center` stores operating data in browser `localStorage`, stores no uploaded files, keeps the OpenAI key in a process environment variable, and never posts to a platform on the user's behalf.
 
 ## Key decisions and tradeoffs
 

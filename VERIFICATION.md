@@ -251,3 +251,16 @@ The warning in the four `--basetemp` runs is a pytest cache warning from this sa
 - External platform OAuth/API account access, real publishing, and final subjective release approval remain human-review HOLD conditions. This loop did not require another metered OpenAI call because no provider-facing code changed.
 
 [LOOP-END] result: PASS_WITH_HOLD / gate: 100% automated / self-declared passes this scope: 6 / independent verification: clean Git archive without .git + qa_manager 12/12 + remote HEAD equality / live API: NOT RUN (documentation and publication verification; no provider-facing code changed)
+
+## 2026-10-20 — Marketing Studio redesign around pre-post quality checks
+
+[LOOP-START] goal: replace the multi-view dashboard with a four-step write, check, post, record flow and remove every leftover of the old features / exit criteria: all project checks pass, no stale term in docs or code, repository contracts agree / max iterations: 3
+
+- Removed the calendar, publish queue, platform and OAuth checks, media upload, ZIP backup, CSV report, `model.js`, `PLATFORM_INTEGRATION.md`, the old media folder and its ignore rule. Default port is now 4175 everywhere.
+- Added rule checks (`src/quality.js`), an AI review endpoint with strict reply parsing, per-channel starter posts for six channels (`src/starter.js`), a load-problem banner, and a launcher that restarts a server running outdated code.
+- `npm run validate` now fails when a removed feature's term (calendar, queue, ZIP, OAuth, CSV, port 4173, `media/`) reappears in the current docs or code, or when a `media/` folder returns.
+- Project: JavaScript 9/9, Python 12/12, validate, lifecycle smoke, launcher smoke, and Chrome E2E (first-run starter, empty and older saved states, six channels, AI response display, seven error messages, copy, record, reload, 390px, console) passed. Repository contract tests 23/23 passed.
+- Live OpenAI: draft and review calls through the real endpoint returned valid output on 2026-10-20 (draft 1, review 2 for the massage-practice posts); review feedback was folded into the starter posts. The review's judgments are model opinion, not measured reader response.
+- Human-review HOLD: whether the checks predict real community response (track with the in-app record), each community's promotion rules, safety of in-person meetings, and the rights and quality of any image, video, or music.
+
+[LOOP-END] result: PASS_WITH_HOLD / gate: 100% automated / self-declared passes this scope: 9 / live API: RUN (calls: 3 on the final content) / independent verification: deterministic commands and a real Chrome run decided each step; no fresh-agent review was run.

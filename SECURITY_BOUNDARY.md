@@ -32,9 +32,9 @@ Not allowed in repository:
 
 ## Marketing Data Boundary
 
-- `marketing_command_center`는 외부 API 호출과 자동 게시를 하지 않으며 브라우저 `localStorage`에 콘텐츠와 집계 수치만 저장한다.
+- `marketing_command_center`는 자동 게시를 하지 않으며 브라우저 `localStorage`에 서비스 설명, 글, 올린 글의 집계 수치만 저장한다. 서버는 데이터를 저장하지 않는다. OpenAI 호출은 사용자가 호출마다 확인할 때만 하며 서비스 이름·설명과 해당 글만 보낸다(`store: false`).
 - 참가자의 실명, 이메일, 회사명, 계정 토큰, 쿠키, 비공개 채널 분석값을 입력하지 않는다.
-- JSON 백업은 사용자가 직접 보관하며 내보내기 전에 개인 데이터와 비밀값이 없는지 확인한다.
+- 백업·내보내기 기능이 없으므로 브라우저 데이터를 지우면 기록이 사라진다. 서비스 설명과 글에 개인 데이터나 비밀값을 쓰지 않는다.
 - 실제 게시, 계정 연동, 유료 광고, 행동 기반 타기팅은 별도 사람 검토가 필요하다.
 
 ## Media Boundary
