@@ -16,23 +16,43 @@
     <p class="lead">글을 쓰고, 올리기 전에 점검하고, 직접 올린 뒤 반응을 기록합니다.</p>
     <p id="statusText" role="status" aria-live="polite"></p>
 
-    <section class="card" aria-labelledby="stepService">
-      <h2 id="stepService"><span>1</span> 홍보할 서비스</h2>
-      <label for="serviceSelect">서비스 선택</label>
-      <select id="serviceSelect"></select>
-      <label for="serviceName">이름</label>
-      <input id="serviceName" maxlength="100" autocomplete="off">
-      <label for="serviceDesc">한두 문장 설명 (누가, 어떤 문제를, 어떻게 해결하는지)</label>
-      <textarea id="serviceDesc" rows="3" maxlength="500"></textarea>
+    <nav class="view-nav" aria-label="주요 작업">
+      <button type="button" data-view-target="today" aria-current="page">오늘</button>
+      <button type="button" data-view-target="content" class="ghost">콘텐츠</button>
+      <button type="button" data-view-target="community" class="ghost">커뮤니티</button>
+      <button type="button" data-view-target="results" class="ghost">성과</button>
+    </nav>
+
+    <section class="card today-card" data-view="today" aria-labelledby="todayTitle">
+      <h2 id="todayTitle">오늘 할 일</h2>
+      <p class="hint">한 번에 한 가지 작업만 선택하세요. 작성 중인 글과 다음 행동을 먼저 보여 줍니다.</p>
+      <div id="todaySummary" class="action-list"></div>
       <div class="row">
-        <button id="saveServiceButton" type="button">저장</button>
-        <button id="newServiceButton" type="button" class="ghost">새 서비스</button>
-        <button id="deleteServiceButton" type="button" class="ghost">삭제</button>
-        <button id="loadStarterButton" type="button" class="ghost">마사지 연습 예시 불러오기</button>
+        <button type="button" data-go-view="content">글 이어 쓰기</button>
+        <button type="button" data-go-view="community" class="ghost">검수하고 게시하기</button>
       </div>
     </section>
 
-    <section class="card" aria-labelledby="stepWrite">
+    <section class="card" data-view="content" aria-labelledby="stepService" hidden>
+      <h2 id="stepService"><span>1</span> 홍보할 서비스</h2>
+      <label for="serviceSelect">서비스 선택</label>
+      <select id="serviceSelect"></select>
+      <details>
+        <summary>서비스 정보 수정·예시 불러오기</summary>
+        <label for="serviceName">이름</label>
+        <input id="serviceName" maxlength="100" autocomplete="off">
+        <label for="serviceDesc">한두 문장 설명 (누가, 어떤 문제를, 어떻게 해결하는지)</label>
+        <textarea id="serviceDesc" rows="3" maxlength="500"></textarea>
+        <div class="row">
+          <button id="saveServiceButton" type="button">저장</button>
+          <button id="newServiceButton" type="button" class="ghost">새 서비스</button>
+          <button id="deleteServiceButton" type="button" class="ghost">삭제</button>
+          <button id="loadStarterButton" type="button" class="ghost">마사지 연습 예시 불러오기</button>
+        </div>
+      </details>
+    </section>
+
+    <section class="card" data-view="content" aria-labelledby="stepWrite" hidden>
       <h2 id="stepWrite"><span>2</span> 글 쓰기</h2>
       <label for="channelSelect">올릴 곳</label>
       <select id="channelSelect"></select>
@@ -48,6 +68,21 @@
         <input id="proofInput" maxlength="300" placeholder="예: 불편하면 즉시 중단, 치료 목적 아님">
         <label for="ctaInput">딱 한 가지 행동</label>
         <input id="ctaInput" maxlength="300" placeholder="예: DM으로 가능한 요일과 지역 보내기">
+        <details class="brief-more">
+          <summary>커뮤니티에 맞게 더 구체화하기</summary>
+          <label for="objectiveInput">이번 글의 목표</label>
+          <select id="objectiveInput"><option>도움 주기</option><option>질문 받기</option><option>피드백 얻기</option><option>업데이트 알리기</option></select>
+          <label for="contentPillarInput">반복할 콘텐츠 주제</label>
+          <input id="contentPillarInput" maxlength="200" placeholder="예: 초보자를 위한 안전한 셀프케어">
+          <label for="communityContextInput">이 커뮤니티가 선호하는 방식</label>
+          <textarea id="communityContextInput" rows="3" maxlength="500" placeholder="예: 경험을 먼저 공유하고, 과장된 홍보와 외부 링크는 피함"></textarea>
+          <label for="conversationQuestionInput">대화를 여는 질문</label>
+          <input id="conversationQuestionInput" maxlength="300" placeholder="예: 처음 받을 때 가장 걱정되는 점은 무엇인가요?">
+          <label for="evidenceUrlInput">근거 URL (선택)</label>
+          <input id="evidenceUrlInput" type="url" maxlength="500" placeholder="https://...">
+          <label for="successSignalInput">이 글의 성공 신호</label>
+          <input id="successSignalInput" maxlength="200" placeholder="예: 도움이 됐다는 답글 또는 구체적인 질문">
+        </details>
       </fieldset>
       <div class="row">
         <button id="draftButton" type="button" class="ghost">AI 초안 만들기 (유료 호출 1회)</button>
@@ -57,7 +92,7 @@
       <p class="hint" id="charCount"></p>
     </section>
 
-    <section class="card" aria-labelledby="stepCheck">
+    <section class="card" data-view="community" aria-labelledby="stepCheck" hidden>
       <h2 id="stepCheck"><span>3</span> 올리기 전 점검</h2>
       <p id="verdict" class="verdict" data-verdict="empty">본문을 쓰면 규칙 점검이 바로 나옵니다.</p>
       <ul id="issueList" class="issues"></ul>
@@ -75,7 +110,7 @@
       </details>
     </section>
 
-    <section class="card" aria-labelledby="stepPost">
+    <section class="card" data-view="community" aria-labelledby="stepPost" hidden>
       <h2 id="stepPost"><span>4</span> 커뮤니티에 연결하고 기록하기</h2>
       <p class="hint">자동 게시가 아니라, 본문을 복사한 뒤 연결한 커뮤니티를 여는 안전한 수동 연동입니다. 게시판 규칙과 광고 표기를 직접 확인하세요.</p>
       <label for="communityUrl">현재 채널 게시 주소</label>
@@ -92,8 +127,8 @@
         <button id="savePolicyReviewButton" type="button" class="ghost">이 문안에 검수 증거 저장</button>
         <p id="policyReviewStatus" class="hint"></p>
       </fieldset>
-      <fieldset>
-        <legend>반응 실험 기록 (선택)</legend>
+      <details>
+        <summary>반응 실험 기록 (선택)</summary>
         <label for="experimentId">실험 ID</label>
         <input id="experimentId" maxlength="100" placeholder="예: massage-hook-01">
         <label for="experimentVariant">문안 구분</label>
@@ -101,7 +136,7 @@
         <label for="experimentChange">B에서 바꾼 한 가지</label>
         <input id="experimentChange" maxlength="300" placeholder="예: 첫 줄만 문제형에서 가치형으로 변경">
         <p id="experimentStatus" class="hint"></p>
-      </fieldset>
+      </details>
       <details>
         <summary>플랫폼 API 자동 게시 준비도</summary>
         <p class="hint">설정 이름의 존재만 확인하며 계정 동의·앱 심사·실제 권한을 PASS로 추정하지 않습니다.</p>
@@ -113,6 +148,11 @@
         <button id="openCommunityButton" type="button">복사하고 커뮤니티 열기</button>
         <button id="postedButton" type="button" class="ghost">올렸어요 (기록)</button>
       </div>
+    </section>
+
+    <section class="card" data-view="results" aria-labelledby="resultsTitle" hidden>
+      <h2 id="resultsTitle">성과와 다음 학습</h2>
+      <p class="hint">게시 후 실제 숫자만 기록합니다. 노출이 없었던 경우와 반응이 없었던 경우를 구분하세요.</p>
       <ul id="historyList" class="history"></ul>
       <p id="historySummary" class="hint"></p>
     </section>

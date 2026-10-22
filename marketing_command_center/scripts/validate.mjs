@@ -4,13 +4,15 @@ import{fileURLToPath}from"node:url";
 
 const root=resolve(fileURLToPath(new URL("..",import.meta.url)));
 const required={
-  "index.html":["id=\"bootProblem\"","id=\"loadStarterButton\"","src/boot.js","id=\"serviceSelect\"","id=\"channelSelect\"","id=\"postText\"","id=\"verdict\"","id=\"issueList\"","id=\"draftButton\"","id=\"reviewButton\"","id=\"copyButton\"","id=\"postedButton\"","id=\"historyList\"","id=\"mediaChecklist\""],
+  "index.html":["id=\"bootProblem\"","id=\"loadStarterButton\"","data-view-target=\"today\"","id=\"todaySummary\"","id=\"serviceSelect\"","id=\"channelSelect\"","id=\"communityContextInput\"","id=\"successSignalInput\"","id=\"postText\"","id=\"verdict\"","id=\"issueList\"","id=\"draftButton\"","id=\"reviewButton\"","id=\"copyButton\"","id=\"postedButton\"","id=\"historyList\"","id=\"mediaChecklist\""],
   "src/quality.js":["export function checkPost","export const CHANNELS","export const MEDIA_CHECKLISTS"],
-  "src/app.js":["localStorage","checkPost","/api/ai/draft","/api/ai/review","OpenAI 유료 API를 1회 호출"],
+  "src/app.js":["localStorage","showView","community_context","success_signal","checkPost","/api/ai/draft","/api/ai/review","OpenAI 유료 API를 1회 호출"],
   "serve.py":["def generate_marketing_draft","def review_marketing_post","/api/health","SO_EXCLUSIVEADDRUSE","\"store\": False"],
   "scripts/browser_e2e.mjs":["Emulation.setDeviceMetricsOverride","browser console errors"],
   "scripts/smoke_launcher.ps1":["$startedPid = [int]$Matches[1]","Wait-Process -Id $startedPid"],
-  "README.md":["node --test","localStorage","npm run e2e","사람 검토 HOLD"],
+  "README.md":["ELI5.md","CHANGELOG.md","LIVE_API_EVIDENCE.md","node --test","localStorage","npm run e2e","사람 검토 HOLD"],
+  "ELI5.md":["오늘","콘텐츠","커뮤니티","성과","자동으로 게시하지 않습니다"],
+  "CHANGELOG.md":["2026-10-22","실제 Chrome E2E","gpt-6-luna","LIVE_API_EVIDENCE.md"],
   "PRODUCT_SCOPE.md":["사용 사례","보안 경계","완료 기준","사람 검토 HOLD"]
 };
 const forbidden={"src/app.js":["OPENAI_API_KEY","sk-"],"index.html":["OPENAI_API_KEY","sk-"]};

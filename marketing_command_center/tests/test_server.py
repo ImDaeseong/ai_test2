@@ -87,6 +87,33 @@ class OpenAIDraftTests(unittest.TestCase):
         for value in ("혼자 일하는 마케터", "정리 시간 줄이기", "직접 입력한 데이터만 사용", "데모 요청"):
             self.assertIn(value, captured["body"]["input"])
 
+    def test_community_context_reaches_draft_and_review_prompts(self):
+        captured = []
+        context = {
+            "objective": "질문에 답해 신뢰 얻기",
+            "content_pillar": "혼자 하는 마케팅 운영",
+            "community_context": "초보자의 구체적인 시행착오를 선호",
+            "conversation_question": "매주 가장 오래 걸리는 업무는 무엇인가요?",
+            "success_signal": "도움이 됐다는 답글",
+            "evidence_url": "https://example.com/source",
+        }
+
+        def opener(request, timeout):
+            captured.append(json.loads(request.data.decode("utf-8"))["input"])
+            response = "초안" if len(captured) == 1 else json.dumps(GOOD_REVIEW, ensure_ascii=False)
+            return FakeResponse(openai_body(response))
+
+        self.assertEqual(generate_marketing_draft({**DRAFT, **context}, "k", opener)["status"], "generated")
+        self.assertEqual(review_marketing_post({**REVIEW, **context}, "k", opener)["status"], "reviewed")
+        for prompt in captured:
+            for value in context.values():
+                self.assertIn(value, prompt)
+
+    def test_oversized_community_context_never_reaches_the_network(self):
+        fail = lambda *_args, **_kwargs: self.fail("network called")
+        payload = {**DRAFT, "community_context": "가" * 501}
+        self.assertEqual(generate_marketing_draft(payload, "k", fail), {"status": "error", "kind": "invalid_input"})
+
 
 class OpenAIReviewTests(unittest.TestCase):
     """Verify the review reply is parsed strictly and only the allowlisted fields survive."""

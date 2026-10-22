@@ -29,7 +29,13 @@ INTEGRATIONS = {
     "naver_cafe": ("Naver Cafe", ("NAVER_CLIENT_ID", "NAVER_CLIENT_SECRET", "NAVER_REDIRECT_URI"), "review_required"),
     "naver_blog": ("Naver Blog", (), "unsupported"),
 }
-MAX_FIELD_CHARS = {"service": 100, "description": 500, "channel": 50, "topic": 300, "audience": 300, "benefit": 300, "proof": 300, "cta": 300, "text": 3000}
+MAX_FIELD_CHARS = {
+    "service": 100, "description": 500, "channel": 50, "topic": 300,
+    "audience": 300, "benefit": 300, "proof": 300, "cta": 300,
+    "objective": 100, "content_pillar": 200, "community_context": 500,
+    "conversation_question": 300, "evidence_url": 500, "success_signal": 200,
+    "text": 3000,
+}
 MAX_REQUEST_BYTES = 20_000
 DRAFT_TOKENS = 400
 REVIEW_TOKENS = 700
@@ -112,11 +118,23 @@ def _service_brief(fields: dict[str, str]) -> str:
     return f"서비스: {fields['service']}\n서비스 설명: {fields['description']}\n채널: {fields['channel'] or '미정'}"
 
 
+def _community_brief(fields: dict[str, str]) -> str:
+    """Describe the community-specific intent and evidence for a prompt."""
+    return (
+        f"글의 목표: {fields['objective'] or '도움 주기'}\n"
+        f"콘텐츠 주제 축: {fields['content_pillar'] or '미정'}\n"
+        f"커뮤니티 맥락: {fields['community_context'] or '일반적인 채널 특성만 따르고 새 사실은 만들지 말 것'}\n"
+        f"대화를 여는 질문: {fields['conversation_question'] or '부담 없는 구체적인 질문 한 가지'}\n"
+        f"근거 URL: {fields['evidence_url'] or '없음'}\n"
+        f"성공 신호: {fields['success_signal'] or '의미 있는 답글 또는 구체적인 질문'}"
+    )
+
+
 def generate_marketing_draft(payload: dict[str, object], api_key: str | None, opener=urlopen) -> dict[str, object]:
     """Write one channel-specific post draft for a service."""
     if not api_key:
         return {"status": "not_configured"}
-    fields = _clean_fields(payload, ("service", "description"), ("channel", "topic", "audience", "benefit", "proof", "cta"))
+    fields = _clean_fields(payload, ("service", "description"), ("channel", "topic", "audience", "benefit", "proof", "cta", "objective", "content_pillar", "community_context", "conversation_question", "evidence_url", "success_signal"))
     if fields is None:
         return {"status": "error", "kind": "invalid_input"}
     prompt = (
@@ -124,7 +142,7 @@ def generate_marketing_draft(payload: dict[str, object], api_key: str | None, op
         f"주요 독자: {fields['audience'] or '서비스 설명에서 가장 적합한 독자를 추론하되 새 사실은 만들지 말 것'}\n"
         f"독자가 얻는 가치: {fields['benefit'] or '서비스 설명에서 확인되는 가치만 사용할 것'}\n"
         f"신뢰 근거·안전 경계: {fields['proof'] or '서비스 설명에 있는 한계만 밝힐 것'}\n"
-        f"행동 요청: {fields['cta'] or '부담이 적은 행동 한 가지'}"
+        f"행동 요청: {fields['cta'] or '부담이 적은 행동 한 가지'}\n{_community_brief(fields)}"
     )
     answer = _ask_openai(api_key, DRAFT_INSTRUCTIONS, prompt, DRAFT_TOKENS, opener)
     if answer["status"] != "ok":
@@ -162,10 +180,15 @@ def review_marketing_post(payload: dict[str, object], api_key: str | None, opene
     """Have the model judge hook, persuasion and risks of one post and suggest a rewrite."""
     if not api_key:
         return {"status": "not_configured"}
-    fields = _clean_fields(payload, ("service", "description", "text"), ("channel",))
+    fields = _clean_fields(payload, ("service", "description", "text"), ("channel", "audience", "benefit", "proof", "cta", "objective", "content_pillar", "community_context", "conversation_question", "evidence_url", "success_signal"))
     if fields is None:
         return {"status": "error", "kind": "invalid_input"}
-    prompt = f"{_service_brief(fields)}\n\n평가할 글:\n{fields['text']}"
+    prompt = (
+        f"{_service_brief(fields)}\n"
+        f"주요 독자: {fields['audience'] or '미정'}\n독자가 얻는 가치: {fields['benefit'] or '미정'}\n"
+        f"신뢰 근거·안전 경계: {fields['proof'] or '미정'}\n행동 요청: {fields['cta'] or '미정'}\n"
+        f"{_community_brief(fields)}\n\n평가할 글:\n{fields['text']}"
+    )
     answer = _ask_openai(api_key, REVIEW_INSTRUCTIONS, prompt, REVIEW_TOKENS, opener)
     if answer["status"] != "ok":
         return answer

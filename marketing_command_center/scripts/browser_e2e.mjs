@@ -63,6 +63,8 @@ async function main(){
     const first=await run(`(async()=>{${setup}const out={service:serviceName.value,threads:postText.value,verdict:verdict.dataset.verdict};channelSelect.value='community';fire(channelSelect,'change');out.community=postText.value;out.communityVerdict=verdict.dataset.verdict;channelSelect.value='threads';fire(channelSelect,'change');return out})()`);
     assert.equal(first.service,"마사지 연습");assert.match(first.threads,/비용이 부담됐다면/);assert.match(first.community,/\[미리 알려 드릴 점\]/);
     assert.equal(first.verdict,"ready");assert.equal(first.communityVerdict,"ready");
+    const navigation=await run(`(()=>{const before={today:!document.querySelector('[data-view="today"]').hidden,content:!document.querySelector('[data-view="content"]').hidden};document.querySelector('[data-view-target="content"]').click();return{before,after:{today:!document.querySelector('[data-view="today"]').hidden,content:!document.querySelector('[data-view="content"]').hidden},current:document.querySelector('[data-view-target="content"]').getAttribute('aria-current')}})()`);
+    assert.deepEqual(navigation.before,{today:true,content:false});assert.deepEqual(navigation.after,{today:false,content:true});assert.equal(navigation.current,"page");
     const everyChannel=await run(`(()=>{const out={};for(const option of channelSelect.options){channelSelect.value=option.value;channelSelect.dispatchEvent(new Event('change',{bubbles:true}));out[option.value]=[verdict.dataset.verdict,postText.value.length]}channelSelect.value='threads';channelSelect.dispatchEvent(new Event('change',{bubbles:true}));return out})()`);
     assert.equal(Object.keys(everyChannel).length,6);
     for(const[channel,[state,length]]of Object.entries(everyChannel))assert.ok(state==="ready"&&length>0,`${channel}: ${state}, ${length} chars`);
@@ -76,6 +78,8 @@ async function main(){
     assert.equal(bad.verdict,"fix");assert.match(bad.text,/100%/);assert.match(bad.text,/역대급/);
 
     // 3. AI draft and review render from server-shaped replies, and every failure kind has its own copy.
+    const communityBrief=await run(`(async()=>{${setup}objectiveInput.value='질문 받기';fire(objectiveInput);contentPillarInput.value='혼자 하는 마케팅';fire(contentPillarInput);communityContextInput.value='구체적인 시행착오를 선호';fire(communityContextInput);conversationQuestionInput.value='가장 오래 걸리는 일은?';fire(conversationQuestionInput);evidenceUrlInput.value='https://example.com/source';fire(evidenceUrlInput);successSignalInput.value='구체적인 답글';fire(successSignalInput);let payload;window.fetch=(url,options)=>{payload=JSON.parse(options.body);return Promise.resolve(new Response(JSON.stringify({status:'generated',text:'초안',model:'gpt-6-luna',usage:{input_tokens:1,output_tokens:1,total_tokens:2}}),{status:200}))};draftButton.click();await wait(60);return payload})()`);
+    assert.equal(communityBrief.objective,"질문 받기");assert.equal(communityBrief.content_pillar,"혼자 하는 마케팅");assert.equal(communityBrief.community_context,"구체적인 시행착오를 선호");assert.equal(communityBrief.conversation_question,"가장 오래 걸리는 일은?");assert.equal(communityBrief.evidence_url,"https://example.com/source");assert.equal(communityBrief.success_signal,"구체적인 답글");
     const ai=await run(`(async()=>{${setup}stub({status:'generated',text:'AI 초안 본문입니다. Hermes를 써 보고 댓글로 알려 주세요.',model:'gpt-6-luna',usage:{input_tokens:50,output_tokens:60,total_tokens:110}});draftButton.click();await wait(80);const draft=postText.value;
       stub(${JSON.stringify(REVIEW)});reviewButton.click();await wait(80);const review=aiResult.textContent;applyRewriteButton.click();const applied=postText.value;
       const copies={};for(const kind of ['auth','rate_limit','timeout','network','provider','empty_response','not_configured']){stub({status:'error',kind},502);reviewButton.click();await wait(60);copies[kind]=statusText.textContent}
@@ -109,7 +113,7 @@ async function main(){
     const after=await run(`({communityDraft:JSON.parse(localStorage.getItem("hermes-marketing-simple-v1")).drafts.community.includes("[미리 알려 드릴 점]"),service:serviceName.value,text:postText.value.slice(0,10),rows:historyList.children.length,conversions:document.querySelector('#historyList input[data-field=conversions]').value,overflow:document.documentElement.scrollWidth-window.innerWidth})`);
     assert.equal(after.service,"Hermes");assert.equal(after.communityDraft,true);assert.equal(after.rows,1);assert.equal(after.conversions,"3");assert.ok(after.text.length>0);assert.ok(after.overflow<=0,`mobile horizontal overflow: ${after.overflow}`);
     assert.deepEqual(cdp.consoleErrors,[],`browser console errors: ${cdp.consoleErrors.join(" | ")}`);
-    console.log("PASS browser e2e: service, rule check, human review evidence, integration readiness, AI draft/review, error copy, copy, record, media checklist, reload, 390px, console");
+    console.log("PASS browser e2e: focused navigation, community brief payload, service, rule check, human review evidence, integration readiness, AI draft/review, error copy, copy, record, media checklist, reload, 390px, console");
   }finally{
     if(cdp?.socket)cdp.socket.close();
     browser.kill();server.kill();await wait(300);await rm(profile,{recursive:true,force:true}).catch(()=>{});

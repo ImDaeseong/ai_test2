@@ -15,6 +15,12 @@ button.ghost{background:var(--accent-soft);color:var(--accent)}
 button:disabled{opacity:.55;cursor:wait}
 :focus-visible{outline:3px solid #b98cf0;outline-offset:2px}
 .row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.view-nav{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 0 16px;padding:8px;background:rgba(247,247,251,.96);border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(8px)}
+.view-nav button{padding:9px 6px}
+.view-nav button[aria-current="page"]{background:var(--accent);color:#fff}
+.action-list{display:grid;gap:8px;margin-top:14px}
+.action-list p{margin:0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fcfbff}
+.brief-more{margin-top:12px;padding-top:4px;border-top:1px solid var(--line)}
 .hint{margin:6px 0 0;color:var(--muted);font-size:.85rem}
 #statusText{min-height:1.4em;margin:0 0 12px;font-weight:600;color:var(--accent)}
 .verdict{margin:0 0 8px;padding:10px 12px;border-radius:10px;background:var(--accent-soft);font-weight:700}
@@ -38,6 +44,6 @@ summary{cursor:pointer;font-weight:600}
 .history .nums{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 .history .nums label{margin:0;font-weight:400;font-size:.8rem}
 .history .nums input{width:90px;padding:6px 8px}
-@media (max-width:480px){button{flex:1 1 100%}}
+@media (max-width:480px){.row button{flex:1 1 100%}.view-nav{grid-template-columns:repeat(2,1fr)}}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 .boot-problem{margin:0 0 12px;padding:12px;border:2px solid var(--red);border-radius:10px;background:#fff0f2;color:var(--red);font-weight:600;word-break:break-all}
