@@ -23,6 +23,7 @@ Collect research, career-analysis, animation, and image/video prompt application
 ## Main components
 
 - `CareerDiff/`: local or consented external career comparison.
+- `marketing_command_center/`: local marketing copy workflow with explicit paid-AI confirmation and manual community handoff.
 - `music_insight_studio/` and `youtube_research/`: research and analysis workflows.
 - `ai_anime/`, `ai_img_video_aiBoygirl/`, and `ai_img_video_prompt_capcut/`: visual prompt pipelines.
 - [ARCHITECTURE.md](ARCHITECTURE.md): repository-level component map.
@@ -39,7 +40,7 @@ The detailed implementation and target module boundaries are maintained in [ARCH
   -> `ai_img_video_prompt_capcut/`
   -> timeline.json / shot_list.md / CapCut draft
 
-`youtube_research/`, `music_insight_studio/`, and `CareerDiff/`
+`youtube_research/`, `music_insight_studio/`, `CareerDiff/`, and `marketing_command_center/`
   -> independent research, local audio, and career-analysis products
 ```
 

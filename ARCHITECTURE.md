@@ -4,7 +4,7 @@ Repository-wide purpose, boundaries, and human-review gates are summarized in [D
 
 ## System Shape
 
-ai_test2는 단일 애플리케이션이 아니라 6개 독립 프로젝트의 monorepo형 작업공간이다. 음악 영상 제작 프로젝트 일부는 파일 산출물로 연결되고, `music_insight_studio`, `CareerDiff`는 이 파이프라인과 무관한 독립 도구다.
+ai_test2는 단일 애플리케이션이 아니라 7개 독립 프로젝트의 monorepo형 작업공간이다. 음악 영상 제작 프로젝트 일부는 파일 산출물로 연결되고, `music_insight_studio`, `CareerDiff`, `marketing_command_center`는 이 파이프라인과 무관한 독립 도구다.
 
 ```text
 ai_img_video_aiBoygirl / ai_anime
@@ -31,6 +31,7 @@ CareerDiff
 - `ai_anime/main.py`: prompt generation과 CapCut draft export가 한 진입점에 공존
 - `music_insight_studio`: 위 위험에 해당 없음 — `app/{analyzers,scoring,notation,reports,services,web,cli}/` 패키지 구조로 이미 모듈 경계가 분리돼 있어 Phase 4 추출 대상이 아니다.
 - `CareerDiff`: 별도 Next.js 경계와 자체 검증 문서를 유지한다. 이력서 원문과 선택적 OpenAI 호출은 다른 프로젝트로 공유하지 않는다.
+- `marketing_command_center`: Python 로컬 서버와 정적 브라우저 UI 경계를 유지한다. 게시 주소와 초안은 브라우저에 저장하고 자동 게시 권한은 취급하지 않는다.
 
 ## Target Module Boundaries
 

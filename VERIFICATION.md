@@ -29,6 +29,17 @@ instead close with their own dated `[LOOP-END]`.)
 
 ## Required Commands
 
+`marketing_command_center` 공개 등록 검증:
+
+```powershell
+cd marketing_command_center
+npm test
+python -m unittest discover -s tests -p "test_*.py"
+npm run validate
+npm run e2e
+python scripts\smoke_lifecycle.py
+```
+
 The `C:\path\to\` prefix below replaces the original machine-specific home path in historical command examples.
 
 Run from each project directory:

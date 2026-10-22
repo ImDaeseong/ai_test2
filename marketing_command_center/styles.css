@@ -1,0 +1,43 @@
+:root{--bg:#f7f7fb;--surface:#fff;--ink:#17171f;--muted:#5f5d6b;--line:#e2e0ea;--accent:#6420bd;--accent-soft:#f1e8fc;--green:#0f6e4c;--amber:#8a4f00;--red:#b3283f;font-family:"Noto Sans KR",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.55}
+main{max-width:760px;margin:0 auto;padding:24px 16px 64px}
+h1{margin:0;font-size:1.5rem}
+h2{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:1.1rem}
+h2 span{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:.85rem}
+.lead{margin:4px 0 16px;color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+label{display:block;margin:12px 0 4px;font-weight:600;font-size:.9rem}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;color:inherit;background:#fff}
+textarea{resize:vertical}
+button{padding:10px 16px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:inherit;font-weight:600;cursor:pointer}
+button.ghost{background:var(--accent-soft);color:var(--accent)}
+button:disabled{opacity:.55;cursor:wait}
+:focus-visible{outline:3px solid #b98cf0;outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.hint{margin:6px 0 0;color:var(--muted);font-size:.85rem}
+#statusText{min-height:1.4em;margin:0 0 12px;font-weight:600;color:var(--accent)}
+.verdict{margin:0 0 8px;padding:10px 12px;border-radius:10px;background:var(--accent-soft);font-weight:700}
+.verdict[data-verdict="ready"]{color:var(--green)}
+.verdict[data-verdict="review"]{color:var(--amber)}
+.verdict[data-verdict="fix"]{color:var(--red)}
+.issues,.checklist,.history{list-style:none;margin:0;padding:0}
+.issues li{padding:6px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.issues li[data-level="fix"]::before{content:"수정 ";color:var(--red);font-weight:700}
+.issues li[data-level="warn"]::before{content:"권장 ";color:var(--amber);font-weight:700}
+.ai-result{margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fcfbff}
+.ai-result h3{margin:0 0 6px;font-size:1rem}
+.ai-result p{margin:4px 0}
+.ai-result pre{white-space:pre-wrap;margin:6px 0;padding:10px;background:#fff;border:1px solid var(--line);border-radius:8px;font:inherit}
+details{margin-top:14px}
+summary{cursor:pointer;font-weight:600}
+.checklist label{display:flex;gap:8px;align-items:flex-start;margin:8px 0;font-weight:400}
+.checklist input{width:auto;margin-top:5px}
+.history li{padding:10px 0;border-bottom:1px solid var(--line)}
+.history .meta{display:flex;justify-content:space-between;gap:8px;font-size:.9rem}
+.history .nums{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.history .nums label{margin:0;font-weight:400;font-size:.8rem}
+.history .nums input{width:90px;padding:6px 8px}
+@media (max-width:480px){button{flex:1 1 100%}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+.boot-problem{margin:0 0 12px;padding:12px;border:2px solid var(--red);border-radius:10px;background:#fff0f2;color:var(--red);font-weight:600;word-break:break-all}

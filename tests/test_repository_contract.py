@@ -16,9 +16,9 @@ EXPECTED_PROJECTS = {
     "youtube_research",
     "music_insight_studio",
     "CareerDiff",
+    "marketing_command_center",
 }
-# Developed locally and kept out of the public repository; never registered, documented, or tracked here.
-PRIVATE_LOCAL_PROJECTS = {"marketing_command_center"}
+PRIVATE_LOCAL_PROJECTS: set[str] = set()
 
 
 class RepositoryContractTests(unittest.TestCase):
@@ -49,7 +49,7 @@ class RepositoryContractTests(unittest.TestCase):
         discovered = self._discover_project_directories()
         self.assertEqual(discovered, EXPECTED_PROJECTS)
         self.assertEqual(registered, discovered)
-        self.assertIn("6개 독립 프로젝트", readme)
+        self.assertIn("7개 독립 프로젝트", readme)
         self.assertIn("결정론적 로컬 분석기", readme)
         self.assertNotIn("내장 mock 결과", readme)
 
@@ -65,6 +65,7 @@ class RepositoryContractTests(unittest.TestCase):
             with self.subTest(document=name):
                 content = (ROOT / name).read_text(encoding="utf-8")
                 self.assertIn("CareerDiff", content)
+                self.assertIn("marketing_command_center", content)
 
     def test_security_boundary_distinguishes_local_and_external_paths(self) -> None:
         security = (ROOT / "SECURITY_BOUNDARY.md").read_text(encoding="utf-8")
