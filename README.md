@@ -112,3 +112,9 @@ reference, assets, or static directories described by each subproject before
 running workflows that require them. A fresh clone contains no example media;
 some demonstrations and documented commands need local media to run.
 Run `python scripts/check_source_only.py` before committing.
+
+## License and third-party terms
+
+Original source code and documentation in this repository are available under the [MIT License](LICENSE).
+
+Third-party code and installed dependencies keep their own licenses. Review each dependency's terms before installation or redistribution.

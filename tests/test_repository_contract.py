@@ -53,6 +53,15 @@ class RepositoryContractTests(unittest.TestCase):
         self.assertIn("결정론적 로컬 분석기", readme)
         self.assertNotIn("내장 mock 결과", readme)
 
+    def test_readme_links_the_repository_mit_license(self) -> None:
+        """Keep the public license notice and its target file synchronized."""
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
+
+        self.assertIn("[MIT License](LICENSE)", readme)
+        self.assertTrue(license_text.startswith("MIT License\n"))
+        self.assertIn("Copyright (c) 2026 ImDaeseong", license_text)
+
     def test_governance_docs_register_careerdiff(self) -> None:
         for name in (
             "SPEC.md",
