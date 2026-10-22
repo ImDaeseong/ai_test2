@@ -83,13 +83,20 @@ async function main(){
     assert.match(ai.draft,/AI 초안 본문/);assert.match(ai.review,/AI 평가 7\/10/);assert.match(ai.review,/수치 근거 없음/);assert.match(ai.applied,/AI 개선안 본문/);
     const copies=Object.values(ai.copies);assert.equal(new Set(copies).size,7,JSON.stringify(ai.copies));assert.ok(copies.every(text=>text&&!text.includes("AI가 작업하는 중")));
 
-    // 4. Copy, record a post, enter results, and see the best channel summarised.
+    // 4. Recording is blocked until a human rule review is saved for the exact text.
     const record=await run(`(async()=>{${setup}Object.defineProperty(navigator,'clipboard',{value:{writeText:async text=>{window.__copied=text}},configurable:true});postText.value="${GOOD}";fire(postText);copyButton.click();await wait(40);
+      postedButton.click();const blocked=statusText.textContent;
+      policyUrl.value='https://community.example/rules';policyCheckedDate.value=new Date().toISOString().slice(0,10);policyReviewer.value='테스트 검수자';policyApproved.checked=true;savePolicyReviewButton.click();
       postedButton.click();const input=document.querySelector('#historyList input[data-field=conversions]');input.value='3';fire(input);
-      return{copied:window.__copied,rows:historyList.children.length,summary:historySummary.textContent}})()`);
-    assert.match(record.copied,/Hermes는 채널별 숫자/);assert.equal(record.rows,1);assert.match(record.summary,/Threads/);assert.match(record.summary,/가입·문의 3/);
+      postText.value=postText.value+' 변경';fire(postText);postedButton.click();
+      return{copied:window.__copied,blocked,rows:historyList.children.length,summary:historySummary.textContent,changed:statusText.textContent,review:policyReviewStatus.textContent}})()`);
+    assert.match(record.copied,/Hermes는 채널별 숫자/);assert.match(record.blocked,/규칙 검수/);assert.equal(record.rows,1);assert.match(record.summary,/Threads/);assert.match(record.summary,/가입·문의 3/);assert.match(record.changed,/규칙 검수/);assert.match(record.review,/다시 확인/);
 
-    // 4a. A channel-specific HTTPS destination is stored, then copy-and-open hands off without auto-posting.
+    // 4a. Integration readiness is explicit: missing credentials are not ready, and discontinued APIs stay unsupported.
+    const readiness=await run(`(()=>({text:integrationList.textContent,items:integrationList.children.length}))()`);
+    assert.ok(readiness.items>=6);assert.match(readiness.text,/Threads/);assert.match(readiness.text,/NOT_CONFIGURED/);assert.match(readiness.text,/Naver Blog/);assert.match(readiness.text,/UNSUPPORTED/);
+
+    // 4b. A channel-specific HTTPS destination is stored, then copy-and-open hands off without auto-posting.
     const integration=await run(`(async()=>{${setup}let opened='';window.open=url=>{opened=url};Object.defineProperty(navigator,'clipboard',{value:{writeText:async text=>{window.__copied=text}},configurable:true});communityUrl.value='https://community.example/write';saveCommunityButton.click();postText.value="${GOOD}";fire(postText);openCommunityButton.click();await wait(40);return{opened,copied:window.__copied,saved:JSON.parse(localStorage.getItem('hermes-marketing-simple-v1')).communityUrls.threads,status:statusText.textContent}})()`);
     assert.equal(integration.opened,"https://community.example/write");assert.equal(integration.saved,"https://community.example/write");assert.match(integration.copied,/Hermes는 채널별 숫자/);assert.match(integration.status,/커뮤니티를 열었습니다/);
 
@@ -102,7 +109,7 @@ async function main(){
     const after=await run(`({communityDraft:JSON.parse(localStorage.getItem("hermes-marketing-simple-v1")).drafts.community.includes("[미리 알려 드릴 점]"),service:serviceName.value,text:postText.value.slice(0,10),rows:historyList.children.length,conversions:document.querySelector('#historyList input[data-field=conversions]').value,overflow:document.documentElement.scrollWidth-window.innerWidth})`);
     assert.equal(after.service,"Hermes");assert.equal(after.communityDraft,true);assert.equal(after.rows,1);assert.equal(after.conversions,"3");assert.ok(after.text.length>0);assert.ok(after.overflow<=0,`mobile horizontal overflow: ${after.overflow}`);
     assert.deepEqual(cdp.consoleErrors,[],`browser console errors: ${cdp.consoleErrors.join(" | ")}`);
-    console.log("PASS browser e2e: service, rule check, AI draft/review, error copy, copy, record, media checklist, reload, 390px, console");
+    console.log("PASS browser e2e: service, rule check, human review evidence, integration readiness, AI draft/review, error copy, copy, record, media checklist, reload, 390px, console");
   }finally{
     if(cdp?.socket)cdp.socket.close();
     browser.kill();server.kill();await wait(300);await rm(profile,{recursive:true,force:true}).catch(()=>{});

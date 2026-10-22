@@ -3,7 +3,7 @@ import socket
 import unittest
 from urllib.error import HTTPError, URLError
 
-from serve import LocalThreadingHTTPServer, generate_marketing_draft, review_marketing_post
+from serve import LocalThreadingHTTPServer, generate_marketing_draft, integration_status, review_marketing_post
 
 
 class FakeResponse:
@@ -148,6 +148,22 @@ class LifecycleConfigurationTests(unittest.TestCase):
 
     def test_server_disables_address_reuse(self):
         self.assertFalse(LocalThreadingHTTPServer.allow_reuse_address)
+
+
+class IntegrationReadinessTests(unittest.TestCase):
+    """Keep credential values private and unsupported providers explicit."""
+
+    def test_missing_names_are_reported_without_values(self):
+        rows = integration_status({"THREADS_APP_ID": "public-id", "THREADS_APP_SECRET": "secret-value"})
+        threads = next(row for row in rows if row["channel"] == "threads")
+        self.assertFalse(threads["configured"])
+        self.assertEqual(threads["missing"], ["THREADS_REDIRECT_URI"])
+        self.assertNotIn("secret-value", repr(rows))
+
+    def test_naver_blog_is_explicitly_unsupported(self):
+        blog = next(row for row in integration_status({}) if row["channel"] == "naver_blog")
+        self.assertEqual(blog["mode"], "unsupported")
+        self.assertFalse(blog["configured"])
 
 
 if __name__ == "__main__":

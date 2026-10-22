@@ -21,6 +21,14 @@ CODE_VERSION = int(Path(__file__).stat().st_mtime)
 PUBLIC_PATH = re.compile(r"/|/index\.html|/styles\.css|/src/[a-z]+\.js|/assets/[A-Za-z0-9._-]+")
 OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
 OPENAI_MODEL = os.environ.get("MARKETING_OPENAI_MODEL", "gpt-6-luna")
+INTEGRATIONS = {
+    "threads": ("Threads", ("THREADS_APP_ID", "THREADS_APP_SECRET", "THREADS_REDIRECT_URI"), "review_required"),
+    "instagram": ("Instagram", ("INSTAGRAM_APP_ID", "INSTAGRAM_APP_SECRET", "INSTAGRAM_REDIRECT_URI"), "review_required"),
+    "x": ("X", ("X_CLIENT_ID", "X_CLIENT_SECRET", "X_REDIRECT_URI"), "review_required"),
+    "linkedin": ("LinkedIn", ("LINKEDIN_CLIENT_ID", "LINKEDIN_CLIENT_SECRET", "LINKEDIN_REDIRECT_URI"), "review_required"),
+    "naver_cafe": ("Naver Cafe", ("NAVER_CLIENT_ID", "NAVER_CLIENT_SECRET", "NAVER_REDIRECT_URI"), "review_required"),
+    "naver_blog": ("Naver Blog", (), "unsupported"),
+}
 MAX_FIELD_CHARS = {"service": 100, "description": 500, "channel": 50, "topic": 300, "audience": 300, "benefit": 300, "proof": 300, "cta": 300, "text": 3000}
 MAX_REQUEST_BYTES = 20_000
 DRAFT_TOKENS = 400
@@ -168,6 +176,15 @@ def review_marketing_post(payload: dict[str, object], api_key: str | None, opene
     return {"status": "reviewed", "review": review, "model": answer["model"], "usage": answer["usage"]}
 
 
+def integration_status(environ: dict[str, str]) -> list[dict[str, object]]:
+    """Report configuration-name presence without exposing any credential value."""
+    result = []
+    for channel, (label, required, mode) in INTEGRATIONS.items():
+        missing = [name for name in required if not environ.get(name, "").strip()]
+        result.append({"channel": channel, "label": label, "mode": mode, "configured": bool(required) and not missing, "missing": missing})
+    return result
+
+
 class MarketingHandler(SimpleHTTPRequestHandler):
     """Serve static assets, a health probe and the two AI endpoints."""
 
@@ -188,6 +205,9 @@ class MarketingHandler(SimpleHTTPRequestHandler):
         """Return the health probe or an allow-listed static asset."""
         if self.path == "/api/health":
             self.send_json(200, {"status": "ok", "service": "marketing-command-center", "code_version": CODE_VERSION})
+            return
+        if self.path == "/api/integrations":
+            self.send_json(200, {"status": "ok", "integrations": integration_status(os.environ)})
             return
         if not self.is_public_asset():
             self.send_error(404)

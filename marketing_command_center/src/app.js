@@ -1,5 +1,6 @@
 import{CHANNELS,MEDIA_CHECKLISTS,checkPost}from"./quality.js";
 import{STARTER}from"./starter.js";
+import{POLICY_SOURCES,evaluateExperiment,ruleReviewStatus,textHash}from"./evidence.js";
 
 const STORAGE_KEY="hermes-marketing-simple-v1";
 const $=id=>document.getElementById(id);
@@ -19,7 +20,7 @@ function uid(){return crypto.randomUUID?crypto.randomUUID():`${Date.now()}-${Mat
 let state=load();
 
 function load(){
-  const fallback={services:[],activeId:"",channel:"threads",topic:"",brief:{audience:"",benefit:"",proof:"",cta:""},drafts:{},posts:[],communityUrls:{}};
+  const fallback={services:[],activeId:"",channel:"threads",topic:"",brief:{audience:"",benefit:"",proof:"",cta:""},drafts:{},posts:[],communityUrls:{},ruleReviews:{},experiment:{id:"",variant:"none",change:""}};
   let raw=null;
   try{raw=localStorage.getItem(STORAGE_KEY)}catch{}
     const starter=()=>{const id=uid();return{...fallback,services:[{id,...STARTER.service}],activeId:id,channel:STARTER.channel,brief:{...STARTER.brief},drafts:{...STARTER.drafts}}};
@@ -27,7 +28,7 @@ function load(){
   try{
     const saved=JSON.parse(raw);
     if(!saved||!Array.isArray(saved.services)||!Array.isArray(saved.posts))return starter();
-    const merged={...fallback,...saved,brief:{...fallback.brief,...saved.brief},communityUrls:{...fallback.communityUrls,...saved.communityUrls}};
+    const merged={...fallback,...saved,brief:{...fallback.brief,...saved.brief},communityUrls:{...fallback.communityUrls,...saved.communityUrls},ruleReviews:{...fallback.ruleReviews,...saved.ruleReviews},experiment:{...fallback.experiment,...saved.experiment}};
     if(typeof saved.text==="string"&&saved.text&&!Object.keys(merged.drafts).length)merged.drafts={[merged.channel]:saved.text};
     delete merged.text;
     if(merged.services.some(service=>service.name===STARTER.service.name))for(const[channel,text]of Object.entries(STARTER.drafts))if(!(channel in merged.drafts))merged.drafts[channel]=text;
@@ -67,6 +68,7 @@ function renderHistory(){
     const item=el("li"),meta=el("div",undefined,{class:"meta"}),nums=el("div",undefined,{class:"nums"});
     meta.append(el("span",`${post.date} · ${post.serviceName} · ${CHANNELS[post.channel]?.label||post.channel}`),(()=>{const remove=el("button","삭제",{type:"button",class:"ghost","data-remove":post.id});return remove})());
     item.append(meta,el("div",post.firstLine,{class:"hint"}));
+    if(post.experimentId&&post.variant!=="none")item.append(el("div",`실험 ${post.experimentId} · ${post.variant==="baseline"?"A":"B"}${post.change?` · 변경: ${post.change}`:""}`,{class:"hint"}));
     for(const[field,label]of[["views","조회"],["reactions","반응"],["conversions","가입·문의"]]){
       const wrapper=el("label",label+" "),input=el("input",undefined,{type:"number",min:"0","data-post":post.id,"data-field":field});
       input.value=post[field];wrapper.append(input);nums.append(wrapper);
@@ -96,6 +98,22 @@ function currentFields(){
 
 function renderCommunity(){
   $("communityUrl").value=state.communityUrls[state.channel]??CHANNELS[state.channel].home;
+  const review=state.ruleReviews[state.channel],source=POLICY_SOURCES[state.channel];
+  $("policyUrl").value=review?.url||source?.url||"";$("policyCheckedDate").value=review?.checkedDate||"";$("policyReviewer").value=review?.reviewer||"";$("policyApproved").checked=Boolean(review?.approved);
+  renderPolicyReview();
+}
+
+function renderPolicyReview(){const result=ruleReviewStatus(state.ruleReviews[state.channel],$("postText").value);$("policyReviewStatus").textContent=`${result.status}: ${result.reason}`;return result}
+
+function renderExperiment(){
+  const result=evaluateExperiment(state.posts,state.experiment.id),t=result.totals;
+  $("experimentStatus").textContent=t?`${result.status} · A ${t.baseline.conversions}/${t.baseline.views}, B ${t.variant.conversions}/${t.variant.views} · ${result.message}`:`${result.status} · ${result.message}`;
+  return result;
+}
+
+async function renderIntegrations(){
+  const list=$("integrationList");list.replaceChildren(el("li","준비도를 확인하는 중입니다."));
+  try{const response=await fetch("/api/integrations",{cache:"no-store"}),result=await response.json();if(!response.ok)throw new Error("status");list.replaceChildren(...result.integrations.map(item=>el("li",item.mode==="unsupported"?`${item.label}: UNSUPPORTED · 공식 자동 게시 경로 없음`:item.configured?`${item.label}: LOCAL_CONFIGURED · 계정 동의·심사·live 권한은 HOLD`:`${item.label}: NOT_CONFIGURED · 누락 ${item.missing.join(", ")}`)))}catch{list.replaceChildren(el("li","준비도 서버에 연결하지 못했습니다."))}
 }
 
 function validCommunityUrl(value){try{const url=new URL(value);return url.protocol==="https:"?url:null}catch{return null}}
@@ -128,7 +146,7 @@ function showReview(result){
   say(`${result.model} · 입력 ${result.usage.input_tokens} / 출력 ${result.usage.output_tokens} 토큰`);
 }
 
-function onTextChange(){state.drafts[state.channel]=$("postText").value;save();renderCheck()}
+function onTextChange(){state.drafts[state.channel]=$("postText").value;save();renderCheck();renderPolicyReview()}
 
 function bind(){
   $("serviceSelect").addEventListener("change",()=>{state.activeId=$("serviceSelect").value;save();renderServices();renderCheck()});
@@ -168,20 +186,25 @@ function bind(){
     if(result)showReview(result);
   });
   $("saveCommunityButton").addEventListener("click",()=>{const url=validCommunityUrl($("communityUrl").value.trim());if(!url){say("https://로 시작하는 커뮤니티 주소를 입력하세요.");return}state.communityUrls[state.channel]=url.href;save();renderCommunity();say(`${CHANNELS[state.channel].label} 게시 주소를 이 브라우저에 저장했습니다.`)});
+  $("savePolicyReviewButton").addEventListener("click",()=>{const url=validCommunityUrl($("policyUrl").value.trim()),checkedDate=$("policyCheckedDate").value,reviewer=$("policyReviewer").value.trim(),approved=$("policyApproved").checked;if(!url||!checkedDate||!reviewer||!approved){say("정책 URL·확인일·검수자·승인을 모두 입력하세요.");return}state.ruleReviews[state.channel]={url:url.href,checkedDate,reviewer,approved,textHash:textHash($("postText").value)};save();const result=renderPolicyReview();say(result.reason)});
+  for(const[id,key]of[["experimentId","id"],["experimentVariant","variant"],["experimentChange","change"]])$(id).addEventListener("input",()=>{state.experiment[key]=$(id).value;save();renderExperiment()});
   $("copyButton").addEventListener("click",copyPost);
   $("openCommunityButton").addEventListener("click",async()=>{const url=validCommunityUrl($("communityUrl").value.trim());if(!url){say("먼저 유효한 https 커뮤니티 주소를 저장하세요.");return}if(!await copyPost())return;window.open(url.href,"_blank","noopener,noreferrer");say("본문을 복사하고 커뮤니티를 열었습니다. 규칙을 확인한 뒤 붙여 넣으세요.")});
   $("postedButton").addEventListener("click",()=>{
     const text=$("postText").value.trim();if(!text){say("기록할 본문이 없습니다.");return}
-    const service=activeService(),result=renderCheck();
+    const service=activeService(),result=renderCheck(),policy=renderPolicyReview();
     if(result.verdict==="fix"&&!confirm("수정 필요 항목이 남아 있습니다. 그래도 올린 글로 기록할까요?"))return;
+    if(policy.status!=="HUMAN_REVIEW_RECORDED"){say("현재 문안과 연결된 커뮤니티 규칙 검수 증거를 먼저 저장하세요.");return}
+    if(state.experiment.variant!=="none"&&!state.experiment.id.trim()){say("A/B 문안을 기록하려면 실험 ID를 입력하세요.");return}
+    if(state.experiment.variant==="variant"&&!state.experiment.change.trim()){say("B 문안에서 바꾼 한 가지를 적으세요.");return}
     const today=new Date(),date=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;
-    state.posts.push({id:uid(),date,serviceName:service?service.name:"(서비스 없음)",channel:state.channel,firstLine:text.split(/\r?\n/)[0].slice(0,80),views:0,reactions:0,conversions:0});
+    state.posts.push({id:uid(),date,serviceName:service?service.name:"(서비스 없음)",channel:state.channel,firstLine:text.split(/\r?\n/)[0].slice(0,80),views:0,reactions:0,conversions:0,experimentId:state.experiment.id.trim(),variant:state.experiment.variant,change:state.experiment.change.trim(),policyUrl:state.ruleReviews[state.channel].url,policyCheckedDate:state.ruleReviews[state.channel].checkedDate});
     save();renderHistory();say("기록했습니다. 반응이 생기면 아래 숫자를 갱신하세요.");
   });
   $("historyList").addEventListener("input",event=>{
     const input=event.target.closest("input[data-post]");if(!input)return;
     const post=state.posts.find(item=>item.id===input.dataset.post),value=Math.max(0,Math.floor(Number(input.value))||0);
-    if(post){post[input.dataset.field]=value;save();renderHistorySummary()}
+    if(post){post[input.dataset.field]=value;save();renderHistorySummary();renderExperiment()}
   });
   $("historyList").addEventListener("click",event=>{
     const button=event.target.closest("button[data-remove]");if(!button||!confirm("이 기록을 삭제할까요?"))return;
@@ -204,6 +227,7 @@ function init(){
   if(!CHANNELS[state.channel])state.channel="threads";
   $("channelSelect").value=state.channel;$("topicInput").value=state.topic;$("postText").value=state.drafts[state.channel]||"";
   for(const name of ["audience","benefit","proof","cta"])$(name+"Input").value=state.brief[name]||"";
-  bind();renderServices();renderMedia();renderCheck();renderHistory();renderCommunity();document.body.dataset.ready="1";
+  $("experimentId").value=state.experiment.id;$("experimentVariant").value=state.experiment.variant;$("experimentChange").value=state.experiment.change;
+  bind();renderServices();renderMedia();renderCheck();renderHistory();renderCommunity();renderExperiment();renderIntegrations();document.body.dataset.ready="1";
 }
 init();

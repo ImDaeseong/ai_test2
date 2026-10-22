@@ -80,6 +80,33 @@
       <p class="hint">자동 게시가 아니라, 본문을 복사한 뒤 연결한 커뮤니티를 여는 안전한 수동 연동입니다. 게시판 규칙과 광고 표기를 직접 확인하세요.</p>
       <label for="communityUrl">현재 채널 게시 주소</label>
       <input id="communityUrl" type="url" inputmode="url" placeholder="https://..." autocomplete="off">
+      <fieldset>
+        <legend>현재 문안의 커뮤니티 규칙 검수</legend>
+        <label for="policyUrl">확인한 정책·게시판 공지 URL</label>
+        <input id="policyUrl" type="url" inputmode="url" placeholder="https://...">
+        <div class="row fields">
+          <label>확인일 <input id="policyCheckedDate" type="date"></label>
+          <label>검수자 <input id="policyReviewer" maxlength="100" autocomplete="off"></label>
+        </div>
+        <label class="check"><input id="policyApproved" type="checkbox"> 현재 문안의 주장·권리·광고 표시와 해당 게시판 규칙을 직접 확인했습니다.</label>
+        <button id="savePolicyReviewButton" type="button" class="ghost">이 문안에 검수 증거 저장</button>
+        <p id="policyReviewStatus" class="hint"></p>
+      </fieldset>
+      <fieldset>
+        <legend>반응 실험 기록 (선택)</legend>
+        <label for="experimentId">실험 ID</label>
+        <input id="experimentId" maxlength="100" placeholder="예: massage-hook-01">
+        <label for="experimentVariant">문안 구분</label>
+        <select id="experimentVariant"><option value="none">실험 아님</option><option value="baseline">A · 기준 문안</option><option value="variant">B · 한 요소 변경</option></select>
+        <label for="experimentChange">B에서 바꾼 한 가지</label>
+        <input id="experimentChange" maxlength="300" placeholder="예: 첫 줄만 문제형에서 가치형으로 변경">
+        <p id="experimentStatus" class="hint"></p>
+      </fieldset>
+      <details>
+        <summary>플랫폼 API 자동 게시 준비도</summary>
+        <p class="hint">설정 이름의 존재만 확인하며 계정 동의·앱 심사·실제 권한을 PASS로 추정하지 않습니다.</p>
+        <ul id="integrationList" class="issues"></ul>
+      </details>
       <div class="row">
         <button id="saveCommunityButton" type="button" class="ghost">연결 주소 저장</button>
         <button id="copyButton" type="button">본문 복사</button>
