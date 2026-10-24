@@ -1,10 +1,16 @@
 import { importJobPosting, JobImportError } from "@/core/job-import/jobImporter";
+import { BodyTooLargeError, readJsonLimited } from "@/core/http/readJsonLimited";
+
+const MAX_BODY_BYTES = 100_000;
 
 export async function POST(request: Request) {
   let body: unknown;
   try {
-    body = await request.json();
-  } catch {
+    body = await readJsonLimited(request, MAX_BODY_BYTES);
+  } catch (error) {
+    if (error instanceof BodyTooLargeError) {
+      return Response.json({ error: { message: "요청 본문이 너무 큽니다." } }, { status: 413 });
+    }
     return Response.json({ error: { message: "요청 본문은 JSON이어야 합니다." } }, { status: 400 });
   }
   const url = typeof body === "object" && body !== null && "url" in body ? (body as { url?: unknown }).url : undefined;

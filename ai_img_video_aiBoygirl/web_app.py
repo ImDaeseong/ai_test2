@@ -41,6 +41,7 @@ VIDEO_SECTION_MAP = {
 }
 
 app = Flask(__name__)
+app.config["MAX_CONTENT_LENGTH"] = 1_000_000  # JSON-only API: reject oversized bodies with 413
 
 
 def extract_video_section(video_file: Path, section_title: str) -> str:

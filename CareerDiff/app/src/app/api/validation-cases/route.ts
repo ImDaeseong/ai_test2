@@ -1,4 +1,5 @@
 import { analysisValidationCaseSchema } from "@/core/validation/validationCaseSchema";
+import { BodyTooLargeError, readJsonLimited } from "@/core/http/readJsonLimited";
 import { listValidationCaseFiles, saveValidationCaseFile } from "@/core/validation/validationCaseFileStore";
 
 export async function GET() {
@@ -9,11 +10,16 @@ export async function GET() {
   }
 }
 
+const MAX_BODY_BYTES = 1_000_000;
+
 export async function POST(request: Request) {
   let body: unknown;
   try {
-    body = await request.json();
-  } catch {
+    body = await readJsonLimited(request, MAX_BODY_BYTES);
+  } catch (error) {
+    if (error instanceof BodyTooLargeError) {
+      return Response.json({ error: { message: "요청 본문이 너무 큽니다." } }, { status: 413 });
+    }
     return Response.json({ error: { message: "요청 본문은 JSON이어야 합니다." } }, { status: 400 });
   }
 

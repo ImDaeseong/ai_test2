@@ -6,15 +6,23 @@ import {
   ExternalProcessingConsentError,
 } from "@/core/analysis/AnalysisOrchestrator";
 import type { AnalyzeResponse, ApiErrorResponse } from "@/core/types";
+import { BodyTooLargeError, readJsonLimited } from "@/core/http/readJsonLimited";
 
 // Per docs/ARCHITECTURE.md: only this route calls AnalysisOrchestrator.
 const orchestrator = new AnalysisOrchestrator();
+const MAX_BODY_BYTES = 1_000_000;
 
 export async function POST(request: Request) {
   let body: unknown;
   try {
-    body = await request.json();
-  } catch {
+    body = await readJsonLimited(request, MAX_BODY_BYTES);
+  } catch (error) {
+    if (error instanceof BodyTooLargeError) {
+      return NextResponse.json<ApiErrorResponse>(
+        { error: { code: "VALIDATION_ERROR", message: "Request body is too large.", retryable: false } },
+        { status: 413 },
+      );
+    }
     // Do not log the raw body (docs/ARCHITECTURE.md privacy requirements).
     return NextResponse.json<ApiErrorResponse>(
       { error: { code: "VALIDATION_ERROR", message: "Request body must be valid JSON.", retryable: false } },
