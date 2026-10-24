@@ -23,7 +23,7 @@ if sys.platform == "win32":
         if hasattr(_s, "reconfigure"):
             try:
                 _s.reconfigure(encoding="utf-8", errors="replace")
-            except Exception:
+            except Exception:  # qa:allow CWE-390 - stream reconfigure is unsupported on some consoles; output keeps the default
                 pass
 
 # ── 경로 설정 ──────────────────────────────────────────────────────────────

@@ -28,7 +28,7 @@ async function ensureProfileFile(hash, candidateProfile) {
   try {
     await readFile(destination, "utf8");
     return; // already written by an earlier case with the same profile text
-  } catch {
+  } catch { // qa:allow CWE-390 - any read error is treated as not written yet and the file is rewritten
     // fall through to write it
   }
   await mkdir(profilesDir, { recursive: true });

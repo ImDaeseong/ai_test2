@@ -22,7 +22,7 @@ let state=load();
 function load(){
   const fallback={services:[],activeId:"",channel:"threads",topic:"",brief:{audience:"",benefit:"",proof:"",cta:"",objective:"도움 주기",content_pillar:"",community_context:"",conversation_question:"",evidence_url:"",success_signal:""},drafts:{},posts:[],communityUrls:{},ruleReviews:{},experiment:{id:"",variant:"none",change:""},activeView:"today"};
   let raw=null;
-  try{raw=localStorage.getItem(STORAGE_KEY)}catch{}
+  try{raw=localStorage.getItem(STORAGE_KEY)}catch{} // qa:allow CWE-390 - localStorage can be blocked; raw stays null and the starter data is used
     const starter=()=>{const id=uid();return{...fallback,services:[{id,...STARTER.service}],activeId:id,channel:STARTER.channel,brief:{...STARTER.brief},drafts:{...STARTER.drafts}}};
   if(raw===null)return starter();
   try{

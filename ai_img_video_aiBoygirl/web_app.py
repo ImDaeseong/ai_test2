@@ -60,7 +60,7 @@ def part_status(song_dir: Path, part_key: str) -> dict:
     if sf.exists():
         try:
             done = json.loads(sf.read_text(encoding="utf-8")).get("done", False)
-        except Exception:
+        except Exception:  # qa:allow CWE-390 - unreadable status file leaves done=False
             pass
     return {"bundled": bundled, "done": done}
 

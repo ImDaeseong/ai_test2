@@ -113,7 +113,7 @@ export async function listValidationCaseFiles(): Promise<AnalysisValidationCase[
       const backfilled = { ...raw, result: backfillLegacyAnalysisResult(raw.result) };
       const parsed = analysisValidationCaseSchema.safeParse(backfilled);
       if (parsed.success) cases.push(parsed.data);
-    } catch {
+    } catch { // qa:allow CWE-390 - unreadable or invalid-JSON files are skipped so the listing does not fail
       // Skip unreadable or invalid-JSON files rather than failing the listing.
     }
   }

@@ -1083,14 +1083,14 @@ def _get_audio_duration_ms(path: Path) -> Optional[int]:
         audio = MFile(str(path))
         if audio and audio.info:
             return int(audio.info.length * 1000)
-    except (ImportError, Exception):
+    except (ImportError, Exception):  # qa:allow CWE-390 - audio tag read failed; falls back to wav parsing and then None below
         pass
     if path.suffix.lower() == ".wav":
         try:
             import wave
             with wave.open(str(path), "r") as wf:
                 return int(wf.getnframes() / wf.getframerate() * 1000)
-        except Exception:
+        except Exception:  # qa:allow CWE-390 - wav header unreadable; returns None below
             pass
     return None
 

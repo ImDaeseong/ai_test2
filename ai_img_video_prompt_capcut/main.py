@@ -103,7 +103,7 @@ def get_audio_duration_ms(path: Path) -> Optional[int]:
             return int(audio.info.length * 1000)
     except ImportError:
         pass
-    except Exception:
+    except Exception:  # qa:allow CWE-390 - mutagen duration probe failed; falls back to ffprobe below
         pass
 
     # 2. ffprobe 폴백 (AI 생성 mp4 등 mutagen이 0을 반환할 때)
@@ -116,7 +116,7 @@ def get_audio_duration_ms(path: Path) -> Optional[int]:
         )
         if r.returncode == 0 and r.stdout.strip():
             return int(float(r.stdout.strip()) * 1000)
-    except (FileNotFoundError, Exception):
+    except (FileNotFoundError, Exception):  # qa:allow CWE-390 - ffprobe missing or failing; falls back to wav parsing below
         pass
 
     # 3. wav 전용 폴백
@@ -125,7 +125,7 @@ def get_audio_duration_ms(path: Path) -> Optional[int]:
             import wave
             with wave.open(str(path), "r") as wf:
                 return int(wf.getnframes() / wf.getframerate() * 1000)
-        except Exception:
+        except Exception:  # qa:allow CWE-390 - wav parse failure; returns None below
             pass
 
     return None

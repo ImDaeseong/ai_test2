@@ -12,7 +12,7 @@ const chrome="C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const freePort=()=>new Promise((resolve,reject)=>{const server=net.createServer();server.once("error",reject);server.listen(0,"127.0.0.1",()=>{const{port}=server.address();server.close(()=>resolve(port))})});
 
-async function waitForJson(url,attempts=60){for(let i=0;i<attempts;i++){try{const response=await fetch(url);if(response.ok)return await response.json()}catch{}await wait(100)}throw new Error(`endpoint not ready: ${url}`)}
+async function waitForJson(url,attempts=60){for(let i=0;i<attempts;i++){try{const response=await fetch(url);if(response.ok)return await response.json()}catch{}await wait(100)}throw new Error(`endpoint not ready: ${url}`)} // qa:allow CWE-390 - polling retry: failures are expected until the server is ready; the loop throws after the attempts
 
 async function connectCdp(url){
   const socket=new WebSocket(url),pending=new Map();let id=0;const consoleErrors=[];
@@ -116,7 +116,7 @@ async function main(){
     console.log("PASS browser e2e: focused navigation, community brief payload, service, rule check, human review evidence, integration readiness, AI draft/review, error copy, copy, record, media checklist, reload, 390px, console");
   }finally{
     if(cdp?.socket)cdp.socket.close();
-    browser.kill();server.kill();await wait(300);await rm(profile,{recursive:true,force:true}).catch(()=>{});
+    browser.kill();server.kill();await wait(300);await rm(profile,{recursive:true,force:true}).catch(()=>{}); // qa:allow CWE-390 - temp browser profile cleanup after the test must not mask the test result
   }
 }
 

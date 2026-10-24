@@ -13,7 +13,7 @@ export function CopyButton({ text }: { text: string }) {
           await navigator.clipboard.writeText(text);
           setCopied(true);
           setTimeout(() => setCopied(false), 1500);
-        } catch {
+        } catch { // qa:allow CWE-390 - clipboard access can be denied; the text stays visible for manual copy
           // Clipboard access can be denied by the browser; fail silently, the text is still visible to select/copy manually.
         }
       }}
