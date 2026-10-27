@@ -28,7 +28,7 @@ const REVIEW={status:"reviewed",review:{score:7,hook:"질문으로 시작해 좋
 
 async function main(){
   const appPort=await freePort(),debugPort=await freePort(),profile=await mkdtemp(path.join(os.tmpdir(),"hermes-marketing-e2e-"));
-  const server=spawn(process.env.PYTHON||"python",["serve.py","--host","127.0.0.1","--port",String(appPort)],{cwd:root,stdio:"ignore",windowsHide:true});
+  const server=spawn(process.env.PYTHON||"python",["serve.py","--host","127.0.0.1","--port",String(appPort)],{cwd:root,stdio:"ignore",windowsHide:true,env:{...process.env,DISCORD_WEBHOOK_URL:"your_discord_webhook"}});
   const browser=spawn(chrome,["--headless","--no-sandbox","--disable-gpu","--disable-software-rasterizer","--disable-dev-shm-usage",`--remote-debugging-port=${debugPort}`,`--user-data-dir=${profile}`,"about:blank"],{stdio:"ignore",windowsHide:true});
   let cdp;
   try{
@@ -98,7 +98,7 @@ async function main(){
 
     // 4a. Integration readiness is explicit: missing credentials are not ready, and discontinued APIs stay unsupported.
     const readiness=await run(`(()=>({text:integrationList.textContent,items:integrationList.children.length}))()`);
-    assert.ok(readiness.items>=6);assert.match(readiness.text,/Threads/);assert.match(readiness.text,/NOT_CONFIGURED/);assert.match(readiness.text,/Naver Blog/);assert.match(readiness.text,/UNSUPPORTED/);
+    assert.equal(readiness.items,14);assert.match(readiness.text,/Threads/);assert.match(readiness.text,/Telegram/);assert.match(readiness.text,/NOT_CONFIGURED/);assert.match(readiness.text,/Discord: INVALID_CONFIG/);assert.match(readiness.text,/DISCORD_WEBHOOK_URL/);assert.ok(!readiness.text.includes("your_discord_webhook"));assert.match(readiness.text,/Naver 공유: MANUAL/);assert.match(readiness.text,/YouTube: HOLD/);assert.match(readiness.text,/Naver Blog/);assert.match(readiness.text,/UNSUPPORTED/);
 
     // 4b. A channel-specific HTTPS destination is stored, then copy-and-open hands off without auto-posting.
     const integration=await run(`(async()=>{${setup}let opened='';window.open=url=>{opened=url};Object.defineProperty(navigator,'clipboard',{value:{writeText:async text=>{window.__copied=text}},configurable:true});communityUrl.value='https://community.example/write';saveCommunityButton.click();postText.value="${GOOD}";fire(postText);openCommunityButton.click();await wait(40);return{opened,copied:window.__copied,saved:JSON.parse(localStorage.getItem('hermes-marketing-simple-v1')).communityUrls.threads,status:statusText.textContent}})()`);

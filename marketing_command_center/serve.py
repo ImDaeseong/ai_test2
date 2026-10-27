@@ -21,14 +21,7 @@ CODE_VERSION = int(Path(__file__).stat().st_mtime)
 PUBLIC_PATH = re.compile(r"/|/index\.html|/styles\.css|/src/[a-z]+\.js|/assets/[A-Za-z0-9._-]+")
 OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
 OPENAI_MODEL = os.environ.get("MARKETING_OPENAI_MODEL", "gpt-6-luna")
-INTEGRATIONS = {
-    "threads": ("Threads", ("THREADS_APP_ID", "THREADS_APP_SECRET", "THREADS_REDIRECT_URI"), "review_required"),
-    "instagram": ("Instagram", ("INSTAGRAM_APP_ID", "INSTAGRAM_APP_SECRET", "INSTAGRAM_REDIRECT_URI"), "review_required"),
-    "x": ("X", ("X_CLIENT_ID", "X_CLIENT_SECRET", "X_REDIRECT_URI"), "review_required"),
-    "linkedin": ("LinkedIn", ("LINKEDIN_CLIENT_ID", "LINKEDIN_CLIENT_SECRET", "LINKEDIN_REDIRECT_URI"), "review_required"),
-    "naver_cafe": ("Naver Cafe", ("NAVER_CLIENT_ID", "NAVER_CLIENT_SECRET", "NAVER_REDIRECT_URI"), "review_required"),
-    "naver_blog": ("Naver Blog", (), "unsupported"),
-}
+INTEGRATION_CONTRACT_PATH = Path(__file__).parent / "assets" / "community-integrations.json"
 MAX_FIELD_CHARS = {
     "service": 100, "description": 500, "channel": 50, "topic": 300,
     "audience": 300, "benefit": 300, "proof": 300, "cta": 300,
@@ -199,12 +192,47 @@ def review_marketing_post(payload: dict[str, object], api_key: str | None, opene
     return {"status": "reviewed", "review": review, "model": answer["model"], "usage": answer["usage"]}
 
 
-def integration_status(environ: dict[str, str]) -> list[dict[str, object]]:
-    """Report configuration-name presence without exposing any credential value."""
+def load_integration_contract(path: Path = INTEGRATION_CONTRACT_PATH) -> dict[str, object]:
+    """Load and validate the synchronized, secret-free community contract."""
+    contract = json.loads(path.read_text(encoding="utf-8"))
+    if contract.get("schema_version") != 2 or contract.get("source") != "community_integrations":
+        raise ValueError("unsupported community integration contract")
+    if not isinstance(contract.get("platforms"), list) or not isinstance(contract.get("unsupported"), list):
+        raise ValueError("invalid community integration contract")
+    return contract
+
+
+def _invalid_integration_names(environ: dict[str, str], item: dict[str, object]) -> list[str]:
+    """Return malformed configured names using only the public contract rules."""
+    validation = item.get("validation", {})
+    patterns = validation.get("patterns", {}) if isinstance(validation, dict) else {}
+    reject_placeholders = validation.get("reject_placeholders") is True if isinstance(validation, dict) else False
+    invalid = []
+    for name in item["required_env"]:
+        value = environ.get(name, "").strip()
+        pattern = patterns.get(name) if isinstance(patterns, dict) else None
+        if value and ((reject_placeholders and value.lower().startswith(("your_", "replace_", "example_"))) or (isinstance(pattern, str) and re.fullmatch(pattern, value) is None)):
+            invalid.append(name)
+    return invalid
+
+
+def integration_status(environ: dict[str, str], contract: dict[str, object] | None = None) -> list[dict[str, object]]:
+    """Report canonical configuration readiness without exposing credential values."""
+    contract = contract or load_integration_contract()
     result = []
-    for channel, (label, required, mode) in INTEGRATIONS.items():
+    for item in contract["platforms"]:
+        channel, label, mode = item["id"], item["label"], item["mode"]
+        required = item["required_env"]
         missing = [name for name in required if not environ.get(name, "").strip()]
-        result.append({"channel": channel, "label": label, "mode": mode, "configured": bool(required) and not missing, "missing": missing})
+        invalid = _invalid_integration_names(environ, item)
+        result.append({
+            "channel": channel, "label": label, "mode": mode,
+            "configured": (mode == "manual") or (bool(required) and not missing and not invalid),
+            "missing": missing, "invalid": invalid,
+            "capabilities": item["capabilities"], "setup_guide": item["setup_guide"],
+        })
+    for item in contract["unsupported"]:
+        result.append({"channel": item["id"], "label": item["label"], "mode": "unsupported", "configured": False, "missing": [], "invalid": [], "reason": item["reason"]})
     return result
 
 
@@ -230,7 +258,13 @@ class MarketingHandler(SimpleHTTPRequestHandler):
             self.send_json(200, {"status": "ok", "service": "marketing-command-center", "code_version": CODE_VERSION})
             return
         if self.path == "/api/integrations":
-            self.send_json(200, {"status": "ok", "integrations": integration_status(os.environ)})
+            try:
+                integrations = integration_status(os.environ)
+            except (OSError, json.JSONDecodeError, TypeError, ValueError) as error:
+                LOGGER.exception("community integration contract failure", exc_info=error)
+                self.send_json(503, {"status": "error", "kind": "integration_contract"})
+                return
+            self.send_json(200, {"status": "ok", "integrations": integrations})
             return
         if not self.is_public_asset():
             self.send_error(404)

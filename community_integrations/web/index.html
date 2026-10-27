@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="여러 커뮤니티의 게시 기능과 제한을 한눈에 확인하고 안전하게 미리보는 로컬 도구">
+  <title>Community Canvas</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Community Canvas 홈"><span class="brand-mark">C</span><span>Community Canvas</span></a>
+    <div class="top-actions"><span class="local-badge">● 로컬 전용</span><button class="ghost" id="resetButton" type="button">새 게시물</button></div>
+  </header>
+  <main class="workspace">
+    <aside class="platform-panel" aria-label="플랫폼 선택">
+      <div class="panel-heading"><p class="eyebrow">게시 채널</p><h1>어디에 올릴까요?</h1><p>플랫폼을 고르면 가능한 형식만 안내합니다.</p></div>
+      <div id="platformList" class="platform-list" aria-live="polite"></div>
+    </aside>
+
+    <section class="composer" aria-labelledby="composerTitle">
+      <div class="section-title"><div><p class="eyebrow">콘텐츠 만들기</p><h2 id="composerTitle">게시물 작성</h2></div><span id="saveState" class="save-state">브라우저에 임시 저장</span></div>
+      <div id="capabilityChips" class="chips"></div>
+      <form id="composerForm">
+        <label class="field"><span>제목 <small>필요한 플랫폼만 사용</small></span><input id="title" maxlength="300" placeholder="게시물 제목"></label>
+        <label class="field"><span>내용</span><textarea id="text" maxlength="5000" rows="9" placeholder="전달할 내용을 쉽게 작성해 보세요."></textarea><small class="counter"><span id="textCount">0</span>/5000</small></label>
+        <div class="field-grid">
+          <label class="field"><span>콘텐츠 형식</span><select id="mediaType"><option>TEXT</option><option>LINK</option><option>IMAGE</option><option>VIDEO</option><option>PHOTO</option><option>REELS</option><option>STORIES</option><option>AUDIO</option><option>DOCUMENT</option></select></label>
+          <label class="field"><span>공개 범위 <small>TikTok 등</small></span><select id="privacy"><option value="">플랫폼 기본값</option><option>SELF_ONLY</option><option>PUBLIC_TO_EVERYONE</option><option>MUTUAL_FOLLOW_FRIENDS</option></select></label>
+        </div>
+        <label class="field"><span>미디어 HTTPS URL</span><input id="mediaUrl" type="url" placeholder="https://example.com/image.jpg"><small>현재 자동 게시기는 플랫폼이 읽을 수 있는 공개 HTTPS 주소를 사용합니다.</small></label>
+        <label class="field"><span>기존 미디어 ID / URN <small>LinkedIn 등</small></span><input id="mediaId" placeholder="urn:li:image:..."></label>
+        <label class="upload-card" for="localFile"><input id="localFile" type="file" accept="image/*,video/*,audio/*,.pdf,.doc,.docx"><span class="upload-icon">＋</span><strong>내 컴퓨터 파일 선택</strong><span id="fileHint">그림·영상·음악·문서의 미리보기만 지원합니다.</span></label>
+        <label class="field"><span>대체 텍스트 <small>접근성 설명</small></span><input id="altText" placeholder="이미지나 영상의 내용을 설명하세요"></label>
+      </form>
+    </section>
+
+    <aside class="preview-panel">
+      <div class="section-title"><div><p class="eyebrow">게시 전 확인</p><h2>미리보기</h2></div><span id="configBadge" class="status-badge">확인 중</span></div>
+      <article class="post-card"><div class="post-head"><span id="previewAvatar" class="avatar">C</span><div><strong id="previewPlatform">플랫폼을 선택하세요</strong><small>연결된 계정</small></div></div><h3 id="previewTitle"></h3><p id="previewText" class="placeholder">작성한 내용이 이곳에 표시됩니다.</p><div id="mediaPreview" class="media-preview hidden"></div></article>
+      <div id="notice" class="notice">먼저 플랫폼을 선택해 주세요.</div>
+      <button id="previewButton" class="primary" type="button">안전 미리보기 만들기</button>
+      <details class="publish-box"><summary>실제 게시 열기</summary><p>이 버튼은 실제 커뮤니티에 반영될 수 있습니다. 미리보기와 계정을 먼저 확인하세요.</p><label class="confirm-row"><input id="confirmed" type="checkbox"> 내용을 최종 확인했습니다.</label><label class="field"><span>플랫폼 ID를 그대로 입력</span><input id="confirmationText" autocomplete="off" placeholder="예: telegram"></label><button id="publishButton" class="danger" type="button">실제 게시 실행</button></details>
+      <pre id="result" class="result" aria-live="polite">요청 정보가 여기에 표시됩니다.</pre>
+    </aside>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>

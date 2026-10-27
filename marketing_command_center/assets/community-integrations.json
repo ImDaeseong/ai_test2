@@ -1,0 +1,310 @@
+{
+  "platforms": [
+    {
+      "capabilities": {
+        "audio": "NO_STANDALONE",
+        "file": "NO",
+        "image": "YES",
+        "local": "TEXT_IMAGE_VIDEO",
+        "text": "YES",
+        "video": "YES"
+      },
+      "id": "threads",
+      "label": "Threads",
+      "mode": "api",
+      "required_env": [
+        "THREADS_USER_ID",
+        "THREADS_ACCESS_TOKEN"
+      ],
+      "setup_guide": "docs/community-setup/threads.html",
+      "validation": {
+        "patterns": {
+          "THREADS_USER_ID": "^[0-9]+$"
+        },
+        "reject_placeholders": true
+      }
+    },
+    {
+      "capabilities": {
+        "audio": "NO_STANDALONE",
+        "file": "NO",
+        "image": "YES",
+        "local": "IMAGE_VIDEO_REELS_STORIES_OFFLINE",
+        "text": "CAPTION_ONLY",
+        "video": "YES_REELS_STORIES_CONDITIONAL"
+      },
+      "id": "instagram",
+      "label": "Instagram",
+      "mode": "api",
+      "required_env": [
+        "INSTAGRAM_USER_ID",
+        "INSTAGRAM_ACCESS_TOKEN"
+      ],
+      "setup_guide": "docs/community-setup/instagram.html",
+      "validation": {
+        "patterns": {
+          "INSTAGRAM_USER_ID": "^[0-9]+$"
+        },
+        "reject_placeholders": true
+      }
+    },
+    {
+      "capabilities": {
+        "audio": "YES",
+        "file": "YES",
+        "image": "YES",
+        "local": "TEXT_IMAGE_VIDEO",
+        "text": "YES",
+        "video": "YES"
+      },
+      "id": "telegram",
+      "label": "Telegram",
+      "mode": "api",
+      "required_env": [
+        "TELEGRAM_BOT_TOKEN",
+        "TELEGRAM_CHAT_ID"
+      ],
+      "setup_guide": "docs/community-setup/telegram.html",
+      "validation": {
+        "patterns": {
+          "TELEGRAM_BOT_TOKEN": "^[0-9]+:[A-Za-z0-9_-]{20,}$",
+          "TELEGRAM_CHAT_ID": "^(?:@[A-Za-z0-9_]{5,}|-?[0-9]+)$"
+        },
+        "reject_placeholders": true
+      }
+    },
+    {
+      "capabilities": {
+        "audio": "NO_STANDALONE",
+        "file": "NO",
+        "image": "YES",
+        "local": "PHOTO_VIDEO_OFFLINE_POLICY_HOLD",
+        "text": "CAPTION_ONLY",
+        "video": "YES"
+      },
+      "id": "tiktok",
+      "label": "TikTok",
+      "mode": "api",
+      "required_env": [
+        "TIKTOK_ACCESS_TOKEN"
+      ],
+      "setup_guide": "docs/community-setup/tiktok.html",
+      "validation": {
+        "patterns": {},
+        "reject_placeholders": true
+      }
+    },
+    {
+      "capabilities": {
+        "audio": "NO_STANDALONE",
+        "file": "NO",
+        "image": "YES",
+        "local": "TEXT_ONLY_MEDIA_UPLOAD_HOLD",
+        "text": "YES",
+        "video": "YES"
+      },
+      "id": "x",
+      "label": "X",
+      "mode": "api",
+      "required_env": [
+        "X_USER_ACCESS_TOKEN"
+      ],
+      "setup_guide": "docs/community-setup/x.html",
+      "validation": {
+        "patterns": {},
+        "reject_placeholders": true
+      }
+    },
+    {
+      "capabilities": {
+        "audio": "LINK_ONLY",
+        "file": "NO",
+        "image": "YES_TEMPLATE",
+        "local": "SEND_TO_SELF_TEXT_LINK",
+        "text": "YES_MESSAGE",
+        "video": "LINK_ONLY"
+      },
+      "id": "kakao",
+      "label": "KakaoTalk",
+      "mode": "api",
+      "required_env": [
+        "KAKAO_ACCESS_TOKEN"
+      ],
+      "setup_guide": "docs/community-setup/kakao.html",
+      "validation": {
+        "patterns": {},
+        "reject_placeholders": true
+      }
+    },
+    {
+      "capabilities": {
+        "audio": "NO_STANDALONE",
+        "file": "NO",
+        "image": "YES",
+        "local": "TEXT_LINK_IMAGE_VIDEO_OFFLINE",
+        "text": "YES",
+        "video": "YES_REELS_CONDITIONAL"
+      },
+      "id": "facebook_page",
+      "label": "Facebook Page",
+      "mode": "api",
+      "required_env": [
+        "FACEBOOK_PAGE_ID",
+        "FACEBOOK_PAGE_ACCESS_TOKEN"
+      ],
+      "setup_guide": "docs/community-setup/facebook_page.html",
+      "validation": {
+        "patterns": {
+          "FACEBOOK_PAGE_ID": "^[0-9]+$"
+        },
+        "reject_placeholders": true
+      }
+    },
+    {
+      "capabilities": {
+        "audio": "NO_STANDALONE",
+        "file": "YES_DOCUMENT",
+        "image": "YES",
+        "local": "TEXT_PREUPLOADED_ASSET_URN",
+        "text": "YES",
+        "video": "YES"
+      },
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "mode": "api",
+      "required_env": [
+        "LINKEDIN_ACCESS_TOKEN",
+        "LINKEDIN_AUTHOR_URN"
+      ],
+      "setup_guide": "docs/community-setup/linkedin.html",
+      "validation": {
+        "patterns": {
+          "LINKEDIN_AUTHOR_URN": "^urn:li:(?:person|organization):[A-Za-z0-9_-]+$"
+        },
+        "reject_placeholders": true
+      }
+    },
+    {
+      "capabilities": {
+        "audio": "YES",
+        "file": "YES",
+        "image": "YES",
+        "local": "TEXT_REMOTE_LINK_EMBED",
+        "text": "YES",
+        "video": "YES"
+      },
+      "id": "discord",
+      "label": "Discord",
+      "mode": "api",
+      "required_env": [
+        "DISCORD_WEBHOOK_URL"
+      ],
+      "setup_guide": "docs/community-setup/discord.html",
+      "validation": {
+        "patterns": {
+          "DISCORD_WEBHOOK_URL": "^https://(?:discord\\.com|discordapp\\.com)/api/webhooks/[0-9]+/[A-Za-z0-9._-]+$"
+        },
+        "reject_placeholders": true
+      }
+    },
+    {
+      "capabilities": {
+        "audio": "NO_NATIVE",
+        "file": "NO_NATIVE",
+        "image": "YES",
+        "local": "TEXT_LINK",
+        "text": "YES",
+        "video": "YES"
+      },
+      "id": "reddit",
+      "label": "Reddit",
+      "mode": "api",
+      "required_env": [
+        "REDDIT_ACCESS_TOKEN",
+        "REDDIT_SUBREDDIT"
+      ],
+      "setup_guide": "docs/community-setup/reddit.html",
+      "validation": {
+        "patterns": {
+          "REDDIT_SUBREDDIT": "^[A-Za-z0-9_]{3,21}$"
+        },
+        "reject_placeholders": true
+      }
+    },
+    {
+      "capabilities": {
+        "audio": "APP_SCHEME_MANUAL",
+        "file": "APP_SCHEME_MANUAL",
+        "image": "YES_MULTIPART",
+        "local": "TEXT_LINK",
+        "text": "YES",
+        "video": "APP_SCHEME_MANUAL"
+      },
+      "id": "naver_cafe",
+      "label": "Naver Cafe",
+      "mode": "api",
+      "required_env": [
+        "NAVER_ACCESS_TOKEN",
+        "NAVER_CAFE_ID",
+        "NAVER_CAFE_MENU_ID"
+      ],
+      "setup_guide": "docs/community-setup/naver_cafe.html",
+      "validation": {
+        "patterns": {
+          "NAVER_CAFE_ID": "^[0-9]+$",
+          "NAVER_CAFE_MENU_ID": "^[0-9]+$"
+        },
+        "reject_placeholders": true
+      }
+    },
+    {
+      "capabilities": {
+        "audio": "VIDEO_CONTAINER_ONLY",
+        "file": "NO",
+        "image": "NO_COMMUNITY_WRITE_API",
+        "local": "BOUNDARY_ONLY_UPLOAD_HOLD",
+        "text": "NO_COMMUNITY_WRITE_API",
+        "video": "YES"
+      },
+      "id": "youtube",
+      "label": "YouTube",
+      "mode": "hold",
+      "required_env": [
+        "YOUTUBE_ACCESS_TOKEN"
+      ],
+      "setup_guide": "docs/community-setup/youtube.html",
+      "validation": {
+        "patterns": {},
+        "reject_placeholders": true
+      }
+    },
+    {
+      "capabilities": {
+        "audio": "MANUAL",
+        "file": "MANUAL",
+        "image": "MANUAL",
+        "local": "SHARE_UI_ONLY",
+        "text": "MANUAL_SHARE_TITLE",
+        "video": "MANUAL"
+      },
+      "id": "naver",
+      "label": "Naver 공유",
+      "mode": "manual",
+      "required_env": [],
+      "setup_guide": "docs/community-setup/naver.html",
+      "validation": {
+        "patterns": {},
+        "reject_placeholders": true
+      }
+    }
+  ],
+  "schema_version": 2,
+  "source": "community_integrations",
+  "unsupported": [
+    {
+      "id": "naver_blog",
+      "label": "Naver Blog",
+      "reason": "official_write_api_retired"
+    }
+  ]
+}

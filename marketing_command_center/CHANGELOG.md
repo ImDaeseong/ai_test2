@@ -1,5 +1,14 @@
 # 변경 이력
 
+## 2026-10-27
+
+### Community Integrations 계약 연동
+
+- `community_integrations`가 생성한 비밀값 없는 versioned JSON 계약을 로컬 자산으로 소비합니다.
+- 6개 중복 상수 대신 13개 플랫폼의 실제 환경변수와 구현 범위를 표시합니다.
+- Naver 공유는 MANUAL, YouTube 미완성 실행은 HOLD, Naver Blog 종료는 UNSUPPORTED로 분리합니다.
+- 계약 schema·플랫폼 범위·비밀값 부재·공급자 사본 동기화를 자동 검사합니다.
+
 ## 2026-10-22
 
 ### 개선

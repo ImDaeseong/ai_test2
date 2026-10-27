@@ -129,7 +129,7 @@ function renderExperiment(){
 
 async function renderIntegrations(){
   const list=$("integrationList");list.replaceChildren(el("li","준비도를 확인하는 중입니다."));
-  try{const response=await fetch("/api/integrations",{cache:"no-store"}),result=await response.json();if(!response.ok)throw new Error("status");list.replaceChildren(...result.integrations.map(item=>el("li",item.mode==="unsupported"?`${item.label}: UNSUPPORTED · 공식 자동 게시 경로 없음`:item.configured?`${item.label}: LOCAL_CONFIGURED · 계정 동의·심사·live 권한은 HOLD`:`${item.label}: NOT_CONFIGURED · 누락 ${item.missing.join(", ")}`)))}catch{list.replaceChildren(el("li","준비도 서버에 연결하지 못했습니다."))}
+  try{const response=await fetch("/api/integrations",{cache:"no-store"}),result=await response.json();if(!response.ok)throw new Error("status");list.replaceChildren(...result.integrations.map(item=>el("li",item.mode==="unsupported"?`${item.label}: UNSUPPORTED · 공식 자동 게시 경로 없음`:item.mode==="manual"?`${item.label}: MANUAL · 사용자 확인으로 공유`:item.mode==="hold"?`${item.label}: HOLD · 실행 업로더 미구현`:item.invalid?.length?`${item.label}: INVALID_CONFIG · 형식 오류 ${item.invalid.join(", ")}`:item.configured?`${item.label}: LOCAL_CONFIGURED · 계정 동의·심사·live 권한은 HOLD`:`${item.label}: NOT_CONFIGURED · 누락 ${item.missing.join(", ")}`)))}catch{list.replaceChildren(el("li","연동 계약을 읽지 못했습니다. 동기화 검사를 실행하세요."))}
 }
 
 function validCommunityUrl(value){try{const url=new URL(value);return url.protocol==="https:"?url:null}catch{return null}}

@@ -1,5 +1,7 @@
 # Hermes Marketing Studio
 
+> 연동 계약 schema v2는 환경변수 이름과 공개 가능한 형식 규칙을 함께 제공합니다. 화면의 `INVALID_CONFIG`는 비밀값을 표시하지 않고 잘못된 변수 이름만 보여 줍니다. `your_...`, `replace_...`, `example_...` 예제값은 준비 완료로 인정하지 않습니다.
+
 혼자 여러 서비스를 홍보할 때, 대상·가치·신뢰·행동이 분명한 커뮤니티 글을 만들고 **올리기 전에 품질을 점검**하는 로컬 도구입니다. 채널별 게시 주소를 연결하면 본문을 복사하고 해당 화면을 바로 엽니다. 자동 게시는 하지 않습니다.
 
 처음 보는 사용자는 [`ELI5.md`](ELI5.md)를, 이번 개선 내역은 [`CHANGELOG.md`](CHANGELOG.md)를 참고하세요. 실제 OpenAI 검증 증거는 [`LIVE_API_EVIDENCE.md`](LIVE_API_EVIDENCE.md)에 있습니다.
@@ -83,3 +85,5 @@ powershell -ExecutionPolicy Bypass -File scripts/smoke_launcher.ps1
 게시 전에는 [`HUMAN_REVIEW.md`](HUMAN_REVIEW.md)의 문안·커뮤니티·안전 검수표를 사용합니다. 실제 독자 반응과 커뮤니티 운영자 판단은 자동 검사로 PASS 처리하지 않습니다.
 
 `연동 준비도`는 필요한 환경변수 이름이 설정됐는지만 보여 주며 비밀값은 표시하지 않습니다. 앱 등록·권한 심사·계정 소유자 동의와 실제 게시 성공은 별도 외부 증거가 필요합니다. 네이버 블로그 외부 글쓰기 API는 지원 종료 상태이므로 `UNSUPPORTED`로 고정하고 수동 게시만 사용합니다. 근거와 채널별 요구사항은 [`reports/커뮤니티 규칙 연동 검증.md`](reports/커뮤니티%20규칙%20연동%20검증.md)에 정리했습니다.
+
+연동 준비도 정보는 `community_integrations/integration-contract.json`에서 생성된 비밀값 없는 사본 `assets/community-integrations.json`을 읽습니다. 두 프로젝트는 런타임 코드를 직접 import하지 않아 각각 독립 실행되며, 플랫폼·환경변수·지원 범위가 바뀌면 `community_integrations`에서 `python sync_marketing_contract.py`를 실행합니다. 공급자 테스트와 이 프로젝트의 `npm run validate`가 schema와 13개 플랫폼 범위를 함께 검사합니다. 실제 사이트 설정 절차는 `community_integrations/docs/community-setup/index.html`을 사용합니다.

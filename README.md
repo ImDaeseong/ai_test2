@@ -4,7 +4,7 @@
 
 [쉬운 설명](ELI5.html) · [구조와 설계](DESIGN.md) · [브라우저에서 보기](https://htmlpreview.github.io/?https://github.com/ImDaeseong/ai_test2/blob/main/ELI5.html)
 
-AI 뮤직비디오 제작, 프롬프트 생성, YouTube 조사, 로컬 음악 분석, 채용 적합도 분석, 커뮤니티 마케팅을 위한 7개 독립 프로젝트 모음입니다. 각 프로젝트의 상세 옵션과 입력 형식은 해당 폴더의 `README.md`를 확인하세요.
+AI 뮤직비디오 제작, 프롬프트 생성, YouTube 조사, 로컬 음악 분석, 채용 적합도 분석, 커뮤니티 마케팅·공식 API 게시를 위한 8개 독립 프로젝트 모음입니다. 각 프로젝트의 상세 옵션과 입력 형식은 해당 폴더의 `README.md`를 확인하세요.
 
 ## 사전 요구사항
 
@@ -35,6 +35,7 @@ python -m pip install --upgrade pip
 | `music_insight_studio` | `python -m pip install -r requirements.txt` · 정확도 향상 시 `python -m pip install -r requirements-optional.txt` |
 | `CareerDiff` | `cd CareerDiff\app; npm install` |
 | `marketing_command_center` | 별도 패키지 설치 없음(Node.js 테스트 실행에만 사용) |
+| `community_integrations` | 별도 패키지 설치 없음(Python 표준 라이브러리) |
 
 ### API 키
 
@@ -49,6 +50,7 @@ Copy-Item CareerDiff\app\.env.example CareerDiff\app\.env.local
 |---|---|
 | `CareerDiff` | `OPENAI_API_KEY`, `OPENAI_MODEL` 모두 선택. 앱 환경변수에 키가 없으면 Git에서 제외된 `../ai_agent/keyinfo/keys.env`의 `OPENAI_API_KEY`를 서버에서만 읽음 |
 | `marketing_command_center` | `OPENAI_API_KEY` 선택, `MARKETING_OPENAI_MODEL` 선택. 키는 로컬 서버 프로세스에서만 읽음 |
+| `community_integrations` | 플랫폼별 사용자 토큰/계정 ID. [예제 변수와 범위](./community_integrations/.env.example) 참고 |
 
 `CareerDiff`가 OpenAI 모드이면 분석 전에 외부 전송 안내와 동의 체크를 표시합니다. 동의하지 않은 요청은 서버에서도 거부되며, 키가 없으면 입력을 외부로 보내지 않는 로컬 분석기를 사용합니다.
 
@@ -63,6 +65,7 @@ Copy-Item CareerDiff\app\.env.example CareerDiff\app\.env.local
 | [`music_insight_studio`](./music_insight_studio/) | 로컬 음원의 BPM·Key·LUFS·믹싱 상태 분석 | `python -m app.web.server --host 127.0.0.1 --port 8765` |
 | [`CareerDiff`](./CareerDiff/docs/README.md) | 채용공고와 이력서의 적합도 분석 | `cd CareerDiff\app; npm run dev` |
 | [`marketing_command_center`](./marketing_command_center/) | 채널별 마케팅 문안 작성·점검과 수동 게시 인계 | `marketing_command_center\start.bat` |
+| [`community_integrations`](./community_integrations/) | 공식 API 게시 요청 미리보기와 명시적 승인 실행 | `python community_integrations\cli.py telegram --text "테스트"` |
 
 ## MV 제작 흐름
 
@@ -73,7 +76,7 @@ ai_img_video_aiBoygirl
   → timeline.json, shot_list.md, CapCut 드래프트 생성
 ```
 
-`ai_anime`, `youtube_research`, `music_insight_studio`, `CareerDiff`, `marketing_command_center`는 위 흐름과 독립적으로 실행됩니다.
+`ai_anime`, `youtube_research`, `music_insight_studio`, `CareerDiff`, `marketing_command_center`, `community_integrations`는 위 흐름과 독립적으로 실행됩니다.
 
 ## 검증
 

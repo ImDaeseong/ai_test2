@@ -6,7 +6,7 @@
 
 ## Purpose
 
-ai_test2는 AI 음악 영상 제작 도구 4개와 독립 도구 3개, 총 7개 프로젝트를 모은 작업공간이다.
+ai_test2는 AI 음악 영상 제작 도구 4개와 독립 도구 4개, 총 8개 프로젝트를 모은 작업공간이다.
 
 - `ai_anime`: 곡 텍스트에서 애니메이션 MV 캐릭터/씬/영상 프롬프트 생성
 - `ai_img_video_aiBoygirl`: AI Boy/AI Girl 고정 캐릭터 MV 프롬프트 생성
@@ -15,6 +15,7 @@ ai_test2는 AI 음악 영상 제작 도구 4개와 독립 도구 3개, 총 7개 
 - `music_insight_studio`: 로컬 음악 분석 — BPM/Key/LUFS/주파수 밸런스 분석과 믹싱/마스터링/시장성 평가 리포트 생성. MV 제작 파이프라인과 파일/의존성 공유 없음(2026-07-17 `ai_test3`에서 이동).
 - `CareerDiff`: 채용공고와 이력서를 비교해 적합도 근거, 보완점, 미니 프로젝트와 면접 질문을 제시하는 독립 웹 애플리케이션. 키가 없으면 로컬 분석기를 사용하고, 앱 환경변수나 개인 공유 파일에서 OpenAI 키를 찾으면 OpenAI API를 호출한다.
 - `marketing_command_center`: 대상·가치·신뢰·행동이 분명한 채널별 글을 작성·점검하고, 복사 후 연결된 커뮤니티 게시 화면을 여는 로컬 웹 도구다.
+- `community_integrations`: 공식 플랫폼 API 요청을 미리 보고 사람이 확인한 뒤 Threads, Instagram, Telegram, TikTok, X, KakaoTalk, Facebook Page, LinkedIn, Discord, Reddit, Naver Cafe, YouTube, Naver 공유까지 13개 플랫폼 경계를 다루는 독립 CLI다. 실제 자동 게시 범위와 수동·미지원 상태는 플랫폼별 계약을 따른다.
 
 ## Current State
 

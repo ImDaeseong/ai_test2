@@ -1,9 +1,11 @@
 import json
 import socket
+import tempfile
 import unittest
+from pathlib import Path
 from urllib.error import HTTPError, URLError
 
-from serve import LocalThreadingHTTPServer, generate_marketing_draft, integration_status, review_marketing_post
+from serve import LocalThreadingHTTPServer, generate_marketing_draft, integration_status, load_integration_contract, review_marketing_post
 
 
 class FakeResponse:
@@ -178,13 +180,49 @@ class LifecycleConfigurationTests(unittest.TestCase):
 
 
 class IntegrationReadinessTests(unittest.TestCase):
-    """Keep credential values private and unsupported providers explicit."""
+    """Consume the canonical community contract without exposing credentials."""
 
     def test_missing_names_are_reported_without_values(self):
-        rows = integration_status({"THREADS_APP_ID": "public-id", "THREADS_APP_SECRET": "secret-value"})
+        rows = integration_status({"THREADS_USER_ID": "12345", "THREADS_ACCESS_TOKEN": "secret-value"})
         threads = next(row for row in rows if row["channel"] == "threads")
-        self.assertFalse(threads["configured"])
-        self.assertEqual(threads["missing"], ["THREADS_REDIRECT_URI"])
+        self.assertTrue(threads["configured"])
+        self.assertEqual(threads["missing"], [])
+        self.assertEqual(threads["invalid"], [])
+        self.assertNotIn("secret-value", repr(rows))
+
+    def test_placeholder_and_malformed_values_are_not_ready_or_exposed(self):
+        value = "your_discord_webhook"
+        rows = integration_status({"DISCORD_WEBHOOK_URL": value})
+        discord = next(row for row in rows if row["channel"] == "discord")
+        self.assertFalse(discord["configured"])
+        self.assertEqual(["DISCORD_WEBHOOK_URL"], discord["invalid"])
+        self.assertNotIn(value, repr(rows))
+
+    def test_contract_exposes_all_platforms_and_reusable_metadata(self):
+        contract = load_integration_contract()
+        rows = integration_status({}, contract)
+        platforms = [row for row in rows if row["mode"] != "unsupported"]
+        self.assertEqual(13, len(platforms))
+        telegram = next(row for row in platforms if row["channel"] == "telegram")
+        self.assertEqual(["TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"], telegram["missing"])
+        self.assertEqual("TEXT_IMAGE_VIDEO", telegram["capabilities"]["local"])
+        self.assertEqual("docs/community-setup/telegram.html", telegram["setup_guide"])
+
+    def test_invalid_contract_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "contract.json"
+            path.write_text('{"schema_version": 99, "platforms": []}', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "unsupported"):
+                load_integration_contract(path)
+
+    def test_manual_and_execution_hold_modes_remain_explicit(self):
+        rows = integration_status({"YOUTUBE_ACCESS_TOKEN": "secret-value"})
+        naver = next(row for row in rows if row["channel"] == "naver")
+        youtube = next(row for row in rows if row["channel"] == "youtube")
+        self.assertEqual("manual", naver["mode"])
+        self.assertTrue(naver["configured"])
+        self.assertEqual("hold", youtube["mode"])
+        self.assertTrue(youtube["configured"])
         self.assertNotIn("secret-value", repr(rows))
 
     def test_naver_blog_is_explicitly_unsupported(self):

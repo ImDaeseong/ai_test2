@@ -29,6 +29,13 @@ for(const file of CURRENT_FILES){
   if(stale.length){failed=true;console.error(`FAIL stale terms in ${file}: ${stale.join(", ")}`)}
 }
 if(await access(resolve(root,"media")).then(()=>true,()=>false)){failed=true;console.error("FAIL removed media/ folder exists again")}
+const integrationContract=JSON.parse(await readFile(resolve(root,"assets/community-integrations.json"),"utf8"));
+const platformIds=integrationContract.platforms?.map(item=>item.id)||[];
+if(integrationContract.schema_version!==2||integrationContract.source!=="community_integrations"||platformIds.length!==13||new Set(platformIds).size!==13||integrationContract.platforms.some(item=>item.validation?.reject_placeholders!==true)){
+  failed=true;console.error("FAIL community integration contract schema or platform coverage");
+}else if(JSON.stringify(integrationContract).includes("secret-value")){
+  failed=true;console.error("FAIL community integration contract contains a credential value");
+}else console.log("PASS community integration contract");
 if(failed)process.exit(1);
 console.log("PASS no stale terms or leftover folders");
 console.log("PASS marketing_command_center contract");
