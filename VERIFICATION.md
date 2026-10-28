@@ -29,17 +29,6 @@ instead close with their own dated `[LOOP-END]`.)
 
 ## Required Commands
 
-`community_integrations` 공식 게시 계약 검증:
-
-```powershell
-cd community_integrations
-python -m unittest discover -s tests -v
-Push-Location threads
-python -m unittest discover -s tests -v
-python -m unittest discover -s examples\threads_python\tests -v
-Pop-Location
-```
-
 The `C:\path\to\` prefix below replaces the original machine-specific home path in historical command examples.
 
 Run from each project directory:

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 import re
 import subprocess
 import unittest
@@ -17,7 +16,6 @@ EXPECTED_PROJECTS = {
     "youtube_research",
     "music_insight_studio",
     "CareerDiff",
-    "community_integrations",
 }
 PRIVATE_LOCAL_PROJECTS: set[str] = set()
 
@@ -50,7 +48,7 @@ class RepositoryContractTests(unittest.TestCase):
         discovered = self._discover_project_directories()
         self.assertEqual(discovered, EXPECTED_PROJECTS)
         self.assertEqual(registered, discovered)
-        self.assertIn("7개 독립 프로젝트", readme)
+        self.assertIn("6개 독립 프로젝트", readme)
         self.assertIn("결정론적 로컬 분석기", readme)
         self.assertNotIn("내장 mock 결과", readme)
 
@@ -75,18 +73,6 @@ class RepositoryContractTests(unittest.TestCase):
             with self.subTest(document=name):
                 content = (ROOT / name).read_text(encoding="utf-8")
                 self.assertIn("CareerDiff", content)
-                self.assertIn("community_integrations", content)
-
-    def test_spec_lists_every_community_contract_platform(self) -> None:
-        """Keep the root product scope aligned with the generated integration contract."""
-        spec = (ROOT / "SPEC.md").read_text(encoding="utf-8")
-        contract = json.loads(
-            (ROOT / "community_integrations" / "integration-contract.json").read_text(encoding="utf-8")
-        )
-
-        for platform in contract["platforms"]:
-            with self.subTest(platform=platform["id"]):
-                self.assertIn(platform["label"], spec)
 
     def test_security_boundary_distinguishes_local_and_external_paths(self) -> None:
         security = (ROOT / "SECURITY_BOUNDARY.md").read_text(encoding="utf-8")

@@ -23,7 +23,6 @@ Not allowed in repository:
 - 음악·영상 도구 5개는 외부 API 키 없이 동작한다. `music_insight_studio`의 선택 의존성(`librosa`, `basic-pitch`)도 로컬 Python 패키지이며 원격 API가 아니다.
 - `CareerDiff`는 `OPENAI_API_KEY`와 `OPENAI_MODEL`을 선택적으로 사용하며, 앱 환경변수에 키가 없으면 Git에서 제외된 `../ai_agent/keyinfo/keys.env`의 `OPENAI_API_KEY`만 서버 메모리로 읽는다. 외부 전송을 고지하고 키를 응답·로그에 넣지 않는다.
 - 실제 키는 `CareerDiff/app/.env.local`, 프로세스 환경변수 또는 위 개인 공유 파일로만 주입하고 로그, 검증 JSON, trace에 기록하지 않는다.
-- `community_integrations`의 플랫폼 토큰은 프로세스 환경변수로만 주입하고, 미리보기와 오류 로그에서 가린다. 실제 외부 게시에는 `--execute --confirm`을 모두 요구한다.
 
 ## Career Data Boundary
 
