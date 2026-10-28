@@ -75,6 +75,7 @@ Verified 2026-10-29 (full loop, live API):
 
 - `ai_anime/live_api_smoke.py --confirm-paid-call` -> `PASS`, model `gpt-image-2.5-sunburst`, calls 1, png 1024x1024, image not saved. Key value not displayed.
 - Offline: root 25, ai_anime 87, ai_img_video_aiBoygirl 337, ai_img_video_prompt_capcut 65, youtube_research 41, music_insight_studio 34, CareerDiff 129 tests, typecheck and lint passed.
+- `CareerDiff/app` `npm run smoke:openai` (dev server on 127.0.0.1:3011, `CAREERDIFF_LIVE_OPENAI=1`) -> `PASS OPENAI_LIVE model=gpt-6-luna store=false synthetic_input=true checks=9`. Synthetic input only; server stopped afterwards, port 3011 free. `CareerDiff/data` holds 185 case files, all parse as JSON with the same 5 top-level fields, none tracked by git. Content quality of those results remains a human review item.
 
 Verified 2026-07-13:
 
