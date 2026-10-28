@@ -330,3 +330,25 @@ def test_normalize_missing_fields_default():
     assert result["view_count"] == 0
     assert result["tags"] == []
     assert result["title"] == ""
+
+
+def test_run_help_does_not_contact_provider():
+    """Keep the standard help path local and side-effect free."""
+    import subprocess
+    import sys
+
+    result = subprocess.run(
+        [sys.executable, "run.py", "--help"],
+        cwd=Path(__file__).resolve().parent,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        timeout=10,
+        check=False,
+    )
+
+    assert result.returncode == 0
+    assert "usage:" in result.stdout.lower()
+    assert "Collecting" not in result.stdout
+    assert "provider_failure" not in result.stderr

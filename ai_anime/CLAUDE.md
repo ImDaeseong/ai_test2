@@ -8,7 +8,7 @@
 
 ## 절대 규칙
 
-- **외부 API 호출 금지**: 이 프로젝트는 외부 AI API를 사용하지 않는다.
+- **기본 생성 경로는 외부 API 호출 금지**: `main.py` 생성·검증은 순수 로컬로 동작한다. `live_api_smoke.py --confirm-paid-call`만 사용자 승인 후 OpenAI 이미지 API를 1회 검증한다.
 - **하드코딩 금지**: 장르·색상·스타일 값을 코드에 직접 쓰지 않는다. 모든 값은 `anime_profiles.json` 또는 `templates/`에서 참조한다.
 - **output/ 직접 편집 금지**: `output/` 폴더의 파일은 `main.py`로만 생성한다.
 - **정책 안전화 우회 금지**: `SAFETY_RISK_MAP` 필터를 제거하거나 우회하지 않는다.
@@ -20,6 +20,7 @@
 | 파일 | 역할 | 수정 시 주의사항 |
 |---|---|---|
 | `main.py` | 파이프라인 진입점 | `create`, `create-all`, `validate` 명령 처리 |
+| `live_api_smoke.py` | 선택적 유료 API 경계 검사 | 명시적 확인 없이는 호출하지 않음 |
 | `anime_profiles.json` | 7개 장르 프로파일 | 환경·카메라샷·모션 값의 유일한 출처 |
 | `templates/00_character_sheet.md` | 캐릭터 시트 템플릿 | `[PLACEHOLDER]` 형식 — 직접 값 입력 금지 |
 | `templates/01_image_prompts.md` | 씬 이미지 프롬프트 템플릿 | `[SCENE_IMAGE_BLOCKS]` 플레이스홀더 |

@@ -4,6 +4,7 @@ usage:
   python run.py [search|channel] [max_per_query]
 """
 
+import argparse
 import json
 import sys
 from datetime import datetime
@@ -12,12 +13,27 @@ import collect as col
 import analyze as ana
 
 
-def main():
+def parse_args(argv=None):
+    """Parse the pipeline mode and per-query result limit."""
+    parser = argparse.ArgumentParser(
+        description="AI 음악 YouTube 채널 메타데이터 수집과 리포트 생성",
+    )
+    parser.add_argument("mode", nargs="?", choices=("search", "channel"), default="search")
+    parser.add_argument("max_per_query", nargs="?", type=int, default=30)
+    args = parser.parse_args(argv)
+    if args.max_per_query < 1:
+        parser.error("max_per_query는 1 이상이어야 합니다")
+    return args
+
+
+def main(argv=None):
+    """Run collection, filtering, thumbnail retrieval, and report generation."""
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-    mode  = sys.argv[1] if len(sys.argv) > 1 else "search"
-    max_n = int(sys.argv[2]) if len(sys.argv) > 2 else 30
+    args = parse_args(argv)
+    mode = args.mode
+    max_n = args.max_per_query
 
     config = json.loads(col.CHANNELS_FILE.read_text(encoding="utf-8"))
     all_v: list[dict] = []

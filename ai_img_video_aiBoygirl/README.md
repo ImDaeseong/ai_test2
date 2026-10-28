@@ -3,7 +3,7 @@
 이 프로젝트는 외부 AI API를 호출하지 않습니다. 로컬에서 제공자 독립적인 프롬프트 문서를 생성하며, 모델 선택과 실제 생성은 사람이 해당 제공자에서 수행합니다. 루트 `AI_API_VERSION_AUDIT.md`가 이 경계를 회귀 검사합니다.
 
 > AI Boy/AI Girl 3D 치비 토이 로봇 피규어 고정 캐릭터를 유지하면서, 곡마다 장르·무드·템포·감정·조명·카메라·연주 방식·관중 반응만 교체하는 MV 프롬프트 자동 생성 CLI 도구.
-> **2026-08-03 기준 — 337 테스트 PASS. 장르 프로파일 36개, reference 이미지 26개, 214곡 검증 PASS.**
+> **2026-10-29 기준 — 337 테스트 PASS. 장르 프로파일 36개, reference 이미지 26개, 238곡 검증 PASS.**
 
 > **실제 MV 제작 방법 (GPT 이미지 생성 → Kling/Flow 영상 → CapCut 편집):**
 > [MV_제작_가이드.md](MV_제작_가이드.md) 참조
@@ -316,7 +316,7 @@ python -m pytest -q
 
 ```text
 python -m py_compile main.py web_app.py validate_output.py  → 통과
-python validate_output.py                                  → 214곡 전체 PASS, 정책 위험 표현 0건
+python validate_output.py                                  → 현재 input 전체 PASS(검증 시점 238곡), 정책 위험 표현 0건
 python -m pytest -q                                        → 337 passed, 0 failed
                                                              (41 errors = Windows 임시 디렉터리 권한 문제, OS 레벨)
 ```

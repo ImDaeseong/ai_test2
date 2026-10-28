@@ -229,4 +229,41 @@ The warning in the four `--basetemp` runs is a pytest cache warning from this sa
 
 ## Exit Criteria
 
+## 2026-10-29 — six-project product and conflict audit
+
+Purpose: verify that every currently registered project can complete its primary local workflow, that repository boundaries still agree after removing two projects, and that failures are visible instead of being reported as success.
+
+### Findings fixed
+
+- `youtube_research/run.py --help` incorrectly treated `--help` as collection mode and contacted YouTube. Replaced positional `sys.argv` handling with `argparse`, restricted modes to `search|channel`, rejected limits below 1, and added a subprocess regression test proving help is local and side-effect free.
+- CareerDiff's Next.js `dev` and `start` scripts inherited the framework default `0.0.0.0` listener. Both now pass `--hostname 127.0.0.1`; a repository contract test protects the boundary. The real listener changed from `::` to `127.0.0.1`, and the home page returned HTTP 200.
+- Current documentation drift was corrected: AI Boy/Girl now states 337 tests and 238 current inputs, YouTube Research states 41 tests, and ai_anime distinguishes its local default workflow from its separately confirmed one-call paid smoke tool.
+
+### Project-by-project evidence
+
+| Project | Primary workflow exercised | Automated result | Product assessment and remaining HOLD |
+|---|---|---|---|
+| `ai_anime` | `create-all` then `validate` over the local corpus | 87 tests; 238 songs generated; all generated folders PASS | Local prompt generation and retained outputs work. CapCut import and subjective image/video quality still require human review. Paid image smoke was not rerun in this audit. |
+| `ai_img_video_aiBoygirl` | `create-all` then `validate_output.py` | 337 tests; 238/238 songs PASS residue, structure, placeholder, identity-lock, and policy checks | Initial 453 failures were correctly caused by missing local generated outputs, not hidden code success. Regeneration closed the operational gap. Visual quality and downstream generator behavior remain human HOLD. |
+| `ai_img_video_prompt_capcut` | Actual `여름 끝나기 전에` input: `inspect` → `plan` → `build` | 65 tests; 31/31 slots assigned; timeline build exit 0 | Real WAV/LRC/SRT/11-clip handoff works and writes a timestamped build plus `latest`. Final CapCut application import and rendered-video review remain human HOLD. |
+| `youtube_research` | Local help and invalid-input failure paths; collection code tested offline | 41 tests; help exit 0 without provider access; invalid mode rejected | A real YouTube request was attempted by the old broken help path and failed at the restricted network boundary; no empty-success report was produced. Live public metadata collection remains NOT RUN after the CLI fix. |
+| `music_insight_studio` | CLI analysis of `tests/fixtures/sample.wav` into a temporary directory | 34 tests; Markdown, Korean Markdown, JSON, and MusicXML all created | CLI, codecs, upload validation, web rendering contracts, and four retained artifact types are covered. Subjective score usefulness and long real-song accuracy remain human HOLD. |
+| `CareerDiff` | Real Next server, home request, provider-status request, and loopback listener inspection | Typecheck PASS; 129 tests; lint PASS; HTTP 200; loopback-only listener | Local and API surfaces start correctly. Provider status reported `openai`, but no resume/job data and no paid request were sent. Real-data consent, model quality, and live API behavior remain human HOLD. |
+
+### Repository and conflict checks
+
+- Root contracts: 25 tests PASS, including project registry, API boundaries, private data paths, and loopback scripts.
+- Static security scan: no unacknowledged security/network hotspot.
+- Source-only scan: zero tracked media or executables; generated outputs remained Git-ignored local artifacts.
+- Default web ports are distinct (`CareerDiff` 3000, music insight 8765, AI Boy/Girl Flask default 5000), so no configured port collision was found.
+- The prompt generator and CapCut editor continue to exchange files rather than import each other's implementation; independent tools retain separate input/output roots.
+
+### Limits
+
+- This pass does not establish subjective UX, creative quality, hiring fairness, market performance, or public deployment readiness.
+- No paid OpenAI request was made. No post-fix live YouTube collection was made.
+- The code graph's fast and full incremental rebuilds retained 11 deleted-project document nodes. Deleting only the cached graph project and rebuilding from the current filesystem removed them; the final graph search returned zero deleted-project nodes.
+
+[LOOP-END] result: PASS_WITH_HOLD / gate: 100% automated local scope / self-declared passes this scope: 1 / independent verification: 6 project suites + two real generation pipelines + CapCut real build + music CLI artifacts + CareerDiff real listener/HTTP + repository security/source-only guards / live API: NOT RUN (paid OpenAI not authorized for this audit; post-fix YouTube live collection not run)
+
 [LOOP-END] result: root governance docs added and all existing tests still pass / gate: 100%

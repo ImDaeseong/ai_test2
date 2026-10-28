@@ -27,7 +27,7 @@
 | `main.py` | 파이프라인 실행 진입점 | `create`, `create-all`, `validate` 명령 처리 |
 | `genre_profiles.json` | 36개 장르별 프로파일 | 색상·스타일·캐릭터 값의 유일한 출처 |
 | `templates/` | 9개 프롬프트 템플릿 | `{변수}` 플레이스홀더 형식 — 직접 값 입력 금지 |
-| `validate_output.py` | 214곡 전체 정책 안전화 검증 | 수정 후 반드시 실행 |
+| `validate_output.py` | 현재 input 전체(검증 시점 238곡) 정책 안전화 검증 | 수정 후 반드시 실행 |
 | `tests/` | pytest 기반 337개 테스트 | 수정 후 전체 통과 확인 필수 |
 | `input/` | 곡 정보 txt 파일 | 로컬 전용·Git 제외; 기존 입력 데이터 보존 |
 | `output/` | 곡별 생성 결과 | 직접 편집 금지 |
@@ -39,17 +39,17 @@
 ```bash
 # Step 1: 단위 테스트 전체
 python -m pytest -q
-# 목표: 336 passed, 0 failed
+# 목표: 337 passed, 0 failed
 
 # Step 2: 전체 곡 정책 안전화 검증
 python validate_output.py
-# 목표: 214곡 전체 PASS, 정책 위험 표현 0건
+# 목표: 현재 input 전체 PASS(검증 시점 238곡), 정책 위험 표현 0건
 
 # Step 3: 구문 오류 확인
 python -m py_compile main.py web_app.py validate_output.py
 ```
 
-**완료 기준**: 336 passed + 0 failed + 정책 위험 표현 0건
+**완료 기준**: 337 passed + 0 failed + 현재 input 전체 정책 위험 표현 0건
 
 ---
 

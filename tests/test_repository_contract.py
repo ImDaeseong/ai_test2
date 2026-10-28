@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 import subprocess
 import unittest
@@ -114,6 +115,13 @@ class RepositoryContractTests(unittest.TestCase):
         readme = (ROOT / "CareerDiff" / "README.md").read_text(encoding="utf-8")
         self.assertIn("CAREERDIFF_DATA_DIR", readme)
         self.assertIn("CareerDiff/app/data/", readme)
+
+    def test_careerdiff_scripts_bind_to_loopback_by_default(self) -> None:
+        """Keep development and production launchers off LAN interfaces by default."""
+        package = json.loads((ROOT / "CareerDiff" / "app" / "package.json").read_text(encoding="utf-8"))
+        for script_name in ("dev", "start"):
+            with self.subTest(script=script_name):
+                self.assertIn("--hostname 127.0.0.1", package["scripts"][script_name])
 
 
 if __name__ == "__main__":
