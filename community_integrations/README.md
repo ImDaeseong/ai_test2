@@ -81,7 +81,6 @@ community_integrations/
 ├─ doctor.py                      # 비밀값 없는 설정 점검
 ├─ capabilities.py                # 플랫폼·미디어 지원표
 ├─ integration-contract.json      # 다른 로컬 앱이 소비하는 비밀값 없는 계약
-├─ sync_marketing_contract.py     # Marketing Command Center 사본 동기화
 ├─ community_integrations/
 │  └─ publisher.py               # 공통 계약과 13개 플랫폼/서비스 경계
 ├─ platforms/                    # 초보자용 플랫폼별 설정 가이드
@@ -101,21 +100,13 @@ python -m unittest discover -s examples\threads_python\tests -v
 Pop-Location
 ```
 
-Marketing Command Center가 연동 정보를 사용할 수 있도록 계약을 다시 생성하려면 다음을 실행합니다.
-
-```powershell
-python sync_marketing_contract.py
-python sync_marketing_contract.py --check
-python -m unittest tests.test_integration_contract -v
-```
-
-전체 오프라인 검증은 아래 한 명령으로 계약, 두 프로젝트의 테스트, 보안 검사, 서버 수명주기, Chrome E2E와 Windows 런처를 순서대로 실행합니다. 실제 커뮤니티 API는 호출하지 않습니다.
+전체 오프라인 검증은 아래 한 명령으로 계약 테스트, 보안 검사와 실행기 검사를 순서대로 실행합니다. 실제 커뮤니티 API는 호출하지 않습니다.
 
 ```powershell
 python verify_offline.py
 ```
 
-두 프로젝트는 런타임 코드를 직접 import하지 않습니다. `community_integrations/integration-contract.json`과 `marketing_command_center/assets/community-integrations.json`은 내용이 완전히 같아야 하며, 테스트가 드리프트를 차단합니다. 계약에는 플랫폼 ID·표시명·환경변수 **이름**·기능 범위·설정 문서 경로만 있고 토큰 값은 포함하지 않습니다.
+`integration-contract.json`에는 플랫폼 ID·표시명·환경변수 **이름**·기능 범위·설정 문서 경로만 있고 토큰 값은 포함하지 않습니다. 외부 소비자는 이 공개 계약을 독립적으로 검증해 사용할 수 있습니다.
 
 실제 계정 게시 테스트는 외부 게시·토큰·심사·X 비용을 수반하므로 자동 테스트에 포함하지 않습니다. 실행 전 [HOLD 조건](docs/HOLD_CONDITIONS.md)을 확인하세요.
 

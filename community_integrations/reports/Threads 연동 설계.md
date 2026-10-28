@@ -1,6 +1,6 @@
 # Threads 연동을 안전하게 재사용한다
 
-**Threads의 공식 API만으로 글, 링크, 이미지, 동영상, 이미지·동영상 혼합 캐러셀, 답글과 인용 게시를 자동화할 수 있다. 그러나 독립 오디오·음악 파일을 게시하는 공식 `AUDIO` 유형은 확인되지 않았으므로, 음악은 오디오가 포함된 동영상이나 링크로만 다루는 것이 현재의 안전한 결론이다.** 인증은 OAuth 2.0 Authorization Code 흐름이고, 실제 게시물은 대부분 “미디어 컨테이너 생성 → 처리 상태 확인 → 게시”의 두 단계 계약을 따른다. 따라서 교육용 예제와 향후 `marketing_command_center` 통합 모두에서 “요청 접수”와 “외부 게시 완료”를 분리해야 한다. 최소 구현은 텍스트 게시 한 건을 끝까지 통과시키는 세로 슬라이스로 시작하고, 이미지·동영상·캐러셀·인사이트·답글 관리는 검증된 권한과 상태 기계를 따라 순차적으로 추가하는 편이 안전하다. 토큰, 게시 작업, 원격 성공 증거, 삭제 작업을 서로 다른 수명주기로 관리하면 Threads 문서를 독립 교육 자료로 쓰면서도 이후 다른 커뮤니티 어댑터와 동일한 운영 계약으로 재사용할 수 있다. 이 보고서는 2026-10-23 확인 결과이며, Meta 개발자 문서 일부가 조사 중 HTTP 429를 반환해 직접 재검증하지 못한 항목은 **GAP**과 출시 **HOLD**로 남긴다.
+**Threads의 공식 API만으로 글, 링크, 이미지, 동영상, 이미지·동영상 혼합 캐러셀, 답글과 인용 게시를 자동화할 수 있다. 그러나 독립 오디오·음악 파일을 게시하는 공식 `AUDIO` 유형은 확인되지 않았으므로, 음악은 오디오가 포함된 동영상이나 링크로만 다루는 것이 현재의 안전한 결론이다.** 인증은 OAuth 2.0 Authorization Code 흐름이고, 실제 게시물은 대부분 “미디어 컨테이너 생성 → 처리 상태 확인 → 게시”의 두 단계 계약을 따른다. 따라서 교육용 예제와 향후 소비자 애플리케이션 통합 모두에서 “요청 접수”와 “외부 게시 완료”를 분리해야 한다. 최소 구현은 텍스트 게시 한 건을 끝까지 통과시키는 세로 슬라이스로 시작하고, 이미지·동영상·캐러셀·인사이트·답글 관리는 검증된 권한과 상태 기계를 따라 순차적으로 추가하는 편이 안전하다. 토큰, 게시 작업, 원격 성공 증거, 삭제 작업을 서로 다른 수명주기로 관리하면 Threads 문서를 독립 교육 자료로 쓰면서도 이후 다른 커뮤니티 어댑터와 동일한 운영 계약으로 재사용할 수 있다. 이 보고서는 2026-10-23 확인 결과이며, Meta 개발자 문서 일부가 조사 중 HTTP 429를 반환해 직접 재검증하지 못한 항목은 **GAP**과 출시 **HOLD**로 남긴다.
 
 ## 공식 계약은 네 가지 게시 유형과 OAuth를 보장한다
 
@@ -39,10 +39,10 @@
 
 **[검증됨]** 게시 쿼터는 `GET /me/threads_publishing_limit`으로 조회할 수 있고, 게시물 인사이트는 `GET /{threads-media-id}/insights`에서 `views`, `likes`, `replies`, `reposts`, `quotes`, `shares` 같은 metric을 요청한다. 답글은 replies/conversation으로 읽고 `POST /{reply-thread-id}/manage_reply?hide=true|false`로 숨김 상태를 관리할 수 있으며, 공식 컬렉션에는 pending reply 승인·무시, 답글 작성과 답글 허용 대상 제어도 포함되어 있다. 웹훅 지원의 존재는 Meta 공식 샘플 저장소와 Threads Webhooks 문서 진입점에서 확인된다. ([Meta 공식 게시 한도 요청](https://www.postman.com/meta/threads/request/34203612-f4590341-9bee-44f5-901b-606078a03c96)) ([Meta 공식 Get Post Insights](https://www.postman.com/meta/threads/request/434u2bd/get-post-insights)) ([Meta 공식 Graph API Webhooks Samples](https://github.com/fbsamples/graph-api-webhooks-samples))
 
-**[설계 권고]** 재사용 가능한 내부 계약은 커뮤니티 공통 모델과 Threads 어댑터를 분리해야 한다. 공통 `PublishRequest`에는 `id`, `channel`, `account_id`, 정규화된 콘텐츠, `media_refs`, `scheduled_at`, `idempotency_key`를 두고, 실행별 `PublishAttempt`에는 `request_id`, `attempt_no`, `state`, `provider_container_id`, `provider_post_id`, `provider_trace_id`, 정규화 오류와 시각을 둔다. 상태는 `DRAFT → QUEUED → CREATING_CONTAINER → PROCESSING → PUBLISHING → PUBLISHED`를 기본 경로로, `REAUTH_REQUIRED`, `FAILED_PERMANENT`, `CANCELLED`, `HOLD`를 중단 상태로 사용한다. 이 모델이면 향후 `marketing_command_center`는 공통 요청만 만들고, Threads 어댑터가 URL 전달·컨테이너·상태를 책임진다.
+**[설계 권고]** 재사용 가능한 내부 계약은 커뮤니티 공통 모델과 Threads 어댑터를 분리해야 한다. 공통 `PublishRequest`에는 `id`, `channel`, `account_id`, 정규화된 콘텐츠, `media_refs`, `scheduled_at`, `idempotency_key`를 두고, 실행별 `PublishAttempt`에는 `request_id`, `attempt_no`, `state`, `provider_container_id`, `provider_post_id`, `provider_trace_id`, 정규화 오류와 시각을 둔다. 상태는 `DRAFT → QUEUED → CREATING_CONTAINER → PROCESSING → PUBLISHING → PUBLISHED`를 기본 경로로, `REAUTH_REQUIRED`, `FAILED_PERMANENT`, `CANCELLED`, `HOLD`를 중단 상태로 사용한다. 이 모델이면 향후 소비자 애플리케이션은 공통 요청만 만들고, Threads 어댑터가 URL 전달·컨테이너·상태를 책임진다.
 
 ```text
-교육 UI 또는 marketing_command_center
+교육 UI 또는 소비자 애플리케이션
         │  공통 PublishRequest
         ▼
 게시 오케스트레이터 ── outbox/queue ── Threads worker
@@ -86,6 +86,6 @@
 
 ## Conclusion
 
-Threads 연동의 핵심은 게시 호출 자체가 아니라 **지원 범위를 정직하게 제한하고, 외부 성공을 증거로 확정하며, 바뀌는 API와 정책을 HOLD로 통제하는 것**이다. 이 원칙을 공통 계약으로 두면 교육 예제는 단순하고 설명 가능하게 유지되고, 향후 `marketing_command_center`는 Threads의 세부 OAuth·컨테이너·재시도 규칙을 알지 않고도 동일한 게시 요청과 결과 모델을 사용할 수 있다.
+Threads 연동의 핵심은 게시 호출 자체가 아니라 **지원 범위를 정직하게 제한하고, 외부 성공을 증거로 확정하며, 바뀌는 API와 정책을 HOLD로 통제하는 것**이다. 이 원칙을 공통 계약으로 두면 교육 예제는 단순하고 설명 가능하게 유지되고, 향후 소비자 애플리케이션은 Threads의 세부 OAuth·컨테이너·재시도 규칙을 알지 않고도 동일한 게시 요청과 결과 모델을 사용할 수 있다.
 
 첫 구현의 완료 조건은 텍스트 게시 코드가 존재하는 것이 아니라, 실제 OAuth 사용자로 `/me`를 확인하고 텍스트를 게시한 뒤 원격 게시 ID와 조회 증거를 저장하며, 토큰이 로그에 남지 않고, 실패 시 잘못된 자동 재시도를 하지 않는 것이다. 이미지·동영상·캐러셀과 운영 자동화는 이 기준을 유지한 채 한 종류씩 추가해야 한다. 음악, 웹훅 세부 계약, 미디어 정확 규격, 심사 조건처럼 이번 조사에서 확정하지 못한 영역은 문서의 약점이 아니라 다음 검증을 멈추지 않게 만드는 명시적 경계다.

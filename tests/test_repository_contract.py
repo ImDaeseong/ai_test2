@@ -17,7 +17,6 @@ EXPECTED_PROJECTS = {
     "youtube_research",
     "music_insight_studio",
     "CareerDiff",
-    "marketing_command_center",
     "community_integrations",
 }
 PRIVATE_LOCAL_PROJECTS: set[str] = set()
@@ -51,7 +50,7 @@ class RepositoryContractTests(unittest.TestCase):
         discovered = self._discover_project_directories()
         self.assertEqual(discovered, EXPECTED_PROJECTS)
         self.assertEqual(registered, discovered)
-        self.assertIn("8개 독립 프로젝트", readme)
+        self.assertIn("7개 독립 프로젝트", readme)
         self.assertIn("결정론적 로컬 분석기", readme)
         self.assertNotIn("내장 mock 결과", readme)
 
@@ -76,7 +75,6 @@ class RepositoryContractTests(unittest.TestCase):
             with self.subTest(document=name):
                 content = (ROOT / name).read_text(encoding="utf-8")
                 self.assertIn("CareerDiff", content)
-                self.assertIn("marketing_command_center", content)
                 self.assertIn("community_integrations", content)
 
     def test_spec_lists_every_community_contract_platform(self) -> None:

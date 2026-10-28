@@ -13,10 +13,10 @@ class OfflineVerifierTests(unittest.TestCase):
 
     def test_manifest_covers_runtime_security_and_browser_boundaries(self) -> None:
         names = [name for name, _, _ in verify_offline.verification_commands()]
-        self.assertEqual(13, len(names))
-        self.assertIn("contract", names)
-        self.assertIn("marketing browser E2E", names)
-        self.assertIn("marketing Windows launcher", names)
+        self.assertEqual(6, len(names))
+        self.assertIn("community tests", names)
+        self.assertIn("threads tests", names)
+        self.assertIn("threads client tests", names)
         self.assertIn("security hotspots", names)
 
     def test_first_failure_stops_and_propagates_its_exit_code(self) -> None:

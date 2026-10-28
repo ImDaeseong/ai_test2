@@ -8,7 +8,6 @@ Stop and ask for human review if any condition below occurs.
 - A requested change would commit private user/company/customer data.
 - A requested change would add authenticated YouTube scraping, cookies, or non-public analytics collection.
 - `CareerDiff`가 사용자 고지 없이 이력서나 채용공고를 외부 모델로 전송한다.
-- `marketing_command_center`가 호출 확인 없이 문안을 외부 모델로 보내거나, 사람의 최종 확인 없이 커뮤니티에 자동 게시한다.
 - `community_integrations`가 공식 API가 아닌 쿠키·비밀번호·화면 매크로를 사용하거나, 사람 확인 없이 실제 게시를 실행한다.
 - 실제 후보자 데이터, OpenAI 키 또는 원문 입력이 로그·fixture·검증 JSON에 노출된다.
 

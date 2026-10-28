@@ -17,7 +17,7 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 5. `VERIFICATION.md` — 진행률 게이트와 검증 명령
 6. `ROADMAP.md` — 현대화 순서
 
-## 8개 프로젝트 구조
+## 7개 프로젝트 구조
 
 ```
 [1] ai_img_video_aiBoygirl
@@ -42,10 +42,7 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
       └─ 독립 실행 — 채용공고·이력서 적합도 분석, 키가 있으면 OpenAI 사용
       └─ 기본 mock 경로와 런타임 개인 데이터는 다른 5개 프로젝트와 공유하지 않음
 
-[7] marketing_command_center
-      └─ 독립 실행 — 채널별 마케팅 문안 작성·점검과 수동 게시 인계
-
-[8] community_integrations
+[7] community_integrations
       └─ 독립 실행 — 공식 API 게시 미리보기와 사람 확인 후 실행
 ```
 
@@ -59,7 +56,6 @@ AI 음악 비디오 프롬프트 생성, 애니메이션, CapCut 편집 자동�
 ## 보안 경계
 
 - 음악·영상 도구 5개는 로컬 처리만 수행한다. CareerDiff는 앱 환경변수나 Git 제외 개인 공유 파일의 OPENAI_API_KEY를 선택적으로 사용하며 외부 전송 고지가 필요하다.
-- marketing_command_center는 유료 AI 호출마다 확인을 받고, 게시 주소 열기까지만 수행하며 자동 게시하지 않는다.
 - community_integrations는 공식 API만 사용하고, 실제 전송에 `--execute --confirm`을 모두 요구하며, Naver 비공식 자동화를 차단한다.
 - yt-dlp: 공개 메타데이터만 수집, 음원 다운로드 없음
 - music_insight_studio: numpy/soundfile/librosa/pyloudnorm/basic-pitch 전부 로컬 패키지, 네트워크 호출 없음
