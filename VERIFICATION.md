@@ -71,6 +71,11 @@ python -m unittest tests.test_repository_contract
 
 ## Latest Evidence
 
+Verified 2026-10-29 (full loop, live API):
+
+- `ai_anime/live_api_smoke.py --confirm-paid-call` -> `PASS`, model `gpt-image-2.5-sunburst`, calls 1, png 1024x1024, image not saved. Key value not displayed.
+- Offline: root 25, ai_anime 87, ai_img_video_aiBoygirl 337, ai_img_video_prompt_capcut 65, youtube_research 41, music_insight_studio 34, CareerDiff 129 tests, typecheck and lint passed.
+
 Verified 2026-07-13:
 
 - Document scan found `One-Sentence Use Case`, `Target Module Boundaries`, `API Boundary`, `Security HOLD`, `Progress Gates`, `Phase 1`, `Governance Docs`, and `변경 전 확인 문서`.
